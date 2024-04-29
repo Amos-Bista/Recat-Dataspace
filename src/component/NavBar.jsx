@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import navItems from '../assests/navItems.json'
-import '../index.css';
+import navItems from "../assests/navItems.json";
+import "../index.css";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -43,7 +43,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className={`px-8 top-10 ${scrolled ? "bg-white" : ""}`}>
+    <div className={`px-8  top-10 ${scrolled ? "bg-white" : ""}`}>
       <div className="h-32 mt-0 relative px-6 ">
         <img src="/dataspacelogo1.png" alt="" className="h-16 absolute top-5" />
         <div className="flex justify-end">
@@ -63,7 +63,7 @@ const NavBar = () => {
                     {showDropdown && (
                       <ul
                         ref={dropdownRef}
-                        className={`absolute top-full left-0 shadow-md rounded-b-lg ${
+                        className={`absolute text-black top-full left-0 shadow-md rounded-b-lg ${
                           scrolled
                             ? "bg-white text-black"
                             : "bg-[#062435] text-white"
