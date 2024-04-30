@@ -8,32 +8,29 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
-function createData(Description, Icons, Edit, Delete, protein) {
-  return { Description, Icons, Edit, Delete, protein };
+function createData(Title, Description, Backgroundimage, Edit, Delete) {
+  return {Title, Description, Backgroundimage, Edit, Delete};
 }
 
 const rows = [
   createData(
-    "Expert Support and consultation",
+    "Web Hosting",
     "Your gateway to R..",
     "web.png",
     24,
     4.0
   ),
-  createData(
-    "Tailored Hosting Solution",
-    "Your gateway to R..",
-    "vps.png",
-    37,
-    4.3
-  ),
 ];
-const Contactinfo = () => {
+const Herosec = () => {
   return (
     <main>
-        
+        <div className="flex justify-end">
+        <Button sx={{ margin: 2 }} variant="contained">
+          Add New +
+        </Button>
+      </div >
       <h3 className="text-2xl text-white  my-8">
-        Why DataSpace Card?
+        Hero Section
       </h3>
       <div className="">
         <TableContainer component={Paper}>
@@ -41,8 +38,9 @@ const Contactinfo = () => {
             <TableHead>
               <TableRow>
                 <TableCell>Title</TableCell>
+                <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Icon</TableCell>
+                <TableCell align="center">Backgroundimage</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
@@ -56,8 +54,9 @@ const Contactinfo = () => {
                   <TableCell component="th" scope="row">
                     {row.Description}
                   </TableCell>
-                  <TableCell align="center">{row.Icons}</TableCell>
-                  <TableCell align="center">{row.Edit}</TableCell>
+                  <TableCell align="center">{row.Title}</TableCell>
+                  <TableCell align="center">{row.Description}</TableCell>
+                  <TableCell align="center">{row.Backgroundimage}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit
@@ -78,4 +77,4 @@ const Contactinfo = () => {
   );
 };
 
-export default Contactinfo;
+export default Herosec;

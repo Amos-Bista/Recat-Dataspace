@@ -2,12 +2,8 @@ import React from "react";
 
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
-type AboutcardProps = {
-  title: string;
-  description: string;
-  image: string;
-};
-const Aboutcard: React.FC<AboutcardProps> = ({ title, description, image }) => {
+
+const Aboutcard = ({ title, description, image }) => {
   return (
     <div className="px-8 py-8 flex justify-center">
       <Card
