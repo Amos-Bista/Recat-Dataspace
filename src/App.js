@@ -7,6 +7,7 @@ import Contact from "./pages/contact";
 import Service from "./pages/service/colocation";
 import NavBar from "./component/NavBar";
 import Footer from "./component/footer";
+import { makeInstaller } from "install";
 const routesData = [
   {
     title: "Home",
@@ -66,47 +67,49 @@ const routesData = [
 
 function App() {
   return (
-    <Router>
-      <div className="relative">
-        <Routes>
-          {/* Dynamically generate routes from JSON data */}
-          {routesData.map((route, index) => {
-            if (route.dropdown) {
-              return (
-                <Route
-                  key={index}
-                  path={route.link}
-                  element={<Service dropdown={route.dropdown} />}
-                />
-              );
-            } else {
-              return (
-                <Route
-                  key={index}
-                  path={route.link}
-                  element={
-                    route.link === "/" ? (
-                      <Home />
-                    ) : route.link === "/about" ? (
-                      <About />
-                    ) : route.link === "/service" ? (
-                      <Service />
-                    ) : route.link === "/contact" ? (
-                      <Contact />
-                    ) : null
-                  }
-                  exact={route.link === "/"}
-                />
-              );
-            }
-          })}
-        </Routes>
-      </div>
-      <div className="fixed top-0 w-[100%]">
-        <NavBar />
-      </div>
-      <Footer />
-    </Router>
+    <main className="w-screen overflow-x-hidden">
+      <Router>
+        <div className="relative">
+          <Routes>
+            {/* Dynamically generate routes from JSON data */}
+            {routesData.map((route, index) => {
+              if (route.dropdown) {
+                return (
+                  <Route
+                    key={index}
+                    path={route.link}
+                    element={<Service dropdown={route.dropdown} />}
+                  />
+                );
+              } else {
+                return (
+                  <Route
+                    key={index}
+                    path={route.link}
+                    element={
+                      route.link === "/" ? (
+                        <Home />
+                      ) : route.link === "/about" ? (
+                        <About />
+                      ) : route.link === "/service" ? (
+                        <Service />
+                      ) : route.link === "/contact" ? (
+                        <Contact />
+                      ) : null
+                    }
+                    exact={route.link === "/"}
+                  />
+                );
+              }
+            })}
+          </Routes>
+        </div>
+        <div className="fixed top-0 w-[100%]">
+          <NavBar />
+        </div>
+        <Footer />
+      </Router>
+    </main>
   );
 }
 
