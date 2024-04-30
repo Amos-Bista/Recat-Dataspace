@@ -1,3 +1,6 @@
+import logo from "./logo.svg";
+import "./App.css";
+import VirtualPrivateServer from "./VirtualPrivateServer";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Routes
 import Home from "./pages/home";
@@ -69,7 +72,7 @@ function App() {
     <Router>
      
         <NavBar />
-  
+  <VirtualPrivateServer />
       <Routes>
         {/* Dynamically generate routes from JSON data */}
         {routesData.map((route, index) => {
