@@ -86,35 +86,37 @@ const routesData = [
 
 function App() {
   return (
+     <main className="w-screen overflow-x-hidden">
     <Router>
-      <NavBar />
 
-      <Routes>
-        {/* Dynamically generate routes from JSON data */}
-        {routesData.map((route, index) => {
-          if (route.dropdown) {
-            return (
-              <Route
-                key={index}
-                path={route.link}
-                element={<Service dropdown={route.dropdown} />}
-              />
-            );
-          } else {
-            return (
-              <Route
-                key={index}
-                path={route.link}
-                element={
-                  route.link === "/" ? (
-                    <Home />
-                  ) : route.link === "/about" ? (
-                    <About />
-                  ) : route.link === "/service" ? (
-                    <Service />
-                  ) : route.link === "/contact" ? (
-                    <Contact />
-                  ) : route.link === "/cms" ? (
+
+      <div className="absolute top-1">
+        <Routes>
+          {/* Dynamically generate routes from JSON data */}
+          {routesData.map((route, index) => {
+            if (route.dropdown) {
+              return (
+                <Route
+                  key={index}
+                  path={route.link}
+                  element={<Service dropdown={route.dropdown} />}
+                />
+              );
+            } else {
+              return (
+                <Route
+                  key={index}
+                  path={route.link}
+                  element={
+                    route.link === "/" ? (
+                      <Home />
+                    ) : route.link === "/about" ? (
+                      <About />
+                    ) : route.link === "/service" ? (
+                      <Service />
+                    ) : route.link === "/contact" ? (
+                      <Contact />
+                    ) : route.link === "/cms" ? (
                     <cmshome />
                   ) : route.link === "/adminabout" ? (
                     <AdminAbout />
@@ -127,14 +129,18 @@ function App() {
                   ) : null
                 }
                 exact={route.link === "/"}
-              />
-            );
-          }
-        })}
-      </Routes>
-
+                />
+              );
+            }
+          })}
+        </Routes>
+     </div>
+      <div className="fixed top-0 w-[100%] ">
+        <NavBar />
+      </div>
       <Footer />
     </Router>
+</main>
   );
 }
 
