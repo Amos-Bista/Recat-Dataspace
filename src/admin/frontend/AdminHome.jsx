@@ -9,14 +9,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import AdminNav from '../../component/adminHome/adminNav'
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(tittle, desc, bgimg, edit, remove ) {
+  return { tittle, desc, bgimg, edit, remove};
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
+  createData("Colocation", 159, 6.0, 24, "remove1"),
+  createData("Web Hosting", 237, 9.0, 37, "remove1"),
+  createData("Backup", 262, 16.0, 24, "remove1"),
 ];
 const AdminHome = () => {
   return (
@@ -27,26 +27,26 @@ const AdminHome = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell>Tittle</TableCell>
+                <TableCell align="right">Description</TableCell>
+                <TableCell align="right">Background img</TableCell>
+                <TableCell align="right">Edit</TableCell>
+                <TableCell align="right">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow
-                  key={row.name}
+                  key={row.tittle}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {row.tittle}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="right">{row.desc}</TableCell>
+                  <TableCell align="right">{row.bgimg}</TableCell>
+                  <TableCell align="right">{row.edit}</TableCell>
+                  <TableCell align="right">{row.remove}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
