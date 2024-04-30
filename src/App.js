@@ -67,8 +67,7 @@ const routesData = [
 function App() {
   return (
     <Router>
-
-      <div className="absolute top-1">
+      <div className="relative">
         <Routes>
           {/* Dynamically generate routes from JSON data */}
           {routesData.map((route, index) => {
@@ -103,7 +102,7 @@ function App() {
           })}
         </Routes>
       </div>
-      <div className="stickyrelative ">
+      <div className="fixed top-0 w-[100%]">
         <NavBar />
       </div>
       <Footer />
