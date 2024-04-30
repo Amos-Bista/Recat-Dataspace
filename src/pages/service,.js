@@ -1,8 +1,11 @@
 import React from 'react'
+import VirtualPrivateServer from '../VirtualPrivateServer'
 
 const Service = () => {
   return (
-    <div>Service</div>
+    <div>
+      <VirtualPrivateServer/>
+    </div>
   )
 }
 
