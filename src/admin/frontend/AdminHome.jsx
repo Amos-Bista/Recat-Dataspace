@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import AdminNav from '../../component/adminHome/adminNav'
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -19,8 +20,9 @@ const rows = [
 ];
 const AdminHome = () => {
   return (
-    <main className="flex justify-center align-middle  bg-[#0D5077]  py-28">
-      <div className="">
+    <main className="flex gap-10 align-middle  bg-[#0D5077]  py-28">
+       <AdminNav />
+      <div className="flex ">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
