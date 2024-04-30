@@ -31,7 +31,7 @@ export default function Plans() {
       centered 
     >
       {plansData.map((plan, index) => (
-        <Card key={index} sx={{ maxWidth: 345, marginBottom: 20 }} className="mx-16 shadow-2xl my-12 mt-12">
+        <Card key={index} sx={{ maxWidth: 445, marginBottom: 20 }} className="mx-16 my-12 mt-12 shadow-2xl">
           <CardMedia
             sx={{ height: 140 }}
             image="./plans.png" // Update this path to the correct path of your image

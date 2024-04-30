@@ -67,42 +67,45 @@ const routesData = [
 function App() {
   return (
     <Router>
-      <NavBar />
 
-      <Routes>
-        {/* Dynamically generate routes from JSON data */}
-        {routesData.map((route, index) => {
-          if (route.dropdown) {
-            return (
-              <Route
-                key={index}
-                path={route.link}
-                element={<Service dropdown={route.dropdown} />}
-              />
-            );
-          } else {
-            return (
-              <Route
-                key={index}
-                path={route.link}
-                element={
-                  route.link === "/" ? (
-                    <Home />
-                  ) : route.link === "/about" ? (
-                    <About />
-                  ) : route.link === "/service" ? (
-                    <Service />
-                  ) : route.link === "/contact" ? (
-                    <Contact />
-                  ) : null
-                }
-                exact={route.link === "/"}
-              />
-            );
-          }
-        })}
-      </Routes>
-
+      <div className="absolute top-1">
+        <Routes>
+          {/* Dynamically generate routes from JSON data */}
+          {routesData.map((route, index) => {
+            if (route.dropdown) {
+              return (
+                <Route
+                  key={index}
+                  path={route.link}
+                  element={<Service dropdown={route.dropdown} />}
+                />
+              );
+            } else {
+              return (
+                <Route
+                  key={index}
+                  path={route.link}
+                  element={
+                    route.link === "/" ? (
+                      <Home />
+                    ) : route.link === "/about" ? (
+                      <About />
+                    ) : route.link === "/service" ? (
+                      <Service />
+                    ) : route.link === "/contact" ? (
+                      <Contact />
+                    ) : null
+                  }
+                  exact={route.link === "/"}
+                />
+              );
+            }
+          })}
+        </Routes>
+      </div>
+      <div className="stickyrelative ">
+        <NavBar />
+      </div>
       <Footer />
     </Router>
   );
