@@ -7,6 +7,10 @@ import Contact from "./pages/contact";
 import Service from "./pages/service/colocation";
 import NavBar from "./component/NavBar";
 import Footer from "./component/footer";
+import AdminAbout from "./admin/frontend/AdminAbout";
+import AdminContact from "./admin/frontend/AdminContact";
+import AdminServices from "./admin/frontend/AdminServices";
+import AdminHome from "./admin/frontend/AdminHome";
 const routesData = [
   {
     title: "Home",
@@ -62,6 +66,22 @@ const routesData = [
     title: "Contact",
     link: "/contact",
   },
+  {
+    title: "AdminAbout",
+    link: "/adminabout",
+  },
+  {
+    title: "AdminHome",
+    link: "/adminHome",
+  },
+  {
+    title: "AdminContact",
+    link: "/admincontact",
+  },
+  {
+    title: "AdminServices",
+    link: "/adminservices",
+  },
 ];
 
 function App() {
@@ -94,6 +114,16 @@ function App() {
                     <Service />
                   ) : route.link === "/contact" ? (
                     <Contact />
+                  ) : route.link === "/cms" ? (
+                    <cmshome />
+                  ) : route.link === "/adminabout" ? (
+                    <AdminAbout />
+                  ) : route.link === "/adminHome" ? (
+                    <AdminHome />
+                  ) : route.link === "/admincontact" ? (
+                    <AdminContact />
+                  ) : route.link === "/adminservices" ? (
+                    <AdminServices />
                   ) : null
                 }
                 exact={route.link === "/"}
