@@ -1,9 +1,10 @@
 import React from "react";
+import Button from '@mui/material/Button';
 
 const AdminAbout = () => {
   return (
     <div>
-      <h1>AdminAbout</h1>
+       <Button variant="contained">Add New</Button>
     </div>
   );
 };
