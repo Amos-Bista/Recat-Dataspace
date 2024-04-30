@@ -7,6 +7,10 @@ import Contact from "./pages/contact";
 import Service from "./pages/service/colocation";
 import NavBar from "./component/NavBar";
 import Footer from "./component/footer";
+import AdminAbout from "./admin/frontend/AdminAbout";
+import AdminContact from "./admin/frontend/AdminContact";
+import AdminServices from "./admin/frontend/AdminServices";
+import AdminHome from "./admin/frontend/AdminHome";
 const routesData = [
   {
     title: "Home",
@@ -62,11 +66,29 @@ const routesData = [
     title: "Contact",
     link: "/contact",
   },
+  {
+    title: "AdminAbout",
+    link: "/adminabout",
+  },
+  {
+    title: "AdminHome",
+    link: "/adminHome",
+  },
+  {
+    title: "AdminContact",
+    link: "/admincontact",
+  },
+  {
+    title: "AdminServices",
+    link: "/adminservices",
+  },
 ];
 
 function App() {
   return (
+     <main className="w-screen overflow-x-hidden">
     <Router>
+
 
       <div className="absolute top-1">
         <Routes>
@@ -94,20 +116,31 @@ function App() {
                       <Service />
                     ) : route.link === "/contact" ? (
                       <Contact />
-                    ) : null
-                  }
-                  exact={route.link === "/"}
+                    ) : route.link === "/cms" ? (
+                    <cmshome />
+                  ) : route.link === "/adminabout" ? (
+                    <AdminAbout />
+                  ) : route.link === "/adminHome" ? (
+                    <AdminHome />
+                  ) : route.link === "/admincontact" ? (
+                    <AdminContact />
+                  ) : route.link === "/adminservices" ? (
+                    <AdminServices />
+                  ) : null
+                }
+                exact={route.link === "/"}
                 />
               );
             }
           })}
         </Routes>
-      </div>
-      <div className="stickyrelative ">
+     </div>
+      <div className="fixed top-0 w-[100%] ">
         <NavBar />
       </div>
       <Footer />
     </Router>
+</main>
   );
 }
 
