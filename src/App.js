@@ -11,7 +11,15 @@ import AdminAbout from "./admin/frontend/AdminAbout";
 import AdminContact from "./admin/frontend/AdminContact";
 import AdminServices from "./admin/frontend/AdminServices";
 import AdminHome from "./admin/frontend/AdminHome";
+import Backup from "./pages/service/backup";
+import Bare from "./pages/service/bare";
 import Colocation from "./pages/service/colocation";
+import Endpoint from "./pages/service/endpoint";
+import Enterprise from "./pages/service/enterprise";
+import Setup from "./pages/service/setup";
+import Webdev from "./pages/service/webdev";
+import Webhost from "./pages/service/webhost";
+
 const routesData = [
   {
     title: "Home",
@@ -21,43 +29,76 @@ const routesData = [
     title: "Service ",
     link: "/service",
     dropdown: [
-      {
-        title: "Annual Maintenance Service",
-        link: "/annual",
-      },
-      {
-        title: "Backup Service",
-        link: "/backup",
-      },
-      {
-        title: "Bare Metal Server",
-        link: "/bare",
-      },
-      {
-        title: "Colocation",
-        link: "/colocation",
-      },
-      {
-        title: "Backup & Replication",
-        link: "/backup",
-      },
-      {
-        title: " Enterprise Secure E-mail",
-        link: "/enterprise",
-      },
-      {
-        title: "Setup",
-        link: "/setup",
-      },
-      {
-        title: "Web Development",
-        link: "/webdevelopment",
-      },
-      {
-        title: "Web Hosting",
-        link: "/webhosting",
-      },
+      // {
+      //   title: "Annual Maintenance Service",
+      //   link: "/annual",
+      // },
+      // {
+      //   title: "Backup Service",
+      //   link: "/backup",
+      // },
+      // {
+      //   title: "Bare Metal Server",
+      //   link: "/bare",
+      // },
+      // {
+      //   title: "Bare Metal Server",
+      //   link: "/bare",
+      // },
+      // {
+      //   title: "Colocation",
+      //   link: "/colocation",
+      // },
+      // {
+      //   title: "Backup & Replication",
+      //   link: "/backup",
+      // },
+      // {
+      //   title: " Enterprise Secure E-mail",
+      //   link: "/enterprise",
+      // },
+      // {
+      //   title: "Setup",
+      //   link: "/setup",
+      // },
+      // {
+      //   title: "Web Development",
+      //   link: "/webdevelopment",
+      // },
+      // {
+      //   title: "Web Hosting",
+      //   link: "/webhosting",
+      // },
     ],
+  },
+  {
+    title: "Backup",
+    link: "/backup",
+  },
+  {
+    title: "Bare",
+    link: "/bare",
+  },
+  {
+    title: "Colocation",
+    link: "/colocation",
+  },
+  {
+    title: "Endpoint",
+    link: "/endpoint",
+  },
+  ,
+  {
+    title: " Enterprise Secure E-mail",
+    link: "/enterprise",
+  },
+  {
+    title: "Setup",
+    link: "/setup",
+  },
+  {
+    title: "Web Development",
+    link: "/webdevelopment",
   },
   {
     title: "About Us",
@@ -82,6 +123,10 @@ const routesData = [
   {
     title: "AdminServices",
     link: "/adminservices",
+  },
+  {
+    title: "Webhosting",
+    link: "/webhost",
   },
 ];
 
@@ -117,8 +162,20 @@ function App() {
                         <Contact />
                       ) : route.link === "/colocation" ? (
                         <Colocation />
-                      ) : route.link === "/cms" ? (
-                        <cmshome />
+                      ) : route.link === "/bare" ? (
+                        <Bare />
+                      ) : route.link === "/backup" ? (
+                        <Backup />
+                      ) : route.link === "/endpoint" ? (
+                        <Endpoint />
+                      ) : route.link === "/enterprise" ? (
+                        <Enterprise />
+                      ) : route.link === "/setup" ? (
+                        <Setup />
+                      ) : route.link === "/webdevelopment" ? (
+                        <Webdev />
+                      ) : route.link === "/webhost" ? (
+                        <Webhost />
                       ) : route.link === "/adminabout" ? (
                         <AdminAbout />
                       ) : route.link === "/adminHome" ? (
