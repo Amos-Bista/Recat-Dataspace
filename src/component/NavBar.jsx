@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import navItems from "../assests/navItems.json";
-import "../index.css";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -44,8 +43,8 @@ const NavBar = () => {
 
   return (
     <div className={`px-8  top-10 ${scrolled ? "bg-white" : ""}`}>
-      <div className="h-32 mt-0 relative px-6 ">
-        <img src="/dataspacelogo1.png" alt="" className="h-16 absolute top-5" />
+      <div className="relative h-32 px-6 mt-0 ">
+        <img src="/dataspacelogo1.png" alt="" className="absolute h-16 w-16top-5" />
         <div className="flex justify-end">
           <ul
             className={`flex gap-8 absolute top-12 right-32 font-light text-2xl ${
@@ -95,7 +94,7 @@ const NavBar = () => {
           <img
             src="/NavImg.jpeg"
             alt=""
-            className="h-12 w-12 rounded-full absolute top-9"
+            className="absolute w-12 h-12 rounded-full top-9"
           />
         </div>
       </div>
