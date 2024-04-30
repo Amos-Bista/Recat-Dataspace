@@ -7,7 +7,11 @@ import Contact from "./pages/contact";
 import Service from "./pages/service/colocation";
 import NavBar from "./component/NavBar";
 import Footer from "./component/footer";
-import { makeInstaller } from "install";
+import AdminAbout from "./admin/frontend/AdminAbout";
+import AdminContact from "./admin/frontend/AdminContact";
+import AdminServices from "./admin/frontend/AdminServices";
+import AdminHome from "./admin/frontend/AdminHome";
+import Colocation from "./pages/service/colocation";
 const routesData = [
   {
     title: "Home",
@@ -63,13 +67,29 @@ const routesData = [
     title: "Contact",
     link: "/contact",
   },
+  {
+    title: "AdminAbout",
+    link: "/adminabout",
+  },
+  {
+    title: "AdminHome",
+    link: "/adminHome",
+  },
+  {
+    title: "AdminContact",
+    link: "/admincontact",
+  },
+  {
+    title: "AdminServices",
+    link: "/adminservices",
+  },
 ];
 
 function App() {
   return (
     <main className="w-screen overflow-x-hidden">
       <Router>
-        <div className="relative">
+        <div className="">
           <Routes>
             {/* Dynamically generate routes from JSON data */}
             {routesData.map((route, index) => {
@@ -95,6 +115,18 @@ function App() {
                         <Service />
                       ) : route.link === "/contact" ? (
                         <Contact />
+                      ) : route.link === "/colocation" ? (
+                        <Colocation />
+                      ) : route.link === "/cms" ? (
+                        <cmshome />
+                      ) : route.link === "/adminabout" ? (
+                        <AdminAbout />
+                      ) : route.link === "/adminHome" ? (
+                        <AdminHome />
+                      ) : route.link === "/admincontact" ? (
+                        <AdminContact />
+                      ) : route.link === "/adminservices" ? (
+                        <AdminServices />
                       ) : null
                     }
                     exact={route.link === "/"}
@@ -104,7 +136,7 @@ function App() {
             })}
           </Routes>
         </div>
-        <div className="fixed top-0 w-[100%]">
+        <div className="fixed top-0 w-[100%] ">
           <NavBar />
         </div>
         <Footer />
