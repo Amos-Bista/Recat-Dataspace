@@ -11,6 +11,7 @@ import AdminAbout from "./admin/frontend/AdminAbout";
 import AdminContact from "./admin/frontend/AdminContact";
 import AdminServices from "./admin/frontend/AdminServices";
 import AdminHome from "./admin/frontend/AdminHome";
+import Colocation from "./pages/service/colocation";
 const routesData = [
   {
     title: "Home",
@@ -86,61 +87,61 @@ const routesData = [
 
 function App() {
   return (
-     <main className="w-screen overflow-x-hidden">
-    <Router>
-
-
-      <div className="">
-        <Routes>
-          {/* Dynamically generate routes from JSON data */}
-          {routesData.map((route, index) => {
-            if (route.dropdown) {
-              return (
-                <Route
-                  key={index}
-                  path={route.link}
-                  element={<Service dropdown={route.dropdown} />}
-                />
-              );
-            } else {
-              return (
-                <Route
-                  key={index}
-                  path={route.link}
-                  element={
-                    route.link === "/" ? (
-                      <Home />
-                    ) : route.link === "/about" ? (
-                      <About />
-                    ) : route.link === "/service" ? (
-                      <Service />
-                    ) : route.link === "/contact" ? (
-                      <Contact />
-                    ) : route.link === "/cms" ? (
-                    <cmshome />
-                  ) : route.link === "/adminabout" ? (
-                    <AdminAbout />
-                  ) : route.link === "/adminHome" ? (
-                    <AdminHome />
-                  ) : route.link === "/admincontact" ? (
-                    <AdminContact />
-                  ) : route.link === "/adminservices" ? (
-                    <AdminServices />
-                  ) : null
-                }
-                exact={route.link === "/"}
-                />
-              );
-            }
-          })}
-        </Routes>
-     </div>
-      <div className="fixed top-0 w-[100%] ">
-        <NavBar />
-      </div>
-      <Footer />
-    </Router>
-</main>
+    <main className="w-screen overflow-x-hidden">
+      <Router>
+        <div className="">
+          <Routes>
+            {/* Dynamically generate routes from JSON data */}
+            {routesData.map((route, index) => {
+              if (route.dropdown) {
+                return (
+                  <Route
+                    key={index}
+                    path={route.link}
+                    element={<Service dropdown={route.dropdown} />}
+                  />
+                );
+              } else {
+                return (
+                  <Route
+                    key={index}
+                    path={route.link}
+                    element={
+                      route.link === "/" ? (
+                        <Home />
+                      ) : route.link === "/about" ? (
+                        <About />
+                      ) : route.link === "/service" ? (
+                        <Service />
+                      ) : route.link === "/contact" ? (
+                        <Contact />
+                      ) : route.link === "/colocation" ? (
+                        <Colocation />
+                      ) : route.link === "/cms" ? (
+                        <cmshome />
+                      ) : route.link === "/adminabout" ? (
+                        <AdminAbout />
+                      ) : route.link === "/adminHome" ? (
+                        <AdminHome />
+                      ) : route.link === "/admincontact" ? (
+                        <AdminContact />
+                      ) : route.link === "/adminservices" ? (
+                        <AdminServices />
+                      ) : null
+                    }
+                    exact={route.link === "/"}
+                  />
+                );
+              }
+            })}
+          </Routes>
+        </div>
+        <div className="fixed top-0 w-[100%] ">
+          <NavBar />
+        </div>
+        <Footer />
+      </Router>
+    </main>
   );
 }
 
