@@ -1,14 +1,12 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Routes
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import Service from "./pages/service,";
+import Service from "./pages/service/colocation";
 import NavBar from "./component/NavBar";
 import Footer from "./component/footer";
-// Your JSON data
 const routesData = [
   {
     title: "Home",
@@ -69,9 +67,8 @@ const routesData = [
 function App() {
   return (
     <Router>
-     
-        <NavBar />
- 
+      <NavBar />
+
       <Routes>
         {/* Dynamically generate routes from JSON data */}
         {routesData.map((route, index) => {
@@ -93,6 +90,8 @@ function App() {
                     <Home />
                   ) : route.link === "/about" ? (
                     <About />
+                  ) : route.link === "/service" ? (
+                    <Service />
                   ) : route.link === "/contact" ? (
                     <Contact />
                   ) : null
