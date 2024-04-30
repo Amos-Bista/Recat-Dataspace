@@ -90,7 +90,7 @@ function App() {
     <Router>
 
 
-      <div className="absolute top-1">
+      <div className="">
         <Routes>
           {/* Dynamically generate routes from JSON data */}
           {routesData.map((route, index) => {
