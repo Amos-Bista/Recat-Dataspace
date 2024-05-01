@@ -42,7 +42,7 @@ const Colocationhero = () => {
 
   const imgStyles = {
     width: "100vw",
-    height: "997px",
+    height: "657px",
     position: "center",
     opacity: opacity < 0 ? 0 : opacity, // Ensure opacity doesn't go below 0
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
@@ -52,7 +52,7 @@ const Colocationhero = () => {
     <main className="flex justify-between w-[max-content] relative">
       <div className="relative">
         <div
-          style={{ width: "100vw", height: "997px" }}
+          style={{ width: "100vw", height: "657px" }}
           className="absolute bg-black/50"
         ></div>
         <img
