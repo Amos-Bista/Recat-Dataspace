@@ -9,7 +9,7 @@ import NavBar from "./component/NavBar";
 import Footer from "./component/footer";
 import AdminAbout from "./admin/frontend/AdminAbout";
 import AdminContact from "./admin/frontend/AdminContact";
-import AdminServices from "./admin/frontend/AdminServices";
+import AdminService from "./admin/frontend/AdminService";
 import AdminHome from "./admin/frontend/AdminHome";
 import Backup from "./pages/service/backup";
 import Bare from "./pages/service/bare";
@@ -121,8 +121,8 @@ const routesData = [
     link: "/admincontact",
   },
   {
-    title: "AdminServices",
-    link: "/adminservices",
+    title: "AdminService",
+    link: "/adminservice",
   },
   {
     title: "Webhosting",
@@ -182,8 +182,8 @@ function App() {
                         <AdminHome />
                       ) : route.link === "/admincontact" ? (
                         <AdminContact />
-                      ) : route.link === "/adminservices" ? (
-                        <AdminServices />
+                      ) : route.link === "/adminservice" ? (
+                        <AdminService />
                       ) : null
                     }
                     exact={route.link === "/"}
