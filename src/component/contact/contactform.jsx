@@ -13,6 +13,7 @@ const Contactform = () => {
         borderRadius: 6,
         padding: "0px !important",
         boxShadow: "4",
+        height: " 500px",
       }}
     >
       <Box
@@ -32,22 +33,22 @@ const Contactform = () => {
       >
         <div className="h-36 w-36 absolute top-[63%] left-[63%] rounded-full bg-[#11396e71]"></div>
         <div className="h-80 w-80 absolute top-[70%] left-[70%] rounded-full bg-[#113A6E]"></div>
-        <Typography variant="h4">Contact Information</Typography>
+        <Typography variant="h4" className="mt-4">Contact Information</Typography>
 
-        <h2 className="text-l font-light py-6">
+        <h2 className="py-6 font-light text-l">
           Feel free to contact us in case of problem
         </h2>
 
-        <div className="flex gap-8 mt-24 text-xl items-start align-text-bottom ">
-          <img src="Vector.png" alt="" className="h-9 w-8" />{" "}
+        <div className="flex items-start gap-8 text-xl">
+          <img src="Vector.png" alt="" className="w-8 h-9" />{" "}
           <p>+123 456 7890</p>
         </div>
-        <div className="flex gap-8 mt-16 text-xl items-start align-text-bottom   ">
-          <img src="/inbox-icon.png" alt="" className="h-5 w-6 " />
+        <div className="flex items-start gap-8 mt-8 text-xl align-text-bottom ">
+          <img src="/inbox-icon.png" alt="" className="w-6 h-5 " />
           <p>demo@gmail.com</p>
         </div>
-        <div className="flex gap-8 mt-16 mb-48 text-xl items-start align-text-bottom   ">
-          <img src="/location-icon.png" alt="" className="h-8 w-8" />
+        <div className="flex items-start gap-8 mt-8 mb-48 text-xl align-text-bottom ">
+          <img src="/location-icon.png" alt="" className="w-8 h-8" />
           <p>Putalisadak, ktm NP</p>
         </div>
       </Box>
@@ -110,7 +111,7 @@ const Contactform = () => {
             />
           </Box>
         </div>
-        <div className="absolute bottom-80 right-16">
+        <div className="absolute top-80 right-16">
           <Button
             variant="contained"
             sx={{ paddingX: 4, paddingY: 2, borderRadius: 4 }}
