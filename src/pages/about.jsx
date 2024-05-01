@@ -10,15 +10,14 @@ const About = () => {
   return (
     <main>
       <Abouthero />
-
       <section className="flex-col justify-center py-16">
-        <h1 className="flex justify-center text-3xl py-6">WHY DATASPACE?</h1>
+        <h1 className="flex justify-center py-6 text-3xl">WHY DATASPACE?</h1>
         <img
           src="/aboutbody.png"
           alt="footerimage"
           width={911}
           height={484}
-          className="mx-auto py-4"
+          className="py-4 mx-auto"
         />
       </section>
 
@@ -39,7 +38,7 @@ const About = () => {
         ))}
       </div>
 
-      <div className="flex justify-center text-4xl py-6 pt-5 font-bold ">Our Milestone</div>
+      <div className="flex justify-center py-6 pt-5 text-4xl font-bold ">Our Milestone</div>
 
       <div className="flex flex-col text-black">
         <div className="flex justify-center gap-96 bg-slate-200 ">

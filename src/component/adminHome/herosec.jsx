@@ -29,7 +29,7 @@ const Herosec = () => {
           Add New +
         </Button>
       </div >
-      <h3 className="text-2xl text-white  my-8">
+      <h3 className="my-8 text-2xl font-bold text-black">
         Hero Section
       </h3>
       <div className="">

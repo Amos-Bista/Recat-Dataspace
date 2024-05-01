@@ -28,11 +28,11 @@ const rows = [
     4.3
   ),
 ];
-const Contactinfo = () => {
+const ContactInfo = () => {
   return (
     <main>
         
-      <h3 className="text-2xl text-white  my-8">
+      <h3 className="my-8 text-2xl font-bold text-black">
         Why DataSpace Card?
       </h3>
       <div className="">
@@ -78,4 +78,4 @@ const Contactinfo = () => {
   );
 };
 
-export default Contactinfo;
+export default ContactInfo;
