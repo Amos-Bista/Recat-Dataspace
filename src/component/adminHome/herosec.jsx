@@ -9,29 +9,22 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
 function createData(Title, Description, Backgroundimage, Edit, Delete) {
-  return {Title, Description, Backgroundimage, Edit, Delete};
+  return { Title, Description, Backgroundimage, Edit, Delete };
 }
 
 const rows = [
-  createData(
-    "Web Hosting",
-    "Your gateway to R..",
-    "web.png",
-    24,
-    4.0
-  ),
+  createData("Web Hosting", "Your gateway to R..", "web.png", 24, 4.0),
 ];
 const Herosec = () => {
   return (
     <main>
-        <div className="flex justify-end">
-        <Button sx={{ margin: 2 }} variant="contained">
+      <div className="flex justify-between align-middle">
+        <h1>About </h1>
+        <Button variant="contained" className="flex items-end align-end">
           Add New +
         </Button>
-      </div >
-      <h3 className="my-8 text-2xl font-bold text-black">
-        Hero Section
-      </h3>
+      </div>
+      <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
