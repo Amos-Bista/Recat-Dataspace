@@ -51,7 +51,7 @@ const Contacthero = () => {
 
   const imgStyles = {
     width: "100vw",
-    height: "997px",
+    height: "657px",
     position: "center",
     opacity: opacity < 0 ? 0 : opacity, // Ensure opacity doesn't go below 0
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
@@ -61,7 +61,7 @@ const Contacthero = () => {
     <main className="flex justify-between w-[max-content] relative">
       <div className="relative">
         <div
-          style={{ width: "100vw", height: "997px" }}
+          style={{ width: "100vw", height: "567px" }}
           className="absolute bg-black/50"
         ></div>
         <img
@@ -71,7 +71,7 @@ const Contacthero = () => {
           className="w-max-screen"
         />
         <div className="absolute top-[50%] left-[3%]">
-          <h1 className="text-7xl text-white">
+          <h1 className="text-white text-7xl">
             {slides[currentSlide].caption}
           </h1>
           <h2 className="pl-2 text-3xl text-white">

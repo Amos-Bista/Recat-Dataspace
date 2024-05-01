@@ -40,7 +40,7 @@ const Abouthero = () => {
 
   const imgStyles = {
     width: "100vw",
-    height: "997px",
+    height: "657px",
     position: "center",
     opacity: opacity < 0 ? 0 : opacity, // Ensure opacity doesn't go below 0
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
@@ -50,7 +50,7 @@ const Abouthero = () => {
     <main className="flex justify-between w-[max-content] relative ju">
       <div className="relative">
         <div
-          style={{ width: "100vw", height: "997px" }}
+          style={{ width: "100vw", height: "657px" }}
           className="absolute bg-black/50"
         ></div>
         <img
@@ -61,7 +61,7 @@ const Abouthero = () => {
         />
 
         <div className="absolute top-[50%] left-[3%]">
-          <h1 className="text-7xl text-white">
+          <h1 className="text-white text-7xl">
             {slides[currentSlide].caption}
           </h1>
           <h2 className="pl-2 text-xl text-white w-[60%]">
