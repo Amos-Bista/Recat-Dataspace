@@ -24,32 +24,38 @@ export default function Plans() {
     <Carousel
       autoPlay={true}
       animation="slide"
-      timeout={50}
-      indicators={false}
+      timeout={10}
+      indicators={true}
       navButtonsAlwaysVisible={true}
-      slidesPerPage={3} // New prop to set the number of slides per page
-      centered 
+      slidesPerPage={6} // New prop to set the number of slides per page
+      centered
     >
       {plansData.map((plan, index) => (
-        <Card key={index} sx={{ maxWidth: 445, marginBottom: 20 }} className="mx-16 my-12 mt-12 shadow-2xl">
+        <Card
+          key={index}
+          sx={{ maxWidth: 355, marginBottom: 20 }}
+          className="pb-12 mx-16 my-12 mt-12 shadow-2xl"
+        >
           <CardMedia
             sx={{ height: 140 }}
             image="./plans.png" // Update this path to the correct path of your image
             title="Green Iguana"
           />
-          <CardContent>
+          <CardContent className="flex-col justify-center text-center">
             <Typography gutterBottom variant="h5" component="div">
               {plan.name}
             </Typography>
             {plan.details.map((detail, idx) => (
               <Typography key={idx} variant="body2" color="text.secondary">
-                <strong>{detail.title}:</strong> {detail.description}
+                <span>{detail.title}:</span>
+                {detail.description}
               </Typography>
             ))}
           </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+          <CardActions className="flex justify-center ">
+            <Button size="small">
+              Add to Cart
+            </Button>
           </CardActions>
         </Card>
       ))}

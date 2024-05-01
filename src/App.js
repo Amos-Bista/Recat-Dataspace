@@ -18,7 +18,8 @@ import Endpoint from "./pages/service/endpoint";
 import Enterprise from "./pages/service/enterprise";
 import Setup from "./pages/service/setup";
 import Webdev from "./pages/service/webdev";
-import Webhost from "./pages/service/webhost";
+import Annual from "./pages/service/annual";
+import Webhosting from "./pages/service/webhost";
 
 const routesData = [
   {
@@ -84,6 +85,10 @@ const routesData = [
     link: "/colocation",
   },
   {
+    title: "Annual",
+    link: "/annual",
+  },
+  {
     title: "Endpoint",
     link: "/endpoint",
   },
@@ -99,6 +104,10 @@ const routesData = [
   {
     title: "Web Development",
     link: "/webdevelopment",
+  },
+  {
+    title: "Web Hosting",
+    link: "/webhosting",
   },
   {
     title: "About Us",
@@ -124,10 +133,7 @@ const routesData = [
     title: "AdminService",
     link: "/adminservice",
   },
-  {
-    title: "Webhosting",
-    link: "/webhost",
-  },
+  
 ];
 
 function App() {
@@ -162,6 +168,8 @@ function App() {
                         <Contact />
                       ) : route.link === "/colocation" ? (
                         <Colocation />
+                      ): route.link === "/annual" ? (
+                        <Annual />
                       ) : route.link === "/bare" ? (
                         <Bare />
                       ) : route.link === "/backup" ? (
@@ -174,8 +182,8 @@ function App() {
                         <Setup />
                       ) : route.link === "/webdevelopment" ? (
                         <Webdev />
-                      ) : route.link === "/webhost" ? (
-                        <Webhost />
+                      ) : route.link === "/webhosting" ? (
+                        <Webhosting />
                       ) : route.link === "/adminabout" ? (
                         <AdminAbout />
                       ) : route.link === "/adminHome" ? (

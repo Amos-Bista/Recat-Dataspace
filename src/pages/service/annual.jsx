@@ -1,11 +1,13 @@
-import React from "react";
-import ColocationAccordian from "../../component/service/accordian";
+"use client";
 import Plans from "../../component/Plans";
-import SetupHerosection from "../../component/herosection/setuphero";
-const Setup = () => {
+import AnnualHerosection from "../../component/herosection/annual";
+import ColocationAccordian from "../../component/service/accordian";
+import React from "react";
+
+const  Annual = () => {
   return (
     <main>
-      <SetupHerosection />
+      <AnnualHerosection />
       <div className="w-100% flex justify-center ">
         <div className="px-[4%] my-[5%]">
           <h1 className="text-5xl font-bold ">
@@ -22,4 +24,4 @@ const Setup = () => {
   );
 };
 
-export default Setup;
+export default Annual;

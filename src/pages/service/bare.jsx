@@ -1,13 +1,13 @@
 "use client";
 import Plans from "../../component/Plans";
+import BareHerosection from "../../component/herosection/barehero";
 import ColocationAccordian from "../../component/service/accordian";
-import Colocationhero from "../../component/service/colocationhero";
 import React from "react";
 
 const Bare = () => {
   return (
     <main>
-      <Colocationhero />
+      <BareHerosection/>
       <div className="w-100% flex justify-center ">
         <div className="px-[4%] my-[5%]">
           <h1 className="text-5xl font-bold ">
