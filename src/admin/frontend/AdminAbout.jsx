@@ -1,5 +1,5 @@
 import React from "react";
-import ContactInfo from "../../component/adminHome/contactinfo";
+import ContactInfo from "../../component/adminHome/contactInfo";
 import Herosec from "../../component/adminHome/herosec";
 import AdminNav from "../../component/adminHome/adminNav";
 
