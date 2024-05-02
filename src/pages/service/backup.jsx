@@ -17,7 +17,7 @@ const Backup = () => {
             <ColocationAccordian />
           </ul>
         </div>
-        <img src="/Questions.png" alt="" />
+        <img src="/Backup.png" alt="" />
       </div>
       <Plans />
     </main>
