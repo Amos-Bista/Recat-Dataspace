@@ -1,12 +1,23 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import aboutData from "../../assests/aboutData.json";
 
+const Aboutcard = () => {
+  const [rowData, setRowData] = useState([]);
 
-const Aboutcard = ({ title, description, image }) => {
+  useEffect(() => {
+    // Fetch data from JSON file
+    const data = Object.values(aboutData);
+    console.log(data);
+    
+    // Set rowData state with all data from JSON
+    setRowData(data);
+  }, []);
+
   return (
     <div className="px-8 py-8 flex justify-center">
-      <Card
+       {Array.isArray(rowData) && rowData.map((row, index) => (
+      <Card key={index}
         sx={{
           width: 750,
           height: 400,
@@ -22,8 +33,8 @@ const Aboutcard = ({ title, description, image }) => {
             backgroundSize: "contain",
             marginTop: 0, // Align content vertically to the center
           }}
-          image={image}
-          title={title}
+          image={row[0].image}
+          title={row[0].title}
         />
         <CardContent sx={{ paddingTop: 2 }}>
           <Typography
@@ -32,13 +43,13 @@ const Aboutcard = ({ title, description, image }) => {
             component="div"
             sx={{
               textAlign: "justify",
-              display: "flex",
+              display: "flex",  
               justifyContent: "center",
               paddingY: 0,
             }}
           >
-            {title}
-          </Typography>
+            {row[0].title}
+          </Typography >
           <Typography
             variant="h6"
             color="black"
@@ -50,10 +61,11 @@ const Aboutcard = ({ title, description, image }) => {
               paddingX: 4,
             }}
           >
-            {description}
+            {row[0].description}
           </Typography>
         </CardContent>
       </Card>
+      ))}
     </div>
   );
 };
