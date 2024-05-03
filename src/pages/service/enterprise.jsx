@@ -15,7 +15,7 @@ const Enterprise = () => {
             <ColocationAccordian />
           </ul>
         </div>
-        <img src="/Questions.png" alt="" />
+        <img src="/enterprise.png" alt="" />
       </div>
       <Plans />
     </main>

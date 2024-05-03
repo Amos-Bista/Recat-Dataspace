@@ -17,7 +17,7 @@ const Bare = () => {
             <ColocationAccordian />
           </ul>
         </div>
-        <img src="/Questions.png" alt="" />
+        <img src="/Bare.png" alt="" />
       </div>
       <Plans />
     </main>
