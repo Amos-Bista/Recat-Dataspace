@@ -23,12 +23,8 @@ const Herosec = () => {
 
   return (
     <main>
-      <div className="flex justify-between align-middle">
-        <h1>About </h1>
-        <Button variant="contained" className="flex items-end align-end">
-          Add New +
-        </Button>
-      </div>
+      
+    
       <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
       <div className="">
         <TableContainer component={Paper}>

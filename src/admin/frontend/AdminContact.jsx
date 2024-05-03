@@ -1,6 +1,8 @@
 import React from "react";
 import AdminNav from "../../component/adminHome/adminNav";
 import { Button } from "@mui/material";
+import FeaturesPlan from "../../component/adminHome/featuresPlan";
+import Herosec from "../../component/adminHome/herosec";
 
 const AdminContact = () => {
   return (
@@ -13,7 +15,9 @@ const AdminContact = () => {
             Add New +
           </Button>
         </div>
-      </div>
+        <Herosec/>
+        <FeaturesPlan />
+     
     </main>
   );
 };

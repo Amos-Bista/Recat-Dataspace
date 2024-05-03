@@ -10,7 +10,6 @@ import Paper from "@mui/material/Paper";
 import AdminNav from "../../component/adminHome/adminNav";
 import Herosec from "../../component/adminHome/herosec";
 import ContactInfo from "../../component/adminHome/contactInfo";
-import FeaturesPlan from "../../component/adminHome/featuresPlan";
 import HomeHero from "../../component/adminHome/homehero";
 
 function createData(name, calories, fat, carbs, protein) {
@@ -32,10 +31,7 @@ const AdminHome = () => {
           <Button variant="contained" className="flex items-end align-end">
             Add New +
           </Button>
-          {/* <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
-            <Herosec />
-            <ContactInfo />
-          </div> */}
+          
         </div>
         {/* <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -68,8 +64,7 @@ const AdminHome = () => {
         </TableContainer> */}
         <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
           <HomeHero />
-          <FeaturesPlan />
-          <FeaturesPlan />
+        
         </div>
       </div>
     </main>
