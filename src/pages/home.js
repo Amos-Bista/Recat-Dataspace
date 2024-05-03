@@ -1,6 +1,6 @@
-
-import Herosection from '../component/home/herosection';
+import Herosection from "../component/home/herosection";
 import SearchDomain from "../component/home/searchdomain";
+import Plan from "../component/Plan";
 // import Valuablecustomer from "./component/valuablecustomer";
 import Plans from "../component/Plans";
 function Home() {
@@ -18,8 +18,9 @@ function Home() {
         <h1 className="flex justify-center text-4xl ">
           Our Popular Plans & Pricing
         </h1>
-        <div className="mb-28">
-          <Plans />
+        <div className="mt-[20px] bg-indigo-500 ">
+          {/* <Plans /> */}
+          <Plan />
         </div>
       </section>
       {/* <section className="mb-28">

@@ -17,7 +17,7 @@ const  Annual = () => {
             <ColocationAccordian />
           </ul>
         </div>
-        <img src="/Questions.png" alt="" />
+        <img src="/Annual.png" alt="" />
       </div>
       <Plans />
     </main>
