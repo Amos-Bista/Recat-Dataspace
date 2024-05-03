@@ -18,7 +18,7 @@ function Home() {
         <h1 className="flex justify-center text-4xl ">
           Our Popular Plans & Pricing
         </h1>
-        <div className="mt-[20px] bg-indigo-500 ">
+        <div className="mt-[20px] ">
           {/* <Plans /> */}
           <Plans />
         </div>
