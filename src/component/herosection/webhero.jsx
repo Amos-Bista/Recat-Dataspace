@@ -5,7 +5,7 @@ const WebHerosection = () => {
   const slides = [
     {
       image: "/hero1.png",
-      caption: "Web Development"
+      caption: "Web Hosting"
     },
     {
       image: "/bg2.jpeg",

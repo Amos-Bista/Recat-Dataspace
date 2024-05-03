@@ -5,11 +5,11 @@ const AnnualHerosection = () => {
   const slides = [
     {
       image: "/hero1.png",
-      caption: "Annual Maintanace Service"
+      caption: "Annual Maintenance Service"
     },
     {
       image: "/bg2.jpeg",
-      caption: "Annual Maintanace Sercice"
+      caption: "Annual Maintenance Service"
     }
     // Add more slides as needed
   ];
