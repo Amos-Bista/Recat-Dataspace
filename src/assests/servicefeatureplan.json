@@ -1,0 +1,19 @@
+{
+    "1": {
+      "Title": "Web Hosting",
+      "Packagetitle": "Gold",
+      "Serviceimage": "web.png",
+      "Price":2000,
+      "Edit": 24,
+      "Delete": 4.0
+    },
+    "2": {
+        "Title": "Virtual Private Server",
+        "Packagetitle": "Silver",
+        "Serviceimage": "web.png",
+        "Price":2000,
+        "Edit": 24,
+        "Delete": 4.0
+      }
+  }
+  
