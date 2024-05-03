@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,28 +8,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import contactdata from "../../assests/contactdata.json";
 
-function createData(Description, Icons, Edit, Delete, protein) {
-  return { Description, Icons, Edit, Delete, protein };
-}
 
-const rows = [
-  createData(
-    "Expert Support and consultation",
-    "Your gateway to R..",
-    "web.png",
-    24,
-    4.0
-  ),
-  createData(
-    "Tailored Hosting Solution",
-    "Your gateway to R..",
-    "vps.png",
-    37,
-    4.3
-  ),
-];
 const ContactInfo = () => {
+  const [rows, setRowData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from JSON file
+    const data = Object.values(contactdata);
+    console.log("contact",data);
+    
+    // Set rowData state with all data from JSON
+    setRowData(data);
+  }, []);
   return (
     <main>
         
@@ -50,14 +43,16 @@ const ContactInfo = () => {
             <TableBody>
               {rows.map((row) => (
                 <TableRow
-                  key={row.name}
+                  key={row.Title}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
+                ><TableCell component="th" scope="row">
+                {row.Title}
+              </TableCell>
+                  <TableCell component="th" scope="row" align="center">
                     {row.Description}
                   </TableCell>
-                  <TableCell align="center">{row.Icons}</TableCell>
-                  <TableCell align="center">{row.Edit}</TableCell>
+                  <TableCell align="center">{row.Icon}</TableCell>
+                  {/* <TableCell align="center">{row.Edit}</TableCell> */}
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit
