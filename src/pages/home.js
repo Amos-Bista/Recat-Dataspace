@@ -1,8 +1,8 @@
 import Herosection from "../component/home/herosection";
 import SearchDomain from "../component/home/searchdomain";
-import Plan from "../component/Plan";
-// import Valuablecustomer from "./component/valuablecustomer";
 import Plans from "../component/Plans";
+// import Valuablecustomer from "./component/valuablecustomer";
+// import Plans from "../component/Plans";
 function Home() {
   return (
     <div className="relative flex-col text-black">
@@ -20,7 +20,7 @@ function Home() {
         </h1>
         <div className="mt-[20px] bg-indigo-500 ">
           {/* <Plans /> */}
-          <Plan />
+          <Plans />
         </div>
       </section>
       {/* <section className="mb-28">
