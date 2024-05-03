@@ -17,7 +17,7 @@ const AdminContact = () => {
         </div>
         <Herosec/>
         <FeaturesPlan />
-      </div>
+     
     </main>
   );
 };
