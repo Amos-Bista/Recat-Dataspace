@@ -15,9 +15,9 @@ const AdminContact = () => {
             Add New +
           </Button>
         </div>
-        <Herosec/>
+        <Herosec />
         <FeaturesPlan />
-     
+      </div>
     </main>
   );
 };
