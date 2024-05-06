@@ -2,6 +2,7 @@ import React from "react";
 import Herosec from "../../component/adminHome/herosec";
 import AdminNav from "../../component/adminHome/adminNav";
 import { Button } from "@mui/material";
+import AboutfeaturesPlan from "../../component/adminHome/aboutfeaturesPlan";
 
 const AdminAbout = () => {
   return (
@@ -17,6 +18,7 @@ const AdminAbout = () => {
           </Button>
         </div>
         <Herosec />
+        <AboutfeaturesPlan />
       </div>
     </main>
   );
