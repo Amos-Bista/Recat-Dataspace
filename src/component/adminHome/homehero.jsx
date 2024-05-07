@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,24 +9,29 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Delete from "../../admin/frontend/Delete";
 import Edit from "../../admin/frontend/Edit";
+import Add from "../../admin/frontend/Add";
 
-function createData(Title, Description, Backgroundimage, Edit, Delete) {
-  return { Title, Description, Backgroundimage, Edit, Delete };
-}
-
-const rows = [
-  createData("Web Hosting", "Your gateway to R..", "web.png", 24, 4.0),
-];
 const HomeHero = () => {
+  const [rows, setRows] = useState([]);
+
+  const addData = (data) => {
+    setRows([...rows, data]);
+  };
   return (
     <main>
-      <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
+      <div className="flex justify-between align-middle">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
+          Hero Section
+        </h3>
+        <Button>
+          <Add addData={addData} />
+        </Button>
+      </div>
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Title</TableCell>
                 <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Description</TableCell>
                 <TableCell align="center">Backgroundimage</TableCell>
@@ -35,24 +40,18 @@ const HomeHero = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.Description}
-                  </TableCell>
+              {rows.map((row, index) => (
+                <TableRow key={index}>
                   <TableCell align="center">{row.Title}</TableCell>
                   <TableCell align="center">{row.Description}</TableCell>
                   <TableCell align="center">{row.Backgroundimage}</TableCell>
                   <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
+                    <Button sx={{ margin: 2 }}>
                       <Edit />
                     </Button>
                   </TableCell>
                   <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
+                    <Button sx={{ margin: 2 }}>
                       <Delete />
                     </Button>
                   </TableCell>
