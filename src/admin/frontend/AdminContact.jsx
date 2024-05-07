@@ -17,11 +17,13 @@ const AdminContact = () => {
             Add New +
           </Button>
         </div>
-        <Herosec />
+        <Herosec/>
+        <FeaturesPlan />
+    
         <Contactinfo />
       </div>
     </main>
-  );
+  );  
 };
 
 export default AdminContact;
