@@ -15,11 +15,11 @@ const ValueCustomer = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 800,
+    speed: 1000,
     slidesToShow: 6,
     slidesToScroll: 1,
     autoplay: autoplay,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 2000,
   };
 
   const handleLeftArrowClick = () => {
@@ -38,7 +38,7 @@ const ValueCustomer = () => {
       setAutoplay(false);
       setTimeout(() => {
         setAutoplay(true);
-      }, 5000);
+      }, 2000);
     }
   };
 
