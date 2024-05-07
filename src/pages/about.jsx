@@ -19,7 +19,7 @@ const About = () => {
       </section>
 
       <div className="">
-        <Aboutcard />
+         <Aboutcard />
       </div>
 
       <div className="flex justify-center py-6 pt-5 text-4xl font-bold ">

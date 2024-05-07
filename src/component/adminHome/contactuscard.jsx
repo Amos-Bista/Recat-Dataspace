@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,28 +7,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import contactcard from "../../assests/contactcard";
 
-function createData(Description, Icons, Edit, Delete, protein) {
-  return { Description, Icons, Edit, Delete, protein };
-}
 
-const rows = [
-  createData(
-    "Expert Support and consultation",
-    "Your gateway to R..",
-    "web.png",
-    24,
-    4.0
-  ),
-  createData(
-    "Tailored Hosting Solution",
-    "Your gateway to R..",
-    "vps.png",
-    37,
-    4.3
-  ),
-];
-const FeaturesPlan = () => {
+const Contactuscard = () => {
+  const [rows, setRowData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from JSON file
+    const data = Object.values( contactcard );
+    console.log("contact",data);  
+    
+    // Set rowData state with all data from JSON
+    setRowData(data);
+  }, []);
   return (
     <main>
       <h3 className="my-8 text-2xl font-bold text-black">
@@ -77,4 +69,4 @@ const FeaturesPlan = () => {
   );
 };
 
-export default FeaturesPlan;
+export default Contactuscard;
