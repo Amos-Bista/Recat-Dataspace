@@ -2,6 +2,7 @@ import Herosection from "../component/home/herosection";
 import SearchDomain from "../component/home/searchdomain";
 import Plans from "../component/Plans";
 import ValueCustomer from "../component/home/ValueCustomer";
+
 // import Valuablecustomer from "./component/valuablecustomer";
 // import Plans from "../component/Plans";
 function Home() {

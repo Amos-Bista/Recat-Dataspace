@@ -1,20 +1,34 @@
 import React from 'react';
-import customerData from '../../assests/customerData.json'; 
+import Slider from 'react-slick';
+import customerData from '../../assests/customerData.json';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const ValueCustomer = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1, 
+    prevArrow: <button className="slick-arrow slick-prev">&#60;</button>,
+    nextArrow: <button className="slick-arrow slick-next">&#62;</button> 
+  };
+
+  
+
   return (
-    <div>
-      <div className="flex space-x-3 mt-5 place-content-evenly h-19 mb-5">
-        {customerData.map((customer, index) => (
+    <Slider {...settings}>
+      {customerData.map((customer, index) => (
+        <div key={customer.id} >
           <img
-            key={customer.id}
             src={customer.image}
-            alt={`Customer ${index + 1}`}
-            className="w-32 h-32 rounded-md"
+            alt={`Customer ${index + 1}n`}
+            className="w-32 h-32 rounded-md ml-14"
           />
-        ))}
-      </div>
-    </div>
+        </div>
+      ))}
+    </Slider>
   );
 };
 
