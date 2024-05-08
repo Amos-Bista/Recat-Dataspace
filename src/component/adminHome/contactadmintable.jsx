@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,11 +8,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+
 import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
 
-const HomeHero = () => {
+import contactcard from "../../assests/contactcard";
+const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
 
   const addData = (data) => {
@@ -27,7 +30,7 @@ const HomeHero = () => {
     <main>
       <div className="flex justify-between align-middle">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
-          Hero Section
+          Contact Information
         </h3>
         <Button>
           <Add addData={addData} />
@@ -38,9 +41,9 @@ const HomeHero = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Title</TableCell>
-                <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Backgroundimage</TableCell>
+                <TableCell align="center">Number</TableCell>
+                <TableCell align="center">Mail</TableCell>
+                <TableCell align="center">Address</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
@@ -71,4 +74,4 @@ const HomeHero = () => {
   );
 };
 
-export default HomeHero;
+export default ContactAdminTable;
