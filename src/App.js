@@ -215,6 +215,7 @@ function App() {
         <Footer />
       </Router>
     </main>
+    
   );
 }
 
