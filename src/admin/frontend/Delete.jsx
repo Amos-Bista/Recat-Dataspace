@@ -14,7 +14,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Delete = () => {
+const Delete = ({ onDelete }) => {
   const [open, setOpen] = useState(false);
   const functionOnPopUp = () => {
     setOpen(true);
@@ -22,14 +22,18 @@ const Delete = () => {
   const closePopUp = () => {
     setOpen(false);
   };
+
+  const handleDelete = () => {
+    onDelete();
+    setOpen(false);
+  };
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
         DELETE
       </Button>
-      <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="sm">
+      <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="xs">
         <DialogTitle>
-          Hero Section
           <IconButton
             aria-label="close"
             onClick={closePopUp}
@@ -43,12 +47,33 @@ const Delete = () => {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
-        <DialogContent>Are you sure u want to delete?</DialogContent>
-        <DialogActions className="flex ">
-          <Button color="success" variant="contained">
+        <DialogContent
+          style={{ fontWeight: "500", fontSize: "20px", marginLeft: "60px" }}
+        >
+          {" "}
+          Do you want to delete this field?
+        </DialogContent>
+        <DialogActions
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "80px",
+          }}
+        >
+          <Button
+            color="error"
+            variant="contained"
+            style={{ borderRadius: "12px" }}
+            onClick={handleDelete}
+          >
             DELETE
           </Button>
-          <Button onClick={closePopUp} color="error" variant="contained">
+          <Button
+            onClick={closePopUp}
+            color="inherit"
+            variant="contained"
+            style={{ borderRadius: "12px" }}
+          >
             CANCEL
           </Button>
         </DialogActions>

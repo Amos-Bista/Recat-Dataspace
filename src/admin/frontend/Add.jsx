@@ -12,8 +12,11 @@ import React, { useState, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Edit = () => {
+const Add = ({ addData }) => {
   const [open, setOpen] = useState(false);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const functionOnPopUp = () => {
     setOpen(true);
@@ -22,8 +25,24 @@ const Edit = () => {
     setOpen(false);
   };
 
+  const handleTitleChange = (e) => setTitle(e.target.value);
+  const handleDescriptionChange = (e) => setDescription(e.target.value);
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    const data = {
+      Title: title,
+      Description: description,
+      Backgroundimage: image.name,
+    };
+    addData(data);
+    setTitle("");
+    setDescription("");
+    setImage("");
+
+    closePopUp();
   };
 
   const inputRef = useRef(null);
@@ -33,12 +52,11 @@ const Edit = () => {
 
   return (
     <>
-      <button></button>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        EDIT
+        Add New +
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle>
+        <DialogTitle style={{ color: "#0c5177" }}>
           Hero Section
           <IconButton
             aria-label="close"
@@ -54,19 +72,20 @@ const Edit = () => {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={2}>
+          <Grid container spacing={4} padding={5}>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
                 Title
               </Typography>
             </Grid>
 
-            <Grid
-              item
-              xs={6}
-              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
-            >
-              <TextField label="Enter title" variant="outlined" fullWidth />
+            <Grid item xs={6}>
+              <TextField
+                label="Enter title"
+                variant="outlined"
+                fullWidth
+                onChange={handleTitleChange}
+              />
             </Grid>
             <Grid></Grid>
 
@@ -82,7 +101,7 @@ const Edit = () => {
             <Grid
               item
               xs={6}
-              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
+              // style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
             >
               <TextField
                 label="Enter description"
@@ -90,6 +109,7 @@ const Edit = () => {
                 fullWidth
                 multiline
                 rows={4}
+                onChange={handleDescriptionChange}
               />
             </Grid>
             <Grid item xs={6}>
@@ -97,7 +117,12 @@ const Edit = () => {
                 Upload Image
               </Typography>
             </Grid>
-            <Grid onClick={handleImageClick} item xs={6}>
+            <Grid
+              onClick={handleImageClick}
+              item
+              xs={6}
+              // style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
+            >
               {image ? (
                 <img
                   src={URL.createObjectURL(image)}
@@ -132,19 +157,19 @@ const Edit = () => {
         <DialogActions
           style={{
             display: "flex",
-            gap: "230px",
+            gap: "200px",
             marginRight: "13px",
           }}
         >
-          <Button color="inherit" variant="contained">
-            UPDATE
+          <Button color="inherit" variant="contained" onClick={closePopUp}>
+            UNPUBLISH
           </Button>
           <Button
-            onClick={closePopUp}
+            onClick={handleSubmit}
             style={{ backgroundColor: "#0c5177", color: "#fff" }}
             variant="contained"
           >
-            CANCEL
+            PUBLISH
           </Button>
         </DialogActions>
       </Dialog>
@@ -152,4 +177,4 @@ const Edit = () => {
   );
 };
 
-export default Edit;
+export default Add;

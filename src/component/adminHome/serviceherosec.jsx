@@ -13,12 +13,9 @@ const Serviceherosec = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from JSON file
     const data = Object.values(servicehero);
     console.log(data);
-    
-    // Set rowData state with all data from JSON
-    setRowData(data);
+      setRowData(data);
   }, []);
 
   return (
