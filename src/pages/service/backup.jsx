@@ -1,7 +1,7 @@
 "use client";
 import Plans from "../../component/Plans";
 import BackupHerosection from "../../component/herosection/backuphero";
-import ColocationAccordian from "../../component/service/accordian";
+import BackupAccordion from "../../component/service/accordion/backupaccordion";
 import React from "react";
 
 const Backup = () => {
@@ -14,7 +14,7 @@ const Backup = () => {
             Why Choose Dataspace BackUp Services?
           </h1>
           <ul className="pt-12 pl-6 text-3xl font-medium leading-relaxed list-decimal ml-0">
-            <ColocationAccordian />
+          <BackupAccordion/>
           </ul>
         </div>
         <img src="/Backup.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }} />

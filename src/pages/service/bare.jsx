@@ -1,7 +1,7 @@
 "use client";
 import Plans from "../../component/Plans";
 import BareHerosection from "../../component/herosection/barehero";
-import ColocationAccordian from "../../component/service/accordian";
+import BareAccordion from "../../component/service/accordion/bareaccordion";
 import React from "react";
 
 const Bare = () => {
@@ -14,7 +14,7 @@ const Bare = () => {
             Why Choose Bare Metal Server Service ?
           </h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
-            <ColocationAccordian />
+            <BareAccordion/>
           </ul>
         </div>
         <img src="/Bare.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }} />

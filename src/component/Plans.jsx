@@ -27,7 +27,7 @@ export default function Plans() {
       timeout={10}
       indicators={true}
       navButtonsAlwaysVisible={true}
-      slidesPerPage={6} // New prop to set the number of slides per page
+      slidesPerPage={6} 
       centered
     >
       {plansData.map((plan, index) => (
