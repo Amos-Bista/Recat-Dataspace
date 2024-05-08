@@ -23,10 +23,9 @@ const Servicefeatureplans = () => {
 
   return (
     <main>
-      <h3 className="my-8 text-2xl font-bold text-black">Features Plans</h3>
-      <div className="flex justify-between align-middle mb-4">
-        <h1> </h1>
-        <Button variant="contained" className="flex items-end align-end">
+      <div className="flex items-center justify-between">
+        <h3 className="my-8 text-2xl font-bold text-black">Featured Plans</h3>
+        <Button variant="contained" className="flex items-end h-10 align-end" >
           Add New +
         </Button>
       </div>

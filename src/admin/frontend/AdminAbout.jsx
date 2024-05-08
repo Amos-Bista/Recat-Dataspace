@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Herosec from "../../component/adminHome/herosec";
 import AdminNav from "../../component/adminHome/adminNav";
 import { Button } from "@mui/material";
-import Contactuscard from "../../component/adminHome/contactuscard";
-import Addpopup from "./Addpopup"; // Import the AddPopup component
+import Contactuscard from "../../component/adminContact/contactuscard";
+import Addpopup from "./AddPopUp"; // Import the AddPopup component
 
 const AdminAbout = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);

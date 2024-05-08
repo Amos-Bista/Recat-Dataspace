@@ -1,10 +1,9 @@
 import React from "react";
 import AdminNav from "../../component/adminHome/adminNav";
 
-import Serviceherosec from "../../component/adminHome/serviceherosec";
-import Serviceaccordin from "../../component/adminHome/serviceaccordin";
-import Servicefeatureplans from "../../component/adminHome/servicefeatureplans";
-
+import Serviceherosec from "../../component/adminService/serviceherosec";
+import Serviceaccordin from "../../component/adminService/serviceaccordin";
+import Servicefeatureplans from "../../component/adminService/servicefeatureplans";
 
 const AdminService = () => {
   return (
@@ -13,12 +12,9 @@ const AdminService = () => {
         <AdminNav />
       </div>
       <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
-
-          <Serviceherosec />
-          <Serviceaccordin />
-          <Servicefeatureplans />
-        
-        
+        <Serviceherosec />
+        <Serviceaccordin />
+        <Servicefeatureplans />
       </div>
     </main>
   );

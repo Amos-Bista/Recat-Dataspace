@@ -1,9 +1,10 @@
 import React from "react";
 
 import AdminNav from "../../component/adminHome/adminNav";
-
+import FeaturesPlan from "../../component/adminService/servicefeatureplans";
 import HomeHero from "../../component/adminHome/homehero";
 import Navigation from "../../component/adminHome/navigation";
+import Serviceaccordin from "../../component/adminService/serviceaccordin";
 
 const AdminHome = () => {
   return (
@@ -17,6 +18,8 @@ const AdminHome = () => {
         <div>
           <Navigation />
           <HomeHero />
+          <FeaturesPlan />
+          <Serviceaccordin />
         </div>
       </div>
     </main>
