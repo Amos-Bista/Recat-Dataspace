@@ -1,7 +1,7 @@
 import React from "react";
-import ColocationAccordian from "../../component/service/accordian";
 import Plans from "../../component/Plans";
 import EnterpriseHerosection from "../../component/herosection/enterprisehero";
+import BackupAccordion from "../../component/service/accordion/backupaccordion";
 const Enterprise = () => {
   return (
     <main>
@@ -12,7 +12,8 @@ const Enterprise = () => {
             Why Choose Enterprises Secure Email Service?
           </h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
-            <ColocationAccordian />
+            {/* <EnterpriseAccordion/> */}
+          <BackupAccordion/>
           </ul>
         </div>
         <img src="/enterprise.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }} />

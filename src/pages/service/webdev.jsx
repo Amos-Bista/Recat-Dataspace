@@ -1,7 +1,7 @@
 import React from "react";
-import ColocationAccordian from "../../component/service/accordian";
 import Plans from "../../component/Plans";
 import WebHerosection from "../../component/herosection/webhero";
+import Webaccordion from "../../component/service/accordion/webaccordion";
 const Web = () => {
   return (
     <main>
@@ -12,7 +12,7 @@ const Web = () => {
             Why Choose Web development?
           </h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
-            <ColocationAccordian />
+            <Webaccordion/>
           </ul>
         </div>
         <img src="/Bare.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }} />

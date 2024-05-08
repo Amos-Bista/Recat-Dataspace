@@ -1,7 +1,7 @@
 import React from "react";
-import ColocationAccordian from "../../component/service/accordian";
 import Plans from "../../component/Plans";
 import SetupHerosection from "../../component/herosection/setuphero";
+import SetupAccordion from "../../component/service/accordion/setupaccordion";
 const Setup = () => {
   return (
     <main>
@@ -12,7 +12,7 @@ const Setup = () => {
             Why Choose Dataspace Co-location Services?
           </h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
-            <ColocationAccordian />
+            <SetupAccordion/>
           </ul>
         </div>
         <img src="/Questions.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }}/>
