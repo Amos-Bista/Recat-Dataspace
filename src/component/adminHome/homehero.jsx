@@ -7,6 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import Delete from "../../admin/frontend/Delete";
+import Edit from "../../admin/frontend/Edit";
 
 function createData(Title, Description, Backgroundimage, Edit, Delete) {
   return { Title, Description, Backgroundimage, Edit, Delete };
@@ -46,12 +48,12 @@ const HomeHero = () => {
                   <TableCell align="center">{row.Backgroundimage}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
-                      Edit
+                      <Edit />
                     </Button>
                   </TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
-                      Delete
+                      <Delete />
                     </Button>
                   </TableCell>
                 </TableRow>
