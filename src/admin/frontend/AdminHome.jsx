@@ -13,6 +13,7 @@ const AdminHome = () => {
         <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
           <Navigation />
         <HomeHero />
+
         
         </div>
     </main>
