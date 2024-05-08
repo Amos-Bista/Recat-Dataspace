@@ -20,7 +20,9 @@ import Setup from "./pages/service/setup";
 import Webdev from "./pages/service/webdev";
 import Annual from "./pages/service/annual";
 import Webhosting from "./pages/service/webhost";
+import AddPopUp from "./admin/frontend/AddPopUp"
 
+// eslint-disable-next-line no-sparse-arrays
 const routesData = [
   {
     title: "Home",
@@ -133,6 +135,10 @@ const routesData = [
     title: "AdminService",
     link: "/adminservice",
   },
+  {
+    title: "AddPopUp",
+    link: "/addpopUp",  
+  },
   
 ];
 
@@ -192,7 +198,9 @@ function App() {
                         <AdminContact />
                       ) : route.link === "/adminservice" ? (
                         <AdminService />
-                      ) : null
+                      ) : route.link ==="/addpopup" ?(
+                        <AddPopUp/>
+                      ): null
                     }
                     exact={route.link === "/"}
                   />
