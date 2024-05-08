@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 
-const AddPopUp = ({ open, handleClose, handleAdd }) => {
+const Addpopup = ({ open, handleClose, handleAdd }) => {
   // State to hold input values
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -25,6 +25,7 @@ const AddPopUp = ({ open, handleClose, handleAdd }) => {
 
   return (
     <Dialog open={open} onClose={handleClose}>
+
       <DialogTitle>Add New HomeHero Item</DialogTitle>
       <DialogContent>
         <TextField
@@ -54,4 +55,4 @@ const AddPopUp = ({ open, handleClose, handleAdd }) => {
   );
 };
 
-export default AddPopUp;
+export default Addpopup;

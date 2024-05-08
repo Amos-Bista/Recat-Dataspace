@@ -28,6 +28,7 @@ export default function Plans() {
       indicators={true}
       navButtonsAlwaysVisible={true}
       slidesPerPage={6} 
+
       centered
     >
       {plansData.map((plan, index) => (

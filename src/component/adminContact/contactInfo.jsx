@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,46 +8,50 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import servicehero from "../../assests/servicehero.json";
+import contactcard from "../../assests/contactcard";
 
-const Serviceherosec = () => {
-  const [rowData, setRowData] = useState([]);
+
+const Contactinfo = () => {
+  const [rows, setRowData] = useState([]);
 
   useEffect(() => {
-    const data = Object.values(servicehero);
-    console.log(data);
-      setRowData(data);
+    // Fetch data from JSON file
+    const data = Object.values(contactcard);
+    console.log("contact",data);
+    
+    // Set rowData state with all data from JSON
+    setRowData(data);
   }, []);
-
   return (
     <main>
-      <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
-      <div className="flex justify-between align-middle mb-4">
-        <h1> </h1>
-        <Button variant="contained" className="flex items-end align-end">
-          Add New +
-        </Button>
-      </div>
+        
+      <h3 className="my-8 text-2xl font-bold text-black">
+        Contact Information
+      </h3>
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Title</TableCell>
+                <TableCell>Title</TableCell>
                 <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Backgroundimage</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.isArray(rowData) && rowData.map((row, index) => (
-                <TableRow key={index}>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.Title}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                ><TableCell component="th" scope="row">
+                {row.Title}
+              </TableCell>
                   <TableCell component="th" scope="row" align="center">
-                    {row.Title}
+                    {row.Description}
                   </TableCell>
-                  <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">{row.Backgroundimage}</TableCell>
+             
+                  
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit
@@ -67,4 +72,4 @@ const Serviceherosec = () => {
   );
 };
 
-export default Serviceherosec;
+export default Contactinfo;

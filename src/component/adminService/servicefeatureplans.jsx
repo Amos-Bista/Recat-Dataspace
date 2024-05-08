@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,51 +7,50 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import contactdata from "../../assests/contactdata.json";
+import Servicefeatureplan from "../../assests/servicefeatureplan.json";
 
-
-const ContactInfo = () => {
-  const [rows, setRowData] = useState([]);
+const Servicefeatureplans = () => {
+  const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
     // Fetch data from JSON file
-    const data = Object.values(contactdata);
-    console.log("contact",data);
+    const data = Object.values(Servicefeatureplan);
+    console.log(data);
     
     // Set rowData state with all data from JSON
     setRowData(data);
   }, []);
+
   return (
     <main>
-        
-      <h3 className="my-8 text-2xl font-bold text-black">
-        Why DataSpace Card?
-      </h3>
+      <div className="flex items-center justify-between">
+        <h3 className="my-8 text-2xl font-bold text-black">Featured Plans</h3>
+        <Button variant="contained" className="flex items-end h-10 align-end" >
+          Add New +
+        </Button>
+      </div>
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Title</TableCell>
-                <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Icon</TableCell>
+                <TableCell align="center">Title</TableCell>
+                <TableCell align="center">Packagetitle</TableCell>
+                <TableCell align="center">Serviceimage</TableCell>
+                <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.Title}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                ><TableCell component="th" scope="row">
-                {row.Title}
-              </TableCell>
+              {Array.isArray(rowData) && rowData.map((row, index) => (
+                <TableRow key={index}>
                   <TableCell component="th" scope="row" align="center">
-                    {row.Description}
+                    {row.Title}
                   </TableCell>
-                  <TableCell align="center">{row.Icon}</TableCell>
-                  {/* <TableCell align="center">{row.Edit}</TableCell> */}
+                  <TableCell align="center">{row.Packagetitle}</TableCell>
+                  <TableCell align="center">{row.Serviceimage}</TableCell>
+                  <TableCell align="center">{row.Price}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit
@@ -73,4 +71,4 @@ const ContactInfo = () => {
   );
 };
 
-export default ContactInfo;
+export default Servicefeatureplans;
