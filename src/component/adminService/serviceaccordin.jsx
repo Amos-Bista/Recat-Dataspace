@@ -16,17 +16,19 @@ const Serviceaccordin = () => {
     // Fetch data from JSON file
     const data = Object.values(adminacordin);
     console.log(data);
-    
+
     // Set rowData state with all data from JSON
     setRowData(data);
   }, []);
 
   return (
     <main>
-      <h3 className="my-8 text-2xl font-bold text-black">Accordion</h3>
-      <div className="flex justify-between align-middle mb-4">
-        <h1> </h1>
-        <Button variant="contained" className="flex items-end align-end">
+     <div className="flex justify-between align-middle">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
+          Accordion home
+        </h3>
+
+        <Button variant="contained" className="flex items-end h-10 align-end">
           Add New +
         </Button>
       </div>
@@ -42,24 +44,25 @@ const Serviceaccordin = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.isArray(rowData) && rowData.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row" align="center">
-                    {row.Title}
-                  </TableCell>
-                  <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
-                      Edit
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {Array.isArray(rowData) &&
+                rowData.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row" align="center">
+                      {row.Title}
+                    </TableCell>
+                    <TableCell align="center">{row.Description}</TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }} variant="contained">
+                        Edit
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }} variant="contained">
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

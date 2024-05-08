@@ -38,7 +38,7 @@ const AdminAbout = () => {
         </div>
         <Herosec />
         <Contactuscard />
-        {isPopupOpen && <AddPopUP onClose={handleClosePopup} />}{" "}
+        {isPopupOpen && <Addpopup onClose={handleClosePopup} />}{" "}
         {/* Render AddPopup if isPopupOpen is true */}
       </div>
     </main>
