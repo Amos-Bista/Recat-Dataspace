@@ -3,7 +3,7 @@ import Herosec from "../../component/adminHome/herosec";
 import AdminNav from "../../component/adminHome/adminNav";
 import { Button } from "@mui/material";
 import Contactuscard from "../../component/adminHome/contactuscard";
-import Addpopup from "./Addpopup"; // Import the AddPopup component
+import AddPopUP from "./AddPopUp"; // Import the AddPopup component
 
 const AdminAbout = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -36,7 +36,7 @@ const AdminAbout = () => {
         </div>
         <Herosec />
         <Contactuscard />
-        {isPopupOpen && <Addpopup onClose={handleClosePopup} />}{" "}
+        {isPopupOpen && <AddPopUP onClose={handleClosePopup} />}{" "}
         {/* Render AddPopup if isPopupOpen is true */}
       </div>
     </main>
