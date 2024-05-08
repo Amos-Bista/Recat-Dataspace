@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,31 +7,27 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import adminacordin from "../../assests/adminacordin.json";
 
-import Delete from "../../component/adminHome/Delete";
-import Edit from "../../component/adminHome/Edit";
-import Add from "../../component/adminHome/Add";
+const Serviceaccordin = () => {
+  const [rowData, setRowData] = useState([]);
 
-const HomeHero = () => {
-  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    // Fetch data from JSON file
+    const data = Object.values(adminacordin);
+    console.log(data);
+    
+    // Set rowData state with all data from JSON
+    setRowData(data);
+  }, []);
 
-  const addData = (data) => {
-    setRows([...rows, data]);
-  };
-
-  const handleDelete = (index) => {
-    const updatedRows = [...rows];
-    updatedRows.splice(index, 1);
-    setRows(updatedRows);
-  };
   return (
     <main>
-      <div className="flex justify-between align-middle">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
-          Hero Section
-        </h3>
-        <Button>
-          <Add addData={addData} />
+      <h3 className="my-8 text-2xl font-bold text-black">Accordion</h3>
+      <div className="flex justify-between align-middle mb-4">
+        <h1> </h1>
+        <Button variant="contained" className="flex items-end align-end">
+          Add New +
         </Button>
       </div>
       <div className="">
@@ -41,27 +37,25 @@ const HomeHero = () => {
               <TableRow>
                 <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Backgroundimage</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
+              {Array.isArray(rowData) && rowData.map((row, index) => (
                 <TableRow key={index}>
-                  <TableCell align="center">{row.Title}</TableCell>
+                  <TableCell component="th" scope="row" align="center">
+                    {row.Title}
+                  </TableCell>
                   <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">{row.Backgroundimage}</TableCell>
                   <TableCell align="center">
-
-                    <Button sx={{ margin: 2 }}>
-                      <Edit />
+                    <Button sx={{ margin: 2 }} variant="contained">
+                      Edit
                     </Button>
                   </TableCell>
                   <TableCell align="center">
-
-                    <Button sx={{ margin: 2 }}>
-                      <Delete onDelete={() => handleDelete(index)} />
+                    <Button sx={{ margin: 2 }} variant="contained">
+                      Delete
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -74,4 +68,4 @@ const HomeHero = () => {
   );
 };
 
-export default HomeHero;
+export default Serviceaccordin;
