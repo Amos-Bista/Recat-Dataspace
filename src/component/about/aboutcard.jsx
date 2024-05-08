@@ -8,12 +8,14 @@ const Aboutcard = () => {
   useEffect(() => {
     // Fetch data from JSON file
     const data = Object.values(aboutData);
+    console.log(data);
 
     // Set rowData state with all data from JSON
     setRowData(data);
   }, []);
 
   return (
+
     <div className="px-10 py-8 flex flex-wrap justify-center gap-x-[160px] gap-y-[90px]">
       <div className="flex flex-wrap justify-center gap-x-[160px] gap-y-[90px]">
         {Array.isArray(rowData) &&
