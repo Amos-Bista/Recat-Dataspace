@@ -1,13 +1,9 @@
 import React from "react";
-import { Button } from "@mui/material";
 
 import AdminNav from "../../component/adminHome/adminNav";
 import FeaturesPlan from "../../component/adminHome/featuresPlan";
 import HomeHero from "../../component/adminHome/homehero";
 import Navigation from "../../component/adminHome/navigation";
-
-
-
 
 const AdminHome = () => {
   return (
@@ -16,11 +12,9 @@ const AdminHome = () => {
       <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
         <div className="flex justify-between align-middle">
           <h1>Home</h1>
-          
-         
         </div>
         <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
-        <Navigation/>
+          <Navigation />
           <HomeHero />
           <FeaturesPlan />
           <FeaturesPlan />
