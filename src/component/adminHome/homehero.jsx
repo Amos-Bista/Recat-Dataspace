@@ -17,6 +17,12 @@ const HomeHero = () => {
   const addData = (data) => {
     setRows([...rows, data]);
   };
+
+  const handleDelete = (index) => {
+    const updatedRows = [...rows];
+    updatedRows.splice(index, 1);
+    setRows(updatedRows);
+  };
   return (
     <main>
       <div className="flex justify-between align-middle">
@@ -52,7 +58,7 @@ const HomeHero = () => {
                   </TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }}>
-                      <Delete />
+                      <Delete onDelete={() => handleDelete(index)} />
                     </Button>
                   </TableCell>
                 </TableRow>

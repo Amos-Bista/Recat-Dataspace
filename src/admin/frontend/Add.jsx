@@ -38,6 +38,10 @@ const Add = ({ addData }) => {
       Backgroundimage: image.name,
     };
     addData(data);
+    setTitle("");
+    setDescription("");
+    setImage("");
+
     closePopUp();
   };
 
@@ -68,18 +72,14 @@ const Add = ({ addData }) => {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={2}>
+          <Grid container spacing={4} padding={5}>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
                 Title
               </Typography>
             </Grid>
 
-            <Grid
-              item
-              xs={6}
-              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
-            >
+            <Grid item xs={6}>
               <TextField
                 label="Enter title"
                 variant="outlined"
@@ -101,7 +101,7 @@ const Add = ({ addData }) => {
             <Grid
               item
               xs={6}
-              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
+              // style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
             >
               <TextField
                 label="Enter description"
@@ -121,7 +121,7 @@ const Add = ({ addData }) => {
               onClick={handleImageClick}
               item
               xs={6}
-              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
+              // style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
             >
               {image ? (
                 <img

@@ -14,12 +14,17 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Delete = () => {
+const Delete = ({ onDelete }) => {
   const [open, setOpen] = useState(false);
   const functionOnPopUp = () => {
     setOpen(true);
   };
   const closePopUp = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = () => {
+    onDelete();
     setOpen(false);
   };
   return (
@@ -59,6 +64,7 @@ const Delete = () => {
             color="error"
             variant="contained"
             style={{ borderRadius: "12px" }}
+            onClick={handleDelete}
           >
             DELETE
           </Button>

@@ -28,11 +28,12 @@ const Edit = () => {
 
   const inputRef = useRef(null);
   const handleImageClick = () => {
-    inputRef.current.click(); 
+    inputRef.current.click();
   };
 
   return (
     <>
+      <button></button>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
         EDIT
       </Button>
