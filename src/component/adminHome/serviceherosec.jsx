@@ -7,14 +7,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import herosecData from "../../assests/herosecData.json";
+import servicehero from "../../assests/servicehero.json";
 
-const Herosec = () => {
+const Serviceherosec = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
     // Fetch data from JSON file
-    const data = Object.values(herosecData);
+    const data = Object.values(servicehero);
     console.log(data);
     
     // Set rowData state with all data from JSON
@@ -23,9 +23,13 @@ const Herosec = () => {
 
   return (
     <main>
-      
-    
       <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
+      <div className="flex justify-between align-middle mb-4">
+        <h1> </h1>
+        <Button variant="contained" className="flex items-end align-end">
+          Add New +
+        </Button>
+      </div>
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -66,4 +70,4 @@ const Herosec = () => {
   );
 };
 
-export default Herosec;
+export default Serviceherosec;

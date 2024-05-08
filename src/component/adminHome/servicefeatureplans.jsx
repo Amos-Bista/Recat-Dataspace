@@ -7,14 +7,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import herosecData from "../../assests/herosecData.json";
+import Servicefeatureplan from "../../assests/servicefeatureplan.json";
 
-const Herosec = () => {
+const Servicefeatureplans = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
     // Fetch data from JSON file
-    const data = Object.values(herosecData);
+    const data = Object.values(Servicefeatureplan);
     console.log(data);
     
     // Set rowData state with all data from JSON
@@ -23,17 +23,22 @@ const Herosec = () => {
 
   return (
     <main>
-      
-    
-      <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
+      <h3 className="my-8 text-2xl font-bold text-black">Features Plans</h3>
+      <div className="flex justify-between align-middle mb-4">
+        <h1> </h1>
+        <Button variant="contained" className="flex items-end align-end">
+          Add New +
+        </Button>
+      </div>
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell align="center">Title</TableCell>
-                <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Backgroundimage</TableCell>
+                <TableCell align="center">Packagetitle</TableCell>
+                <TableCell align="center">Serviceimage</TableCell>
+                <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
@@ -44,8 +49,9 @@ const Herosec = () => {
                   <TableCell component="th" scope="row" align="center">
                     {row.Title}
                   </TableCell>
-                  <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">{row.Backgroundimage}</TableCell>
+                  <TableCell align="center">{row.Packagetitle}</TableCell>
+                  <TableCell align="center">{row.Serviceimage}</TableCell>
+                  <TableCell align="center">{row.Price}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit
@@ -66,4 +72,4 @@ const Herosec = () => {
   );
 };
 
-export default Herosec;
+export default Servicefeatureplans;
