@@ -38,9 +38,9 @@ const Navigation = () => {
   };
 
   return (
-    <main>
+    <main className="pt-6 border-b-2 border-[#0D5077]">
       <div className="flex items-center justify-between">
-        <h3 className="my-8 text-2xl font-bold text-black">Navigation Bar</h3>
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px] ">Navigation Bar</h3>
         <Button variant="contained" className="flex items-end h-10 align-end" onClick={handleAddNew}>
           Add New +
         </Button>

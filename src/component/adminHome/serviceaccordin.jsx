@@ -23,8 +23,8 @@ const Serviceaccordin = () => {
 
   return (
     <main>
-      <h3 className="my-8 text-2xl font-bold text-black">Accordion</h3>
-      <div className="flex justify-between align-middle mb-4">
+      <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">Accordion</h3>
+      <div className="flex justify-between mb-4 align-middle">
         <h1> </h1>
         <Button variant="contained" className="flex items-end align-end">
           Add New +
