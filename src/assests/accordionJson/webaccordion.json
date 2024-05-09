@@ -1,23 +1,23 @@
 [
     {
       "id": "panel1",
-      "title": "Uncompromising Performance",
-      "description" : " Harness the full potential of dedicated hardware. With no virtualization overhead, our Bare Metal Servers deliver consistent and unparalleled performance for resource-intensive workloads."
+      "title": "Strategic Approach",
+      "description" : " We collaborate closely to understand your goals, target audience, and unique brand identity to ensure your website reflects your vision."
     },
     {
       "id": "panel2",
-      "title": "Customization at Scale",
-      "description" : " Tailor your server environment precisely to your needs. From choosing CPU, RAM, and storage configurations to selecting the preferred Operating System, you have complete control."
+      "title": "Custom Designs",
+      "description" : "Our designers craft custom website designs that capture your brand essence and resonate with your audience, setting you apart from the competition."
     },
     {
       "id": "panel3",
-      "title": "Data Security",
-      "description" : " In a dedicated environment, your data is isolated from other users, minimizing security risks associated with shared platforms."
+      "title": "Responsive Design",
+      "description" : " In today’s mobile-centric world, responsive design is essential. We ensure your website looks and functions seamlessly across all devices, enhancing user experience."
     },
     {
       "id": "panel4",
-      "title": "Reliability",
-      "description" : " Enjoy the stability of dedicated resources. Your Bare Metal Server remains unaffected by the activities of neighboring virtual environments."
+      "title": "User-Centric Focus",
+      "description" : " User experience is at the core of our designs. We create intuitive navigation, clear calls-to-action, and engaging interfaces that keep visitors engaged and convert them into customers."
     }
   ]
   

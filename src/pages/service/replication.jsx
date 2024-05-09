@@ -1,20 +1,20 @@
 "use client";
 import Plans from "../../component/Plans";
-import AnnualHerosection from "../../component/herosection/annualhero";
-import AnnualAccordion from "../../component/service/accordion/annualaccordion";
+import ReplicationHerosection from "../../component/herosection/replicationhero";
+import ReplicationAccordion from "../../component/service/accordion/replicationaccordion";
 import React from "react";
 
-const Annual = () => {
+const Replication = () => {
   return (
     <main>
-      <AnnualHerosection/>
+      <ReplicationHerosection/>
       <div className="w-100% flex justify-center ">
         <div className="px-[4%] my-[5%] ml-0">
           <h1 className="text-4xl font-bold ml-0">
-          Why Choose Dataspace Annual Maintenance Services?
+          Why Choose Dataspace Backup and Replication Services?
           </h1>
           <ul className="pt-12 pl-6 text-3xl font-medium leading-relaxed list-decimal ml-0">
-          <AnnualAccordion/>
+          <ReplicationAccordion />
           </ul>
         </div>
         <img src="/Backup.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }} />
@@ -24,4 +24,4 @@ const Annual = () => {
   );
 };
 
-export default Annual;
+export default Replication;

@@ -1,23 +1,23 @@
 [
     {
       "id": "panel1",
-      "title": "Uncompromising Performance",
-      "description" : " Harness the full potential of dedicated hardware. With no virtualization overhead, our Bare Metal Servers deliver consistent and unparalleled performance for resource-intensive workloads."
+      "title": "Expert Guidance",
+      "description" : "Leverage our team of seasoned professionals who possess deep expertise across a wide range of technologies. We guide you through the setup process, ensuring best practices and optimal configurations."
     },
     {
       "id": "panel2",
-      "title": "Customization at Scale",
-      "description" : " Tailor your server environment precisely to your needs. From choosing CPU, RAM, and storage configurations to selecting the preferred Operating System, you have complete control."
+      "title": "Customization",
+      "description" : "  We take the time to understand your unique requirements and tailor our services to match your business goals and technology preferences"
     },
     {
       "id": "panel3",
-      "title": "Data Security",
-      "description" : " In a dedicated environment, your data is isolated from other users, minimizing security risks associated with shared platforms."
+      "title": "Streamlined Implementation",
+      "description" : " Our services are designed to minimize disruption. With meticulous planning and execution, we get your systems up and running smoothly and swiftly."
     },
     {
       "id": "panel4",
-      "title": "Reliability",
-      "description" : " Enjoy the stability of dedicated resources. Your Bare Metal Server remains unaffected by the activities of neighboring virtual environments."
+      "title": "Security Focus",
+      "description" : "  Security is at the forefront of our setup and configuration approach. We implement robust security measures, ensuring that your systems are protected against potential threats."
     }
   ]
   

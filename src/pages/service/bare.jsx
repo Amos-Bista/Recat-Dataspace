@@ -11,7 +11,7 @@ const Bare = () => {
       <div className="w-100% flex justify-center ">
         <div className="px-[4%] my-[5%] ml-0 ">
           <h1 className="text-4xl font-bold  ">
-            Why Choose Bare Metal Server Service ?
+          Why Choose Dataspace Bare Metal Server?
           </h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
             <BareAccordion/>

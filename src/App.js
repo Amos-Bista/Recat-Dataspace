@@ -14,7 +14,7 @@ import AdminHome from "./admin/frontend/AdminHome";
 import Backup from "./pages/service/backup";
 import Bare from "./pages/service/bare";
 import Colocation from "./pages/service/colocation";
-import Endpoint from "./pages/service/endpoint";
+import Replication from "./pages/service/replication";
 import Enterprise from "./pages/service/enterprise";
 import Setup from "./pages/service/setup";
 import Webdev from "./pages/service/webdev";
@@ -31,46 +31,42 @@ const routesData = [
     title: "Service ",
     link: "/service",
     dropdown: [
-      // {
-      //   title: "Annual Maintenance Service",
-      //   link: "/annual",
-      // },
-      // {
-      //   title: "Backup Service",
-      //   link: "/backup",
-      // },
-      // {
-      //   title: "Bare Metal Server",
-      //   link: "/bare",
-      // },
-      // {
-      //   title: "Bare Metal Server",
-      //   link: "/bare",
-      // },
-      // {
-      //   title: "Colocation",
-      //   link: "/colocation",
-      // },
-      // {
-      //   title: "Backup & Replication",
-      //   link: "/backup",
-      // },
-      // {
-      //   title: " Enterprise Secure E-mail",
-      //   link: "/enterprise",
-      // },
-      // {
-      //   title: "Setup",
-      //   link: "/setup",
-      // },
-      // {
-      //   title: "Web Development",
-      //   link: "/webdevelopment",
-      // },
-      // {
-      //   title: "Web Hosting",
-      //   link: "/webhosting",
-      // },
+      {
+        title: "Annual Maintenance Service",
+        link: "/annual",
+      },
+      {
+        title: "Backup Service",
+        link: "/backup",
+      },
+      {
+        title: "Bare Metal Server",
+        link: "/bare",
+      },
+      {
+        title: "Colocation",
+        link: "/colocation",
+      },
+      {
+        title: "Replication",
+        link: "/replication",
+      },
+      {
+        title: " Enterprise Secure E-mail",
+        link: "/enterprise",
+      },
+      {
+        title: "Setup",
+        link: "/setup",
+      },
+      {
+        title: "Web Development",
+        link: "/webdevelopment",
+      },
+      {
+        title: "Web Hosting",
+        link: "/webhosting",
+      },
     ],
   },
   {
@@ -90,8 +86,8 @@ const routesData = [
     link: "/annual",
   },
   {
-    title: "Endpoint",
-    link: "/endpoint",
+    title: "Replication",
+    link: "/replication",
   },
   ,
   {
@@ -176,8 +172,8 @@ function App() {
                         <Bare />
                       ) : route.link === "/backup" ? (
                         <Backup />
-                      ) : route.link === "/endpoint" ? (
-                        <Endpoint />
+                      ) : route.link === "/replication" ? (
+                        <Replication />
                       ) : route.link === "/enterprise" ? (
                         <Enterprise />
                       ) : route.link === "/setup" ? (

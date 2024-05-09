@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ButtonHerosection from '../home/buttonHerosection' 
-const AnnualHerosection = () => {
+const ReplicationHerosection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
       image: "/hero1.png",
-      caption: "Annual Maintanace Service"
+      caption: "Backup and Replication Service"
     },
     {
       image: "/bg2.jpeg",
-      caption: "Annual Maintanace Service"
+      caption: "Backup and Replication Service"
     }
     // Add more slides as needed
   ];
@@ -51,4 +51,4 @@ const AnnualHerosection = () => {
   );
 };
 
-export default AnnualHerosection;
+export default ReplicationHerosection;

@@ -1,23 +1,23 @@
 [
     {
       "id": "panel1",
-      "title": "Proactive Care",
-      "description" : " Our annual maintenance services are designed to identify and address potential issues before they disrupt your operations. We keep your systems running smoothly and efficiently."
+      "title": "Reliability at its Core",
+      "description" : "  Dataspace’s Web Hosting is built on a foundation of reliability. Our state-of-the-art infrastructure ensures that your website stays online, accessible, and responsive to your visitors’ needs."
     },
     {
       "id": "panel2",
-      "title": "Enhanced Security",
-      "description" : " Security threats evolve constantly. Our maintenance services include security updates and patches to ensure your systems are safeguarded against the latest vulnerabilities."
+      "title": "Seamless Scalability",
+      "description" : " Whether you’re launching a personal blog or managing a dynamic e-commerce platform, our hosting solutions can scale with you. Upgrade resources effortlessly as your website’s traffic and demands increase."
     },
     {
       "id": "panel3",
-      "title": "Performance Optimization",
-      "description" : " We fine-tune your systems for optimal performance. Regular maintenance helps prevent slowdowns, crashes, and other performance-related issues."
+      "title": "Effortless Management",
+      "description" : " Our user-friendly control panel puts you in the driver’s seat. Effortlessly manage your website with intuitive tools that make administration a breeze."
     },
     {
       "id": "panel4",
-      "title": "Extended Lifespan",
-      "description" : "Proper maintenance prolongs the lifespan of your hardware and software investments, maximizing your return on investment."
+      "title": "24×7 Support",
+      "description" : "Have a question or encounter an issue? Our dedicated support team is available around the clock to provide timely assistance and solutions to ensure your online presence remains seamless."
     }
   ]
   
