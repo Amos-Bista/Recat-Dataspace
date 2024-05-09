@@ -1,7 +1,7 @@
 import React from "react";
 
 import AdminNav from "../../component/adminHome/adminNav";
-
+import FooterTable from "../../component/adminHome/footertable";
 import HomeHero from "../../component/adminHome/homehero";
 import Navigation from "../../component/adminHome/navigation";
 import Servicefeatureplans from "../../component/adminService/servicefeatureplans";
@@ -16,7 +16,8 @@ const AdminHome = () => {
         <div >
           <Navigation />
           <HomeHero />
-         < Servicefeatureplans/>
+          < Servicefeatureplans />
+          <FooterTable />
         </div>
         </div>
 

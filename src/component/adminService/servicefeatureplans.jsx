@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Servicefeatureplan from "../../assests/servicefeatureplan.json";
+import ServiceAdd from "./serviceAdd";
 
 const Servicefeatureplans = () => {
   const [rowData, setRowData] = useState([]);
@@ -18,45 +19,6 @@ const Servicefeatureplans = () => {
     setRowData(data);
   }, []);
 
-  const handleEdit = (index) => {
-    // Create a copy of the rowData array
-    const updatedRowData = [...rowData];
-
-    // Prompt the user to enter new values for editing
-    const newTitle = prompt("Enter new title:");
-    const newPackageTitle = prompt("Enter new package title:");
-    const newServiceImage = prompt("Enter new service image:");
-    const newPrice = prompt("Enter new price:");
-
-    // Update the content of the row at the specified index
-    updatedRowData[index] = {
-      Title: newTitle,
-      PackageTitle: newPackageTitle,
-      ServiceImage: newServiceImage,
-      Price: newPrice,
-    };
-
-    // Set the updated rowData state
-    setRowData(updatedRowData);
-  };
-
-  const handleDelete = (index) => {
-    // Prompt the user for confirmation before deleting the row
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this item?"
-    );
-
-    if (confirmDelete) {
-      // Create a copy of the rowData array
-      const updatedRowData = [...rowData];
-
-      // Remove the row at the specified index
-      updatedRowData.splice(index, 1);
-
-      // Set the updated rowData state
-      setRowData(updatedRowData);
-    }
-  };
 
   return (
     <main className="pt-6 border-b-2 border-[#0D5077]">
@@ -66,11 +28,8 @@ const Servicefeatureplans = () => {
         </h3>
 
         <Button
-          variant="contained"
-          className="flex items-end"
-          onClick={() => handleEdit(rowData.length)}
         >
-          Add New +
+         < ServiceAdd />
         </Button>
       </div>
       <div>
@@ -98,7 +57,6 @@ const Servicefeatureplans = () => {
                       <Button
                         sx={{ margin: 2 }}
                         variant="contained"
-                        onClick={() => handleEdit(index)}
                       >
                         Edit
                       </Button>
@@ -107,7 +65,6 @@ const Servicefeatureplans = () => {
                       <Button
                         sx={{ margin: 2 }}
                         variant="contained"
-                        onClick={() => handleDelete(index)}
                       >
                         Delete
                       </Button>
