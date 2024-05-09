@@ -1,8 +1,28 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { Box, Button, Container, Typography } from "@mui/material";
 
 const Contactform = () => {
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty dependency array to ensure this effect runs only once
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "http://172.16.100.109:8282/contacts/allContacts"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRows(data); // Update the state with fetched data
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   return (
     <Container
       sx={{
@@ -33,24 +53,29 @@ const Contactform = () => {
       >
         <div className="h-36 w-36 absolute top-[63%] left-[63%] rounded-full bg-[#11396e71]"></div>
         <div className="h-80 w-80 absolute top-[70%] left-[70%] rounded-full bg-[#113A6E]"></div>
-        <Typography variant="h4" className="mt-4">Contact Information</Typography>
+        <Typography variant="h4" className="mt-4">
+          Contact Information
+        </Typography>
 
         <h2 className="py-6 font-light text-l">
           Feel free to contact us in case of problem
         </h2>
-
-        <div className="flex items-start gap-8 text-xl">
-          <img src="Vector.png" alt="" className="w-8 h-9" />{" "}
-          <p>+123 456 7890</p>
-        </div>
-        <div className="flex items-start gap-8 mt-8 text-xl align-text-bottom ">
-          <img src="/inbox-icon.png" alt="" className="w-6 h-5 " />
-          <p>demo@gmail.com</p>
-        </div>
-        <div className="flex items-start gap-8 mt-8 mb-48 text-xl align-text-bottom ">
-          <img src="/location-icon.png" alt="" className="w-8 h-8" />
-          <p>Putalisadak, ktm NP</p>
-        </div>
+        {rows.map((row, index) => (
+          <div key={index} className="flex flex-col mt-8 ">
+            <div className="flex items-center gap-2">
+              <img src="Vector.png" alt="" className="w-8 h-9" />
+              <p>{row.phoneNum}</p>
+            </div>
+            <div className="flex items-center gap-2 mt-4">
+              <img src="/inbox-icon.png" alt="" className="w-6 h-5" />
+              <p>{row.email}</p>
+            </div>
+            <div className="flex items-center gap-2 mt-4">
+              <img src="/location-icon.png" alt="" className="w-8 h-8" />
+              <p>{row.address}</p>
+            </div>
+          </div>
+        ))}
       </Box>
       <Box
         sx={{
