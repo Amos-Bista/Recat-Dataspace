@@ -1,12 +1,7 @@
 import React from "react";
 import AdminNav from "../../component/adminHome/adminNav";
-import { Button } from "@mui/material";
-import Herosec from "../../component/adminHome/herosec";
-import Contactinfo from "../../component/adminContact/contactInfo";
 import HomeHero from "../../component/adminHome/homehero";
 import ContactAdminTable from "../../component/adminContact/contactadmintable";
-import ContactForm from "../../component/adminContact/contactForm";
-import PostDataForm from "../../component/adminContact/PostFormData";
 
 const AdminContact = () => {
   return (
@@ -20,7 +15,6 @@ const AdminContact = () => {
           <ContactAdminTable />
         </div>
       </main>
-      <PostDataForm />
     </>
   );
 };
