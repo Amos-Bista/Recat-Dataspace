@@ -15,11 +15,6 @@ import ContactAdd from "./contactadd";
 
 const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
-
-  // const addData = (data) => {
-  //   setRows([...rows, data]);
-  // };
-
   const handleDelete = (index) => {
     const updatedRows = [...rows];
     updatedRows.splice(index, 1);
@@ -28,8 +23,7 @@ const ContactAdminTable = () => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array to ensure this effect runs only once
-
+  }, []);
   const fetchData = async () => {
     try {
       const response = await fetch(
@@ -53,7 +47,6 @@ const ContactAdminTable = () => {
         </h3>
         <Button>
           <ContactAdd />
-          {/* <ContactAdd addData={addData} /> */}
         </Button>
       </div>
       <div className="">
