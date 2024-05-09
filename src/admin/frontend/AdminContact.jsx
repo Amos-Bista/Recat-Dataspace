@@ -2,6 +2,7 @@ import React from "react";
 import AdminNav from "../../component/adminHome/adminNav";
 import HomeHero from "../../component/adminHome/homehero";
 import ContactAdminTable from "../../component/adminContact/contactadmintable";
+import PostDataForm from "../../component/adminContact/PostFormData";
 
 const AdminContact = () => {
   return (

@@ -14,13 +14,16 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Delete = () => {
+const Delete = ({ id, onDelete }) => {
   const [open, setOpen] = useState(false);
   const functionOnPopUp = () => {
     setOpen(true);
   };
   const closePopUp = () => {
     setOpen(false);
+  };
+  const handleDelete = () => {
+    onDelete(id);
   };
   return (
     <>
@@ -45,7 +48,7 @@ const Delete = () => {
         </DialogTitle>
         <DialogContent>Are you sure u want to delete?</DialogContent>
         <DialogActions className="flex ">
-          <Button color="success" variant="contained">
+          <Button onClick={handleDelete} color="success" variant="contained">
             DELETE
           </Button>
           <Button onClick={closePopUp} color="error" variant="contained">

@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ContactAdd = () => {
+const ContactAdd = ({ handleAddContact }) => {
   const [open, setOpen] = useState(false);
   const [phoneNum, setPhoneNum] = useState("");
   const [email, setEmail] = useState("");
@@ -43,6 +43,7 @@ const ContactAdd = () => {
       if (response.ok) {
         setResponse("Contact registeresd");
         alert("Form submitted successfully!");
+        handleAddContact();
       } else {
         throw new Error("Network response was not ok");
       }
@@ -51,6 +52,7 @@ const ContactAdd = () => {
       setResponse("Error posting data.");
       alert("Error submitting form. Please try again.");
     }
+    setOpen(false);
   };
 
   return (
