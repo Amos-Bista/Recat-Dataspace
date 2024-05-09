@@ -1,13 +1,13 @@
 "use client";
 import Plans from "../../component/Plans";
-import BackupHerosection from "../../component/herosection/backuphero";
+import AnnualHerosection from "../../component/herosection/annualhero";
 import AnnualAccordion from "../../component/service/accordion/annualaccordion";
 import React from "react";
 
 const Annual = () => {
   return (
     <main>
-      <BackupHerosection />
+      <AnnualHerosection/>
       <div className="w-100% flex justify-center ">
         <div className="px-[4%] my-[5%] ml-0">
           <h1 className="text-4xl font-bold ml-0">
