@@ -1,23 +1,23 @@
 [
     {
       "id": "panel1",
-      "title": "Uncompromising Performance",
-      "description" : " Harness the full potential of dedicated hardware. With no virtualization overhead, our Bare Metal Servers deliver consistent and unparalleled performance for resource-intensive workloads."
+      "title": "Robust Infrastructure",
+      "description" : " Our data center boasts a state-of-the-art infrastructure designed for maximum performance, scalability, and redundancy. Rest assured that your servers are housed in a facility built to exceed industry standards.."
     },
     {
       "id": "panel2",
-      "title": "Customization at Scale",
-      "description" : " Tailor your server environment precisely to your needs. From choosing CPU, RAM, and storage configurations to selecting the preferred Operating System, you have complete control."
+      "title": "Secure Environment",
+      "description" : " Security is our priority. Benefit from our advanced physical security measures, access controls, and surveillance systems, ensuring that your equipment is protected against unauthorized access."
     },
     {
       "id": "panel3",
-      "title": "Data Security",
-      "description" : " In a dedicated environment, your data is isolated from other users, minimizing security risks associated with shared platforms."
+      "title": "Redundant Power Backup",
+      "description" : " Power outages won’t disrupt your operations. Our facility is equipped with redundant power backup systems, ensuring continuous uptime even in the face of electrical disruptions."
     },
     {
       "id": "panel4",
-      "title": "Reliability",
-      "description" : " Enjoy the stability of dedicated resources. Your Bare Metal Server remains unaffected by the activities of neighboring virtual environments."
+      "title": "24×7 Monitoring",
+      "description" : " Our expert team monitors your equipment around the clock. In the event of any issues, our proactive response ensures minimal downtime and swift solutions."
     }
   ]
   

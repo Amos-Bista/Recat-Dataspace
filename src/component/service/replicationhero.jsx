@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 
 
-const Colocationhero = () => {
+const Replicationhero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrollPosition, setScrollPosition] = useState(0);
   const slides = [
     {
       image: "/abouthero.jpeg",
-      caption: "Co-location",
+      caption: "Backup and Replication",
     },
 
     // Add more slides as needed
@@ -65,8 +65,8 @@ const Colocationhero = () => {
           <h1 className="text-white text-7xl">
             {slides[currentSlide].caption}
           </h1>
-          <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
-          Introducing Dataspace Co-location Services: Elevate Your Infrastructure with Secure and Connected Hosting.
+          <h2 className="pl-2 py-10 text-xl text-white w-[80%]">
+          Introducing Dataspace Backup and Replication Services: Elevate Your Infrastructure with Secure and Connected Hosting.
 
           </h2>
         </div>
@@ -75,4 +75,4 @@ const Colocationhero = () => {
   );
 };
 
-export default Colocationhero;
+export default Replicationhero;

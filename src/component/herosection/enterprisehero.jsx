@@ -43,6 +43,9 @@ const EnterpriseHerosection = () => {
         <img src={slides[currentSlide].image} alt={slides[currentSlide].caption} style={imgStyles} className="w-max-screen" />
         <div className="absolute top-[50%] left-[3%]">
           <h1 className="text-white text-7xl">{slides[currentSlide].caption}</h1>
+          <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
+            Introducing Dataspace Enterprise Secure Email: Elevate Your Communication with Unparalleled Protection.
+          </h2>
           <ButtonHerosection />
         </div>
       </div>

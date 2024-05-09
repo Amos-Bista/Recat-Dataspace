@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ButtonHerosection from '../home/buttonHerosection' 
-const WebHerosection = () => {
+const ReplicationHerosection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
       image: "/hero1.png",
-      caption: "Web Development Service"
+      caption: "Backup and Replication Service"
     },
     {
       image: "/bg2.jpeg",
-      caption: "Web Development Service"
+      caption: "Backup and Replication Service"
     }
     // Add more slides as needed
   ];
@@ -44,7 +44,7 @@ const WebHerosection = () => {
         <div className="absolute top-[50%] left-[3%]">
           <h1 className="text-white text-7xl">{slides[currentSlide].caption}</h1>
           <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
-            Unleash Your Online Potential with Dataspace Website Development Services.
+              Unlock Data Resilience with Dataspace Backup and Replication Services
           </h2>
           <ButtonHerosection />
         </div>
@@ -54,4 +54,4 @@ const WebHerosection = () => {
   );
 };
 
-export default WebHerosection;
+export default ReplicationHerosection;

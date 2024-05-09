@@ -43,6 +43,9 @@ const BareHerosection = () => {
         <img src={slides[currentSlide].image} alt={slides[currentSlide].caption} style={imgStyles} className="w-max-screen" />
         <div className="absolute top-[50%] left-[3%]">
           <h1 className="text-white text-7xl">{slides[currentSlide].caption}</h1>
+          <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
+          Experience Unrivaled Performance with Dataspace Bare Metal Server Solutions.
+          </h2>
           <ButtonHerosection />
         </div>
       </div>

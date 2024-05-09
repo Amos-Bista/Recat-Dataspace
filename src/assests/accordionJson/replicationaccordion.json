@@ -1,23 +1,23 @@
 [
     {
       "id": "panel1",
-      "title": "Proactive Care",
-      "description" : " Our annual maintenance services are designed to identify and address potential issues before they disrupt your operations. We keep your systems running smoothly and efficiently."
+      "title": "Comprehensive Data Protection",
+      "description" : " Our services offer a comprehensive approach to data protection. Whether it’s accidental deletion, hardware failure, or a major disaster."
     },
     {
       "id": "panel2",
-      "title": "Enhanced Security",
-      "description" : " Security threats evolve constantly. Our maintenance services include security updates and patches to ensure your systems are safeguarded against the latest vulnerabilities."
+      "title": "Efficient Replication",
+      "description" : " Minimize downtime with our efficient replication solutions. Duplicate your data and applications in real-time to a secondary location, ensuring uninterrupted access to your services."
     },
     {
       "id": "panel3",
-      "title": "Performance Optimization",
-      "description" : " We fine-tune your systems for optimal performance. Regular maintenance helps prevent slowdowns, crashes, and other performance-related issues."
+      "title": "Swift Recovery",
+      "description" : " Our rapid recovery mechanisms ensure that your critical systems can be restored quickly, minimizing business disruption.            "
     },
     {
       "id": "panel4",
-      "title": "Extended Lifespan",
-      "description" : "Proper maintenance prolongs the lifespan of your hardware and software investments, maximizing your return on investment."
+      "title": "Customizable Backup Policies",
+      "description" : "Tailor your backup policies to match your organization’s needs. Choose the frequency, retention periods, and levels of protection that align with your data priorities."
     }
   ]
   

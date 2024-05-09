@@ -1,7 +1,7 @@
 import React from "react";
 import Plans from "../../component/Plans";
 import EnterpriseHerosection from "../../component/herosection/enterprisehero";
-import BackupAccordion from "../../component/service/accordion/backupaccordion";
+import EnterpriseAccordion from "../../component/service/accordion/enterpriseaccordion";
 const Enterprise = () => {
   return (
     <main>
@@ -13,7 +13,7 @@ const Enterprise = () => {
           </h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
             {/* <EnterpriseAccordion/> */}
-          <BackupAccordion/>
+          <EnterpriseAccordion/>
           </ul>
         </div>
         <img src="/enterprise.png" alt="" style={{ maxWidth: "500px", maxHeight: "500px" }} />
