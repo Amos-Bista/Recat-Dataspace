@@ -4,7 +4,7 @@ import AdminNav from "../../component/adminHome/adminNav";
 
 import HomeHero from "../../component/adminHome/homehero";
 import Navigation from "../../component/adminHome/navigation";
-import Serviceaccordin from "../../component/adminService/serviceaccordin";
+import Servicefeatureplans from "../../component/adminService/servicefeatureplans";
 
 const AdminHome = () => {
   return (
@@ -13,10 +13,10 @@ const AdminHome = () => {
       <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
         
 
-        <div>
+        <div >
           <Navigation />
           <HomeHero />
-          <Serviceaccordin />
+         < Servicefeatureplans/>
         </div>
         </div>
 
