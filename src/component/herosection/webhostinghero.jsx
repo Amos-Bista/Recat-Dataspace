@@ -44,7 +44,7 @@ const WebhostingHerosection = () => {
         <div className="absolute top-[50%] left-[3%]">
           <h1 className="text-white text-7xl">{slides[currentSlide].caption}</h1>
           <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
-            Welcome to Dataspace Web Hosting: Your Gateway to Reliable and Scalable Online Presence
+            Welcome to Dataspace Web Hosting: Your Gateway to Reliable and Scalable Online Presence.
           </h2>
           <ButtonHerosection />
         </div>
