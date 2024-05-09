@@ -17,17 +17,16 @@ export default function Plans() {
       name: planName,
       details: planDetails,
     }));
-    setPlansData(plansArray);
+
+    // Duplicate the plans to ensure initially showing three cards
+    const duplicatedPlans = [...plansArray, ...plansArray, ...plansArray];
+
+    setPlansData(duplicatedPlans);
   }, []);
 
   return (
     <Carousel
-      autoPlay={true}
-      animation="slide"
-      timeout={10}
-      indicators={true}
-      slidesPerPage={6} // New prop to set the number of slides per page
-      centered
+      
     >
       {plansData.map((plan, index) => (
         <Card
@@ -52,9 +51,7 @@ export default function Plans() {
             ))}
           </CardContent>
           <CardActions className="flex justify-center ">
-            <Button size="small">
-              Add to Cart
-            </Button>
+            <Button size="small">Add to Cart</Button>
           </CardActions>
         </Card>
       ))}

@@ -12,17 +12,17 @@ function Home() {
         <Herosection />
       </div>
 
-      <div className="absolute top-[41%]  w-full">
+      <div className="absolute top-[30%]  w-full">
         <SearchDomain />
       </div>
 
-      <section>
+      <section className="">
         <h1 className="flex justify-center text-4xl ">
           Our Popular Plans & Pricing
         </h1>
-        <div className="mt-[20px] ">
-          {/* <Plans /> */}
+        <div className="">
           <Plans />
+          {/* <Plans /> */}
         </div>
         <div>
         <h1 className="flex justify-center text-4xl mt-8">
