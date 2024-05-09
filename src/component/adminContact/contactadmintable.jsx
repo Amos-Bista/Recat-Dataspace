@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
@@ -10,8 +9,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Delete from "../../component/adminHome/Delete";
-import Edit from "../../component/adminHome/Edit";
 import ContactAdd from "./contactadd";
+import ContactEdit from "./contactedit";
 
 const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
@@ -52,8 +51,6 @@ const ContactAdminTable = () => {
     }
   };
 
-  
-
   return (
     <main>
       <div className="flex justify-between align-middle">
@@ -84,7 +81,7 @@ const ContactAdminTable = () => {
                   <TableCell align="center">{row.address}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }}>
-                      <Edit />
+                      <ContactEdit  contactDetails={row} handleEditContact={fetchData}/>
                     </Button>
                   </TableCell>
                   <TableCell align="center">

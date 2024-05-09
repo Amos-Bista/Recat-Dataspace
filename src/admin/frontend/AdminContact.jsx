@@ -16,6 +16,7 @@ const AdminContact = () => {
           <ContactAdminTable />
         </div>
       </main>
+      <PostDataForm />
     </>
   );
 };

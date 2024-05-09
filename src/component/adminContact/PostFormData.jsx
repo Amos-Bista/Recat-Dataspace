@@ -6,7 +6,7 @@ function PostDataForm() {
   const [address, setAddress] = useState("");
   const [response, setResponse] = useState("");
   const [contacts, setContacts] = useState([]);
-
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -113,16 +113,21 @@ function PostDataForm() {
       <h2>Contact List</h2>
       <ul>
         {contacts.map((contact) => (
-          <li key={contact.id}>
-            Phone: {contact.phoneNum}, Email: {contact.email}, Address:{" "}
-            {contact.address}
-            <button
-              className="bg-[red]"
-              onClick={() => handleDelete(contact.id)}
-            >
-              Delete
-            </button>
-          </li>
+          <div>
+            <li key={contact.id}>
+              Phone: {contact.phoneNum}, Email: {contact.email}, Address:{" "}
+              {contact.address}
+              <button
+                className="bg-[red]"
+                onClick={() => handleDelete(contact.id)}
+              >
+                Delete
+              </button>
+            </li>
+            <li>
+              <button>Edit</button>
+            </li>
+          </div>
         ))}
       </ul>
     </div>
