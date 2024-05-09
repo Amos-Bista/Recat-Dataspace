@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,12 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
 import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
-import Add from "../../component/adminHome/Add";
+import ContactAdd from "./contactadd";
 
-import contactcard from "../../assests/contactcard";
 const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
 
@@ -33,7 +30,7 @@ const ContactAdminTable = () => {
           Contact Information
         </h3>
         <Button>
-          <Add addData={addData} />
+          <ContactAdd addData={addData} />
         </Button>
       </div>
       <div className="">
@@ -51,9 +48,9 @@ const ContactAdminTable = () => {
             <TableBody>
               {rows.map((row, index) => (
                 <TableRow key={index}>
-                  <TableCell align="center">{row.Title}</TableCell>
-                  <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">{row.Backgroundimage}</TableCell>
+                  <TableCell align="center">{row.Number}</TableCell>
+                  <TableCell align="center">{row.Mail}</TableCell>
+                  <TableCell align="center">{row.Address}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }}>
                       <Edit />
