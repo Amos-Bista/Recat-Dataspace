@@ -8,7 +8,7 @@ import Servicefeatureplans from "../../component/adminService/servicefeatureplan
 
 const AdminHome = () => {
   return (
-    <main className="flex gap-10 align-middle  bg-[#d1d5db]  py-28">
+    <main className="flex gap-10 bg-[#0D5077]  py-28">
       <AdminNav />
       <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
         

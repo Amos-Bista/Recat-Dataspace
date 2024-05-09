@@ -58,9 +58,9 @@ const Servicefeatureplans = () => {
 
   return (
     <main>
-      <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px] ">Features Plans</h3>
       <div className="flex items-center justify-between mb-4">
-        <h1></h1>
+      <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px] ">Features Plans</h3>
+        
         <Button variant="contained" className="flex items-end" onClick={() => handleEdit(rowData.length)}>
           Add New +
         </Button>
