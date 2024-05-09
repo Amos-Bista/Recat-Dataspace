@@ -7,12 +7,12 @@ import ValueCustomer from "../component/home/ValueCustomer";
 // import Plans from "../component/Plans";
 function Home() {
   return (
-    <div className="relative flex-col text-black">
-      <div className="mb-64 ">
+    <div className="flex-col text-black ">
+      <div className="relative mb-64 ">
         <Herosection />
       </div>
 
-      <div className="absolute top-[41%]  w-full">
+      <div className="absolute top-[75%]  w-full">
         <SearchDomain />
       </div>
 
@@ -25,7 +25,7 @@ function Home() {
           <Plans />
         </div>
         <div>
-        <h1 className="flex justify-center text-4xl mt-8">
+        <h1 className="flex justify-center mt-8 text-4xl">
           Our Valued Costumers
         </h1>
           <ValueCustomer/>
