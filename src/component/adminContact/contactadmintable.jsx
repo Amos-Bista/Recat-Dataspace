@@ -14,11 +14,6 @@ import ContactAdd from "./contactadd";
 
 const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
-  const handleDelete = (index) => {
-    const updatedRows = [...rows];
-    updatedRows.splice(index, 1);
-    setRows(updatedRows);
-  };
 
   useEffect(() => {
     fetchData();
@@ -32,11 +27,31 @@ const ContactAdminTable = () => {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
-      setRows(data); // Update the state with fetched data
+      setRows(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+  const handleDelete = async (id, index) => {
+    try {
+      const response = await fetch(
+        `http://172.16.100.109:8282/contacts/deleteContact/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete contact");
+      }
+      const updatedRows = [...rows];
+      updatedRows.splice(index, 1);
+      setRows(updatedRows);
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
+
+  
 
   return (
     <main>
@@ -45,7 +60,7 @@ const ContactAdminTable = () => {
           Contact Information
         </h3>
         <Button>
-          <ContactAdd />
+          <ContactAdd handleAddContact={fetchData} />
         </Button>
       </div>
       <div className="">
@@ -73,7 +88,7 @@ const ContactAdminTable = () => {
                   </TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }}>
-                      <Delete onDelete={() => handleDelete(index)} />
+                      <Delete onDelete={() => handleDelete(row.id, index)} />
                     </Button>
                   </TableCell>
                 </TableRow>
