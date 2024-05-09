@@ -2,8 +2,7 @@ import React from "react";
 import Herosec from "../../component/adminHome/herosec";
 import AdminNav from "../../component/adminHome/adminNav";
 import { Button } from "@mui/material";
-
-import Contactuscard from "../../component/adminContact/contactuscard";
+import AboutCardTable from "../../component/adminAbout/aboutCardtable";
 
 
 const AdminAbout = () => {
@@ -20,11 +19,10 @@ const AdminAbout = () => {
             variant="contained"
             className="flex items-end align-end"
           >
-            Add New +
           </Button>
         </div>
         <Herosec />
-        <Contactuscard />
+        <AboutCardTable />
        
       </div>
     </main>
