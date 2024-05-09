@@ -65,7 +65,7 @@ const Colocationhero = () => {
           <h1 className="text-white text-7xl">
             {slides[currentSlide].caption}
           </h1>
-          <h2 className="pl-2 py-10 text-xl text-white w-[80%]">
+          <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
           Introducing Dataspace Co-location Services: Elevate Your Infrastructure with Secure and Connected Hosting.
 
           </h2>

@@ -5,7 +5,7 @@ const SetupHerosection = () => {
   const slides = [
     {
       image: "/hero1.png",
-      caption: "Setup"
+      caption: "Setup Server Service"
     },
     {
       image: "/bg2.jpeg",
@@ -43,6 +43,9 @@ const SetupHerosection = () => {
         <img src={slides[currentSlide].image} alt={slides[currentSlide].caption} style={imgStyles} className="w-max-screen" />
         <div className="absolute top-[50%] left-[3%]">
           <h1 className="text-white text-7xl">{slides[currentSlide].caption}</h1>
+          <h2 className="pl-2 py-8 text-xl text-white w-[80%]">
+            Seamless Setup and Configuration Services by Dataspace: Your Path to Operational Excellence.
+          </h2>
           <ButtonHerosection />
         </div>
       </div>

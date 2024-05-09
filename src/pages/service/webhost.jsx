@@ -1,6 +1,6 @@
 import React from "react";
 import Plans from "../../component/Plans";
-import WebhostingHerosection from "../../component/herosection/webhero";
+import WebhostingHerosection from "../../component/herosection/webhostinghero";
 import WebhostAccordion from "../../component/service/accordion/webhostaccordion";
 const Webhosting = () => {
   return (
