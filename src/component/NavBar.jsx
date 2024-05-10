@@ -23,6 +23,14 @@ const NavBar = () => {
     };
   }, []);
 
+  const handleServiceMouseEnter = () => {
+    setShowDropdown(true);
+  };
+
+  const handleServiceMouseLeave = () => {
+    setShowDropdown(false);
+  };
+
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setShowDropdown(false);
@@ -36,10 +44,6 @@ const NavBar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const handleServiceClick = () => {
-    setShowDropdown(!showDropdown);
-  };
 
   return (
     <div className={`px-8  ${scrolled ? "bg-white" : ""}`}>
@@ -57,15 +61,17 @@ const NavBar = () => {
                 className="hover:underline underline-offset-1 active:text-blue-900"
               >
                 {item.dropdown ? (
-                  <div className="relative" onClick={handleServiceClick}>
+                  <div
+                    className="relative"
+                    onMouseEnter={handleServiceMouseEnter}
+                    onMouseLeave={handleServiceMouseLeave}
+                  >
                     <span>{item.title}</span>
                     {showDropdown && (
                       <ul
                         ref={dropdownRef}
                         className={`absolute text-black top-full left-0 shadow-md rounded-b-lg ${
-                          scrolled
-                            ? "bg-white text-black"
-                            : "bg-[#062435] text-white"
+                          scrolled ? "bg-white text-black" : "bg-[#062435] text-white"
                         }`}
                       >
                         {item.dropdown.map((subItem, subIndex) => (
