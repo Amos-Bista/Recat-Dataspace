@@ -50,14 +50,14 @@ const ValueCustomer = () => {
             <img
               src={customer.image}
               alt={`Customer ${index + 1}`}
-              className="w-32 h-32 rounded-md ml-14 mt-8 mb-8"
+              className="w-32 h-32 mb-8 rounded-md ml-14"
             />
           </div>
         ))}
       </Slider>
       {/* Left arrow */}
       <Box
-        className="absolute top-0 left-0 z-10 ml-8 mt-16"
+        className="absolute top-0 left-0 z-10 mt-16 ml-8"
         style={{ transform: 'translate(-50%, 50%)' }}
         onMouseEnter={() => setIsLeftArrowHovered(true)}
         onMouseLeave={() => setIsLeftArrowHovered(false)}
@@ -75,7 +75,7 @@ const ValueCustomer = () => {
       </Box>
       {/* Right arrow */}
       <Box
-        className="absolute top-0 right-0 z-10 mr-12 mt-16"
+        className="absolute top-0 right-0 z-10 mt-16 mr-12"
         style={{ transform: 'translate(50%, 50%)' }}
         onMouseEnter={() => setIsRightArrowHovered(true)}
         onMouseLeave={() => setIsRightArrowHovered(false)}

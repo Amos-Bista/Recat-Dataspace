@@ -5,19 +5,15 @@ import Serviceherosec from "../../component/adminService/serviceherosec";
 import Serviceaccordin from "../../component/adminService/serviceaccordin";
 import Servicefeatureplans from "../../component/adminService/servicefeatureplans";
 
-
 const AdminService = () => {
   return (
-    <main className="flex gap-10 align-middle  bg-[#0D5077]  py-28">
+
+    <main className="flex align-middle  bg-[#0D5077]  py-28">
         <AdminNav />
-      <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
-
-
+      <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14">
           <Serviceherosec />
           <Serviceaccordin />
           <Servicefeatureplans />
-        
-        
       </div>
     </main>
   );

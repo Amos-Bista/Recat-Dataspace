@@ -37,13 +37,13 @@ export default function Plans() {
   }, []);
 
   return (
-    <div>
+    <div className="mx-12">
       <Slider {...settings}>
         {plansData.map((plan, index) => (
           <Card
             key={index}
-            sx={{ maxWidth: 355, marginBottom: 5 }}
-            className="pb-12 mx-16 mt-12"
+            sx={{ maxWidth: 355, marginBottom: 4 }}
+            className="pb-8 mx-12 mt-12"
           >
             <CardMedia
               sx={{ height: 140 }}
