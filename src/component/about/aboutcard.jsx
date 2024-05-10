@@ -15,19 +15,18 @@ const Aboutcard = () => {
   }, []);
 
   return (
-
-    <div className="px-10 py-8 flex flex-wrap justify-center gap-x-[160px] gap-y-[90px]">
-      <div className="flex flex-wrap justify-center gap-x-[160px] gap-y-[90px]">
+    <div>
+      <div className="flex flex-wrap justify-center gap-x-[69px] gap-y-[60px]">
         {Array.isArray(rowData) &&
           rowData.map((row, index) => (
             <Card
               key={index}
               sx={{
-                width: 605,
-                height: 441,
-                paddingX: 4,
-                borderRadius: 3,
-                boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)",
+                paddingTop: 2,
+                width: 565,
+                height: 288,
+                paddingX: 0.01,
+                // boxShadow: "1px 1px 10px  #d5d4d5,-1px -1px 13px #d5d4d5",
                 backgroundColor: "#fafbfa",
               }}
             >
@@ -47,9 +46,9 @@ const Aboutcard = () => {
                   component="div"
                   sx={{
                     textAlign: "center",
-                    fontWeight: 500,
-                    fontSize: "24px",
-                    lineHeight: "29px",
+                    fontWeight: 700,
+                    fontSize: "22px",
+                    lineHeight: "23px",
                   }}
                 >
                   {row[0].title}
@@ -59,10 +58,11 @@ const Aboutcard = () => {
                   color="black"
                   sx={{
                     textAlign: "justify",
-                    minWidth: 30,
-                    paddingX: 4,
-                    fontSize: "16px",
-                    lineHeight: "29px",
+                    // minWidth: 30,
+                    paddingX: 1,
+                    fontSize: "15px",
+                    fontFamily: "Poppins",
+                    lineHeight: "26px",
                     fontWeight: 300,
                   }}
                 >
