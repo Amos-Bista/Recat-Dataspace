@@ -8,35 +8,24 @@ import ValueCustomer from "../component/home/ValueCustomer";
 function Home() {
   return (
     <div className="flex-col text-black ">
-      <div className="relative mb-64 ">
+      <div className="relative mb-40 ">
         <Herosection />
       </div>
-
       <div className="absolute top-[65%]  w-full">
         <SearchDomain />
       </div>
-
       <section>
         <h1 className="flex justify-center text-4xl ">
           Our Popular Plans & Pricing
         </h1>
-        <div className="mt-[20px] ">
-          {/* <Plans /> */}
+        <div className="mt-[12px] ">
           <Plans />
         </div>
         <div>
-        <h1 className="flex justify-center mt-8 text-4xl">
-          Our Valued Costumers
-        </h1>
-          <ValueCustomer/>
+          <h1 className="flex justify-center text-4xl">Our Valued Costumers</h1>
+          <ValueCustomer />
         </div>
       </section>
-      {/* <section className="mb-28">
-        <h1 className="flex justify-center pb-10 text-4xl">
-          Our Valued Costumers
-        </h1>
-        <Valuablecustomer />
-      </section> */}
     </div>
   );
 }
