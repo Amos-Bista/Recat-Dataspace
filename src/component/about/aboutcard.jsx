@@ -32,7 +32,7 @@ const Aboutcard = () => {
             >
               <CardMedia
                 sx={{
-                  height: 0,
+                  height: 10,
                   paddingTop: "10.25%",
                   backgroundSize: "contain",
                 }}
