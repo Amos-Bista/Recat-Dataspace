@@ -48,7 +48,13 @@ const NavBar = () => {
   return (
     <div className={`px-8  ${scrolled ? "bg-white" : ""}`}>
       <div className="relative flex justify-between h-32 px-6 mt-0 align-middle">
-        <img src="/dataspacelogo1.png" alt="" className="absolute h-16 top-5" />
+        <a href="/">
+          <img
+            src="/dataspacelogo1.png"
+            alt=""
+            className="absolute h-16 top-5"
+          />
+        </a>
         <div className="flex">
           <ul
             className={`flex gap-8 absolute top-12 right-2 font-light text-2xl ${
@@ -71,7 +77,9 @@ const NavBar = () => {
                       <ul
                         ref={dropdownRef}
                         className={`absolute text-black top-full left-0 shadow-md rounded-b-lg ${
-                          scrolled ? "bg-white text-black" : "bg-[#062435] text-white"
+                          scrolled
+                            ? "bg-white text-black"
+                            : "bg-[#062435] text-white"
                         }`}
                       >
                         {item.dropdown.map((subItem, subIndex) => (
@@ -97,7 +105,6 @@ const NavBar = () => {
               </li>
             ))}
           </ul>
-      
         </div>
       </div>
     </div>

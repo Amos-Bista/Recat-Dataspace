@@ -8,7 +8,7 @@ import ValueCustomer from "../component/home/ValueCustomer";
 function Home() {
   return (
     <div className="flex-col text-black ">
-      <div className="relative mb-40 ">
+      <div className="relative mb-52 ">
         <Herosection />
       </div>
       <div className="absolute top-[75%]  w-full">
@@ -18,7 +18,7 @@ function Home() {
         <h1 className="flex justify-center text-4xl ">
           Our Popular Plans & Pricing
         </h1>
-        <div className="mt-[12px] ">
+        <div className="mb-16">
           <Plans />
         </div>
         <div>
