@@ -6,7 +6,7 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Service from "./pages/service/colocation";
 import NavBar from "./component/NavBar";
-import Footer from "./component/footer";
+import Footer from "./component/footer.jsx";
 import AdminAbout from "./admin/frontend/AdminAbout";
 import AdminContact from "./admin/frontend/AdminContact";
 import AdminService from "./admin/frontend/AdminService";
@@ -20,6 +20,7 @@ import Setup from "./pages/service/setup";
 import Webdev from "./pages/service/webdev";
 import Annual from "./pages/service/annual";
 import Webhosting from "./pages/service/webhost";
+import ShowFooter from "./component/footer/showfooter.jsx";
 
 // eslint-disable-next-line no-sparse-arrays
 const routesData = [
@@ -120,7 +121,7 @@ const routesData = [
   },
   {
     title: "AdminHome",
-    link: "/adminHome",
+    link: "/adminhome",
   },
   {
     title: "AdminContact",
@@ -130,8 +131,6 @@ const routesData = [
     title: "AdminService",
     link: "/adminservice",
   },
- 
-  
 ];
 
 function App() {
@@ -166,7 +165,7 @@ function App() {
                         <Contact />
                       ) : route.link === "/colocation" ? (
                         <Colocation />
-                      ): route.link === "/annual" ? (
+                      ) : route.link === "/annual" ? (
                         <Annual />
                       ) : route.link === "/bare" ? (
                         <Bare />
@@ -184,7 +183,7 @@ function App() {
                         <Webhosting />
                       ) : route.link === "/adminabout" ? (
                         <AdminAbout />
-                      ) : route.link === "/adminHome" ? (
+                      ) : route.link === "/adminhome" ? (
                         <AdminHome />
                       ) : route.link === "/admincontact" ? (
                         <AdminContact />
@@ -202,10 +201,11 @@ function App() {
         <div className="fixed top-0 w-[100%] ">
           <NavBar />
         </div>
-        <Footer />
+        <ShowFooter>
+          <Footer />
+        </ShowFooter>
       </Router>
     </main>
-    
   );
 }
 

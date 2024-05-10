@@ -8,25 +8,25 @@ const AdminNav = () => {
           Dashboard
         </h1>
         <ul className="mx-auto font-semibold text-2xl text-[#0D5077]">
-          <a href="./AdminHome">
+          <a href="./adminhome">
             <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   aligin-middle items-center">
               <img src="homeicon.png" alt="" className="h-5 pr-4" />
               Home
             </li>
           </a>
-          <a href="./AdminContact">
+          <a href="./admincontact">
             <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   aligin-middle items-center">
               <img src="contacticon.png" alt="" className="h-5 pr-4" />
               Contact
             </li>
           </a>
-          <a href="./AdminAbout">
+          <a href="./adminabout">
             <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   aligin-middle items-center">
               <img src="abouticon.png" alt="" className="h-5 pr-4" />
               About
             </li>
           </a>
-          <a href="./AdminService">
+          <a href="./adminservice">
             <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   aligin-middle items-center">
               <img src="serviceicon.png" alt="" className="h-5 pr-4" />
               Service
