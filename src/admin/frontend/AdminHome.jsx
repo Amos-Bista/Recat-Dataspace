@@ -9,21 +9,15 @@ import ValuableclientTable from "../../component/adminHome/valuableclientTable";
 
 const AdminHome = () => {
   return (
-    <main className="flex gap-10 bg-[#0D5077]  py-28">
+    <main className="flex  bg-[#0D5077]  py-28">
       <AdminNav />
-      <div className="w-full px-2 py-6 mr-10 bg-gray-300 rounded-lg">
-        
-
-        <div >
+      <div className="w-full px-2 py-6 bg-gray-300 rounded-lg mr-14">
           <Navigation />
           <HomeHero />
-          < Servicefeatureplans />
-          <ValuableclientTable/>
+          <Servicefeatureplans />
+          <ValuableclientTable />
           <FooterTable />
-        </div>
-        </div>
-
-     
+      </div>
     </main>
   );
 };
