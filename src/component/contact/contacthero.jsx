@@ -70,11 +70,11 @@ const Contacthero = () => {
           style={imgStyles}
           className="w-max-screen"
         />
-        <div className="absolute top-[50%] left-[3%]">
+        <div className="absolute top-[50%] left-[4%]">
           <h1 className="text-white text-7xl">
             {slides[currentSlide].caption}
           </h1>
-          <h2 className="pl-2 text-3xl text-white">
+          <h2 className="text-3xl text-white">
             Any question or remarks? Just write us a message!
           </h2>
         </div>
