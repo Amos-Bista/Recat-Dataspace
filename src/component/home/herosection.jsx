@@ -33,7 +33,7 @@ const Herosection = () => {
   const imgStyles = {
     width: "100vw",
     height: "667px",
-    transition: "opacity 0.5s ease-in-out" // Smooth transition for opacity
+    transition: "opacity 0.5s ease-in-out"
   };
 
   return (

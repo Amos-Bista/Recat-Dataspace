@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Routes
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -135,10 +135,32 @@ const routesData = [
 ];
 
 function App() {
+  useEffect(() => {
+    const disableDrag = (e) => {
+      e.preventDefault();
+    };
+
+    document.addEventListener("dragstart", disableDrag);
+    document.addEventListener("mousedown", disableDrag);
+
+    return () => {
+      document.removeEventListener("dragstart", disableDrag);
+      document.removeEventListener("mousedown", disableDrag);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflowX = "hidden";
+
+    return () => {
+      document.body.style.overflowX = "auto";
+    };
+  }, []);
+
   return (
     <main className="w-screen overflow-x-hidden">
       <Router>
-        <div className="">
+        <div>
           <Routes>
             {/* Dynamically generate routes from JSON data */}
             {routesData.map((route, index) => {
@@ -166,7 +188,7 @@ function App() {
                         <Contact />
                       ) : route.link === "/colocation" ? (
                         <Colocation />
-                      ): route.link === "/annual" ? (
+                      ) : route.link === "/annual" ? (
                         <Annual />
                       ) : route.link === "/bare" ? (
                         <Bare />
@@ -199,13 +221,12 @@ function App() {
             })}
           </Routes>
         </div>
-        <div className="fixed top-0 w-[100%] ">
+        <div className="fixed top-0 w-full">
           <NavBar />
         </div>
         <Footer />
       </Router>
     </main>
-    
   );
 }
 
