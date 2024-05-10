@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import adminacordin from "../../assests/adminacordin.json";
+import AccordionAdd from "./accordionAdd";
 
 const Serviceaccordin = () => {
   const [rowData, setRowData] = useState([]);
@@ -22,16 +23,15 @@ const Serviceaccordin = () => {
   }, []);
 
   return (
-    <main>
-      <div className="flex items-center justify-between">
+    <main className="pt-6 border-b-2 border-[#0D5077]">
+      <div className="flex items-center justify-between align-middle ">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
-          {" "}
           Accordion
         </h3>
         <div className="flex justify-between mb-4 align-middle">
           <h1> </h1>
-          <Button variant="contained" className="flex items-end mt-4 align-end">
-            Add New +
+          <Button >
+         < AccordionAdd/>
           </Button>
         </div>
       </div>

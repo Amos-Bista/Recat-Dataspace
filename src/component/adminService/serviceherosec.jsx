@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import servicehero from "../../assests/servicehero.json";
+import Add from "../adminHome/Add";
 
 const Serviceherosec = () => {
   const [rowData, setRowData] = useState([]);
@@ -22,12 +23,13 @@ const Serviceherosec = () => {
   }, []);
 
   return (
-    <main>
-      <h3 className="my-8 text-2xl font-bold text-black">Hero Section</h3>
-      <div className="flex justify-between align-middle mb-4">
-        <h1> </h1>
-        <Button variant="contained" className="flex items-end align-end">
-          Add New +
+    <main className="pt-6 border-b-2 border-[#0D5077]">
+       <div className="flex justify-between align-middle">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
+          Hero Section
+        </h3>
+        <Button>
+          <Add />
         </Button>
       </div>
       <div className="">

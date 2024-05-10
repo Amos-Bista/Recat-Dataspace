@@ -136,6 +136,7 @@ const routesData = [
 ];
 
 function App() {
+  //layout
   useEffect(() => {
     const disableDrag = (e) => {
       e.preventDefault();
@@ -160,7 +161,7 @@ function App() {
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-
+  //Navbar
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
