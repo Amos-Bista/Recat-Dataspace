@@ -22,7 +22,7 @@ function Home() {
           <Plans />
         </div>
         <div>
-          <h1 className="flex justify-center text-4xl">Our Valued Costumers</h1>
+          <h1 className="flex justify-center text-4xl mt-12">Our Valued Costumers</h1>
           <ValueCustomer />
         </div>
       </section>
