@@ -42,7 +42,7 @@ export default function Plans() {
         {plansData.map((plan, index) => (
           <Card
             key={index}
-            sx={{ maxWidth: 355, marginBottom: 20 }}
+            sx={{ maxWidth: 355, marginBottom: 5 }}
             className="pb-12 mx-16 mt-12"
           >
             <CardMedia
