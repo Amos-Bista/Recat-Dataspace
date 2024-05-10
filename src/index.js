@@ -4,12 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode className="overflow-x-hidden">
-    
-    <App />
+  <React.StrictMode>
+    <div >
+      <App />
+    </div>
   </React.StrictMode>
 );
 

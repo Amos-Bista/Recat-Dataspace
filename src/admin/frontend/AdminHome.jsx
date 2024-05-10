@@ -5,6 +5,7 @@ import FooterTable from "../../component/adminHome/footertable";
 import HomeHero from "../../component/adminHome/homehero";
 import Navigation from "../../component/adminHome/navigation";
 import Servicefeatureplans from "../../component/adminService/servicefeatureplans";
+import ValuableclientTable from "../../component/adminHome/valuableclientTable";
 
 const AdminHome = () => {
   return (
@@ -17,6 +18,7 @@ const AdminHome = () => {
           <Navigation />
           <HomeHero />
           < Servicefeatureplans />
+          <ValuableclientTable/>
           <FooterTable />
         </div>
         </div>
