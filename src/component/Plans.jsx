@@ -5,11 +5,21 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Carousel from "react-material-ui-carousel";
+// import Carousel from "react-material-ui-carousel";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import plan from "../assests/plan.json";
 
 export default function Plans() {
   const [plansData, setPlansData] = useState([]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
 
   useEffect(() => {
     // Convert the object to an array of plans
@@ -21,21 +31,12 @@ export default function Plans() {
   }, []);
 
   return (
-    <Carousel
-      autoPlay={true}
-      animation="slide"
-      timeout={10}
-      indicators={true}
-      navButtonsAlwaysVisible={true}
-      slidesPerPage={6} 
-
-      centered
-    >
+    <Slider {...settings}>
       {plansData.map((plan, index) => (
         <Card
           key={index}
           sx={{ maxWidth: 355, marginBottom: 20 }}
-          className="pb-12 mx-16 my-12 mt-12 shadow-2xl"
+          className="pb-12 mx-16 my-12 mt-12"
         >
           <CardMedia
             sx={{ height: 140 }}
@@ -54,12 +55,10 @@ export default function Plans() {
             ))}
           </CardContent>
           <CardActions className="flex justify-center ">
-            <Button size="small">
-              Add to Cart
-            </Button>
+            <Button variant="contained">Add to Cart</Button>
           </CardActions>
         </Card>
       ))}
-    </Carousel>
+    </Slider>
   );
 }
