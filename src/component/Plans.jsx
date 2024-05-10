@@ -16,11 +16,12 @@ export default function Plans() {
   const settings = {
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 1000, // Adjust the autoplay speed as needed
-    speed: 150,
+    autoplaySpeed: 0, // Adjust the autoplay speed as needed
+    speed: 5000,
     slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToScroll: 8,
     vertical: false, // Set to false for horizontal autoplay
+    
   };
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function Plans() {
             <Button variant="contained">Add to Cart</Button>
           </CardActions>
         </Card>
+        
       ))}
     </Slider>
   );
