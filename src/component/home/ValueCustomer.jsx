@@ -50,41 +50,43 @@ const ValueCustomer = () => {
             <img
               src={customer.image}
               alt={`Customer ${index + 1}`}
-              className="w-32 h-32 rounded-md ml-14 mt-5 mb-5"
+              className="w-32 h-32 rounded-md ml-14 mt-8 mb-8"
             />
           </div>
         ))}
       </Slider>
       {/* Left arrow */}
       <Box
-        className="absolute top-0 left-0 z-10 ml-10 mt-11"
+        className="absolute top-0 left-0 z-10 ml-8 mt-16"
         style={{ transform: 'translate(-50%, 50%)' }}
         onMouseEnter={() => setIsLeftArrowHovered(true)}
         onMouseLeave={() => setIsLeftArrowHovered(false)}
       >
         <Button
-          className={`bg-gray-800 p-3 rounded-full ml-5 mt-12 text-white text-xl ${
+          className={`bg-gray-800 p-3 rounded-full ml-3 mt-12 text-white text-xl ${
             isLeftArrowHovered ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={handleLeftArrowClick}
           variant="contained"
+          sx={{ minWidth: 30, minHeight: 30, fontSize: '0.8rem' }}
         >
           &#60;
         </Button>
       </Box>
       {/* Right arrow */}
       <Box
-        className="absolute top-0 right-0 z-10 mr-10 mt-11"
+        className="absolute top-0 right-0 z-10 mr-12 mt-16"
         style={{ transform: 'translate(50%, 50%)' }}
         onMouseEnter={() => setIsRightArrowHovered(true)}
         onMouseLeave={() => setIsRightArrowHovered(false)}
       >
         <Button
-          className={`bg-gray-800 p-3 rounded-full mr-5 mt-8 text-white text-xl ${
+          className={`bg-gray-800 p-3 rounded-full mr-14 mt-14 text-white text-xl ${
             isRightArrowHovered ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={handleRightArrowClick}
           variant="contained"
+          sx={{ minWidth: 28, minHeight: 28, fontSize: '0.7rem' }}
         >
           &#62;
         </Button>
