@@ -14,11 +14,13 @@ import plan from "../assests/plan.json";
 export default function Plans() {
   const [plansData, setPlansData] = useState([]);
   const settings = {
-    dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1000, // Adjust the autoplay speed as needed
+    speed: 150,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    vertical: false, // Set to false for horizontal autoplay
   };
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export default function Plans() {
         <Card
           key={index}
           sx={{ maxWidth: 355, marginBottom: 20 }}
-          className="pb-12 mx-16 my-12 mt-12"
+          className="pb-12 mx-16 mt-12"
         >
           <CardMedia
             sx={{ height: 140 }}
