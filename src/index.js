@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode className="overflow-x-hidden">
+  <React.StrictMode className="flex overflow-x-hidden">
     
     <App />
   </React.StrictMode>

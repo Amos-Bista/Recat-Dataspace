@@ -1,5 +1,7 @@
+"use client";
 import "./App.css";
-import React, {useEffect} from "react";
+import { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Routes
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -130,8 +132,6 @@ const routesData = [
     title: "AdminService",
     link: "/adminservice",
   },
- 
-  
 ];
 
 function App() {
@@ -157,6 +157,21 @@ function App() {
     };
   }, []);
 
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    setVisible(currentScrollPos < 10 || prevScrollPos > currentScrollPos);
+    setPrevScrollPos(currentScrollPos);
+  };
   return (
     <main className="w-screen overflow-x-hidden">
       <Router>
@@ -221,8 +236,11 @@ function App() {
             })}
           </Routes>
         </div>
-        <div className="fixed top-0 w-full">
-          <NavBar />
+
+        <div className="fixed top-0 w-[100%] ">
+          <div className={visible ? "fixed top-0 w-full z-50" : "hidden"}>
+            <NavBar />
+          </div>
         </div>
         <Footer />
       </Router>

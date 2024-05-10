@@ -7,36 +7,28 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import AboutAdd from "../adminAbout/aboutadd";
+import contactcard from "../../assests/contactcard";
+import ValuableclientAdd from "./valuableclientAdd";
 
-const AboutCardTable = () => {
-  const [rowDatas, setRowDatas] = useState([]);
+const ValuableclientTable = () => {
+  const [rows, setRowData] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    // Fetch data from JSON file
+    const data = Object.values(contactcard);
+    console.log("contact", data);
+
+    // Set rowData state with all data from JSON
+    setRowData(data);
   }, []);
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = await response.json();
-      setRowDatas(data); // Update the state with fetched data
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
   return (
     <main className="border-[#0D5077] border-b-2">
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
-          DataSpace Cards
+            Valuable Client's List
         </h3>
         <Button>
-          <AboutAdd />
+          <ValuableclientAdd />
         </Button>
       </div>
       <div className="">
@@ -44,32 +36,22 @@ const AboutCardTable = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Logo</TableCell>
-                <TableCell align="center">Tittle</TableCell>
-                <TableCell align="center">Paragraph</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell align="center">Customer Logo</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rowDatas.map((rowData, index) => (
+              {rows.map((row) => (
                 <TableRow
-                  key={rowData.index}
+                  key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell
-                    align="center"
-                    sx={{
-                      backgroundImage: `url(http://172.16.100.109:8282/AboutUs-Logo/${rowData.logo})`,
-                      backgroundSize: "cover",
-                    }}
-                  >
-                    {" "} 
-                  </TableCell>
-                  <TableCell align="center">{rowData.title}</TableCell>
                   <TableCell component="th" scope="row">
-                    {rowData.paragraph}
+                    {row.Description}
                   </TableCell>
+                  <TableCell align="center">{row.Edit}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit
@@ -90,4 +72,4 @@ const AboutCardTable = () => {
   );
 };
 
-export default AboutCardTable;
+export default ValuableclientTable;
