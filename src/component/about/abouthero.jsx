@@ -60,11 +60,11 @@ const Abouthero = () => {
           className="w-max-screen"
         />
 
-        <div className="absolute top-[50%] left-[3%]">
+        <div className="absolute top-[50%] left-[4%]">
           <h1 className="text-white text-7xl">
             {slides[currentSlide].caption}
           </h1>
-          <h2 className="pl-2 text-xl text-white w-[60%]">
+          <h2 className="text-xl text-white w-[60%]">
             Welcome to Dataspace, Nepals First data center. Were more than just
             a service provider – were your ally in navigating the digital realm.
             With a commitment to innovation and excellence, we offer secure and
