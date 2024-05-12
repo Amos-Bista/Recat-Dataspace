@@ -7,10 +7,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import Delete from "../../component/adminHome/Delete";
 import ContactAdd from "./contactadd";
 import ContactEdit from "./contactedit";
+import { Box } from "@mui/material";
 
 const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
@@ -21,7 +21,7 @@ const ContactAdminTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/contacts/allContacts"
+        "http://10.10.10.149:8282/contacts/allContacts"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -35,7 +35,7 @@ const ContactAdminTable = () => {
   const handleDelete = async (id, index) => {
     try {
       const response = await fetch(
-        `http://172.16.100.109:8282/contacts/deleteContact/${id}`,
+        `http://10.10.10.149:8282/contacts/deleteContact/${id}`,
         {
           method: "DELETE",
         }
@@ -53,13 +53,13 @@ const ContactAdminTable = () => {
 
   return (
     <main>
-      <div className="flex justify-between align-middle">
+      <div className="flex justify-between items-center">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
           Contact Information
         </h3>
-        <Button>
+        <Box>
           <ContactAdd handleAddContact={fetchData} />
-        </Button>
+        </Box>
       </div>
       <div className="">
         <TableContainer component={Paper}>
@@ -80,14 +80,17 @@ const ContactAdminTable = () => {
                   <TableCell align="center">{row.email}</TableCell>
                   <TableCell align="center">{row.address}</TableCell>
                   <TableCell align="center">
-                    <Button sx={{ margin: 2 }}>
-                      <ContactEdit  contactDetails={row} handleEditContact={fetchData}/>
-                    </Button>
+                    <Box sx={{ margin: 2 }}>
+                      <ContactEdit
+                        contactDetails={row}
+                        handleEditContact={fetchData}
+                      />
+                    </Box>
                   </TableCell>
                   <TableCell align="center">
-                    <Button sx={{ margin: 2 }}>
+                    <Box sx={{ margin: 2 }}>
                       <Delete onDelete={() => handleDelete(row.id, index)} />
-                    </Button>
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}

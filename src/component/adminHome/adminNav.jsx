@@ -8,9 +8,9 @@ const AdminNav = () => {
           Dashboard
         </h1>
         <ul className="mx-auto font-semibold text-2xl text-[#0D5077]">
-          <a href="./adminhome">
+          <a href="./adminhome" >
             <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   aligin-middle items-center">
-              <img src="homeicon.png" alt="" className="h-5 pr-4" />
+              <img src="homeicon.png" alt="" className="h-5 pr-4"  />
               Home
             </li>
           </a>
