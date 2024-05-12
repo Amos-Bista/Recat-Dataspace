@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Delete from "../../component/adminHome/Delete";
 import ContactAdd from "./contactadd";
 import ContactEdit from "./contactedit";
+import { Box } from "@mui/material";
 
 const ContactAdminTable = () => {
   const [rows, setRows] = useState([]);
@@ -53,13 +54,13 @@ const ContactAdminTable = () => {
 
   return (
     <main>
-      <div className="flex justify-between align-middle">
+      <div className="flex justify-between items-center">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
           Contact Information
         </h3>
-        <Button>
+        <Box>
           <ContactAdd handleAddContact={fetchData} />
-        </Button>
+        </Box>
       </div>
       <div className="">
         <TableContainer component={Paper}>
@@ -81,7 +82,10 @@ const ContactAdminTable = () => {
                   <TableCell align="center">{row.address}</TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }}>
-                      <ContactEdit  contactDetails={row} handleEditContact={fetchData}/>
+                      <ContactEdit
+                        contactDetails={row}
+                        handleEditContact={fetchData}
+                      />
                     </Button>
                   </TableCell>
                   <TableCell align="center">

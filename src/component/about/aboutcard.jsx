@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import aboutData from "../../assests/aboutData.json";
+import aboutaccordion from "../../assests/accordionJson/aboutaccordion.json";
 
 const Aboutcard = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
     // Fetch data from JSON file
-    const data = Object.values(aboutData);
+    const data = Object.values(aboutaccordion);
     console.log(data);
 
     // Set rowData state with all data from JSON
