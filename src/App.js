@@ -136,21 +136,6 @@ const routesData = [
 ];
 
 function App() {
-  //layout
-  useEffect(() => {
-    const disableDrag = (e) => {
-      e.preventDefault();
-    };
-
-    document.addEventListener("dragstart", disableDrag);
-    document.addEventListener("mousedown", disableDrag);
-
-    return () => {
-      document.removeEventListener("dragstart", disableDrag);
-      document.removeEventListener("mousedown", disableDrag);
-    };
-  }, []);
-
   useEffect(() => {
     document.body.style.overflowX = "hidden";
 
@@ -161,7 +146,7 @@ function App() {
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  //Navbar
+  // //Navbar
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -179,7 +164,6 @@ function App() {
       <Router>
         <div>
           <Routes>
-            {/* Dynamically generate routes from JSON data */}
             {routesData.map((route, index) => {
               if (route.dropdown) {
                 return (

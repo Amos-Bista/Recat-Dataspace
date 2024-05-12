@@ -62,9 +62,23 @@ const AboutCardTable = () => {
                     sx={{
                       backgroundImage: `url(http://172.16.100.109:8282/AboutUs-Logo/${rowData.logo})`,
                       backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      width: 150,
+                      height: 150,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
-                    {" "} 
+                    <img
+                      src={`http://172.16.100.109:8282/AboutUs-Logo/${rowData.logo}`}
+                      alt="Logo"
+                      style={{
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
                   </TableCell>
                   <TableCell align="center">{rowData.title}</TableCell>
                   <TableCell component="th" scope="row">
