@@ -23,6 +23,7 @@ import Webdev from "./pages/service/webdev";
 import Annual from "./pages/service/annual";
 import Webhosting from "./pages/service/webhost";
 import ShowFooter from "./component/footer/showfooter.jsx";
+import ServicePage from "./pages/servicePage.jsx";
 
 // eslint-disable-next-line no-sparse-arrays
 const routesData = [
@@ -133,6 +134,10 @@ const routesData = [
     title: "AdminService",
     link: "/adminservice",
   },
+  {
+    title: "ServicePage",
+    link: "/servicepage",
+  },
 ];
 
 function App() {
@@ -213,6 +218,8 @@ function App() {
                         <AdminContact />
                       ) : route.link === "/adminservice" ? (
                         <AdminService />
+                      ) : route.link === "/servicepage" ? (
+                        <ServicePage />
                       ) : null
                     }
                     exact={route.link === "/"}
