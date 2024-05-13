@@ -61,7 +61,7 @@ const ContactEdit = ({ contactDetails, handleEditContact }) => {
         Edit
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177" }}>
+        <DialogTitle style={{ color: "#0c5177", textAlign: "center" }}>
           Contact Information
           <IconButton
             aria-label="close"
@@ -129,14 +129,16 @@ const ContactEdit = ({ contactDetails, handleEditContact }) => {
             marginRight: "13px",
           }}
         >
-          <Button color="inherit" variant="contained" onClick={closePopUp}>
+          <Button  variant="contained" onClick={closePopUp}
+          style={{ backgroundColor: "#FF0000", marginLeft:'auto', marginRight:'auto'}}
+          >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff" }}
+            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'auto'  }}
             variant="contained"
-          >
+          > 
             PUBLISH
           </Button>
         </DialogActions>
