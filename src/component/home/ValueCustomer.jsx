@@ -1,16 +1,17 @@
-import React, { useState, useRef } from 'react';
-import Slider from 'react-slick';
-import customerData from '../../assests/customerData.json';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
+import React, { useState, useRef, useEffect } from "react";
+import Slider from "react-slick";
+// import customerData from "../../assests/customerData.json";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 const ValueCustomer = () => {
   const [isLeftArrowHovered, setIsLeftArrowHovered] = useState(false);
   const [isRightArrowHovered, setIsRightArrowHovered] = useState(false);
   const [autoplay, setAutoplay] = useState(true);
   const sliderRef = useRef(null);
+  const [customerData, setCustomerData] = useState([]);
 
   const settings = {
     dots: false,
@@ -42,15 +43,35 @@ const ValueCustomer = () => {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setCustomerData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
-    <div className="relative">
+    <div className="relative mb-8">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
-          <div key={customer.id}>
+          <div key={customer.id} className="w-[6rem] h-[6rem]">
             <img
-              src={customer.image}
+              // src={customer.image}
+              src={`http://172.16.100.109:8282/aboutUs/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-32 h-32 mb-8 rounded-md ml-14"
+              className="w-[6rem] h-[6rem] mb-8 rounded-md ml-14   "
             />
           </div>
         ))}
@@ -58,17 +79,17 @@ const ValueCustomer = () => {
       {/* Left arrow */}
       <Box
         className="absolute top-0 left-0 z-10 mt-16 ml-8"
-        style={{ transform: 'translate(-50%, 50%)' }}
+        style={{ transform: "translate(-50%, 50%)" }}
         onMouseEnter={() => setIsLeftArrowHovered(true)}
         onMouseLeave={() => setIsLeftArrowHovered(false)}
       >
         <Button
           className={`bg-gray-800 p-3 rounded-full ml-3 mt-12 text-white text-xl ${
-            isLeftArrowHovered ? 'opacity-100' : 'opacity-0'
+            isLeftArrowHovered ? "opacity-100" : "opacity-0"
           }`}
           onClick={handleLeftArrowClick}
           variant="contained"
-          sx={{ minWidth: 30, minHeight: 30, fontSize: '0.8rem' }}
+          sx={{ minWidth: 30, minHeight: 30, fontSize: "0.8rem" }}
         >
           &#60;
         </Button>
@@ -76,17 +97,17 @@ const ValueCustomer = () => {
       {/* Right arrow */}
       <Box
         className="absolute top-0 right-0 z-10 mt-16 mr-12"
-        style={{ transform: 'translate(50%, 50%)' }}
+        style={{ transform: "translate(50%, 50%)" }}
         onMouseEnter={() => setIsRightArrowHovered(true)}
         onMouseLeave={() => setIsRightArrowHovered(false)}
       >
         <Button
           className={`bg-gray-800 p-3 rounded-full mr-14 mt-14 text-white text-xl ${
-            isRightArrowHovered ? 'opacity-100' : 'opacity-0'
+            isRightArrowHovered ? "opacity-100" : "opacity-0"
           }`}
           onClick={handleRightArrowClick}
           variant="contained"
-          sx={{ minWidth: 28, minHeight: 28, fontSize: '0.7rem' }}
+          sx={{ minWidth: 28, minHeight: 28, fontSize: "0.7rem" }}
         >
           &#62;
         </Button>

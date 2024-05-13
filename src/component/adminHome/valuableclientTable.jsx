@@ -7,25 +7,35 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import contactcard from "../../assests/contactcard";
 import ValuableclientAdd from "./valuableclientAdd";
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from JSON file
-    const data = Object.values(contactcard);
-    console.log("contact", data);
-
-    // Set rowData state with all data from JSON
-    setRowData(data);
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRowData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
     <main className="border-[#0D5077] border-b-2">
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
-            Valuable Client's List
+          Valuable Client's List
         </h3>
         <Button>
           <ValuableclientAdd />
@@ -45,13 +55,21 @@ const ValuableclientTable = () => {
             <TableBody>
               {rows.map((row) => (
                 <TableRow
-                  key={row.name}
+                  key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.Description}
+                    {row.title}
                   </TableCell>
-                  <TableCell align="center">{row.Edit}</TableCell>
+                  <TableCell align="center" sx={{ paddingLeft: 24 }}>
+                    <img
+                      src={`http://172.16.100.109:8282/aboutUs/${row.logo}`}
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                      }}
+                    />
+                  </TableCell>
                   <TableCell align="center">
                     <Button sx={{ margin: 2 }} variant="contained">
                       Edit

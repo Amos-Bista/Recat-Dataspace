@@ -67,7 +67,7 @@ const AboutAccordion = () => {
             id={`${expandedData.id}bh-header`}
           >
             <img
-              src={`url(http://172.16.100.109:8282/aboutUs/${expandedData.logo})`}
+              src={`http://172.16.100.109:8282/aboutUs/${expandedData.logo}`}
               alt={expandedData.title}
               style={{ marginRight: "10px", width: "30px", height: "30px" }}
             />
