@@ -59,7 +59,7 @@ import {
           Add New +
         </Button>
         <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-          <DialogTitle style={{ color: "#0c5177" }}>
+          <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
             Footer Information
             <IconButton
               aria-label="close"
@@ -114,12 +114,14 @@ import {
               marginRight: "13px",
             }}
           >
-            <Button color="inherit" variant="contained" onClick={closePopUp}>
+            <Button variant="contained" onClick={closePopUp}
+            style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+            >
               UNPUBLISH
             </Button>
             <Button
               onClick={handleSubmit}
-              style={{ backgroundColor: "#0c5177", color: "#fff" }}
+              style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'44px'  }}
               variant="contained"
             >
               PUBLISH
