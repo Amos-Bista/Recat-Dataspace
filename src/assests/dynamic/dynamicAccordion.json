@@ -1,0 +1,46 @@
+{
+  "annual": [
+    {
+      "id": "panel1",
+      "title": "Proactive Care",
+      "description": " Our annual maintenance services are designed to identify and address potential issues before they disrupt your operations. We keep your systems running smoothly and efficiently."
+    },
+    {
+      "id": "panel2",
+      "title": "Enhanced Security",
+      "description": " Security threats evolve constantly. Our maintenance services include security updates and patches to ensure your systems are safeguarded against the latest vulnerabilities."
+    },
+    {
+      "id": "panel3",
+      "title": "Performance Optimization",
+      "description": " We fine-tune your systems for optimal performance. Regular maintenance helps prevent slowdowns, crashes, and other performance-related issues."
+    },
+    {
+      "id": "panel4",
+      "title": "Extended Lifespan",
+      "description": "Proper maintenance prolongs the lifespan of your hardware and software investments, maximizing your return on investment."
+    }
+  ],
+  "backup": [
+    {
+      "id": "panel1",
+      "title": "Comprehensive Data Protection",
+      "description": " Our services offer a comprehensive approach to data protection. Whether it’s accidental deletion, hardware failure, or a major disaster"
+    },
+    {
+      "id": "panel2",
+      "title": "Users",
+      "description": " Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet."
+    },
+    {
+      "id": "panel3",
+      "title": "Advanced settings",
+      "description": " Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue"
+    },
+    {
+      "id": "panel4",
+      "title": "Personal data",
+      "description": " Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue"
+    }
+  ]
+}
