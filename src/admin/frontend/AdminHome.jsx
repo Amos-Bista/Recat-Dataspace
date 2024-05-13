@@ -1,5 +1,4 @@
 import React from "react";
-
 import AdminNav from "../../component/adminHome/adminNav";
 import FooterTable from "../../component/adminHome/footertable";
 import HomeHero from "../../component/adminHome/homehero";

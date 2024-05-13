@@ -24,7 +24,7 @@ const AboutCardTable = () => {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
-      setRowDatas(data); // Update the state with fetched data
+      setRowDatas(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -60,7 +60,7 @@ const AboutCardTable = () => {
                   <TableCell
                     align="center"
                     sx={{
-                      backgroundImage: `url(http://172.16.100.109:8282/AboutUs-Logo/${rowData.logo})`,
+                      backgroundImage: `url(http://172.16.100.109:8282/aboutUs/${rowData.logo})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       width: 150,
@@ -69,17 +69,7 @@ const AboutCardTable = () => {
                       justifyContent: "center",
                       alignItems: "center",
                     }}
-                  >
-                    <img
-                      src={`http://172.16.100.109:8282/AboutUs-Logo/${rowData.logo}`}
-                      alt="Logo"
-                      style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </TableCell>
+                  ></TableCell>
                   <TableCell align="center">{rowData.title}</TableCell>
                   <TableCell component="th" scope="row">
                     {rowData.paragraph}
