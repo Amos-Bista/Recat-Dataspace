@@ -18,11 +18,13 @@ function Home() {
         <h1 className="flex justify-center text-4xl ">
           Our Popular Plans & Pricing
         </h1>
-        <div className="mb-16">
+        <div className="mb-[8rem]">
           <Plans />
         </div>
         <div>
-          <h1 className="flex justify-center text-4xl mt-12">Our Valued Costumers</h1>
+          <h1 className="flex justify-center text-3xl mb-[2rem]  font-bold">
+            Our Valued Costumers
+          </h1>
           <ValueCustomer />
         </div>
       </section>

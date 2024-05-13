@@ -21,7 +21,7 @@ const ContactAdminTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://10.10.10.149:8282/contacts/allContacts"
+        "http://172.16.100.109:8282/contacts/allContacts"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -35,7 +35,7 @@ const ContactAdminTable = () => {
   const handleDelete = async (id, index) => {
     try {
       const response = await fetch(
-        `http://10.10.10.149:8282/contacts/deleteContact/${id}`,
+        `http://172.16.100.109:8282/contacts/deleteContact/${id}`,
         {
           method: "DELETE",
         }
