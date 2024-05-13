@@ -1,28 +1,25 @@
 import Abouthero from "../component/about/abouthero";
 import React from "react";
-import Aboutcard from "../component/about/aboutcard";
+import Plans  from "../component/Plans";
 import Milestone from "../component/about/milestone";
+import AboutAccordion from "../component/about/aboutaccordion";
 
 const About = () => {
-  return (
-    <main>
-      <Abouthero />
-      <section className="flex-col justify-center py-16">
-        <h1 className="flex justify-center py-6 text-3xl font-bold">
-          WHY DATASPACE?
-        </h1>
-        <img
-          src="/aboutbody.png"
-          alt="footerimage"
-          width={481}
-          height={384}
-          className="py-4 mx-auto "
-        />
-      </section>
-
-      <div className="mb-[90px]">
-        <Aboutcard />
-      </div>
+    return (
+      <main>
+        < Abouthero/>
+        <div className="w-100% flex justify-center ">
+          <div className="px-[4%] my-[5%]">
+            <h1 className="text-4xl font-bold ">
+              Why DataSpace?
+            </h1>
+            <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
+            {<AboutAccordion/>}
+            </ul>
+          </div>
+          <img src="/aboutbody.png" alt="" style={{ maxWidth: "500px", maxHeight: "350px", margin: "80px" }} />
+        </div>
+        <Plans />
 
       <div className="flex justify-center py-6 pt-5 text-4xl font-bold ">
         Our Milestone
