@@ -1,23 +1,22 @@
 [
-    {
-      "id": "panel1",
-      "title": "Proactive Care",
-      "description" : " Our annual maintenance services are designed to identify and address potential issues before they disrupt your operations. We keep your systems running smoothly and efficiently."
-    },
-    {
-      "id": "panel2",
-      "title": "Enhanced Security",
-      "description" : " Security threats evolve constantly. Our maintenance services include security updates and patches to ensure your systems are safeguarded against the latest vulnerabilities."
-    },
-    {
-      "id": "panel3",
-      "title": "Performance Optimization",
-      "description" : " We fine-tune your systems for optimal performance. Regular maintenance helps prevent slowdowns, crashes, and other performance-related issues."
-    },
-    {
-      "id": "panel4",
-      "title": "Extended Lifespan",
-      "description" : "Proper maintenance prolongs the lifespan of your hardware and software investments, maximizing your return on investment."
-    }
-  ]
-  
+  {
+    "id": "panel1",
+    "title": "Proactive Care",
+    "description": " Our annual maintenance services are designed to identify and address potential issues before they disrupt your operations. We keep your systems running smoothly and efficiently."
+  },
+  {
+    "id": "panel2",
+    "title": "Enhanced Security",
+    "description": " Security threats evolve constantly. Our maintenance services include security updates and patches to ensure your systems are safeguarded against the latest vulnerabilities."
+  },
+  {
+    "id": "panel3",
+    "title": "Performance Optimization",
+    "description": " We fine-tune your systems for optimal performance. Regular maintenance helps prevent slowdowns, crashes, and other performance-related issues."
+  },
+  {
+    "id": "panel4",
+    "title": "Extended Lifespan",
+    "description": "Proper maintenance prolongs the lifespan of your hardware and software investments, maximizing your return on investment."
+  }
+]

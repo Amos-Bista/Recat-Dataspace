@@ -1,23 +1,22 @@
 [
-    {
-      "id": "panel1",
-      "title": "Comprehensive Data Protection",
-      "description" : " Our services offer a comprehensive approach to data protection. Whether it’s accidental deletion, hardware failure, or a major disaster"
-    },
-    {
-      "id": "panel2",
-      "title": "Users",
-      "description" : " Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet."
-    },
-    {
-      "id": "panel3",
-      "title": "Advanced settings",
-      "description" : " Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue"
-    },
-    {
-      "id": "panel4",
-      "title": "Personal data",
-      "description" : " Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue"
-    }
-  ]
-  
+  {
+    "id": "panel1",
+    "title": "Comprehensive Data Protection",
+    "description": " Our services offer a comprehensive approach to data protection. Whether it’s accidental deletion, hardware failure, or a major disaster"
+  },
+  {
+    "id": "panel2",
+    "title": "Users",
+    "description": " Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar diam eros in elit. Pellentesque convallis laoreet laoreet."
+  },
+  {
+    "id": "panel3",
+    "title": "Advanced settings",
+    "description": " Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue"
+  },
+  {
+    "id": "panel4",
+    "title": "Personal data",
+    "description": " Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas eros, vitae egestas augue. Duis vel est augue"
+  }
+]
