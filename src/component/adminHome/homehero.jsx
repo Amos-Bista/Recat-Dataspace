@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
+import { Box } from "@mui/material";
 
 const HomeHero = () => {
   const [rows, setRows] = useState([]);
@@ -26,13 +27,14 @@ const HomeHero = () => {
   };
   return (
     <main>
-      <div className="flex justify-between align-middle">
+      <div className="flex justify-between items-center">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
           Hero Section
         </h3>
-        <Button>
+
+        <Box>
           <Add addData={addData} />
-        </Button>
+        </Box>
       </div>
       <div className="">
         <TableContainer component={Paper}>

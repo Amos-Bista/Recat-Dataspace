@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Servicefeatureplan from "../../assests/servicefeatureplan.json";
 import ServiceAdd from "./serviceAdd";
+import { Box } from "@mui/material";
 
 const Servicefeatureplans = () => {
   const [rowData, setRowData] = useState([]);
@@ -26,11 +27,10 @@ const Servicefeatureplans = () => {
         <h3  className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px] ">
           Features Plans
         </h3>
-
-        <Button
+        <Box
         >
          < ServiceAdd />
-        </Button>
+        </Box>
       </div>
       <div>
         <TableContainer component={Paper}>

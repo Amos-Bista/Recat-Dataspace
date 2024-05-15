@@ -64,7 +64,7 @@ const AboutAdd = () => {
         Add New +
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177" }}>
+        <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
           Card Information
           <IconButton
             aria-label="close"
@@ -127,15 +127,16 @@ const AboutAdd = () => {
           style={{
             display: "flex",
             gap: "200px",
-            marginRight: "13px",
           }}
         >
-          <Button color="inherit" variant="contained" onClick={handleClose}>
+          <Button variant="contained" onClick={handleClose}
+          style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+          >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff" }}
+            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'56px'  }}
             variant="contained"
           >
             PUBLISH
