@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ValuableclientAdd from "./valuableclientAdd";
+import { Box } from "@mui/material";
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
@@ -37,9 +38,11 @@ const ValuableclientTable = () => {
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
           Valuable Client's List
         </h3>
-        <Button>
+        <Box>
           <ValuableclientAdd />
-        </Button>
+
+        </Box>
+        
       </div>
       <div className="">
         <TableContainer component={Paper}>
