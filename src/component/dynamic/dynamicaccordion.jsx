@@ -1,22 +1,38 @@
-'use client'
-import React, {useState} from 'react'
+"use client";
+import React, { useEffect, useState } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import amos from "../../assests/dynamic/dynamicAccordion.json"
+import amos from "../../assests/dynamic/dynamicAccordion.json";
 
-const DynamicAccordion = () => {
-    const [expanded, setExpanded] = useState(false);
+import serviceData from "../../assests/servicedata.json";
 
+import dynamicPlans from "../../assests/dynamic/dynamicPlans.json";
+
+const DynamicAccordion = ({ id }) => {
+  const [expanded, setExpanded] = useState(false);
+  const [service, setService] = useState(null);
+
+  useEffect(() => {
+    const selectedService = serviceData.find(
+      (service) => service.id === parseInt(id)
+    );
+    setService(selectedService);
+  }, [id]);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-      <div className="custom-accordion" style={{ width: "100%", maxWidth: "700px", marginLeft: "-20px" }}>
-           <h1 className="my-2 ml-0 text-4xl font-bold text-center">Dynamic Routing</h1>
-    <style>{`
+    <div
+      className="custom-accordion"
+      style={{ width: "100%", maxWidth: "700px", marginLeft: "-20px" }}
+    >
+      <h1 className="my-2 ml-0 text-4xl font-bold text-center">
+        {service.serviceName}
+      </h1>
+      <style>{`
       .custom-accordion .MuiAccordion-root.Mui-expanded {
         margin: 0;
       }
@@ -33,29 +49,28 @@ const DynamicAccordion = () => {
         margin: 0;
       }
     `}</style>
-          {amos.annual.map((panel   ) => (
-       
-      <Accordion
-        key={panel.id}
-        expanded={expanded === panel.id}
-        onChange={handleChange(panel.id)}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls={`${panel.id}bh-content`}
-          id={`${panel.id}bh-header`}
+      {service.accordions.map((panel) => (
+        <Accordion
+          key={panel.id}
+          expanded={expanded === panel.id}
+          onChange={handleChange(panel.id)}
         >
-          <Typography sx={{ width: "33%", flexShrink: 0 }}>
-            {panel.title}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>{panel.description}</Typography>
-        </AccordionDetails>
-      </Accordion>
-    ))}
-  </div>
-  )
-}
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`${panel.id}bh-content`}
+            id={`${panel.id}bh-header`}
+          >
+            <Typography sx={{ width: "33%", flexShrink: 0 }}>
+              {panel.title}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>{panel.description}</Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </div>
+  );
+};
 
 export default DynamicAccordion;

@@ -1,0 +1,95 @@
+[
+    {
+      "id": 1,
+      "serviceName": "Virtual Private Server1",
+      "serviceDescription": "We understand that your hosting needs are as unique as your business. That’s why we’re thrilled to offer you our Advanced Virtual Private Server (VPS) solutions – the perfect blend of performance, control, and scalability for your online ventures.",
+      "subtitle": null,
+      "serviceBgImage":"/hero1.png",
+       "accordions": [
+          {
+              "id": 1,
+              "title": "Power in Your Hands",
+              "description": "With Dataspace VPS, you’re in command from choosing your preferred Operating System to configuring resources that align perfectly with your workload demands."
+          },
+          {
+              "id": 2,
+              "title": "Uncompromised Performance",
+              "description": "Our VPS infrastructure is built to deliver exceptional performance. Powered by robust hardware and high-speed network connectivity, your applications will run smoothly and responsively, ensuring a seamless experience for your users."
+          }]
+    },
+    {
+        "id": 2,
+        "serviceName": "Virtual Private Server2",
+        "serviceDescription": "We understand that your hosting needs are as unique as your business. That’s why we’re thrilled to offer you our Advanced Virtual Private Server (VPS) solutions – the perfect blend of performance, control, and scalability for your online ventures.",
+        "subtitle": null,
+        "serviceBgImage":"/hero1.png",
+         "accordions": [
+            {
+                "id": 1,
+                "title": "Power in Your Hands",
+                "description": "With Dataspace VPS, you’re in command from choosing your preferred Operating System to configuring resources that align perfectly with your workload demands."
+            },
+            {
+                "id": 2,
+                "title": "Uncompromised Performance",
+                "description": "Our VPS infrastructure is built to deliver exceptional performance. Powered by robust hardware and high-speed network connectivity, your applications will run smoothly and responsively, ensuring a seamless experience for your users."
+            }]
+      },
+      {
+        "id": 3,
+        "serviceName": "Virtual Private Servece3",
+        "serviceDescription": "We understand that your hosting needs are as unique as your business. That’s why we’re thrilled to offer you our Advanced Virtual Private Server (VPS) solutions – the perfect blend of performance, control, and scalability for your online ventures.",
+        "subtitle": null,
+        "serviceBgImage":"/hero1.png",
+         "accordions": [
+            {
+                "id": 1,
+                "title": "Power in Your Hands",
+                "description": "With Dataspace VPS, you’re in command from choosing your preferred Operating System to configuring resources that align perfectly with your workload demands."
+            },
+            {
+                "id": 2,
+                "title": "Uncompromised Performance",
+                "description": "Our VPS infrastructure is built to deliver exceptional performance. Powered by robust hardware and high-speed network connectivity, your applications will run smoothly and responsively, ensuring a seamless experience for your users."
+            }]
+      },
+      {
+        "id": 4,
+        "serviceName": "Virtual Private Server4",
+        "serviceDescription": "We understand that your hosting needs are as unique as your business. That’s why we’re thrilled to offer you our Advanced Virtual Private Server (VPS) solutions – the perfect blend of performance, control, and scalability for your online ventures.",
+        "subtitle": null,
+        "serviceBgImage":"/hero1.png",
+         "accordions": [
+            {
+                "id": 1,
+                "title": "Power in Your Hands",
+                "description": "With Dataspace VPS, you’re in command from choosing your preferred Operating System to configuring resources that align perfectly with your workload demands."
+            },
+            {
+                "id": 2,
+                "title": "Uncompromised Performance",
+                "description": "Our VPS infrastructure is built to deliver exceptional performance. Powered by robust hardware and high-speed network connectivity, your applications will run smoothly and responsively, ensuring a seamless experience for your users."
+            }]
+      },
+      {
+        "id": 5,
+        "serviceName": "Virtual Private Server5",
+        "serviceDescription": "We understand that your hosting needs are as unique as your business. That’s why we’re thrilled to offer you our Advanced Virtual Private Server (VPS) solutions – the perfect blend of performance, control, and scalability for your online ventures.",
+        "subtitle": null,
+        "serviceBgImage":"/hero1.png",
+         "accordions": [
+            {
+                "id": 1,
+                "title": "Power in Your Hands",
+                "description": "With Dataspace VPS, you’re in command from choosing your preferred Operating System to configuring resources that align perfectly with your workload demands."
+            },
+            {
+                "id": 2,
+                "title": "Uncompromised Performance",
+                "description": "Our VPS infrastructure is built to deliver exceptional performance. Powered by robust hardware and high-speed network connectivity, your applications will run smoothly and responsively, ensuring a seamless experience for your users."
+            }]
+      }
+   
+  ]
+  
+  
