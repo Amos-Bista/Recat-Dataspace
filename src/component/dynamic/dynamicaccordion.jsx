@@ -5,11 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import amos from "../../assests/dynamic/dynamicAccordion.json";
-
 import serviceData from "../../assests/servicedata.json";
-
-import dynamicPlans from "../../assests/dynamic/dynamicPlans.json";
 
 const DynamicAccordion = ({ id }) => {
   const [expanded, setExpanded] = useState(false);
@@ -21,6 +17,10 @@ const DynamicAccordion = ({ id }) => {
     );
     setService(selectedService);
   }, [id]);
+
+  if (!service) {
+    return <div>Loading...</div>;
+  }
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -29,7 +29,7 @@ const DynamicAccordion = ({ id }) => {
       className="custom-accordion"
       style={{ width: "100%", maxWidth: "700px", marginLeft: "-20px" }}
     >
-      <h1 className="my-2 ml-0 text-4xl font-bold text-center">
+      <h1 className="my-2 ml-0 text-4xl font-bold text-start">
         {service.serviceName}
       </h1>
       <style>{`

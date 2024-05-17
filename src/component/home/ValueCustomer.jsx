@@ -61,17 +61,15 @@ const ValueCustomer = () => {
       console.error("Error fetching data:", error);
     }
   };
-
   return (
     <div className="relative mb-8">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
-          <div key={customer.id} className="w-[6rem] h-[6rem]">
+          <div key={customer.id} className="w-[10rem] h-[10rem]">
             <img
-              // src={customer.image}
               src={`http://172.16.100.109:8282/aboutUs/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[6rem] h-[6rem] mb-8 rounded-md ml-14   "
+              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
             />
           </div>
         ))}
