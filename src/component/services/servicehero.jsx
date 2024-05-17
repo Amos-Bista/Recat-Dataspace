@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import serviceData from "../../assests/servicedata.json";
 
 const ServiceHero = ({ id }) => {
   const [service, setService] = useState(null);
 
   useEffect(() => {
-    const selectedService = serviceData.find(
-      (service) => service.id === parseInt(id)
-    );
-    setService(selectedService);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://172.16.100.109:8282/services/getService/${id}`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+        const selectedService = data.find(
+          (service) => service.id === parseInt(id)
+        );
+        setService(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, [id]);
 
   if (!service) {
@@ -24,7 +38,7 @@ const ServiceHero = ({ id }) => {
           className="absolute bg-black/50"
         ></div>
         <img
-          src={service.serviceBgImage}
+          // src={service.serviceBgImage}
           style={{ width: "100vw", height: "667px" }}
           className="w-max-screen"
         />
