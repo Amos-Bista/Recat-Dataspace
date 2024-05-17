@@ -8,70 +8,66 @@ import Typography from "@mui/material/Typography";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import dynamicPlans from "../../assests/dynamic/dynamicPlans.json"
-const DynamicPlanCard = () => {
-    const [plansData, setPlansData] = useState([]);
-    const settings = {
-      padding: "0px",
-      marginBottom: "0px",
-      dots: true,
-      infinite: true,
-      autoplay: true,
-      autoplaySpeed: 0, // Adjust the autoplay speed as needed
-      speed: 5000,
-      slidesToShow: 3,
-      vertical: false, // Set to false for horizontal autoplay
-    };
-    
-  
-  
-  
-    useEffect(() => {
-      // Convert the object to an array of plans
-      const plansArray = Object.entries(dynamicPlans).map(([planName, planDetails]) => ({
+import dynamicPlans from "../../assests/dynamic/dynamicPlans.json";
+const DynamicPlanCard = ({ id }) => {
+  const [plansData, setPlansData] = useState([]);
+  const settings = {
+    padding: "0px",
+    marginBottom: "0px",
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 0, // Adjust the autoplay speed as needed
+    speed: 5000,
+    slidesToShow: 3,
+    vertical: false, // Set to false for horizontal autoplay
+  };
+
+  useEffect(() => {
+    // Convert the object to an array of plans
+    const plansArray = Object.entries(dynamicPlans).map(
+      ([planName, planDetails]) => ({
         name: planName,
         details: planDetails,
-      }));
-      setPlansData(plansArray);
-    }, []);
-  
+      })
+    );
+    setPlansData(plansArray);
+  }, []);
+
   return (
-      <div className="mx-12">
-          <h1>Dynamic</h1>
-    <Slider {...settings}>
-      {plansData.map((plan, index) => (
-        <Card
-          key={index}
-          sx={{ maxWidth: 355, marginBottom: 4, maxHeight:700, }}
-          className="pb-8 mx-12 mt-12"
-        >
-          <CardMedia
-            sx={{ height: 140 }}
-            image="./plans.png" // Update this path to the correct path of your image
-            title="Green Iguana"
-          />
-          <CardContent className="flex-col justify-center text-center">
-            <Typography gutterBottom variant="h5" component="div">
-              {plan.name}
-            </Typography>
-            {plan.details.map((detail, idx) => (
-              <Typography key={idx} variant="body2" color="text.secondary">
-                <span>{detail.title}:</span>
-                {detail.description}
+    <div className="mx-12">
+      <h1>Dynamic</h1>
+      <Slider {...settings}>
+        {plansData.map((plan, index) => (
+          <Card
+            key={index}
+            sx={{ maxWidth: 355, marginBottom: 4, maxHeight: 700 }}
+            className="pb-8 mx-12 mt-12"
+          >
+            <CardMedia
+              sx={{ height: 140 }}
+              image="/plans.png" // Update this path to the correct path of your image
+              title="Green Iguana"
+            />
+            <CardContent className="flex-col justify-center text-center">
+              <Typography gutterBottom variant="h5" component="div">
+                {plan.name}
               </Typography>
-            ))}
-          </CardContent>
-          <CardActions className="flex justify-center ">
-            <Button variant="contained">Add to Cart</Button>
-          </CardActions>
-        </Card>
-      ))}
-    </Slider>
-    
-  </div>
-);
-}
-
-
+              {plan.details.map((detail, idx) => (
+                <Typography key={idx} variant="body2" color="text.secondary">
+                  <span>{detail.title}:</span>
+                  {detail.description}
+                </Typography>
+              ))}
+            </CardContent>
+            <CardActions className="flex justify-center ">
+              <Button variant="contained">Add to Cart</Button>
+            </CardActions>
+          </Card>
+        ))}
+      </Slider>
+    </div>
+  );
+};
 
 export default DynamicPlanCard;

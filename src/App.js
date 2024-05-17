@@ -24,6 +24,7 @@ import Annual from "./pages/service/annual";
 import Webhosting from "./pages/service/webhost";
 import ShowFooter from "./component/footer/showfooter.jsx";
 import ServicePage from "./pages/servicePage.jsx";
+import Services from "./pages/services.jsx";
 
 // eslint-disable-next-line no-sparse-arrays
 const routesData = [
@@ -138,6 +139,15 @@ const routesData = [
     title: "ServicePage",
     link: "/servicepage",
   },
+  {
+    title: "",
+    link: "/services",
+  },
+
+  {
+    title: "",
+    link: "/services/:id",
+  },
 ];
 
 function App() {
@@ -219,6 +229,10 @@ function App() {
                       ) : route.link === "/adminservice" ? (
                         <AdminService />
                       ) : route.link === "/servicepage" ? (
+                        <ServicePage />
+                      ) : route.link === "/services" ? (
+                        <Services />
+                      ) : route.link === "/services/:id" ? (
                         <ServicePage />
                       ) : null
                     }
