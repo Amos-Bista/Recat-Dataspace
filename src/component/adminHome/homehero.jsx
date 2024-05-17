@@ -60,7 +60,9 @@ const HomeHero = () => {
                     </Button>
                   </TableCell>
                   <TableCell align="center">
-                    <Button sx={{ margin: 2 }}>
+                    <Button sx={{ margin: 2 }}
+                    className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
+                    >
                       <Delete onDelete={() => handleDelete(index)} />
                     </Button>
                   </TableCell>

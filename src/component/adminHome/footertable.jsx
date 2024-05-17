@@ -21,7 +21,7 @@ const FooterTable= () => {
     setRowData(data);
   }, []);
   return (
-    <main className="border-[#0D5077] border-b-2">
+    <main className="">
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
 Footer
@@ -57,7 +57,9 @@ Footer
                     </Button>
                   </TableCell>
                   <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
+                    <Button sx={{ margin: 2 }} 
+                    className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
+                    >
                       Delete
                     </Button>
                   </TableCell>

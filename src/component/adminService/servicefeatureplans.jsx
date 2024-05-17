@@ -22,7 +22,7 @@ const Servicefeatureplans = () => {
 
 
   return (
-    <main className="pt-6 border-b-2 border-[#0D5077]">
+    <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
         <h3  className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px] ">
           Features Plans
@@ -64,7 +64,7 @@ const Servicefeatureplans = () => {
                     <TableCell align="center">
                       <Button
                         sx={{ margin: 2 }}
-                        variant="contained"
+                        className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
                       >
                         Delete
                       </Button>

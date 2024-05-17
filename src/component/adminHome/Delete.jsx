@@ -24,7 +24,7 @@ const Delete = ({ onDelete }) => {
   };
   return (
     <>
-      <Button onClick={functionOnPopUp} color="primary" variant="contained">
+      <Button onClick={functionOnPopUp} color="error" variant="contained">
         DELETE
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="xs">
