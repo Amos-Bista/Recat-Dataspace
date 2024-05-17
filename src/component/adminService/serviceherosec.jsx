@@ -23,7 +23,7 @@ const Serviceherosec = () => {
   }, []);
 
   return (
-    <main className="pt-6 border-b-2 border-[#0D5077]">
+    <main className="pt-6  mt-[-50px]">
        <div className="flex justify-between align-middle">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
           Hero Section

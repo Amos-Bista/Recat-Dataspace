@@ -1,6 +1,7 @@
 import React from "react";
 import { Home as HomeIcon } from '@mui/icons-material';
 import EmailIcon from '@mui/icons-material/Email';
+import { NavLink } from 'react-router-dom';
 import InfoIcon from '@mui/icons-material/Info';
 import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
 
@@ -12,30 +13,63 @@ const AdminNav = () => {
           Dashboard
         </h1>
         <ul className="mx-auto font-semibold text-2xl text-[#0D5077]">
-          <a href="./adminhome" >
-            <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex  items-center">
-            <HomeIcon style={{ fontSize: '3rem' }} className=" ml-[-0.4rem] h-5 pr-4 text-current hover:text-white" />
-              Home
-            </li>
-          </a>
-          <a href="./admincontact">
-            <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex items-center">
-            <EmailIcon style={{ fontSize: '3rem' }} className=" ml-[-0.4rem] h-5 pr-4 text-current hover:text-white" />
-              Contact
-            </li>
-          </a>
-          <a href="./adminabout">
-            <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   align-middle items-center">
-            <InfoIcon style={{ fontSize: '3rem' }} className=" ml-[-0.4rem] h-5 pr-4 text-current hover:text-white" />
-              About
-            </li>
-          </a>
-          <a href="./adminservice">
-            <li className="px-4 hover:bg-[#0D5077]/90 hover:text-white flex   aligin-middle items-center">
-            <MiscellaneousServicesIcon style={{ fontSize: '3rem' }} className=" ml-[-0.4rem] h-5 pr-4 text-current hover:text-white" />
-              Service
-            </li>
-          </a>
+  
+          <NavLink 
+            to="/adminhome" 
+            className={({ isActive, isPending }) => 
+              isPending ? "pending" : isActive ? "active text-white bg-[#0D5077]/90" : ""
+            }
+          >
+          {({ isActive }) => (
+              <li className={`px-4 flex items-center ${isActive ? 'bg-[#0D5077]/90 text-white' : ''}`}>
+                <HomeIcon style={{ fontSize: '3rem' }} className="ml-[-0.4rem] h-5 pr-4 text-current" />
+                Home
+              </li>
+            )}
+          </NavLink>
+          <NavLink 
+            to="/admincontact" 
+            className={({ isActive, isPending }) => 
+              isPending ? "pending" : isActive ? "active text-white bg-[#0D5077]/90" : ""
+            }
+          >
+          {({ isActive }) => (
+              <li className={`px-4 flex items-center ${isActive ? 'bg-[#0D5077]/90 text-white' : ''}`}>
+                <EmailIcon style={{ fontSize: '3rem' }} className="ml-[-0.4rem] h-5 pr-4 text-current" />
+                Contact
+              </li>
+            )}
+          </NavLink>
+
+
+          <NavLink 
+            to="/adminabout" 
+            className={({ isActive, isPending }) => 
+              isPending ? "pending" : isActive ? "active text-white bg-[#0D5077]/90" : ""
+            }
+          >
+          {({ isActive }) => (
+              <li className={`px-4 flex items-center ${isActive ? 'bg-[#0D5077]/90 text-white' : ''}`}>
+                <InfoIcon style={{ fontSize: '3rem' }} className="ml-[-0.4rem] h-5 pr-4 text-current" />
+                About
+              </li>
+            )}
+          </NavLink>
+
+
+          <NavLink 
+            to="/adminservice" 
+            className={({ isActive, isPending }) => 
+              isPending ? "pending" : isActive ? "active text-white bg-[#0D5077]/90" : ""
+            }
+          >
+          {({ isActive }) => (
+              <li className={`px-4 flex items-center ${isActive ? 'bg-[#0D5077]/90 text-white' : ''}`}>
+                <MiscellaneousServicesIcon style={{ fontSize: '3rem' }} className="ml-[-0.4rem] h-5 pr-4 text-current" />
+                Service
+              </li>
+            )}
+          </NavLink>
         </ul>
       </nav>
     </main>
