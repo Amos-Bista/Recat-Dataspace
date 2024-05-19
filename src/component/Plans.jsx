@@ -43,14 +43,14 @@ export default function Plans() {
           <Card
             key={index}
             sx={{ maxWidth: 355, marginBottom: 4 }}
-            className="pb-8 mx-12 mt-12"
+            className="pb-8 mx-12 mt-12"      
           >
             <CardMedia
-              sx={{ height: 140 }}
+              sx={{ height: 140,}}
               image="./plans.png" // Update this path to the correct path of your image
               title="Green Iguana"
             />
-            <CardContent className="flex-col justify-center text-center">
+            <CardContent className="flex-col justify-center text-center ">
               <Typography gutterBottom variant="h5" component="div">
                 {plan.name}
               </Typography>

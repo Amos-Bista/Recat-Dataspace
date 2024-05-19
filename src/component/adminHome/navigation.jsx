@@ -38,7 +38,7 @@ const Navigation = () => {
   };
 
   return (
-    <main className="pt-6 border-b-2">
+    <main className="pt-6">
       <div className="flex items-center justify-between mt-[-60px]">
         <h3 className=" my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">Navigation Bar</h3>
         <Button variant="contained" className="flex items-end h-10 align-end" onClick={handleAddNew}>
