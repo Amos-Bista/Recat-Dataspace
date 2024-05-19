@@ -1,10 +1,6 @@
 {
     "Virtual Private Server Bronze":[
     {
-      "title": "CORE CPU",
-      "description": ""
-    },
-    {
       "title": "1 GB RAM",
       "description": ""
     },
@@ -59,7 +55,7 @@
       "description": ""
     }
   ],
-  "Virtual Private Server Gold":[
+  "Virtual Private Server Gold ":[
     {
       "title": "CORE CPU",
       "description": ""
@@ -89,7 +85,7 @@
       "description": ""
     }
   ],
-  "Virtual Private Server Bronze 2":[
+  "Virtual Private Server Bronzes":[
     {
       "title": "CORE CPU",
       "description": ""
@@ -119,7 +115,7 @@
       "description": ""
     }
   ],
-  "Virtual Private Server Bronze 3":[
+  "Virtual Private Server Bronze":[
     {
       "title": "CORE CPU",
       "description": ""
@@ -149,8 +145,8 @@
       "description": ""
     }
   ],
-  "Virtual Private Server Bronze 5":[
-    {
+  "Virtual Private Server Bronz":[
+   {
       "title": "CORE CPU",
       "description": ""
     },
@@ -179,7 +175,7 @@
       "description": ""
     }
   ],
-  "Virtual Private Server Bronze 6":[
+  "Virtual Private Server Bronze ":[
     {
       "title": "CORE CPU",
       "description": ""
