@@ -30,7 +30,7 @@ const AboutCardTable = () => {
     }
   };
   return (
-    <main className="">
+    <main className="w-full">
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
           DataSpace Cards
