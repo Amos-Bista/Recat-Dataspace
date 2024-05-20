@@ -20,7 +20,7 @@ const ValuableclientTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        "http://172.16.100.109:8282/client/getClient"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
