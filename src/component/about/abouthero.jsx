@@ -1,11 +1,9 @@
+// export default Abouthero;
 import React, { useState, useEffect } from "react";
+import AboutAccordion from "./aboutaccordion";
 
 const Abouthero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [rows, setRows] = useState([]);
-  const [error, setError] = useState(null);
-  const [slides, setSlides] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -16,94 +14,50 @@ const Abouthero = () => {
       const response = await fetch(
         "http://172.16.100.109:8282/aboutUs/getAboutUs"
       );
+
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
-      console.log(data);
       setRows(data);
-      if (data && data.backgroundImage) {
-        setSlides([
-          {
-            image: data.backgroundImage,
-            caption: data.description,
-          },
-          // Add more slides as needed
-        ]);
-      }
+      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
-      setError(error.message);
     }
   };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 1900); // Change slide every 1.9 seconds (adjust as needed)
-
-    // Cleanup interval on unmount
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.scrollY;
-      setScrollPosition(position);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup event listener on unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Calculate opacity based on scroll position
-  const opacity = 1 - scrollPosition / window.innerHeight;
 
   const imgStyles = {
     width: "100vw",
     height: "657px",
     position: "center",
-    opacity: opacity < 0 ? 0 : opacity, // Ensure opacity doesn't go below 0
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
-
   return (
-    <main className="flex justify-between w-[max-content] relative mb-[400px]">
-      <div className="relative">
-        <div
-          style={{ width: "100vw", height: "657px" }}
-          className="absolute bg-black/50"
-        ></div>
-        {slides.length > 0 && (
+    <div className="flex justify-between w-[max-content] relative mb-[400px]">
+      <div
+        style={{ width: "100vw", height: "657px" }}
+        className="absolute bg-black/50"
+      ></div>
+      {rows.length > 0 && (
+        <section>
           <img
-            src={slides[currentSlide].image}
-            alt={slides[currentSlide].caption}
+            src={`http://172.16.100.109:8282/aboutUs/${rows[0].backgroundImage}`}
+            alt={rows[0].title}
             style={imgStyles}
-            className="w-max-screen"
           />
-        )}
+          <div className="absolute top-[50%] left-[4%]">
+            <h1 className="text-white text-7xl">{rows[0].title}</h1>
 
-        <div className="absolute top-[50%] left-[4%]">
-          <h1 className="text-white text-7xl">
-            {slides.length > 0 && slides[currentSlide].caption}
-          </h1>
-          <h2 className="text-xl text-white w-[60%]">
-            {/* Welcome to Dataspace, Nepal's First data center. We're more than just
-            a service provider – we're your ally in navigating the digital realm.
-            With a commitment to innovation and excellence, we offer secure and
-            connected hosting solutions that serve to your unique needs. Our
-            dedicated team is here to support you every step of the way,
-            ensuring your digital journey is seamless and successful. Join us in
-            shaping the future of technology in Nepal. Choose Dataspace to
-            elevate your digital experience. */}
-          </h2>
-        </div>
+            <h2 className="text-xl text-white w-[60%]">
+              {rows[0].description}
+            </h2>
+          </div>
+        </section>
+      )}
+      <div>
+        <AboutAccordion />
       </div>
-    </main>
+    </div>
   );
 };
 
