@@ -36,7 +36,7 @@ const HomeHero = () => {
           <Add addData={addData} />
         </Box>
       </div>
-      <div className="">
+      <div >
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -49,7 +49,8 @@ const HomeHero = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
+            {rows.length > 0 ? (
+              rows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell align="center">{row.Title}</TableCell>
                   <TableCell align="center">{row.Description}</TableCell>
@@ -67,7 +68,14 @@ const HomeHero = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                  No items available. Please add new items.
+                  </TableCell>
+                </TableRow>
+            )}
             </TableBody>
           </Table>
         </TableContainer>
