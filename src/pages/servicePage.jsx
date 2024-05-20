@@ -44,17 +44,35 @@ const ServicePage = () => {
   const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
   console.log(imageUrl);
 
+  const imgStyles = {
+    width: "100vw",
+    height: "667px",
+    transition: "opacity 0.5s ease-in-out",
+  };
+
   return (
     <div>
-      <main className="relative mt-60">
-        <div>
-          <h1>{serviceData.serviceName}</h1>
-          <h1>{serviceData.serviceDescription}</h1>
-          <img
-            src={`http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`}
-            className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
-          />
-        </div>
+      <main>
+        <section assName="flex justify-between w-[max-content] relative">
+          <div lassName="relative ">
+            <div
+              style={{ width: "100vw", height: "667px" }}
+              className="absolute bg-black/50"
+            ></div>
+            <img
+              src={`http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`}
+              style={imgStyles}
+              className="w-max-screen"
+            />
+
+            <div className="absolute top-[50%] left-[4%]">
+              <h1 className="text-white text-7xl">{serviceData.serviceName}</h1>
+              <h1 className="pl-2 py-8 text-xl text-white w-[80%]">
+                {serviceData.serviceDescription}
+              </h1>
+            </div>
+          </div>
+        </section>
 
         <div>
           {" "}
