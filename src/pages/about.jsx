@@ -1,14 +1,16 @@
 import Abouthero from "../component/about/abouthero";
 import React from "react";
-import Plans  from "../component/Plans";
+import Plans from "../component/Plans";
 import Milestone from "../component/about/milestone";
 import AboutAccordion from "../component/about/aboutaccordion";
 
 const About = () => {
-    return (
-      <main>
-        < Abouthero/>
-        <div className="w-100% flex justify-center ">
+  return (
+    <main>
+      <div className="md-[300px]">
+        <Abouthero />
+      </div>
+      {/* <div className="w-100% flex justify-center ">
           <div className="px-[4%] my-[5%]">
             <h1 className="text-4xl font-bold ">
               Why DataSpace?
@@ -31,7 +33,7 @@ const About = () => {
           <Milestone desc="Satisfied Clients" limit={500} />
           <Milestone desc="Valued Partner" limit={12} />
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };
