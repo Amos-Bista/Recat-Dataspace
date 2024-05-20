@@ -13,11 +13,14 @@ const Abouthero = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://172.16.100.109:8282/aboutUs/getAboutUs");
+      const response = await fetch(
+        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
+      console.log(data);
       setRows(data);
       if (data && data.backgroundImage) {
         setSlides([
@@ -69,7 +72,7 @@ const Abouthero = () => {
   };
 
   return (
-    <main className="flex justify-between w-[max-content] relative">
+    <main className="flex justify-between w-[max-content] relative mb-[400px]">
       <div className="relative">
         <div
           style={{ width: "100vw", height: "657px" }}
