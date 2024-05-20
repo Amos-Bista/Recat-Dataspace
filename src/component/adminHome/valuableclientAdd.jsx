@@ -29,7 +29,7 @@ const ValuableclientAdd = () => {
 
     try {
       const response = await fetch(
-        //   "http://172.16.100.109:8282/contacts/addContacts",
+        "http://172.16.100.109:8282/client/addClient",
         {
           method: "POST",
           headers: {
@@ -58,7 +58,9 @@ const ValuableclientAdd = () => {
         Add New +
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
+        <DialogTitle
+          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+        >
           Footer Information
           <IconButton
             aria-label="close"
@@ -111,14 +113,25 @@ const ValuableclientAdd = () => {
             gap: "200px",
           }}
         >
-          <Button variant="contained" onClick={closePopUp}
-          style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={closePopUp}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "53px",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'56px'  }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "56px",
+            }}
             variant="contained"
           >
             PUBLISH

@@ -33,7 +33,7 @@ const Abouthero = () => {
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
   return (
-    <div className="flex justify-between w-[max-content] relative mb-[400px]">
+    <div className="flex justify-between w-[max-content] relative ">
       <div
         style={{ width: "100vw", height: "657px" }}
         className="absolute bg-black/50"
