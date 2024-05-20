@@ -41,7 +41,7 @@ const ServicePage = () => {
     return <div>Loading...</div>;
   }
   // Construct the image URL
-  const imageUrl = `http://172.16.100.109:8282/services/getService/${serviceData.serviceBgImage}`;
+  const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
   console.log(imageUrl);
 
   return (
@@ -51,7 +51,7 @@ const ServicePage = () => {
           <h1>{serviceData.serviceName}</h1>
           <h1>{serviceData.serviceDescription}</h1>
           <img
-            src={`http://172.16.100.109:8282/services/getService/${serviceData.serviceBgImage}`}
+            src={`http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`}
             className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
           />
         </div>
