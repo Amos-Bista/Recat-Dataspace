@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ContactAdd = ({ handleAddContact }) => {
+const ContactInfoAdd = ({ handleAddContact }) => {
   const [open, setOpen] = useState(false);
   const [phoneNum, setPhoneNum] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ const ContactAdd = ({ handleAddContact }) => {
 
     try {
       const response = await fetch(
-        "http://10.10.10.149:8282/contacts/addContacts",
+        "http://172.16.100.109:8282/contacts/addContacts",
         {
           method: "POST",
           headers: {
@@ -61,7 +61,9 @@ const ContactAdd = ({ handleAddContact }) => {
         Add New +
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}>
+        <DialogTitle
+          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+        >
           Contact Information
           <IconButton
             aria-label="close"
@@ -126,17 +128,28 @@ const ContactAdd = ({ handleAddContact }) => {
           style={{
             display: "flex",
             gap: "460px",
-            MaxwWidth:"895px"
+            MaxwWidth: "895px",
           }}
         >
-          <Button  variant="contained" onClick={closePopUp}
-          style={{ backgroundColor: "#FF0000", marginLeft:'auto', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={closePopUp}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'auto' }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
             variant="contained"
           >
             PUBLISH
@@ -147,4 +160,4 @@ const ContactAdd = ({ handleAddContact }) => {
   );
 };
 
-export default ContactAdd;
+export default ContactInfoAdd;

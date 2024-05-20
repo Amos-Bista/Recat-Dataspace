@@ -12,7 +12,7 @@ import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ContactEdit = ({ contactDetails, handleEditContact }) => {
+const ContactInfoEdit = ({ contactDetails, handleEditContact }) => {
   const [open, setOpen] = useState(false);
   const [phoneNum, setPhoneNum] = useState(contactDetails.phoneNum || "");
   const [email, setEmail] = useState(contactDetails.email || "");
@@ -129,16 +129,27 @@ const ContactEdit = ({ contactDetails, handleEditContact }) => {
             marginRight: "13px",
           }}
         >
-          <Button  variant="contained" onClick={closePopUp}
-          style={{ backgroundColor: "#FF0000", marginLeft:'auto', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={closePopUp}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'auto'  }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
             variant="contained"
-          > 
+          >
             PUBLISH
           </Button>
         </DialogActions>
@@ -147,4 +158,4 @@ const ContactEdit = ({ contactDetails, handleEditContact }) => {
   );
 };
 
-export default ContactEdit;
+export default ContactInfoEdit;
