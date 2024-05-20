@@ -61,7 +61,7 @@ const ContactAdminTable = () => {
           <ContactAdd handleAddContact={fetchData} />
         </Box>
       </div>
-      <div className="">
+      <div >
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -74,7 +74,8 @@ const ContactAdminTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, index) => (
+            {rows.length > 0 ? (
+              rows.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell align="center">{row.phoneNum}</TableCell>
                   <TableCell align="center">{row.email}</TableCell>
@@ -93,7 +94,14 @@ const ContactAdminTable = () => {
                     </Box>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                    No contacts available. Please add new contacts.
+                  </TableCell>
+                </TableRow>
+            )}
             </TableBody>
           </Table>
         </TableContainer>
