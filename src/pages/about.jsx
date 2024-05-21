@@ -10,7 +10,7 @@ const About = () => {
       <div className="md-[300px]">
         <Abouthero />
       </div>
-      {/* <div className="w-100% flex justify-center ">
+      <div className="w-100% flex justify-center ">
           <div className="px-[4%] my-[5%]">
             <h1 className="text-4xl font-bold ">
               Why DataSpace?
@@ -33,7 +33,7 @@ const About = () => {
           <Milestone desc="Satisfied Clients" limit={500} />
           <Milestone desc="Valued Partner" limit={12} />
         </div>
-      </div> */}
+      </div>
     </main>
   );
 };
