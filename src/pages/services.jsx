@@ -26,26 +26,27 @@ const Services = () => {
     }
   };
   return (
-    <div className="mt-40 ">
-      <div className="p-4 mb-11">
+    <div >
+      <div >
         <div
-          className="dropdown inline-block relative"
+          className="relative inline-block dropdown"
           onMouseEnter={() => setIsDropdownOpen(true)}
           onMouseLeave={() => setIsDropdownOpen(false)}
         >
-          <button className="dropbtn bg-green-500 text-white px-4 py-2 rounded-full text-base">
+          <button className={` relative block text-m hover:underline underline-offset-1 active:text-blue-900  `}>
             Service
           </button>
           <div
+            
             className={`dropdown-content absolute ${
               isDropdownOpen ? "block" : "hidden"
-            } bg-gray-100 min-w-max shadow-lg py-2 rounded-md z-10`}
+            } bg-gray-100/20 shadow-lg  rounded-md z-10 absolute top-8 right-0 w-64`}
           >
             {rows.map((service) => (
               <div key={service.id}>
                 <Link
                   to={`/services/${service.id}`}
-                  className="block px-4 py-2 text-black text-base hover:bg-gray-200"
+                  className="block px-4 py-2 text-base font-semibold text-white hover:bg-[#11396e]"
                 >
                   {service.service_name}
                 </Link>
