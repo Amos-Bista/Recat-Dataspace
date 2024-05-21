@@ -11,6 +11,7 @@ const About = () => {
         <Abouthero />
       </div>
       <div className="w-100% flex justify-center ">
+        <div>
           <h1 className="text-4xl font-bold ">Why DataSpace?</h1>
           <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
             {<AboutAccordion />}
