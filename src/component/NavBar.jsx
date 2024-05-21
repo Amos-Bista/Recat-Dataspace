@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import navItems from "../assests/navItems.json";
+import Services from "../pages/services";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -61,6 +62,7 @@ const NavBar = () => {
               scrolled ? "text-black" : "text-white"
             }`}
           >
+            
             {navItems.map((item, index) => (
               <li
                 key={index}
@@ -104,9 +106,14 @@ const NavBar = () => {
                 )}
               </li>
             ))}
+            <li className="flex align-top">
+              <a >
+                <Services/>
+              </a>
+            </li>
           </ul>
         </div>
-      </div>
+      </div>    
     </div>
   );
 };

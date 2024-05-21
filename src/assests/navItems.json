@@ -4,49 +4,6 @@
     "link": "/"
   },
   {
-    "title": "Service ",
-    "link": "/service",
-    "dropdown": [
-      {
-        "title": "Annual Maintaince Service",
-        "link": "/annual"
-      },
-      {
-        "title": "Backup Service",
-        "link": "/backup"
-      },
-      {
-        "title": "Bare Metal Server",
-        "link": "/bare"
-      },
-      {
-        "title": "Colocation",
-        "link": "/colocation"
-      },
-      {
-        "title": "Backup & Replication",
-        "link": "/replication"
-      },
-      {
-        "title": " Enterprise Secure E-mail",
-        "link": "/enterprise"
-      },
-      {
-        "title": "Setup",
-        "link": "/setup"
-      },
-      {
-        "title": "Web Development",
-        "link": "/webdevelopment"
-      },
-      {
-        "title": "Web Hosting",
-        "link": "/webhosting"
-      }
-      
-    ]
-  },
-  {
     "title": "About Us",
     "link": "/about"
   },
