@@ -18,7 +18,7 @@ const AboutCardTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        // "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        "http://172.16.100.109:8282/aboutUs/getAboutUs"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -33,7 +33,7 @@ const AboutCardTable = () => {
     <main className="w-full">
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
-          DataSpace Cards
+          AboutUs Accordions
         </h3>
         <Button>
           <AboutAdd />
@@ -52,42 +52,45 @@ const AboutCardTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rowDatas.map((rowData, index) => (
-                <TableRow
-                  key={rowData.index}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    align="center"
-                    sx={{
-                      backgroundImage: `url(http://172.16.100.109:8282/aboutUs/${rowData.logo})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      width: 150,
-                      height: 150,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  ></TableCell>
-                  <TableCell align="center">{rowData.title}</TableCell>
-                  <TableCell component="th" scope="row">
-                    {rowData.paragraph}
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
-                      Edit
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }}
-                    className="!bg-red-500 hover:!bg-red-700 !text-white !font-bold !py-2 !px-4 !rounded"
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {rowDatas.length > 0 &&
+                rowDatas[0].aboutUsAccordions &&
+                rowDatas[0].aboutUsAccordions.map((rowData) => (
+                  <TableRow
+                    key={rowData.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell
+                      align="center"
+                      sx={{
+                        backgroundImage: `url(http://172.16.100.109:8282/aboutUs/${rowData.logo})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        width: 50,
+                        height: 50,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    ></TableCell>
+                    <TableCell align="center">{rowData.title}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {rowData.description}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }} variant="contained">
+                        Edit
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        sx={{ margin: 2 }}
+                        className="!bg-red-500 hover:!bg-red-700 !text-white !font-bold !py-2 !px-4 !rounded"
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

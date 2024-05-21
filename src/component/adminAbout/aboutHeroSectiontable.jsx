@@ -8,10 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
-
-import Delete from "../../component/adminHome/Delete";
-import Edit from "../../component/adminHome/Edit";
 import AboutHeroAdd from "./aboutHeroAdd";
+import AboutHeroEdit from "./aboutheroedit";
 
 const AboutHero = () => {
   const [rows, setRows] = useState([]);
@@ -23,14 +21,16 @@ const AboutHero = () => {
 
   const fetchData = async () => {
     try {
-        const response = await fetch("http://172.16.100.109:8282/aboutUs/getAboutUs");
-        
+      const response = await fetch(
+        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+      );
+
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
-        setRows(data);
-        console.log(data)
+      setRows(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setError(error.message);
@@ -40,24 +40,17 @@ const AboutHero = () => {
   const addData = (data) => {
     setRows([...rows, data]);
   };
-
-  const handleDelete = (index) => {
-    // Call API to delete the data if needed
-    const updatedRows = rows.filter((_, i) => i !== index);
-    setRows(updatedRows);
-  };
-
   return (
     <main>
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077] text-[34px] mb-[40px]">
-          About Hero Section
+          AboutUs Hero Section
         </h3>
         <Box>
           <AboutHeroAdd addData={addData} />
         </Box>
       </div>
-      <div className="">
+      <div className="relative">
         {error && <p className="text-red-500">{error}</p>}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -67,7 +60,6 @@ const AboutHero = () => {
                 <TableCell align="center">Description</TableCell>
                 <TableCell align="center">Background Image</TableCell>
                 <TableCell align="center">Edit</TableCell>
-                <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -75,18 +67,18 @@ const AboutHero = () => {
                 <TableRow key={row.id}>
                   <TableCell align="center">{row.title}</TableCell>
                   <TableCell align="center">{row.description}</TableCell>
-                  <TableCell align="center">{row.backgroundImage}</TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }}>
-                      <Edit />
-                    </Button>
+                  <TableCell>
+                    <img
+                      src={`http://172.16.100.109:8282/aboutUs/${row.backgroundImage}`}
+                      className="w-[10rem] h-[7rem]  relative left-[100px]"
+                    />
                   </TableCell>
                   <TableCell align="center">
-                    <Button
-                      sx={{ margin: 2, backgroundColor: 'red', color: 'white', "&:hover": { backgroundColor: 'darkred' } }}
-                    //   onClick={() => handleDelete(row.id)}
-                    >
-                      <Delete />
+                    <Button sx={{ margin: 2 }}>
+                      <AboutHeroEdit
+                        aboutDetails={row}
+                        handleEditAbout={fetchData}
+                      />
                     </Button>
                   </TableCell>
                 </TableRow>

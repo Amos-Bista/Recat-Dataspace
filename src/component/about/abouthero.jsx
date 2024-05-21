@@ -42,7 +42,6 @@ const Abouthero = () => {
         <section>
           <img
             src={`http://172.16.100.109:8282/aboutUs/${rows[0].backgroundImage}`}
-            
             alt={rows[0].title}
             style={imgStyles}
           />
@@ -55,9 +54,6 @@ const Abouthero = () => {
           </div>
         </section>
       )}
-      {/* <div>
-        <AboutAccordion />
-      </div> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ import AboutAccordion from "../component/about/aboutaccordion";
 const About = () => {
   return (
     <main>
-      <div className="md-[300px]">
+      <div className="mb-[3rem]">
         <Abouthero />
       </div>
       <div className="w-100% flex justify-center ">
@@ -20,7 +20,7 @@ const About = () => {
         <img
           src="/aboutbody.png"
           alt=""
-          style={{ maxWidth: "500px", maxHeight: "350px", margin: "80px" }}
+          style={{ maxWidth: "500px", maxHeight: "490px", margin: "30px" }}
         />
       </div>
       <Plans />

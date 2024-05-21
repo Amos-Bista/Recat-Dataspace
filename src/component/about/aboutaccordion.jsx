@@ -4,13 +4,12 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import aboutaccordion from "../../assests/aboutaccordion.json";
 
 const AboutAccordion = () => {
   const [expanded, setExpanded] = useState(false);
   const [expandedDatas, setExpandedDatas] = useState([]);
 
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChange = (panel) => (isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
@@ -55,31 +54,35 @@ const AboutAccordion = () => {
                     margin: 0;
                 }
             `}</style>
-      {expandedDatas.map((expandedData) => (
-        <Accordion
-          key={expandedData.id}
-          expanded={expanded === expandedData.id}
-          onChange={handleChange(expandedData.id)}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`${expandedData.id}bh-content`}
-            id={`${expandedData.id}bh-header`}
+      {expandedDatas.length > 0 && expandedDatas[0].aboutUsAccordions ? (
+        expandedDatas[0].aboutUsAccordions.map((expandedData) => (
+          <Accordion
+            key={expandedData.id}
+            expanded={expanded === expandedData.id}
+            onChange={handleChange(expandedData.id)}
           >
-            <img
-              src={`http://172.16.100.109:8282/aboutUs/${expandedData.logo}`}
-              alt={expandedData.title}
-              style={{ marginRight: "10px", width: "30px", height: "30px" }}
-            />
-            <Typography sx={{ width: "100%", flexShrink: 0 }}>
-              {expandedData.title}
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{expandedData.paragraph}</Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`${expandedData.id}bh-content`}
+              id={`${expandedData.id}bh-header`}
+            >
+              <img
+                src={`http://172.16.100.109:8282/aboutUs/${expandedData.logo}`}
+                alt={expandedData.title}
+                style={{ marginRight: "10px", width: "30px", height: "30px" }}
+              />
+              <Typography sx={{ width: "100%", flexShrink: 0 }}>
+                {expandedData.title}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>{expandedData.description}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))
+      ) : (
+        <Typography>No data available</Typography>
+      )}
     </div>
   );
 };
