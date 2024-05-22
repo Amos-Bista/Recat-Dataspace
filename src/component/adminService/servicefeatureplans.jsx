@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Servicefeatureplan from "../../assests/servicefeatureplan.json";
 import ServiceAdd from "./serviceAdd";
 import { Box } from "@mui/material";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const Servicefeatureplans = () => {
   const [rowData, setRowData] = useState([]);
@@ -46,7 +47,8 @@ const Servicefeatureplans = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.isArray(rowData) &&
+              {rowData.length > 0 ? (
+              Array.isArray(rowData) &&
                 rowData.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell align="center">{row.Title}</TableCell>
@@ -70,7 +72,15 @@ const Servicefeatureplans = () => {
                       </Button>
                     </TableCell>
                   </TableRow>
-                ))}
+                ))
+              ) : (
+                <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon/>
+                No items available. Please add new items.
+                </TableCell>
+              </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

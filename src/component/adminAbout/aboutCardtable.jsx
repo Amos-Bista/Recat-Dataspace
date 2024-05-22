@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AboutAdd from "../adminAbout/aboutadd";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const AboutCardTable = () => {
   const [rowDatas, setRowDatas] = useState([]);
@@ -52,7 +53,8 @@ const AboutCardTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rowDatas.length > 0 &&
+            {rowDatas.length > 0 ? (
+              rowDatas.length > 0 &&
                 rowDatas[0].aboutUsAccordions &&
                 rowDatas[0].aboutUsAccordions.map((rowData) => (
                   <TableRow
@@ -90,7 +92,15 @@ const AboutCardTable = () => {
                       </Button>
                     </TableCell>
                   </TableRow>
-                ))}
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                    <SdCardAlertIcon/>
+                  No items available. Please add new items.
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

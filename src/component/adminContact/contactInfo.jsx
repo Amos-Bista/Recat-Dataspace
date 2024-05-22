@@ -11,6 +11,7 @@ import { Box } from "@mui/material";
 import ContactInfoAdd from "./contactinfoadd";
 import ContactInfoEdit from "./contactinfoedit";
 import ContactInfoDelete from "./contactinfodelete";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const ContactInfo = () => {
   const [rows, setRows] = useState([]);
@@ -101,6 +102,7 @@ const ContactInfo = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
+                    <SdCardAlertIcon/>
                     No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>

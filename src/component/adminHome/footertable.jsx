@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import contactcard from "../../assests/contactcard";
 import FooterAdd from "./footerAdd";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 const FooterTable= () => {
   const [rows, setRowData] = useState([]);
 
@@ -42,7 +43,8 @@ Footer
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+            {rows.length > 0 ? (
+              rows.map((row) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -64,7 +66,15 @@ Footer
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon/>
+                No items available. Please add new items.
+                </TableCell>
+              </TableRow>
+            )}
             </TableBody>
           </Table>
         </TableContainer>

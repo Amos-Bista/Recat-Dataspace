@@ -9,6 +9,8 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ValuableclientAdd from "./valuableclientAdd";
 import { Box } from "@mui/material";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
+
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
@@ -56,7 +58,8 @@ const ValuableclientTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+            {rows.length > 0 ? (
+              rows.map((row) => (
                 <TableRow
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -86,7 +89,16 @@ const ValuableclientTable = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              
+              <TableRow>
+                <TableCell align="center" colSpan={5}>
+                <SdCardAlertIcon/>
+                No items available. Please add new items.
+                </TableCell>
+              </TableRow>
+            )}
             </TableBody>
           </Table>
         </TableContainer>

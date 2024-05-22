@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import adminacordin from "../../assests/adminacordin.json";
 import AccordionAdd from "./accordionAdd";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const Serviceaccordin = () => {
   const [rowData, setRowData] = useState([]);
@@ -47,7 +48,8 @@ const Serviceaccordin = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.isArray(rowData) &&
+            {rowData.length > 0 ? (
+              Array.isArray(rowData) &&
                 rowData.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row" align="center">
@@ -67,7 +69,15 @@ const Serviceaccordin = () => {
                       </Button>
                     </TableCell>
                   </TableRow>
-                ))}
+                ))
+              ) : (
+                <TableRow>
+                <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon/>
+                No items available. Please add new items.
+                </TableCell>
+              </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
