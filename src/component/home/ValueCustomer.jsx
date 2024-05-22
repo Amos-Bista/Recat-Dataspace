@@ -1,17 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
-// import customerData from "../../assests/customerData.json";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const ValueCustomer = () => {
   const [isLeftArrowHovered, setIsLeftArrowHovered] = useState(false);
   const [isRightArrowHovered, setIsRightArrowHovered] = useState(false);
   const [autoplay, setAutoplay] = useState(true);
-  const sliderRef = useRef(null);
   const [customerData, setCustomerData] = useState([]);
+  const sliderRef = useRef(null);
 
   const settings = {
     dots: false,
@@ -49,27 +48,27 @@ const ValueCustomer = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
-      );
+      const response = await fetch("http://172.16.100.109:8282/client/getClient");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
+
       setCustomerData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
   return (
     <div className="relative mb-8">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
-          <div key={customer.id} className="w-[10rem] h-[10rem]">
+          <div key={customer.id}>
             <img
-              src={`http://172.16.100.109:8282/aboutUs/${customer.logo}`}
+              src={`http://172.16.100.109:8282/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
+              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14"
             />
           </div>
         ))}
