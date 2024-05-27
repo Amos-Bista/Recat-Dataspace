@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import ContactHeroAdd from "../../component/adminContact/contactheroadd";
 import ContactHeroEdit from "../../component/adminContact/contactheroedit";
 import ContactHeroDelete from "../../component/adminContact/contactherodelete";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 import { Box } from "@mui/material";
 
@@ -75,6 +76,7 @@ const ContactHero = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon color="error"/>
                     No items available. Please add new items.
                   </TableCell>
                 </TableRow>
