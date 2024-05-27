@@ -51,7 +51,6 @@ const AboutHero = () => {
         </Box>
       </div>
       <div className="relative">
-        {error && <p className="text-red-500">{error}</p>}
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -63,26 +62,34 @@ const AboutHero = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell align="center">{row.title}</TableCell>
-                  <TableCell align="center">{row.description}</TableCell>
-                  <TableCell>
-                    <img
-                      src={`http://172.16.100.109:8282/aboutUs/${row.backgroundImage}`}
-                      className="w-[10rem] h-[7rem]  relative left-[100px]"
-                    />
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }}>
-                      <AboutHeroEdit
-                        aboutDetails={row}
-                        handleEditAbout={fetchData}
+              {rows.length > 0 ? (
+                rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell align="center">{row.title}</TableCell>
+                    <TableCell align="center">{row.description}</TableCell>
+                    <TableCell>
+                      <img
+                        src={`http://172.16.100.109:8282/aboutUs/${row.backgroundImage}`}
+                        className="w-[10rem] h-[7rem]  relative left-[100px]"
                       />
-                    </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }}>
+                        <AboutHeroEdit
+                          aboutDetails={row}
+                          handleEditAbout={fetchData}
+                        />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell align="center" colSpan={4}>
+                    No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </TableContainer>
