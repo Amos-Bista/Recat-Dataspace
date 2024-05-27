@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ValuableclientAdd from "./valuableclientAdd";
 import { Box } from "@mui/material";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
@@ -90,6 +91,7 @@ const ValuableclientTable = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon color="error"/>
                     No items available. Please add new items.
                   </TableCell>
                 </TableRow>

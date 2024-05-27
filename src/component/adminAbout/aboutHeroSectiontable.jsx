@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import AboutHeroAdd from "./aboutHeroAdd";
 import AboutHeroEdit from "./aboutheroedit";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const AboutHero = () => {
   const [rows, setRows] = useState([]);
@@ -86,6 +87,7 @@ const AboutHero = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={4}>
+                  <SdCardAlertIcon color="error"/>
                     No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>
