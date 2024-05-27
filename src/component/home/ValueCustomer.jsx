@@ -1,50 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import Slider from "react-slick";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const ValueCustomer = () => {
   const [isLeftArrowHovered, setIsLeftArrowHovered] = useState(false);
   const [isRightArrowHovered, setIsRightArrowHovered] = useState(false);
-  const [autoplay, setAutoplay] = useState(true);
   const [customerData, setCustomerData] = useState([]);
-  const sliderRef = useRef(null);
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    autoplay: autoplay,
-    autoplaySpeed: 2000,
-  };
-
-  const handleLeftArrowClick = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
-      setAutoplay(false);
-      setTimeout(() => {
-        setAutoplay(true);
-      }, 5000);
-    }
-  };
-
-  const handleRightArrowClick = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
-      setAutoplay(false);
-      setTimeout(() => {
-        setAutoplay(true);
-      }, 2000);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const fetchData = async () => {
     try {
@@ -54,25 +15,47 @@ const ValueCustomer = () => {
       }
       const data = await response.json();
 
-      setCustomerData(data);
+      
+      const uniqueData = removeDuplicates(data);
+      setCustomerData(uniqueData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const removeDuplicates = (data) => {
+    const uniqueMap = new Map();
+    data.forEach((item) => {
+      uniqueMap.set(`${item.id}-${item.logo}`, item);
+    });
+    return Array.from(uniqueMap.values());
+  };
+
+  const handleLeftArrowClick = () => {
+    console.log("Left arrow clicked");
+    // Handle left arrow click logic here
+  };
+
+  const handleRightArrowClick = () => {
+    console.log("Right arrow clicked");
+    // Handle right arrow click logic here
+  };
+
   return (
     <div className="relative mb-8">
-      <Slider ref={sliderRef} {...settings}>
-        {customerData.map((customer, index) => (
-          <div key={customer.id}>
-            <img
-              src={`http://172.16.100.109:8282/client/${customer.logo}`}
-              alt={`Customer ${index + 1}`}
-              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14"
-            />
-          </div>
-        ))}
-      </Slider>
+      {customerData.map((customer, index) => (
+        <div key={customer.id}>
+          <img
+            src={`http://172.16.100.109:8282/client/${customer.logo}`}
+            alt={`Customer ${index + 1}`}
+            className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14"
+          />
+        </div>
+      ))}
       {/* Left arrow */}
       <Box
         className="absolute top-0 left-0 z-10 mt-16 ml-8"

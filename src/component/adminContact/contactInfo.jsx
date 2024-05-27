@@ -102,7 +102,7 @@ const ContactInfo = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
-                    <SdCardAlertIcon/>
+                    <SdCardAlertIcon color="error"/>
                     No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>

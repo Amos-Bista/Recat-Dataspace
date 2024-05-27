@@ -73,7 +73,7 @@ const Serviceaccordin = () => {
               ) : (
                 <TableRow>
                 <TableCell align="center" colSpan={5}>
-                  <SdCardAlertIcon/>
+                  <SdCardAlertIcon color="error"/>
                 No items available. Please add new items.
                 </TableCell>
               </TableRow>

@@ -69,11 +69,13 @@ const ValuableclientTable = () => {
                   </TableCell>
                   <TableCell align="center" sx={{ paddingLeft: 24 }}>
                     <img
-                      src={`http://172.16.100.109:8282/aboutUs/${row.logo}`}
+                      src={`http://172.16.100.109:8282/aboutUs/${row.logo}`} 
+                      alt=""
                       style={{
                         width: "80px",
                         height: "80px",
-                      }}
+                      }
+                    }
                     />
                   </TableCell>
                   <TableCell align="center">
@@ -94,7 +96,7 @@ const ValuableclientTable = () => {
               
               <TableRow>
                 <TableCell align="center" colSpan={5}>
-                <SdCardAlertIcon/>
+                <SdCardAlertIcon  color="error"/>
                 No items available. Please add new items.
                 </TableCell>
               </TableRow>
