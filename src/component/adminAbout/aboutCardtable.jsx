@@ -52,7 +52,8 @@ const AboutCardTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rowDatas.length > 0 &&
+              {rowDatas.length > 0 ? (
+                rowDatas.length > 0 &&
                 rowDatas[0].aboutUsAccordions &&
                 rowDatas[0].aboutUsAccordions.map((rowData) => (
                   <TableRow
@@ -90,7 +91,14 @@ const AboutCardTable = () => {
                       </Button>
                     </TableCell>
                   </TableRow>
-                ))}
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                    No contacts available. Please add new contacts.
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>

@@ -40,9 +40,7 @@ const ValuableclientTable = () => {
         </h3>
         <Box>
           <ValuableclientAdd />
-
         </Box>
-        
       </div>
       <div className="">
         <TableContainer component={Paper}>
@@ -56,37 +54,46 @@ const ValuableclientTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {row.title}
-                  </TableCell>
-                  <TableCell align="center" sx={{ paddingLeft: 24 }}>
-                    <img
-                      src={`http://172.16.100.109:8282/aboutUs/${row.logo}`}
-                      style={{
-                        width: "80px",
-                        height: "80px",
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
-                      Edit
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} 
-                    className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
-                    >
-                      Delete
-                    </Button>
+              {rows.length > 0 ? (
+                rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {row.title}
+                    </TableCell>
+                    <TableCell align="center" sx={{ paddingLeft: 24 }}>
+                      <img
+                        src={`http://172.16.100.109:8282/aboutUs/${row.logo}`}
+                        style={{
+                          width: "80px",
+                          height: "80px",
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }} variant="contained">
+                        Edit
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        sx={{ margin: 2 }}
+                        className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                    No items available. Please add new items.
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </TableContainer>
