@@ -57,11 +57,13 @@ const ServiceAdd = () => {
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add New +
+        Add Page +
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
-          Plans Information
+        <DialogTitle
+          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+        >
+          Service Hero Section
           <IconButton
             aria-label="close"
             onClick={closePopUp}
@@ -93,12 +95,12 @@ const ServiceAdd = () => {
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
-                Package Name:
+                Description:
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Enter Package Name"
+                label="Enter Description"
                 variant="outlined"
                 fullWidth
                 value={packages}
@@ -114,25 +116,10 @@ const ServiceAdd = () => {
               <TextField
                 type="file"
                 accept=".png"
-                
                 variant="outlined"
                 fullWidth
                 value={serviceImg}
                 onChange={(e) => setServiceImg(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" gutterBottom>
-                Price:
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label="Enter Price"
-                variant="outlined"
-                fullWidth
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
               />
             </Grid>
           </Grid>
@@ -141,17 +128,27 @@ const ServiceAdd = () => {
           style={{
             display: "flex",
             gap: "200px",
-            
           }}
         >
-          <Button  variant="contained" onClick={closePopUp}
-          style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={closePopUp}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "53px",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'58px'  }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "58px",
+            }}
             variant="contained"
           >
             PUBLISH
