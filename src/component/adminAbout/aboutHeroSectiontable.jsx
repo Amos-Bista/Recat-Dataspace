@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import AboutHeroAdd from "./aboutHeroAdd";
 import AboutHeroEdit from "./aboutheroedit";
-import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
 const AboutHero = () => {
   const [rows, setRows] = useState([]);
@@ -41,6 +41,7 @@ const AboutHero = () => {
   const addData = (data) => {
     setRows([...rows, data]);
   };
+
   return (
     <main>
       <div className="flex items-center justify-between">
@@ -71,23 +72,21 @@ const AboutHero = () => {
                     <TableCell>
                       <img
                         src={`http://172.16.100.109:8282/aboutUs/${row.backgroundImage}`}
-                        className="w-[10rem] h-[7rem]  relative left-[100px]"
+                        className="w-[10rem] h-[7rem] relative left-[100px]"
                       />
                     </TableCell>
                     <TableCell align="center">
-                      <Button sx={{ margin: 2 }}>
-                        <AboutHeroEdit
-                          aboutDetails={row}
-                          handleEditAbout={fetchData}
-                        />
-                      </Button>
+                      <AboutHeroEdit
+                        aboutDetails={row}
+                        handleEditAbout={fetchData}
+                      />
                     </TableCell>
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={4}>
-                  <SdCardAlertIcon color="error"/>
+                    <SdCardAlertIcon color="error" />
                     No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>

@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import adminacordin from "../../assests/adminacordin.json";
 import AccordionAdd from "./accordionAdd";
 
-const Serviceaccordin = () => {
+const Serviceaccordin = ({title , description}) => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {

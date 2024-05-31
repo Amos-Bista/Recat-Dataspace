@@ -11,27 +11,31 @@ import {
 import React, { useState, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+
 const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(aboutDetails.title || "");
   const [description, setDescription] = useState(
     aboutDetails.description || ""
   );
-  const [backgroundImage, setBackgroundImage] = useState(
-    aboutDetails.backgroundImage || ""
-  );
+  const [backgroundImage, setBackgroundImage] = useState(null);
+  const inputRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    if (backgroundImage) {
+      formData.append("backgroundImage", backgroundImage);
+    }
+
     try {
       const response = await fetch(
         `http://172.16.100.109:8282/aboutUs/update/${aboutDetails.id}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ title, description, backgroundImage }),
+          body: formData,
         }
       );
 
@@ -43,10 +47,11 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error updating Aboutus. Please try again.");
+      alert("Error updating AboutUs. Please try again.");
     }
     setOpen(false);
   };
+
   const functionOnPopUp = () => {
     setOpen(true);
   };
@@ -58,14 +63,12 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
     setBackgroundImage(event.target.files[0]);
   };
 
-  const inputRef = useRef(null);
   const handleImageClick = () => {
     inputRef.current.click();
   };
 
   return (
     <>
-      <button></button>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
         EDIT
       </Button>
@@ -92,7 +95,6 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
                 Title
               </Typography>
             </Grid>
-
             <Grid
               item
               xs={6}
@@ -104,10 +106,8 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
                 fullWidth
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-              ></TextField>
+              />
             </Grid>
-            <Grid></Grid>
-
             <Grid item xs={6}>
               <Typography
                 variant="h6"
@@ -137,10 +137,11 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
                 Upload Image
               </Typography>
             </Grid>
-            <Grid onClick={handleImageClick} item xs={6}>
-              {backgroundImage ? (
+            <Grid item xs={6} onClick={handleImageClick}>
+              {aboutDetails.backgroundImage ? (
                 <img
                   src={`http://172.16.100.109:8282/aboutUs/${aboutDetails.backgroundImage}`}
+                  alt="background"
                   style={{
                     width: "500px",
                     height: "250px",
@@ -151,6 +152,7 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
               ) : (
                 <img
                   src="/editBackground.png"
+                  alt="default background"
                   style={{
                     width: "500px",
                     height: "250px",
@@ -162,10 +164,9 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
               <input
                 type="file"
                 ref={inputRef}
-                className="hidden"
+                style={{ display: "none" }}
                 onChange={handleImageChange}
-              />{" "}
-              {/* Correct usage of useRef */}
+              />
             </Grid>
           </Grid>
         </DialogContent>

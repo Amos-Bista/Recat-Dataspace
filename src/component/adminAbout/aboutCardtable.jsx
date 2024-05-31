@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AboutAdd from "../adminAbout/aboutadd";
-import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
 const AboutCardTable = () => {
   const [rowDatas, setRowDatas] = useState([]);
@@ -70,8 +70,7 @@ const AboutCardTable = () => {
                         width: 50,
                         height: 50,
                         display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
+                        marginLeft: "20px",
                       }}
                     ></TableCell>
                     <TableCell align="center">{rowData.title}</TableCell>
@@ -96,7 +95,7 @@ const AboutCardTable = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
-                  <SdCardAlertIcon color="error"/>
+                    <SdCardAlertIcon color="error" />
                     No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>
