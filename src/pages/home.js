@@ -15,7 +15,7 @@ function Home() {
         <SearchDomain />
       </div>
       <section>
-        <h1 className="flex justify-center text-4xl ">
+        <h1 className="flex justify-center text-3xl   font-bold ">
           Our Popular Plans & Pricing
         </h1>
         <div className="mb-[8rem]">

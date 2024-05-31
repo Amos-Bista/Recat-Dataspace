@@ -14,12 +14,14 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const ValuableclientAdd = () => {
   const [open, setOpen] = useState(false);
-  const [tittle, setTittle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [logo, setLogo] = useState(null);
   const [response, setResponse] = useState("");
+
   const functionOnPopUp = () => {
     setOpen(true);
   };
+
   const closePopUp = () => {
     setOpen(false);
   };
@@ -27,20 +29,21 @@ const ValuableclientAdd = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("logo", logo);
+
     try {
       const response = await fetch(
         "http://172.16.100.109:8282/client/addClient",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ tittle, description }),
+          body: formData,
         }
       );
 
       if (response.ok) {
-        setResponse("Contact registeresd"); // Set the response message
+        setResponse("Contact registered"); // Set the response message
         alert("Form submitted successfully!"); // Alert for successful submission
       } else {
         throw new Error("Network response was not ok");
@@ -87,8 +90,8 @@ const ValuableclientAdd = () => {
                 label="Enter Client's Name"
                 variant="outlined"
                 fullWidth
-                value={tittle}
-                onChange={(e) => setTittle(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -101,8 +104,7 @@ const ValuableclientAdd = () => {
                 type="file"
                 accept="image/*"
                 fullWidth
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => setLogo(e.target.files[0])}
               />
             </Grid>
           </Grid>

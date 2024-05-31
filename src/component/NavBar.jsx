@@ -62,12 +62,8 @@ const NavBar = () => {
               scrolled ? "text-black" : "text-white"
             }`}
           >
-            
             {navItems.map((item, index) => (
-              <li
-                key={index}
-                className="hover:underline underline-offset-1 active:text-blue-900"
-              >
+              <li key={index} className="hover:underline  active:text-blue-900">
                 {item.dropdown ? (
                   <div
                     className="relative"
@@ -107,13 +103,13 @@ const NavBar = () => {
               </li>
             ))}
             <li className="flex align-top">
-              <a >
-                <Services/>
+              <a>
+                <Services />
               </a>
             </li>
           </ul>
         </div>
-      </div>    
+      </div>
     </div>
   );
 };

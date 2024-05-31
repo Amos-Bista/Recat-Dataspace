@@ -1,3 +1,4 @@
+import React, { useState, useRef } from "react";
 import {
   Button,
   Dialog,
@@ -7,63 +8,74 @@ import {
   TextField,
   Grid,
   Typography,
+  IconButton,
 } from "@mui/material";
-import React, { useState } from "react";
-import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ServiceAdd = () => {
+const ServiceAdd = ({ addData }) => {
   const [open, setOpen] = useState(false);
-  const [tittle, setTittle] = useState("");
-  const [packages, setPackages] = useState("");
-  const [serviceImg, setServiceImg] = useState("");
-  const [price, setPrice] = useState("");
-  const [response, setResponse] = useState("");
+  const [serviceName, setServiceName] = useState("");
+  const [serviceDescription, setServiceDescription] = useState("");
+  const [serviceBgImage, setServiceBgImage] = useState(null); // Updated to null initially
+
   const functionOnPopUp = () => {
     setOpen(true);
   };
+
   const closePopUp = () => {
     setOpen(false);
+  };
+
+  const handleTitleChange = (e) => setServiceName(e.target.value);
+  const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
+  const handleImageChange = (event) => {
+    setServiceBgImage(event.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      const formData = new FormData();
+      formData.append("serviceName", serviceName);
+      formData.append("serviceDescription", serviceDescription);
+      formData.append("serviceBgImage", serviceBgImage);
+
       const response = await fetch(
-        //   "http://172.16.100.109:8282/contacts/addContacts",
+        "http://172.16.100.109:8282/services/addServices",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ tittle, packages, serviceImg, price }),
+          body: formData,
         }
       );
 
       if (response.ok) {
-        setResponse("Contact registeresd"); // Set the response message
-        alert("Form submitted successfully!"); // Alert for successful submission
+        alert("Form submitted successfully!");
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      setResponse("Error posting data.");
-      alert("Error submitting form. Please try again."); // Alert for error
+      alert("Error submitting form. Please try again.");
     }
+    setOpen(false);
+  };
+
+  const inputRef = useRef(null);
+  const handleImageClick = () => {
+    inputRef.current.click();
   };
 
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add Page +
+        Add New +
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
         >
-          Service Hero Section
+          Hero Section
           <IconButton
             aria-label="close"
             onClick={closePopUp}
@@ -81,46 +93,51 @@ const ServiceAdd = () => {
           <Grid container spacing={4} padding={5}>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
-                Tittle:
+                Title
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Enter Tittle"
+                label="Enter title"
                 variant="outlined"
                 fullWidth
-                value={tittle}
-                onChange={(e) => setTittle(e.target.value)}
+                onChange={handleTitleChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginTop: "1rem" }}
+              >
+                Description
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Enter description"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={4}
+                onChange={handleDescriptionChange}
               />
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
-                Description:
+                Upload Image
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField
-                label="Enter Description"
-                variant="outlined"
-                fullWidth
-                value={packages}
-                onChange={(e) => setPackages(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" gutterBottom>
-                Service Img:
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
+              <input
                 type="file"
-                accept=".png"
-                variant="outlined"
-                fullWidth
-                value={serviceImg}
-                onChange={(e) => setServiceImg(e.target.value)}
+                ref={inputRef}
+                style={{ display: "none" }}
+                onChange={handleImageChange}
               />
+              <Button onClick={handleImageClick} variant="outlined">
+                Choose File
+              </Button>
             </Grid>
           </Grid>
         </DialogContent>
@@ -147,7 +164,7 @@ const ServiceAdd = () => {
               backgroundColor: "#0c5177",
               color: "#fff",
               marginLeft: "auto",
-              marginRight: "58px",
+              marginRight: "56px",
             }}
             variant="contained"
           >

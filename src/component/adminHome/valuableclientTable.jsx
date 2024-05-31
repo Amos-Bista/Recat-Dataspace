@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ValuableclientAdd from "./valuableclientAdd";
 import { Box } from "@mui/material";
-import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
@@ -28,6 +28,7 @@ const ValuableclientTable = () => {
       }
       const data = await response.json();
       setRowData(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -66,7 +67,7 @@ const ValuableclientTable = () => {
                     </TableCell>
                     <TableCell align="center" sx={{ paddingLeft: 24 }}>
                       <img
-                        src={`http://172.16.100.109:8282/aboutUs/${row.logo}`}
+                        src={`http://172.16.100.109:8282/client/${row.logo}`}
                         style={{
                           width: "80px",
                           height: "80px",
@@ -91,7 +92,7 @@ const ValuableclientTable = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
-                  <SdCardAlertIcon color="error"/>
+                    <SdCardAlertIcon color="error" />
                     No items available. Please add new items.
                   </TableCell>
                 </TableRow>

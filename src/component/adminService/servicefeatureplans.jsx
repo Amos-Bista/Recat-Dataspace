@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Servicefeatureplan from "../../assests/servicefeatureplan.json";
-
+import ServiceAdd from "./serviceAdd";
 const Servicefeatureplans = () => {
   const [rowData, setRowData] = useState([]);
 
@@ -21,9 +21,12 @@ const Servicefeatureplans = () => {
   return (
     <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
-        <h3 className="my-3 text-2xl font-[400] text-[white] ">
+        <h3 className="my-3 text-2xl font-[400] text-[#383698] ">
           Features Plans
         </h3>
+        <div className="mb-[12px]">
+          <ServiceAdd />
+        </div>
       </div>
       <div>
         <TableContainer component={Paper}>

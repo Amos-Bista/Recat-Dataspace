@@ -2,7 +2,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Routes
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
@@ -25,6 +25,7 @@ import Webhosting from "./pages/service/webhost";
 import ShowFooter from "./component/footer/showfooter.jsx";
 import ServicePage from "./pages/servicePage.jsx";
 import Services from "./pages/services.jsx";
+import AdminServiceSub from "./component/adminService/AdminServiceSub.jsx";
 
 // eslint-disable-next-line no-sparse-arrays
 const routesData = [
@@ -136,10 +137,9 @@ const routesData = [
     link: "/adminservice",
   },
   {
-    title: "ServicePage",
-    link: "/servicepage",
+    title: "AdminServicePage",
+    link: "/adminservicepage/:id",
   },
- 
 
   {
     title: "",
@@ -225,8 +225,8 @@ function App() {
                         <AdminContact />
                       ) : route.link === "/adminservice" ? (
                         <AdminService />
-                      ) : route.link === "/servicepage" ? (
-                        <ServicePage />
+                      ) : route.link === "/adminservicepage/:id" ? (
+                        <AdminServiceSub />
                       ) : route.link === "/services" ? (
                         <Services />
                       ) : route.link === "/services/:id" ? (

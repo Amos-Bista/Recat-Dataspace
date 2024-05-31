@@ -50,7 +50,7 @@ const ValueCustomer = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        "http://172.16.100.109:8282/client/getClient"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -67,7 +67,7 @@ const ValueCustomer = () => {
         {customerData.map((customer, index) => (
           <div key={customer.id} className="w-[10rem] h-[10rem]">
             <img
-              src={`http://172.16.100.109:8282/aboutUs/${customer.logo}`}
+              src={`http://172.16.100.109:8282/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
               className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
             />

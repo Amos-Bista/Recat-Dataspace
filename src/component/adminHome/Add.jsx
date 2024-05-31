@@ -76,7 +76,9 @@ const Add = ({ addData }) => {
         Add New +
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
+        <DialogTitle
+          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+        >
           Hero Section
           <IconButton
             aria-label="close"
@@ -149,14 +151,25 @@ const Add = ({ addData }) => {
             gap: "200px",
           }}
         >
-          <Button variant="contained" onClick={closePopUp}
-          style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={closePopUp}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "53px",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'56px'  }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "56px",
+            }}
             variant="contained"
           >
             PUBLISH
