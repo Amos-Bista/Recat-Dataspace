@@ -3,8 +3,6 @@ import SearchDomain from "../component/home/searchdomain";
 import Plans from "../component/Plans";
 import ValueCustomer from "../component/home/ValueCustomer";
 
-// import Valuablecustomer from "./component/valuablecustomer";
-// import Plans from "../component/Plans";
 function Home() {
   return (
     <div className="flex-col text-black ">
@@ -22,7 +20,7 @@ function Home() {
           <Plans />
         </div>
         <div>
-          <h1 className="flex justify-center text-3xl mb-[2rem]  font-bold">
+          <h1 className="flex justify-center text-3xl  font-bold">
             Our Valued Costumers
           </h1>
           <ValueCustomer />

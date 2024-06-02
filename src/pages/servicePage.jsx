@@ -19,7 +19,7 @@ const ServicePage = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://172.16.100.109:8282/services/getService/${id}`
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch service data");
@@ -41,7 +41,7 @@ const ServicePage = () => {
     return <div>Loading...</div>;
   }
   // Construct the image URL
-  const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
+  const imageUrl = `${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`;
   console.log(imageUrl);
 
   const imgStyles = {
@@ -60,7 +60,7 @@ const ServicePage = () => {
               className="absolute bg-black/50"
             ></div>
             <img
-              src={`http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`}
               style={imgStyles}
               className="w-max-screen"
             />

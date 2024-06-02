@@ -12,7 +12,7 @@ const Abouthero = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
       );
 
       if (!response.ok) {
@@ -42,7 +42,7 @@ const Abouthero = () => {
         rows.length > 0 && (
           <section>
             <img
-              src={`http://172.16.100.109:8282/aboutUs/${rows[0].backgroundImage}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rows[0].backgroundImage}`}
               alt={rows[0].title}
               style={imgStyles}
             />

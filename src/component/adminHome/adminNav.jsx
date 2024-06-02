@@ -16,14 +16,13 @@ const AdminNav = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/services/getServices"
+        "http://localhost:8282/services/getServices"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
       setRowData(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
