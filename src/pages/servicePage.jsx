@@ -53,7 +53,7 @@ const ServicePage = () => {
   return (
     <div>
       <main>
-        <section assName="flex justify-between w-[max-content] relative">
+        <section assName="flex justify-between w-[max-content] relative ">
           <div lassName="relative ">
             <div
               style={{ width: "100vw", height: "667px" }}
@@ -73,35 +73,43 @@ const ServicePage = () => {
             </div>
           </div>
         </section>
-
-        <div>
-          {" "}
-          <h1>
-            {serviceData.accordions.map((panel) => (
-              <Accordion
-                key={panel.id}
-                expanded={expanded === panel.id}
-                onChange={handleChange(panel.id)}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={`${panel.id}bh-content`}
-                  id={`${panel.id}bh-header`}
-                >
-                  <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                    {panel.title}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography>{panel.description}</Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </h1>
-          <h1>{serviceData.serviceName}</h1>
+        <div className="flex flex-row justify-between pr-[6rem] w-full h-full mt-[3rem] mb-4">
+        <div className = "pl-16 mt-6 text-xl w-[55%]  ">
+                  {" "}
+                  <h1 className="ml-3 text-4xl font-bold mb-12">Why Choose DataSpace VPS?</h1>
+                  <h1>
+                    {serviceData.accordions.map((panel) => (
+                      <div className=""> 
+                     <Accordion
+                        key={panel.id}
+                        expanded={expanded === panel.id}
+                        onChange={handleChange(panel.id)}
+                      >
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls={`${panel.id}bh-content`}
+                          id={`${panel.id}bh-header`}
+                        >
+                          <Typography sx={{ width: "33%", flexShrink: 0,fontSize:"1.2rem" }}>
+                            {panel.title}
+                          </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Typography sx={{fontSize:"1.1rem" }}>{panel.description}</Typography>
+                        </AccordionDetails>
+                      </Accordion>
+                    
+                      </div>
+                    ))}
+                  </h1>
         </div>
-        <div>
-          |<DynamicPlanCard />
+        <div className="w-[530px] h-[620px] bg-black">
+          
+          <img src="/Bare.png" className="h-[620px]  w-[530px]"/>
+        </div>  
+        </div>
+        <div className="">
+          <DynamicPlanCard />
         </div>
       </main>
     </div>
