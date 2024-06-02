@@ -83,7 +83,7 @@ function App() {
     setPrevScrollPos(currentScrollPos);
   };
   return (
-    <main className="w-screen overflow-x-hidden">
+    <main className="w-screen overflow-x-hidden font-abc">
       <Router>
         <div>
           <Routes>

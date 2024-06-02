@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import navItems from "../assests/navItems.json";
 import Services from "../pages/services";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -58,12 +59,12 @@ const NavBar = () => {
         </a>
         <div className="flex">
           <ul
-            className={`flex gap-8 absolute top-12 right-2 font-light text-2xl ${
+            className={`flex gap-8 absolute top-12 right-2 font-light text-xl ${
               scrolled ? "text-black" : "text-white"
             }`}
           >
             {navItems.map((item, index) => (
-              <li key={index} className="hover:underline  active:text-blue-900">
+              <li key={index} className="hover:underline active:text-blue-900">
                 {item.dropdown ? (
                   <div
                     className="relative"
@@ -97,7 +98,18 @@ const NavBar = () => {
                   </div>
                 ) : (
                   <li key={index}>
-                    <a href={item.link}>{item.title}</a>
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "active underline decoration-white "
+                          : ""
+                      }
+                      to={item.link}
+                    >
+                      {item.title}
+                    </NavLink>
                   </li>
                 )}
               </li>
