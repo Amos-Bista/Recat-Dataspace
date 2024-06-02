@@ -73,42 +73,45 @@ const ServicePage = () => {
             </div>
           </div>
         </section>
-        <div className="flex flex-row justify-between pr-[6rem] w-full h-full mt-[3rem] mb-4">
-        <div className = "pl-16 mt-6 text-xl w-[55%]  ">
-                  {" "}
-                  <h1 className="ml-3 text-4xl font-bold mb-12">Why Choose DataSpace VPS?</h1>
-                  <h1>
-                    {serviceData.accordions.map((panel) => (
-                      <div className=""> 
-                     <Accordion
-                        key={panel.id}
-                        expanded={expanded === panel.id}
-                        onChange={handleChange(panel.id)}
+        <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
+          <div className="pl-16  text-xl w-[55%]  ">
+            <h1 className="ml-3 text-4xl font-bold mb-12">
+              Why Choose DataSpace VPS?
+            </h1>
+            <h1>
+              {serviceData.accordions.map((panel) => (
+                <div className="">
+                  <Accordion
+                    key={panel.id}
+                    expanded={expanded === panel.id}
+                    onChange={handleChange(panel.id)}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls={`${panel.id}bh-content`}
+                      id={`${panel.id}bh-header`}
+                    >
+                      <Typography
+                        sx={{ width: "33%", flexShrink: 0, fontSize: "1.2rem" }}
                       >
-                        <AccordionSummary
-                          expandIcon={<ExpandMoreIcon />}
-                          aria-controls={`${panel.id}bh-content`}
-                          id={`${panel.id}bh-header`}
-                        >
-                          <Typography sx={{ width: "33%", flexShrink: 0,fontSize:"1.2rem" }}>
-                            {panel.title}
-                          </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Typography sx={{fontSize:"1.1rem" }}>{panel.description}</Typography>
-                        </AccordionDetails>
-                      </Accordion>
-                    
-                      </div>
-                    ))}
-                  </h1>
+                        {panel.title}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography sx={{ fontSize: "1.1rem" }}>
+                        {panel.description}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
+              ))}
+            </h1>
+          </div>
+          <div className="w-[430px] h-[520px]">
+            <img src="/Backup.png" className="h-[520px]  w-[430px]" />
+          </div>
         </div>
-        <div className="w-[530px] h-[620px] bg-black">
-          
-          <img src="/Bare.png" className="h-[620px]  w-[530px]"/>
-        </div>  
-        </div>
-        <div className="">
+        <div className=" ">
           <DynamicPlanCard />
         </div>
       </main>
