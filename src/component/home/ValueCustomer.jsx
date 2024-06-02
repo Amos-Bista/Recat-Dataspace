@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
-// import customerData from "../../assests/customerData.json";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from "@mui/material/Button";
@@ -50,26 +49,27 @@ const ValueCustomer = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/client/getClient"
+        `${process.env.REACT_APP_API_BASE_URL}/client/getClient`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
       setCustomerData(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   return (
-    <div className="relative mb-8">
+    <div className="relative ">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
           <div key={customer.id} className="w-[10rem] h-[10rem]">
             <img
-              src={`http://172.16.100.109:8282/client/${customer.logo}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
+              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-0"
             />
           </div>
         ))}

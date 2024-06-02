@@ -31,14 +31,12 @@ const AdminServiceSub = () => {
       }
       const data = await response.json();
       setServiceData(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching service data:", error);
-      // Handle error, display message to the user, etc.
     }
   };
 
-  const handleChange = (panel) => (event, isExpanded) => {
+  const handleChange = (panel) => (isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
@@ -46,8 +44,8 @@ const AdminServiceSub = () => {
     return <div>Loading...</div>;
   }
   // Construct the image URL
-  const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
-  console.log(imageUrl);
+  // const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
+  // console.log(imageUrl);
 
   const imgStyles = {
     width: "100vw",

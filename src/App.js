@@ -13,104 +13,15 @@ import AdminAbout from "./admin/frontend/AdminAbout";
 import AdminContact from "./admin/frontend/AdminContact";
 import AdminService from "./admin/frontend/AdminService";
 import AdminHome from "./admin/frontend/AdminHome";
-import Backup from "./pages/service/backup";
-import Bare from "./pages/service/bare";
-import Colocation from "./pages/service/colocation";
-import Replication from "./pages/service/replication";
-import Enterprise from "./pages/service/enterprise";
-import Setup from "./pages/service/setup";
-import Webdev from "./pages/service/webdev";
-import Annual from "./pages/service/annual";
-import Webhosting from "./pages/service/webhost";
 import ShowFooter from "./component/footer/showfooter.jsx";
 import ServicePage from "./pages/servicePage.jsx";
 import Services from "./pages/services.jsx";
 import AdminServiceSub from "./component/adminService/AdminServiceSub.jsx";
 
-// eslint-disable-next-line no-sparse-arrays
 const routesData = [
   {
     title: "Home",
     link: "/",
-  },
-  {
-    title: "Service ",
-    link: "/service",
-    dropdown: [
-      {
-        title: "Annual Maintenance Service",
-        link: "/annual",
-      },
-      {
-        title: "Backup Service",
-        link: "/backup",
-      },
-      {
-        title: "Bare Metal Server",
-        link: "/bare",
-      },
-      {
-        title: "Colocation",
-        link: "/colocation",
-      },
-      {
-        title: "Replication",
-        link: "/replication",
-      },
-      {
-        title: " Enterprise Secure E-mail",
-        link: "/enterprise",
-      },
-      {
-        title: "Setup",
-        link: "/setup",
-      },
-      {
-        title: "Web Development",
-        link: "/webdevelopment",
-      },
-      {
-        title: "Web Hosting",
-        link: "/webhosting",
-      },
-    ],
-  },
-  {
-    title: "Backup",
-    link: "/backup",
-  },
-  {
-    title: "Bare",
-    link: "/bare",
-  },
-  {
-    title: "Colocation",
-    link: "/colocation",
-  },
-  {
-    title: "Annual",
-    link: "/annual",
-  },
-  {
-    title: "Replication",
-    link: "/replication",
-  },
-  ,
-  {
-    title: " Enterprise Secure E-mail",
-    link: "/enterprise",
-  },
-  {
-    title: "Setup",
-    link: "/setup",
-  },
-  {
-    title: "Web Development",
-    link: "/webdevelopment",
-  },
-  {
-    title: "Web Hosting",
-    link: "/webhosting",
   },
   {
     title: "About Us",
@@ -195,28 +106,8 @@ function App() {
                         <Home />
                       ) : route.link === "/about" ? (
                         <About />
-                      ) : route.link === "/service" ? (
-                        <Service />
                       ) : route.link === "/contact" ? (
                         <Contact />
-                      ) : route.link === "/colocation" ? (
-                        <Colocation />
-                      ) : route.link === "/annual" ? (
-                        <Annual />
-                      ) : route.link === "/bare" ? (
-                        <Bare />
-                      ) : route.link === "/backup" ? (
-                        <Backup />
-                      ) : route.link === "/replication" ? (
-                        <Replication />
-                      ) : route.link === "/enterprise" ? (
-                        <Enterprise />
-                      ) : route.link === "/setup" ? (
-                        <Setup />
-                      ) : route.link === "/webdevelopment" ? (
-                        <Webdev />
-                      ) : route.link === "/webhosting" ? (
-                        <Webhosting />
                       ) : route.link === "/adminabout" ? (
                         <AdminAbout />
                       ) : route.link === "/adminhome" ? (

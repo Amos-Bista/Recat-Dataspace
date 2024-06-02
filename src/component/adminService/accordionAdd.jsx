@@ -14,9 +14,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const AccordionAdd = () => {
   const [open, setOpen] = useState(false);
-  const [tittle, setTittle] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [response, setResponse] = useState("");
   const functionOnPopUp = () => {
     setOpen(true);
   };
@@ -29,26 +28,24 @@ const AccordionAdd = () => {
 
     try {
       const response = await fetch(
-        //   "http://172.16.100.109:8282/contacts/addContacts",
+        "http://172.16.100.109:8282/serviceDesc/addDescription",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ tittle, description }),
+          body: JSON.stringify({ title, description }),
         }
       );
 
       if (response.ok) {
-        setResponse("Contact registeresd"); // Set the response message
-        alert("Form submitted successfully!"); // Alert for successful submission
+        alert("Form submitted successfully!");
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      setResponse("Error posting data.");
-      alert("Error submitting form. Please try again."); // Alert for error
+      alert("Error submitting form. Please try again.");
     }
   };
 
@@ -88,11 +85,11 @@ const AccordionAdd = () => {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label="Enter Tittle"
+                  label="Enter Title"
                   variant="outlined"
                   fullWidth
-                  value={tittle}
-                  onChange={(e) => setTittle(e.target.value)}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </Grid>
               <Grid item xs={6}>

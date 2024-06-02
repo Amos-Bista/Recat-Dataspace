@@ -6,7 +6,6 @@ const ShowFooter = ({ children }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    console.log("this is location", location);
     if (
       location.pathname === "/admincontact" ||
       location.pathname === "/adminhome" ||

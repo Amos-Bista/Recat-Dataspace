@@ -22,9 +22,7 @@ const AboutHero = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
-      );
+      const response = await fetch("http://localhost:8282/aboutUs/getAboutUs");
 
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -71,7 +69,7 @@ const AboutHero = () => {
                     <TableCell align="center">{row.description}</TableCell>
                     <TableCell>
                       <img
-                        src={`http://172.16.100.109:8282/aboutUs/${row.backgroundImage}`}
+                        src={`http://localhost:8282/aboutUs/${row.backgroundImage}`}
                         className="w-[10rem] h-[7rem] relative left-[100px]"
                       />
                     </TableCell>
