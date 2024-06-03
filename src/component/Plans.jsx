@@ -42,7 +42,12 @@ export default function Plans() {
         {plansData.map((plan, index) => (
           <Card
             key={index}
-            sx={{ maxWidth: 355, marginBottom: 4 }}
+            sx={{ maxWidth: 355, marginBottom: 4, 
+              
+              boxShadow: '5px 6px 16px rgba(0, 0, 0, 0.3)', 
+              '&:hover': {
+                boxShadow: '5px 10px 16px rgba(0, 0, 0, 0.5)',
+            }}}
             className="pb-8 mx-12 mt-12"      
           >
             <CardMedia
