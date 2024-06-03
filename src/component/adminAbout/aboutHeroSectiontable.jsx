@@ -22,7 +22,9 @@ const AboutHero = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8282/aboutUs/getAboutUs");
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -67,10 +69,10 @@ const AboutHero = () => {
                   <TableRow key={row.id}>
                     <TableCell align="center">{row.title}</TableCell>
                     <TableCell align="center">{row.description}</TableCell>
-                    <TableCell>
+                    <TableCell align="center">
                       <img
-                        src={`http://localhost:8282/aboutUs/${row.backgroundImage}`}
-                        className="w-[10rem] h-[7rem] relative left-[100px]"
+                        src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${row.backgroundImage}`}
+                        className="w-[10rem] h-[7rem] relative "
                       />
                     </TableCell>
                     <TableCell align="center">

@@ -18,7 +18,7 @@ const Serviceherosec = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/services/getServices"
+        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");

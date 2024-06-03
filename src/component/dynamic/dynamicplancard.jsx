@@ -35,8 +35,8 @@ const DynamicPlanCard = ({ id }) => {
   return (
     <div>
       <div className="w-full h-full  mb-8 relative">
-        <div className="w-[70px] h-[508px] bg-white z-50 absolute left-0"></div>
-        <div className="z-40 w-full h-full relative">
+        <div className="w-[70px] h-[508px] bg-gradient-to-r from-[#ffffff] to-[#f8f8f8] z-50 absolute left-0 "></div>
+        <div className="z-40 w-full h-full relative ">
           <Slider {...settings}>
             {plansData.map((plan, index) => (
               <Card
@@ -71,7 +71,7 @@ const DynamicPlanCard = ({ id }) => {
             ))}
           </Slider>
         </div>
-        <div className="w-[64px] h-[508px] bg-white z-50 absolute  top-0 right-0"></div>
+        <div className="w-[64px] h-[508px] bg-gradient-to-r from-[#ffffff] to-[#f8f8f8]  z-50 absolute  top-0 right-0 "></div>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ const ContactInfoEdit = ({ contactDetails, handleEditContact }) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://172.16.100.109:8282/contacts/updateContact/${contactDetails.id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact/${contactDetails.id}`,
         {
           method: "PUT",
           headers: {

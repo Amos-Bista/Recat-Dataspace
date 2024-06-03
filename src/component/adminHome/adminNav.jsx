@@ -16,7 +16,7 @@ const AdminNav = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8282/services/getServices"
+        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -31,10 +31,10 @@ const AdminNav = () => {
   return (
     <main className="flex justify-center py-4 rounded-lg mx-14 flex-inline bg-[white] h-fit ">
       <nav className="w-64">
-        <h1 className="px-4 py-2 text-xl font-semibold text-[#0D5077]">
+        <h1 className="px-4 py-2 text-xl font-medium text-[#0D5077]">
           Dashboard
         </h1>
-        <ul className="mx-auto font-semibold text-xl text-[#0D5077]">
+        <ul className="mx-auto font-medium text-lg text-[#0D5077]">
           <NavLink
             to="/adminhome"
             className={({ isActive, isPending }) =>

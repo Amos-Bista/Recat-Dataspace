@@ -13,14 +13,14 @@ function Home() {
         <SearchDomain />
       </div>
       <section>
-        <h1 className="flex justify-center text-3xl   font-bold ">
+        <h1 className="flex justify-center text-3xl  font-semibold ">
           Our Popular Plans & Pricing
         </h1>
         <div className="mb-[8rem]">
           <Plans />
         </div>
         <div>
-          <h1 className="flex justify-center text-3xl  font-bold">
+          <h1 className="flex justify-center text-3xl  font-semibold mb-7">
             Our Valued Costumers
           </h1>
           <ValueCustomer />

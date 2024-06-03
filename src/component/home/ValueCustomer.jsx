@@ -62,14 +62,14 @@ const ValueCustomer = () => {
     }
   };
   return (
-    <div className="relative ">
+    <div className="relative mb-10 ">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
-          <div key={customer.id} className="w-[10rem] h-[10rem]">
+          <div key={customer.id} className="w-[9rem] h-[9rem]">
             <img
               src={`${process.env.REACT_APP_API_BASE_URL}/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-0"
+              className="w-[9rem] h-[9rem] mb-[15rem] rounded-md ml-0"
             />
           </div>
         ))}

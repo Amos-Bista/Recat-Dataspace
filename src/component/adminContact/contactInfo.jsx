@@ -11,8 +11,7 @@ import { Box } from "@mui/material";
 import ContactInfoAdd from "./contactinfoadd";
 import ContactInfoEdit from "./contactinfoedit";
 import ContactInfoDelete from "./contactinfodelete";
-import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
-
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
 const ContactInfo = () => {
   const [rows, setRows] = useState([]);
@@ -23,7 +22,7 @@ const ContactInfo = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/contacts/allContacts"
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -38,7 +37,7 @@ const ContactInfo = () => {
   const handleDelete = async (id, index) => {
     try {
       const response = await fetch(
-        `http://172.16.100.109:8282/contacts/deleteContact/${id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/deleteContact/${id}`,
         {
           method: "DELETE",
         }
@@ -103,7 +102,7 @@ const ContactInfo = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
-                  <SdCardAlertIcon color="error"/>
+                    <SdCardAlertIcon color="error" />
                     No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>

@@ -32,7 +32,7 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
 
     try {
       const response = await fetch(
-        `http://172.16.100.109:8282/aboutUs/update/${aboutDetails.id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/update/${aboutDetails.id}`,
         {
           method: "PUT",
           body: formData,
@@ -140,7 +140,7 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
             <Grid item xs={6} onClick={handleImageClick}>
               {aboutDetails.backgroundImage ? (
                 <img
-                  src={`http://172.16.100.109:8282/aboutUs/${aboutDetails.backgroundImage}`}
+                  src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${aboutDetails.backgroundImage}`}
                   alt="background"
                   style={{
                     width: "500px",
