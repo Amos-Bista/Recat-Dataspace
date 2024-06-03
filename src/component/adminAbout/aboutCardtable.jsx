@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AboutAdd from "../adminAbout/aboutadd";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
+import { Box } from "@mui/material";
 
 const AboutCardTable = () => {
   const [rowDatas, setRowDatas] = useState([]);
@@ -36,9 +37,9 @@ const AboutCardTable = () => {
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
           AboutUs Accordions
         </h3>
-        <Button>
+        <Box>
           <AboutAdd />
-        </Button>
+        </Box>
       </div>
       <div className="">
         <TableContainer component={Paper}>

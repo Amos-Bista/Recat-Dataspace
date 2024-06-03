@@ -40,7 +40,7 @@ const Services = () => {
           <div
             className={`dropdown-content absolute ${
               isDropdownOpen ? "block" : "hidden"
-            } bg-gray-100/20 shadow-lg  rounded-md z-10 absolute top-8 right-[30px] w-64`}
+            } bg-gray-100/20 shadow-lg  rounded-md z-10   right-[10px] w-64 `}
           >
             {rows.map((service) => (
               <div key={service.id}>
