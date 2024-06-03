@@ -35,7 +35,7 @@ const ValuableclientAdd = () => {
 
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/client/addClient",
+        `${process.env.REACT_APP_API_BASE_URL}/client/addClient`,
         {
           method: "POST",
           body: formData,

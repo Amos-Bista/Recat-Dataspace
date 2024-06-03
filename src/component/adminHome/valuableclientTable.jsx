@@ -21,7 +21,7 @@ const ValuableclientTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/client/getClient"
+        `${process.env.REACT_APP_API_BASE_URL}/client/getClient`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -66,7 +66,8 @@ const ValuableclientTable = () => {
                     </TableCell>
                     <TableCell align="center" sx={{ paddingLeft: 24 }}>
                       <img
-                        src={`http://172.16.100.109:8282/client/${row.logo}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/client/${row.logo}`}
+                        alt=""
                         style={{
                           width: "80px",
                           height: "80px",
