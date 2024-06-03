@@ -35,7 +35,7 @@ const AboutAccordion = () => {
   return (
     <div
       className="custom-accordion"
-      style={{ width: "100%", maxWidth: "700px", marginLeft: "-20px" }}
+      style={{ width: "100%", maxWidth: "700px"  }}
     >
       <style>{`
                 .custom-accordion .MuiAccordion-root.Mui-expanded {

@@ -10,17 +10,17 @@ const About = () => {
       <div className="mb-[3rem]">
         <Abouthero />
       </div>
-      <div className="w-100% flex justify-center ">
+      <div className="w-65% flex justify-between ">
         <div>
-          <h1 className="text-4xl font-bold ">Why DataSpace?</h1>
-          <ul className="pt-16 pl-6 text-3xl font-medium leading-relaxed list-decimal">
+          <h1 className="text-4xl font-bold pl-20 ">Why DataSpace?</h1>
+          <ul className="pt-16 text-3xl font-medium leading-relaxed list-decimal pl-20">
             {<AboutAccordion />}
           </ul>
         </div>
         <img
           src="/aboutbody.png"
           alt=""
-          style={{ maxWidth: "500px", maxHeight: "490px", margin: "30px" }}
+          style={{ maxWidth: "500px", maxHeight: "490px", margin: "30px", paddingRight: "60px" }}
         />
       </div>
       <Plans />
