@@ -9,7 +9,7 @@ const AboutAccordion = () => {
   const [expanded, setExpanded] = useState(false);
   const [expandedDatas, setExpandedDatas] = useState([]);
 
-  const handleChange = (panel) => (isExpanded) => {
+  const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
@@ -20,7 +20,7 @@ const AboutAccordion = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs `
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -35,7 +35,7 @@ const AboutAccordion = () => {
   return (
     <div
       className="custom-accordion"
-      style={{ width: "100%", maxWidth: "700px"  }}
+      style={{ width: "100%", maxWidth: "700px" }}
     >
       <style>{`
                 .custom-accordion .MuiAccordion-root.Mui-expanded {
@@ -67,7 +67,7 @@ const AboutAccordion = () => {
               id={`${expandedData.id}bh-header`}
             >
               <img
-                src={`http://172.16.100.109:8282/aboutUs/${expandedData.logo}`}
+                src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${expandedData.logo}`}
                 alt={expandedData.title}
                 style={{ marginRight: "10px", width: "30px", height: "30px" }}
               />

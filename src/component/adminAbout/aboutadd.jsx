@@ -37,7 +37,7 @@ const AboutAdd = () => {
       formData.append("paragraph", paragraph);
 
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/addAboutUs",
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc/addAccordion`,
         {
           method: "POST",
           body: formData,
@@ -64,7 +64,9 @@ const AboutAdd = () => {
         Add New +
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
+        <DialogTitle
+          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+        >
           Card Information
           <IconButton
             aria-label="close"
@@ -129,14 +131,25 @@ const AboutAdd = () => {
             gap: "200px",
           }}
         >
-          <Button variant="contained" onClick={handleClose}
-          style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "53px",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'56px'  }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "56px",
+            }}
             variant="contained"
           >
             PUBLISH

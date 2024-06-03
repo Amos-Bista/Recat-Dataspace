@@ -19,6 +19,11 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
     aboutDetails.description || ""
   );
   const [backgroundImage, setBackgroundImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(
+    aboutDetails.backgroundImage
+      ? `${process.env.REACT_APP_API_BASE_URL}/aboutUs/${aboutDetails.backgroundImage}`
+      : null
+  );
   const inputRef = useRef(null);
 
   const handleSubmit = async (e) => {
@@ -60,7 +65,9 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
   };
 
   const handleImageChange = (event) => {
-    setBackgroundImage(event.target.files[0]);
+    const file = event.target.files[0];
+    setBackgroundImage(file);
+    setPreviewImage(URL.createObjectURL(file));
   };
 
   const handleImageClick = () => {
@@ -137,27 +144,17 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
                 Upload Image
               </Typography>
             </Grid>
-            <Grid item xs={6} onClick={handleImageClick}>
-              {aboutDetails.backgroundImage ? (
+            <Grid item xs={6}>
+              {previewImage && (
                 <img
-                  src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${aboutDetails.backgroundImage}`}
+                  src={previewImage}
                   alt="background"
                   style={{
                     width: "500px",
                     height: "250px",
                     objectFit: "cover",
                     overflow: "hidden",
-                  }}
-                />
-              ) : (
-                <img
-                  src="/editBackground.png"
-                  alt="default background"
-                  style={{
-                    width: "500px",
-                    height: "250px",
-                    objectFit: "cover",
-                    overflow: "hidden",
+                    marginBottom: "10px",
                   }}
                 />
               )}
@@ -167,6 +164,9 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
                 style={{ display: "none" }}
                 onChange={handleImageChange}
               />
+              <Button onClick={handleImageClick} variant="outlined">
+                Choose File
+              </Button>
             </Grid>
           </Grid>
         </DialogContent>
