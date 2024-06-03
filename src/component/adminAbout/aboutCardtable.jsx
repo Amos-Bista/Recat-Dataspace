@@ -19,7 +19,7 @@ const AboutCardTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -64,7 +64,7 @@ const AboutCardTable = () => {
                     <TableCell
                       align="center"
                       sx={{
-                        backgroundImage: `url(http://172.16.100.109:8282/aboutUs/${rowData.logo})`,
+                        backgroundImage: `url(${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rowData.logo})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         width: 50,

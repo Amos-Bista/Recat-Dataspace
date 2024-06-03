@@ -44,7 +44,7 @@ const AboutHeroAdd = ({ addData }) => {
       formData.append("backgroundImage", aboutBgImage);
 
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/addAboutUs",
+        "${process.env.REACT_APP_API_BASE_URL}/aboutUs/addAboutUs",
         {
           method: "POST",
           body: formData,

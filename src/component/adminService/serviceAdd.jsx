@@ -42,7 +42,7 @@ const ServiceAdd = ({ addData }) => {
       formData.append("serviceBgImage", serviceBgImage);
 
       const response = await fetch(
-        "http://172.16.100.109:8282/services/addServices",
+        `${process.env.REACT_APP_API_BASE_URL}/services/addServices`,
         {
           method: "POST",
           body: formData,

@@ -28,7 +28,7 @@ const AccordionAdd = () => {
 
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/serviceDesc/addDescription",
+        `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/addDescription`,
         {
           method: "POST",
           headers: {

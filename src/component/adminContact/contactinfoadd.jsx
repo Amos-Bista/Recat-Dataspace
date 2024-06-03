@@ -30,7 +30,7 @@ const ContactInfoAdd = ({ handleAddContact }) => {
 
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/contacts/addContacts",
+        "http://localhost:8282/contacts/addContacts",
         {
           method: "POST",
           headers: {
