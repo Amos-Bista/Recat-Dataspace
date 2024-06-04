@@ -36,11 +36,11 @@ const ValuableclientTable = () => {
   return (
     <main className="">
       <div className="flex items-center justify-between">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077] ">
           Valuable Client's List
         </h3>
         <Box>
-          <ValuableclientAdd />
+          <ValuableclientAdd />     
         </Box>
       </div>
       <div className="">

@@ -56,7 +56,7 @@ const ContactInfo = () => {
   return (
     <main>
       <div className="flex justify-between items-center">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]   ">
           Contact Information
         </h3>
         <Box>

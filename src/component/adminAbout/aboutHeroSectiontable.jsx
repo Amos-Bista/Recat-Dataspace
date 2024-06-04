@@ -45,7 +45,7 @@ const AboutHero = () => {
   return (
     <main>
       <div className="flex items-center justify-between">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077] text-[34px] mb-[40px]">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  mb-[40px]">
           AboutUs Hero Section
         </h3>
         <Box>
