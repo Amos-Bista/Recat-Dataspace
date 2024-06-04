@@ -23,9 +23,6 @@ export default function Plans() {
     slidesToShow: 3,
     vertical: false, // Set to false for horizontal autoplay
   };
-  
-
-
 
   useEffect(() => {
     // Convert the object to an array of plans
@@ -37,21 +34,21 @@ export default function Plans() {
   }, []);
 
   return (
-    <div className="mx-12">
+    <div className="mx-16">
       <Slider {...settings}>
         {plansData.map((plan, index) => (
           <Card
             key={index}
-            sx={{ maxWidth: 355, marginBottom: 4, 
-              
-              boxShadow: '5px 6px 16px rgba(0, 0, 0, 0.3)', 
-              '&:hover': {
-                boxShadow: '5px 10px 16px rgba(0, 0, 0, 0.5)',
-            }}}
-            className="pb-8 mx-12 mt-12"      
+            sx={{
+              maxWidth: 355,
+              marginBottom: 4,
+
+              boxShadow: "1px 2px 3px rgba(0, 0, 0, 0.3)",
+            }}
+            className="pb-8 mx-12 mt-12"
           >
             <CardMedia
-              sx={{ height: 140,}}
+              sx={{ height: 140 }}
               image="./plans.png" // Update this path to the correct path of your image
               title="Green Iguana"
             />
@@ -72,7 +69,6 @@ export default function Plans() {
           </Card>
         ))}
       </Slider>
-      
     </div>
   );
 }
