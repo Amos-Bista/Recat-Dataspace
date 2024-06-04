@@ -27,6 +27,7 @@ const Footer = () => {
       console.error("Error fetching data:", error);
     }
   };
+
   const ContactData = async () => {
     try {
       const response = await fetch(
@@ -42,6 +43,7 @@ const Footer = () => {
       console.error("Error fetching data:", error);
     }
   };
+
   const ServiceData = async () => {
     try {
       const response = await fetch(
@@ -63,25 +65,34 @@ const Footer = () => {
     height: "250.39px",
   };
 
+  const chunkedServices = [];
+  for (let i = 0; i < serviceData.length; i += 5) {
+    chunkedServices.push(serviceData.slice(i, i + 5));
+  }
+
   return (
-    <div className=" bg-[#0D5077]  ">
-      <div className="flex justify-center w-[100%] text-white bg-[#0D5077] py-4 px-14 ">
-        <div className="flex w-[80%] pt-10">
+    <div className="bg-[#0D5077]">
+      <div className="flex justify-center w-[100%] text-white bg-[#0D5077] py-4 px-14">
+        <div className="flex w-[84%] pt-10">
           <div className="w-[45%] flex-col">
             <h1 className="text-3xl">Service</h1>
-            {serviceData.map((service) => (
-              <div className="flex pt-3 pl-5 gap-28 ">
-                <ul key={service.id} className="gap-10 list-disc text-1xl">
-                  <li className="py-1"> {service.service_name}</li>
+            <div className="flex pt-3 pl-5 gap-10">
+              {chunkedServices.map((chunk, index) => (
+                <ul key={index} className="gap-10 list-disc text-1xl">
+                  {chunk.map((service) => (
+                    <li key={service.id} className="py-1">
+                      {service.service_name}
+                    </li>
+                  ))}
                 </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <div className=" flex w-[55%]">
+          <div className="flex w-[55%]">
             <div className="px-5 w-[70%] pr-5">
-              <h1 className="text-3xl ">About us</h1>
+              <h1 className="text-3xl">About us</h1>
               {rows.map((row) => (
-                <p className="pt-3 leading-relaxed text-justify text-1xl">
+                <p key={row.id} className="pt-3 leading-relaxed text-justify text-1xl">
                   {row.description}
                 </p>
               ))}
@@ -107,7 +118,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className=" mx-16 flex justify-between border-t-2  border-b-2 border-[#E5E7EB]  py-2 text-white">
+      <div className="mx-16 flex justify-between border-t-2 border-b-2 border-[#E5E7EB] py-2 text-white">
         <div className="">
           {contactData.map((contact) => (
             <div key={contact.id} className="flex justify-between gap-40 mb-3">
