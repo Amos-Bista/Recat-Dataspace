@@ -28,5 +28,35 @@
         "pricedescription": "Nrs. 1,000.00"
       }
     ]
+  },
+  {
+    "name": "Virtual Private Server",
+    "subtitle": "BRONZE",
+    "details": [
+      {
+        "title": "1 GB RAM",
+        "description": ""
+      },
+      {
+        "title": "20 GB DISK SPACE",
+        "description": ""
+      },
+      {
+        "title": "1 PUBLIC IP ADDRESS",
+        "description": ""
+      },
+      {
+        "title": "1 PUBLIC IP ADDRESS",
+        "description": ""
+      },
+      {
+        "title": "Monthly",
+        "description": ""
+      },
+      {
+        "pricetitle": "",
+        "pricedescription": "Nrs. 1,000.00"
+      }
+    ]
   }
 ]
