@@ -15,7 +15,7 @@ export default function Plans() {
     padding: "0px",
     marginBottom: "0px",
     dots: true,
-    infinite: true,
+    infinite: false,
     autoplay: true,
     autoplaySpeed: 0, // Adjust the autoplay speed as needed
     speed: 5000,
@@ -31,7 +31,6 @@ export default function Plans() {
 
   return (
     <div className="px-12">
-
       <Slider {...settings}>
         {plansData.map((plan, index) => (
           <Card
@@ -61,7 +60,6 @@ export default function Plans() {
             </div>
 
             <CardContent className="flex-col justify-center text-center bg-slate-200 ">
-
               {plan.details.map((detail, idx) => (
                 <Typography key={idx} variant="body2" color="text.secondary">
                   <span>{detail.title}:</span>
@@ -69,10 +67,9 @@ export default function Plans() {
                 </Typography>
               ))}
               {plan.details.map((detail, idx) => (
-                <Typography key={idx} variant="body1" color="text.primary">
-                  {detail.pricetittle}
+                <h1  className="font-serif text-2xl font-slate-900 text-m">
                   {detail.pricedescription}
-                </Typography>
+                </h1>
               ))}
             </CardContent>
             <CardActions className="flex justify-center pb-24 bg-slate-200">
