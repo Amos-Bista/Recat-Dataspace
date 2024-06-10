@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Home as HomeIcon } from "@mui/icons-material";
 import EmailIcon from "@mui/icons-material/Email";
 import { NavLink } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import CircleIcon from "@mui/icons-material/Circle";
 
 const AdminNav = () => {
+  const [rows, setRowData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRowData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
-    <main className="flex justify-center py-4 rounded-lg mx-14 flex-inline bg-[white] h-[240px] ">
+    <main className="flex justify-center py-4 rounded-lg mx-14 flex-inline bg-[white] h-fit ">
       <nav className="w-64">
-        <h1 className="px-4 py-2 text-xl font-semibold text-[#0D5077]">
+        <h1 className="px-4 py-2 text-xl font-medium text-[#0D5077]">
           Dashboard
         </h1>
-        <ul className="mx-auto font-semibold text-xl text-[#0D5077]">
+        <ul className="mx-auto font-medium text-lg text-[#0D5077]">
           <NavLink
             to="/adminhome"
             className={({ isActive, isPending }) =>
@@ -111,6 +133,34 @@ const AdminNav = () => {
               </li>
             )}
           </NavLink>
+          {rows.map((service) => (
+            <div key={service.id}>
+              <NavLink
+                to={`/adminservicepage/${service.id}`}
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "active text-white bg-[#0D5077]/90"
+                    : ""
+                }
+              >
+                {({ isActive }) => (
+                  <li
+                    key={service.id}
+                    className={`px-4 flex items-center
+                     text-blue-900 mb-3 mt-3`}
+                  >
+                    <CircleIcon
+                      style={{ fontSize: "1.5rem" }}
+                      className="ml-[2rem] h-5 pr-4 text-current"
+                    />
+                    {service.service_name}
+                  </li>
+                )}
+              </NavLink>
+            </div>
+          ))}
         </ul>
       </nav>
     </main>

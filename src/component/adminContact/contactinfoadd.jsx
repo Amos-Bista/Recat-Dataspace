@@ -30,7 +30,7 @@ const ContactInfoAdd = ({ handleAddContact }) => {
 
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/contacts/addContacts",
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/addContacts`,
         {
           method: "POST",
           headers: {

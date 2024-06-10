@@ -7,31 +7,32 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import servicehero from "../../assests/servicehero.json";
-import Add from "../adminHome/Add";
 
 const Serviceherosec = () => {
-  const [rowData, setRowData] = useState([]);
+  const [rows, setRowData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from JSON file
-    const data = Object.values(servicehero);
-    console.log(data);
-    
-    // Set rowData state with all data from JSON
-    setRowData(data);
+    fetchData();
   }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRowData(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
-    <main className="pt-6  mt-[-50px]">
-       <div className="flex justify-between align-middle">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  ">
-          Hero Section
-        </h3>
-        <Button>
-          <Add />
-        </Button>
-      </div>
+    <main className="">
       <div className="">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -45,27 +46,28 @@ const Serviceherosec = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.isArray(rowData) && rowData.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell component="th" scope="row" align="center">
-                    {row.Title}
-                  </TableCell>
-                  <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">{row.Backgroundimage}</TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained" >
-                      Edit
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} 
-                    className="!bg-red-500 hover:!bg-red-700 !text-white !font-bold !py-2 !px-4 !rounded"
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {Array.isArray(rows) &&
+                rows.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row" align="center">
+                      {row.service_name}
+                    </TableCell>
+                    <TableCell align="center">Description</TableCell>
+                    <TableCell align="center">Backgroundimage</TableCell>
+
+                    <TableCell align="center">
+                      <Button variant="contained">Edit</Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        sx={{ margin: 2 }}
+                        className="!bg-red-500 hover:!bg-red-700 !text-white   !rounded"
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

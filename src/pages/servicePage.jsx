@@ -19,7 +19,7 @@ const ServicePage = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://172.16.100.109:8282/services/getService/${id}`
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch service data");
@@ -41,7 +41,7 @@ const ServicePage = () => {
     return <div>Loading...</div>;
   }
   // Construct the image URL
-  const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
+  const imageUrl = `${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`;
   console.log(imageUrl);
 
   const imgStyles = {
@@ -53,14 +53,14 @@ const ServicePage = () => {
   return (
     <div>
       <main>
-        <section assName="flex justify-between w-[max-content] relative">
+        <section assName="flex justify-between w-[max-content] relative ">
           <div lassName="relative ">
             <div
               style={{ width: "100vw", height: "667px" }}
               className="absolute bg-black/50"
             ></div>
             <img
-              src={`http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`}
               style={imgStyles}
               className="w-max-screen"
             />
@@ -73,35 +73,46 @@ const ServicePage = () => {
             </div>
           </div>
         </section>
-
-        <div>
-          {" "}
-          <h1>
-            {serviceData.accordions.map((panel) => (
-              <Accordion
-                key={panel.id}
-                expanded={expanded === panel.id}
-                onChange={handleChange(panel.id)}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls={`${panel.id}bh-content`}
-                  id={`${panel.id}bh-header`}
-                >
-                  <Typography sx={{ width: "33%", flexShrink: 0 }}>
-                    {panel.title}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography>{panel.description}</Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </h1>
-          <h1>{serviceData.serviceName}</h1>
+        <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
+          <div className="pl-16  text-xl w-[55%]  ">
+            <h1 className="ml-3 text-4xl font-bold mb-12">
+              Why Choose DataSpace VPS?
+            </h1>
+            <h1>
+              {serviceData.accordions.map((panel) => (
+                <div className="">
+                  <Accordion
+                    key={panel.id}
+                    expanded={expanded === panel.id}
+                    onChange={handleChange(panel.id)}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls={`${panel.id}bh-content`}
+                      id={`${panel.id}bh-header`}
+                    >
+                      <Typography
+                        sx={{ width: "33%", flexShrink: 0, fontSize: "1.2rem" }}
+                      >
+                        {panel.title}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography sx={{ fontSize: "1.1rem" }}>
+                        {panel.description}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
+              ))}
+            </h1>
+          </div>
+          <div className="w-[430px] h-[520px]">
+            <img src="/Backup.png" className="h-[520px]  w-[430px]" />
+          </div>
         </div>
-        <div>
-          |<DynamicPlanCard />
+        <div className=" ">
+          <DynamicPlanCard />
         </div>
       </main>
     </div>

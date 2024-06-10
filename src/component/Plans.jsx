@@ -31,6 +31,7 @@ export default function Plans() {
 
   return (
     <div className="px-12">
+
       <Slider {...settings}>
         {plansData.map((plan, index) => (
           <Card
@@ -60,6 +61,7 @@ export default function Plans() {
             </div>
 
             <CardContent className="flex-col justify-center text-center bg-slate-200 ">
+
               {plan.details.map((detail, idx) => (
                 <Typography key={idx} variant="body2" color="text.secondary">
                   <span>{detail.title}:</span>

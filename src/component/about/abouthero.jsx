@@ -12,7 +12,7 @@ const Abouthero = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
       );
 
       if (!response.ok) {
@@ -38,26 +38,31 @@ const Abouthero = () => {
         style={{ width: "100vw", height: "657px" }}
         className="absolute bg-black/50"
       ></div>
-      {rows.length > 0 && (
-        <section>
-          <img
-            src={`http://172.16.100.109:8282/aboutUs/${rows[0].backgroundImage}`}
-            
-            alt={rows[0].title}
-            style={imgStyles}
-          />
-          <div className="absolute top-[50%] left-[4%]">
-            <h1 className="text-white text-7xl">{rows[0].title}</h1>
+      {rows.length > 0 ? (
+        rows.length > 0 && (
+          <section>
+            <img
+              src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rows[0].backgroundImage}`}
+              alt={rows[0].title}
+              style={imgStyles}
+            />
+            <div className="absolute top-[50%] left-[4%]">
+              <h1 className="text-white text-7xl">{rows[0].title}</h1>
 
-            <h2 className="text-xl text-white w-[60%]">
-              {rows[0].description}
-            </h2>
+              <h2 className="text-xl text-white w-[60%]">
+                {rows[0].description}
+              </h2>
+            </div>
+          </section>
+        )
+      ) : (
+        <section>
+          <img style={imgStyles} />
+          <div className="absolute top-[50%] left-[4%]">
+            <h1 className="text-white text-7xl">Opps ! Nothing to display</h1>
           </div>
         </section>
       )}
-      {/* <div>
-        <AboutAccordion />
-      </div> */}
     </div>
   );
 };

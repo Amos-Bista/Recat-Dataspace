@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
-// import customerData from "../../assests/customerData.json";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from "@mui/material/Button";
@@ -16,11 +15,11 @@ const ValueCustomer = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 1000,
-    slidesToShow: 6,
+    speed: 6000,
+    slidesToShow: 7,
     slidesToScroll: 1,
     autoplay: autoplay,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 0,
   };
 
   const handleLeftArrowClick = () => {
@@ -50,33 +49,34 @@ const ValueCustomer = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/getAboutUs"
+        `${process.env.REACT_APP_API_BASE_URL}/client/getClient`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
       setCustomerData(data);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   return (
-    <div className="relative mb-8">
+    <div className="relative mb-10  mx-16">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
-          <div key={customer.id} className="w-[10rem] h-[10rem]">
+          <div key={customer.id} className="w-[9rem] h-[9rem] ">
             <img
-              src={`http://172.16.100.109:8282/aboutUs/${customer.logo}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[10rem] h-[10rem] mb-[15rem] rounded-md ml-14   "
+              className="w-[9rem] h-[9rem]  rounded-md"
             />
           </div>
         ))}
       </Slider>
       {/* Left arrow */}
       <Box
-        className="absolute top-0 left-0 z-10 mt-16 ml-8"
+        className="absolute top-0 left-0 z-10 mt-16 "
         style={{ transform: "translate(-50%, 50%)" }}
         onMouseEnter={() => setIsLeftArrowHovered(true)}
         onMouseLeave={() => setIsLeftArrowHovered(false)}

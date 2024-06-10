@@ -1,17 +1,14 @@
-{
-    "1": {
-      "Title": "Web Hosting",
-      "Description": "Your gateway to R..",
-      "Backgroundimage": "web.png",
-      "Edit": 24,
-      "Delete": 4.0
-    },
-    "2": {
-      "Title": " Hosting",
-      "Description": "Your  to R..",
-      "Backgroundimage": "web.png",
-      "Edit": 4,
-      "Delete": 4.0
-    }
+[
+  {
+    "id": "1",
+    "title": "Web Hosting",
+    "description": "Your gateway to R..",
+    "backgroundImage": "web.png"
+  },
+  {
+    "id": "2",
+    "title": "Hosting",
+    "description": "Your to R..",
+    "backgroundImage": "web.png"
   }
-  
+]

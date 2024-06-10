@@ -1,4 +1,3 @@
-import React, { useState, useRef } from "react";
 import {
   Button,
   Dialog,
@@ -8,60 +7,69 @@ import {
   TextField,
   Grid,
   Typography,
-  IconButton,
 } from "@mui/material";
+import React, { useState, useRef } from "react";
+import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ServiceAdd = ({ addData }) => {
+const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
   const [open, setOpen] = useState(false);
-  const [serviceName, setServiceName] = useState("");
-  const [serviceDescription, setServiceDescription] = useState("");
-  const [serviceBgImage, setServiceBgImage] = useState(null); // Updated to null initially
-
-  const functionOnPopUp = () => {
-    setOpen(true);
-  };
-
-  const closePopUp = () => {
-    setOpen(false);
-  };
-
-  const handleTitleChange = (e) => setServiceName(e.target.value);
-  const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
-  const handleImageChange = (event) => {
-    setServiceBgImage(event.target.files[0]);
-  };
+  const [title, setTitle] = useState(aboutDetails.title || "");
+  const [description, setDescription] = useState(
+    aboutDetails.description || ""
+  );
+  const [backgroundImage, setBackgroundImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(
+    aboutDetails.backgroundImage
+      ? `${process.env.REACT_APP_API_BASE_URL}/aboutUs/${aboutDetails.backgroundImage}`
+      : null
+  );
+  const inputRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    if (backgroundImage) {
+      formData.append("backgroundImage", backgroundImage);
+    }
 
     try {
-      const formData = new FormData();
-      formData.append("serviceName", serviceName);
-      formData.append("serviceDescription", serviceDescription);
-      formData.append("serviceBgImage", serviceBgImage);
-
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/services/addServices`,
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/update/${aboutDetails.id}`,
         {
-          method: "POST",
+          method: "PUT",
           body: formData,
         }
       );
 
       if (response.ok) {
-        alert("Form submitted successfully!");
+        alert("AboutUs updated successfully!");
+        handleEditAbout();
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error submitting form. Please try again.");
+      alert("Error updating AboutUs. Please try again.");
     }
     setOpen(false);
   };
 
-  const inputRef = useRef(null);
+  const functionOnPopUp = () => {
+    setOpen(true);
+  };
+  const closePopUp = () => {
+    setOpen(false);
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setBackgroundImage(file);
+    setPreviewImage(URL.createObjectURL(file));
+  };
+
   const handleImageClick = () => {
     inputRef.current.click();
   };
@@ -69,12 +77,10 @@ const ServiceAdd = ({ addData }) => {
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add New +
+        EDIT
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle
-          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
-        >
+        <DialogTitle>
           Hero Section
           <IconButton
             aria-label="close"
@@ -90,18 +96,23 @@ const ServiceAdd = ({ addData }) => {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={4} padding={5}>
+          <Grid container spacing={2}>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
                 Title
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
+            >
               <TextField
                 label="Enter title"
                 variant="outlined"
                 fullWidth
-                onChange={handleTitleChange}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -113,14 +124,19 @@ const ServiceAdd = ({ addData }) => {
                 Description
               </Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid
+              item
+              xs={6}
+              style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
+            >
               <TextField
                 label="Enter description"
                 variant="outlined"
                 fullWidth
                 multiline
                 rows={4}
-                onChange={handleDescriptionChange}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -129,6 +145,19 @@ const ServiceAdd = ({ addData }) => {
               </Typography>
             </Grid>
             <Grid item xs={6}>
+              {previewImage && (
+                <img
+                  src={previewImage}
+                  alt="background"
+                  style={{
+                    width: "500px",
+                    height: "250px",
+                    objectFit: "cover",
+                    overflow: "hidden",
+                    marginBottom: "10px",
+                  }}
+                />
+              )}
               <input
                 type="file"
                 ref={inputRef}
@@ -144,31 +173,19 @@ const ServiceAdd = ({ addData }) => {
         <DialogActions
           style={{
             display: "flex",
-            gap: "200px",
+            gap: "230px",
+            marginRight: "13px",
           }}
         >
-          <Button
-            variant="contained"
-            onClick={closePopUp}
-            style={{
-              backgroundColor: "#FF0000",
-              marginLeft: "53px",
-              marginRight: "auto",
-            }}
-          >
-            UNPUBLISH
+          <Button onClick={handleSubmit} color="inherit" variant="contained">
+            UPDATE
           </Button>
           <Button
-            onClick={handleSubmit}
-            style={{
-              backgroundColor: "#0c5177",
-              color: "#fff",
-              marginLeft: "auto",
-              marginRight: "56px",
-            }}
+            onClick={closePopUp}
+            style={{ backgroundColor: "#0c5177", color: "#fff" }}
             variant="contained"
           >
-            PUBLISH
+            CANCEL
           </Button>
         </DialogActions>
       </Dialog>
@@ -176,4 +193,4 @@ const ServiceAdd = ({ addData }) => {
   );
 };
 
-export default ServiceAdd;
+export default AboutHeroEdit;

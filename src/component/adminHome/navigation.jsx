@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 import {
   TableContainer,
   Table,
@@ -40,7 +41,7 @@ const Navigation = () => {
   return (
     <main className="pt-6 mb-1">
       <div className="flex items-center justify-between mt-[-60px] ">
-        <h3 className=" my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">Navigation Bar</h3>
+        <h3 className=" my-8 text-2xl font-[400] text-[#0D5077] ">Navigation Bar</h3>
         <Button variant="contained" className="flex items-end h-10 align-end" onClick={handleAddNew}>
           Add New +
         </Button>
@@ -56,7 +57,8 @@ const Navigation = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+            {rows.length > 0 ? (
+              rows.map((row) => (
                 <TableRow
                   key={row.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -81,7 +83,15 @@ const Navigation = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+            ) : (
+              <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon color="error"/>
+                  No items available. Please add new items.
+                  </TableCell>
+                </TableRow>
+            )}
             </TableBody>
           </Table>
         </TableContainer>

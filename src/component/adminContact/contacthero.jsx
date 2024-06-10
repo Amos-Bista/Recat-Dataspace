@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import ContactHeroAdd from "../../component/adminContact/contactheroadd";
 import ContactHeroEdit from "../../component/adminContact/contactheroedit";
 import ContactHeroDelete from "../../component/adminContact/contactherodelete";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 import { Box } from "@mui/material";
 
@@ -28,7 +29,7 @@ const ContactHero = () => {
   return (
     <main>
       <div className="flex justify-between   items-center">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]  mb-[40px]  ">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]    mb-[40px]  ">
           Hero Section
         </h3>
 
@@ -75,6 +76,7 @@ const ContactHero = () => {
               ) : (
                 <TableRow>
                   <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon color="error"/>
                     No items available. Please add new items.
                   </TableCell>
                 </TableRow>

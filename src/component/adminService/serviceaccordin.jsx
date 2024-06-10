@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import adminacordin from "../../assests/adminacordin.json";
 import AccordionAdd from "./accordionAdd";
 
-const Serviceaccordin = () => {
+const Serviceaccordin = ({title , description}) => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
@@ -25,15 +25,9 @@ const Serviceaccordin = () => {
   return (
     <main className="pt-6 ">
       <div className="flex items-center justify-between align-middle ">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
-          Accordion
+        <h3 className=" my-3 text-2xl font-[400] text-[white] ">
+          ServiceName Accordion
         </h3>
-        <div className="flex justify-between mb-4 align-middle">
-          <h1> </h1>
-          <Button >
-         < AccordionAdd/>
-          </Button>
-        </div>
       </div>
       <div className="">
         <TableContainer component={Paper}>
@@ -55,13 +49,12 @@ const Serviceaccordin = () => {
                     </TableCell>
                     <TableCell align="center">{row.Description}</TableCell>
                     <TableCell align="center">
-                      <Button sx={{ margin: 2 }} variant="contained">
-                        Edit
-                      </Button>
+                      <Button variant="contained">Edit</Button>
                     </TableCell>
                     <TableCell align="center">
-                      <Button sx={{ margin: 2 }} 
-                      className="!bg-red-500 hover:!bg-red-700 !text-white !font-bold !py-2 !px-4 !rounded"
+                      <Button
+                        sx={{ margin: 2 }}
+                        className="!bg-red-500 hover:!bg-red-700 !text-white !rounded"
                       >
                         Delete
                       </Button>

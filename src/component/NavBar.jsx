@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import navItems from "../assests/navItems.json";
 import Services from "../pages/services";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -47,7 +48,7 @@ const NavBar = () => {
   }, []);
 
   return (
-    <div className={`px-8  ${scrolled ? "bg-white" : ""}`}>
+    <div className={` pl-7 pr-9  ${scrolled ? "bg-white" : ""}`}>
       <div className="relative flex justify-between h-32 px-6 mt-0 align-middle">
         <a href="/">
           <img
@@ -56,18 +57,14 @@ const NavBar = () => {
             className="absolute h-16 top-5"
           />
         </a>
-        <div className="flex">
+        <div className="flex   w-full h-full">
           <ul
-            className={`flex gap-8 absolute top-12 right-2 font-light text-2xl ${
+            className={`flex gap-8 absolute top-12 right-2 font-light text-xl ${
               scrolled ? "text-black" : "text-white"
             }`}
           >
-            
             {navItems.map((item, index) => (
-              <li
-                key={index}
-                className="hover:underline underline-offset-1 active:text-blue-900"
-              >
+              <li key={index} className="hover:underline active:text-blue-900">
                 {item.dropdown ? (
                   <div
                     className="relative"
@@ -101,19 +98,30 @@ const NavBar = () => {
                   </div>
                 ) : (
                   <li key={index}>
-                    <a href={item.link}>{item.title}</a>
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "active underline decoration-white "
+                          : ""
+                      }
+                      to={item.link}
+                    >
+                      {item.title}
+                    </NavLink>
                   </li>
                 )}
               </li>
             ))}
             <li className="flex align-top">
-              <a >
-                <Services/>
+              <a>
+                <Services />
               </a>
             </li>
           </ul>
         </div>
-      </div>    
+      </div>
     </div>
   );
 };

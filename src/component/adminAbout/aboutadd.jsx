@@ -46,7 +46,6 @@ const AboutAdd = () => {
           body: formData,
         }
       );
-
       if (response.ok) {
         setResponse("Contact registered");
         alert("Form submitted successfully!");

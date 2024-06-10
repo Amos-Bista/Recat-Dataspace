@@ -3,8 +3,6 @@ import SearchDomain from "../component/home/searchdomain";
 import Plans from "../component/Plans";
 import ValueCustomer from "../component/home/ValueCustomer";
 
-// import Valuablecustomer from "./component/valuablecustomer";
-// import Plans from "../component/Plans";
 function Home() {
   return (
     <div className="flex-col text-black ">
@@ -15,14 +13,14 @@ function Home() {
         <SearchDomain />
       </div>
       <section>
-        <h1 className="flex justify-center text-4xl ">
+        <h1 className="flex justify-center text-3xl  font-semibold ">
           Our Popular Plans & Pricing
         </h1>
         <div className="mb-[8rem]">
           <Plans />
         </div>
         <div>
-          <h1 className="flex justify-center text-3xl mb-[2rem]  font-bold">
+          <h1 className="flex justify-center text-3xl  font-semibold mb-7">
             Our Valued Costumers
           </h1>
           <ValueCustomer />

@@ -1,64 +1,67 @@
 import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    TextField,
-    Grid,
-    Typography,
-  } from "@mui/material";
-  import React, { useState } from "react";
-  import IconButton from "@mui/material/IconButton";
-  import CloseIcon from "@mui/icons-material/Close";
-  
-  const AccordionAdd = () => {
-    const [open, setOpen] = useState(false);
-    const [tittle, setTittle] = useState("");
-    const [description, setDescription] = useState("");
-    const [response, setResponse] = useState("");
-    const functionOnPopUp = () => {
-      setOpen(true);
-    };
-    const closePopUp = () => {
-      setOpen(false);
-    };
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-  
-      try {
-        const response = await fetch(
-          //   "http://172.16.100.109:8282/contacts/addContacts",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ tittle, description }),
-          }
-        );
-  
-        if (response.ok) {
-          setResponse("Contact registeresd"); // Set the response message
-          alert("Form submitted successfully!"); // Alert for successful submission
-        } else {
-          throw new Error("Network response was not ok");
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+  Grid,
+  Typography,
+} from "@mui/material";
+import React, { useState } from "react";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+
+const AccordionAdd = () => {
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const functionOnPopUp = () => {
+    setOpen(true);
+  };
+  const closePopUp = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/addDescription`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title, description }),
         }
-      } catch (error) {
-        console.error("Error:", error);
-        setResponse("Error posting data.");
-        alert("Error submitting form. Please try again."); // Alert for error
+      );
+
+      if (response.ok) {
+        alert("Form submitted successfully!");
+      } else {
+        throw new Error("Network response was not ok");
       }
-    };
-  
-    return (
-      <>
-        <Button onClick={functionOnPopUp} color="primary" variant="contained">
-          Add New +
-        </Button>
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error submitting form. Please try again.");
+    }
+  };
+
+  return (
+    <>
+      <div>
+        <div className="w-full  flex justify-between">
+          <h1 className=" text-2xl font-[400] text-[#383698]">Accordions</h1>
+          <Button onClick={functionOnPopUp} color="primary" variant="contained">
+            Add Accordion +
+          </Button>
+        </div>
         <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-          <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
+          <DialogTitle
+            style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+          >
             Plans Information
             <IconButton
               aria-label="close"
@@ -82,11 +85,11 @@ import {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label="Enter Tittle"
+                  label="Enter Title"
                   variant="outlined"
                   fullWidth
-                  value={tittle}
-                  onChange={(e) => setTittle(e.target.value)}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </Grid>
               <Grid item xs={6}>
@@ -103,8 +106,6 @@ import {
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </Grid>
-             
-              
             </Grid>
           </DialogContent>
           <DialogActions
@@ -113,23 +114,35 @@ import {
               gap: "200px",
             }}
           >
-            <Button color="inherit" variant="contained" onClick={closePopUp}
-            style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+            <Button
+              color="inherit"
+              variant="contained"
+              onClick={closePopUp}
+              style={{
+                backgroundColor: "#FF0000",
+                marginLeft: "53px",
+                marginRight: "auto",
+              }}
             >
               UNPUBLISH
             </Button>
             <Button
               onClick={handleSubmit}
-              style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'56px'  }}
+              style={{
+                backgroundColor: "#0c5177",
+                color: "#fff",
+                marginLeft: "auto",
+                marginRight: "56px",
+              }}
               variant="contained"
             >
               PUBLISH
             </Button>
           </DialogActions>
         </Dialog>
-      </>
-    );
-  };
-  
-  export default AccordionAdd;
-  
+      </div>
+    </>
+  );
+};
+
+export default AccordionAdd;

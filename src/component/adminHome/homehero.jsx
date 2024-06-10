@@ -12,6 +12,7 @@ import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
 import { Box } from "@mui/material";
+import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
 
 const HomeHero = () => {
   const [rows, setRows] = useState([]);
@@ -72,6 +73,7 @@ const HomeHero = () => {
             ) : (
               <TableRow>
                   <TableCell align="center" colSpan={5}>
+                  <SdCardAlertIcon color="error"/>
                   No items available. Please add new items.
                   </TableCell>
                 </TableRow>

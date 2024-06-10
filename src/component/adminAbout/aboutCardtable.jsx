@@ -8,6 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AboutAdd from "../adminAbout/aboutadd";
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
+import { Box } from "@mui/material";
 
 const AboutCardTable = () => {
   const [rowDatas, setRowDatas] = useState([]);
@@ -35,9 +37,9 @@ const AboutCardTable = () => {
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
           DataSpace About Us Cards
         </h3>
-        <Button>
+        <Box>
           <AboutAdd />
-        </Button>
+        </Box>
       </div>
       <div className="">
         <TableContainer component={Paper}>
@@ -52,42 +54,53 @@ const AboutCardTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rowDatas.map((rowData, index) => (
-                <TableRow
-                  key={rowData.index}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    align="center"
-                    sx={{
-                      backgroundImage: `url(http://172.16.100.109:8282/aboutUs/${rowData.logo})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      width: 150,
-                      height: 150,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  ></TableCell>
-                  <TableCell align="center">{rowData.title}</TableCell>
-                  <TableCell component="th" scope="row">
-                    {rowData.paragraph}
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }} variant="contained">
-                      Edit
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }}
-                    className="!bg-red-500 hover:!bg-red-700 !text-white !font-bold !py-2 !px-4 !rounded"
-                    >
-                      Delete
-                    </Button>
+              {rowDatas.length > 0 ? (
+                rowDatas.length > 0 &&
+                rowDatas[0].aboutUsAccordions &&
+                rowDatas[0].aboutUsAccordions.map((rowData) => (
+                  <TableRow
+                    key={rowData.id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell
+                      align="center"
+                      sx={{
+                        backgroundImage: `url(${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rowData.logo})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        width: 50,
+                        height: 50,
+                        display: "flex",
+                        marginLeft: "20px",
+                      }}
+                    ></TableCell>
+                    <TableCell align="center">{rowData.title}</TableCell>
+                    <TableCell component="th" scope="row">
+                      {rowData.description}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }} variant="contained">
+                        Edit
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        sx={{ margin: 2 }}
+                        className="!bg-red-500 hover:!bg-red-700 !text-white !font-bold !py-2 !px-4 !rounded"
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell align="center" colSpan={5}>
+                    <SdCardAlertIcon color="error" />
+                    No contacts available. Please add new contacts.
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </TableContainer>
