@@ -13,7 +13,7 @@ import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
 import AboutHeroAdd from "./aboutHeroAdd";
 
-const AboutHero = () => {
+const   AboutHero = () => {
   const [rows, setRows] = useState([]);
   const [error, setError] = useState(null);
 

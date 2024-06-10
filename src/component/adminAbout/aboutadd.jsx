@@ -16,8 +16,9 @@ const AboutAdd = () => {
   const [open, setOpen] = useState(false);
   const [logo, setLogo] = useState(null);
   const [title, setTitle] = useState("");
-  const [paragraph, setParagraph] = useState("");
+  const [description, setDescription] = useState("");
   const [response, setResponse] = useState("");
+  const [aboutUsID, setAboutUsID] = useState("12345"); // Replace with your actual ID or logic to fetch/set the ID
 
   const handleOpen = () => {
     setOpen(true);
@@ -30,14 +31,16 @@ const AboutAdd = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
+
     try {
       const formData = new FormData();
       formData.append("logo", logo);
       formData.append("title", title);
-      formData.append("paragraph", paragraph);
+      formData.append("description", description);
 
       const response = await fetch(
-        "http://172.16.100.109:8282/aboutUs/addAboutUs",
+        `http://172.16.100.109:8282/aboutUsDesc/addAccordion/aboutUsID${aboutUsID}`,
         {
           method: "POST",
           body: formData,
@@ -49,12 +52,13 @@ const AboutAdd = () => {
         alert("Form submitted successfully!");
         handleClose(); // Close the dialog after successful submission
       } else {
-        throw new Error("Network response was not ok");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
       setResponse("Error posting data.");
-      alert("Error submitting form. Please try again.");
+      alert(`Error submitting form: ${error.message}`);
     }
   };
 
@@ -64,7 +68,9 @@ const AboutAdd = () => {
         Add New +
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle style={{ color: "#0c5177", textAlign: "center",fontSize: "30px" }}>
+        <DialogTitle
+          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
+        >
           Card Information
           <IconButton
             aria-label="close"
@@ -109,7 +115,7 @@ const AboutAdd = () => {
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
-                Paragraph:
+                Description:
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -117,8 +123,8 @@ const AboutAdd = () => {
                 label="Enter Paragraph"
                 variant="outlined"
                 fullWidth
-                value={paragraph}
-                onChange={(e) => setParagraph(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Grid>
           </Grid>
@@ -129,14 +135,25 @@ const AboutAdd = () => {
             gap: "200px",
           }}
         >
-          <Button variant="contained" onClick={handleClose}
-          style={{ backgroundColor: "#FF0000", marginLeft:'53px', marginRight:'auto'}}
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "53px",
+              marginRight: "auto",
+            }}
           >
             UNPUBLISH
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft:'auto', marginRight:'56px'  }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "56px",
+            }}
             variant="contained"
           >
             PUBLISH

@@ -5,9 +5,9 @@ import Contactmap from "../component/contact/contactmap";
 
 const Contact = () => {
   return (
-    <div>
+    <div className="">
       <Contacthero />
-      <div className="flex flex-col justify-center mx-auto text-center my-12">
+      <div className="flex flex-col justify-center mx-auto my-12 text-center">
         <Contactform />
         <Contactmap />
       </div>{" "}

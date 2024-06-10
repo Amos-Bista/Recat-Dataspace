@@ -18,8 +18,8 @@ const AboutCardTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        // "http://172.16.100.109:8282/aboutUs/getAboutUs"
-      );
+        "http://172.16.100.109:8282/aboutUsDesc/addAccordion"
+      );  
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -33,7 +33,7 @@ const AboutCardTable = () => {
     <main className="w-full">
       <div className="flex items-center justify-between">
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
-          DataSpace Cards
+          DataSpace About Us Cards
         </h3>
         <Button>
           <AboutAdd />
