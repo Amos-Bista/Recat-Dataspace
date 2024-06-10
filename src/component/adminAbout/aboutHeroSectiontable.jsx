@@ -12,7 +12,7 @@ import AboutHeroAdd from "./aboutHeroAdd";
 import AboutHeroEdit from "./aboutheroedit";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
-const AboutHero = () => {
+const   AboutHero = () => {
   const [rows, setRows] = useState([]);
   const [error, setError] = useState(null);
 
