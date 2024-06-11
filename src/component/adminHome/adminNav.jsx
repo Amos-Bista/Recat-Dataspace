@@ -155,7 +155,7 @@ const AdminNav = () => {
                       style={{ fontSize: "1.5rem" }}
                       className="ml-[2rem] h-5 pr-4 text-current"
                     />
-                    {service.service_name}
+                    {service.serviceName}
                   </li>
                 )}
               </NavLink>

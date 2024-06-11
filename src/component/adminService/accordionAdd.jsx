@@ -52,7 +52,7 @@ const AccordionAdd = () => {
   return (
     <>
       <div>
-        <div className="w-full  flex justify-between">
+        <div className="flex justify-between w-full">
           <h1 className=" text-2xl font-[400] text-[#383698]">Accordions</h1>
           <Button onClick={functionOnPopUp} color="primary" variant="contained">
             Add Accordion +

@@ -26,7 +26,7 @@ const Serviceaccordin = ({title , description}) => {
     <main className="pt-6 ">
       <div className="flex items-center justify-between align-middle ">
         <h3 className=" my-3 text-2xl font-[400] text-[white] ">
-          ServiceName Accordion
+          Service Name Accordion
         </h3>
       </div>
       <div className="">

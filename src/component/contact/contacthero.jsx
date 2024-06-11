@@ -1,86 +1,87 @@
 import React, { useState, useEffect } from "react";
+import ButtonHerosection from "../home/buttonHerosection";
 
-
-const Contacthero = () => {
+const ContactHero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const slides = [
-    {
-      image: "/tele.jpeg",
-      caption: "Contact Us",
-    },
-   
-    // Add more slides as needed
-  ];
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 1900); // Change slide every 5 seconds (adjust as needed)
-
-    // Cleanup interval on unmount
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.scrollY;
-      setScrollPosition(position);
+    const fetchSlides = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts `
+        ); // Replace with your API endpoint
+        if (!response.ok) {
+          throw new Error("Failed to fetch slides");
+        }
+        const data = await response.json();
+        setSlides(data);
+        console.log(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup event listener on unmount
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    fetchSlides();
   }, []);
 
-  const handlePrevSlide = () => {
-    setCurrentSlide(
-      (prevSlide) => (prevSlide - 1 + slides.length) % slides.length
-    );
-  };
+  useEffect(() => {
+    if (slides.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+      }, 5000); // Change slide every 5 seconds (adjust as needed)
 
-  const handleNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  };
-
-  // Calculate opacity based on scroll position
-  const opacity = 1.5 - scrollPosition / window.innerHeight;
+      return () => clearInterval(interval);
+    }
+  }, [slides.length]);
 
   const imgStyles = {
     width: "100vw",
-    height: "657px",
-    position: "center",
-    opacity: opacity < 0 ? 0 : opacity, // Ensure opacity doesn't go below 0
-    transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
+    height: "667px",
+    transition: "opacity 0.5s ease-in-out",
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <main className="flex justify-between w-[max-content] relative">
       <div className="relative">
         <div
-          style={{ width: "100vw", height: "567px" }}
+          style={{ width: "100vw", height: "667px" }}
           className="absolute bg-black/50"
         ></div>
-        <img
-          src={slides[currentSlide].image}
-          alt={slides[currentSlide].caption}
-          style={imgStyles}
-          className="w-max-screen"
-        />
+        {slides.length > 0 && (
+          <img
+            src={`${process.env.REACT_APP_API_BASE_URL}/contacts/${slides[currentSlide].backgroundImage}`}
+            alt={slides[currentSlide].title}
+            style={imgStyles}
+            className="w-max-screen"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/defaultImage.png"; // Fallback image
+            }}
+          />
+        )}
+
         <div className="absolute top-[50%] left-[4%]">
-          <h1 className="text-white text-7xl">
-            {slides[currentSlide].caption}
-          </h1>
-          <h2 className="text-3xl text-white">
-            Any question or remarks? Just write us a message!
-          </h2>
+          <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
+          <h1 className="text-xl text-white">{slides[currentSlide].description}</h1>
+
+          <ButtonHerosection />
         </div>
       </div>
     </main>
   );
 };
 
-export default Contacthero;
+export default ContactHero;

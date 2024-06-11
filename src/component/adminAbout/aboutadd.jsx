@@ -30,9 +30,6 @@ const AboutAdd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    
-
     try {
       const formData = new FormData();
       formData.append("logo", logo);
@@ -40,7 +37,7 @@ const AboutAdd = () => {
       formData.append("description", description);
 
       const response = await fetch(
-        `http://172.16.100.109:8282/aboutUsDesc/addAccordion/aboutUsID${aboutUsID}`,
+        `  ${process.env.REACT_APP_API_BASE_URL}aboutUsDesc/addAccordion/aboutUsID${aboutUsID} `,
         {
           method: "POST",
           body: formData,

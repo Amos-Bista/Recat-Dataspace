@@ -19,10 +19,7 @@ const AboutAccordion = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "http://172.16.100.109:8282/"
-
-      );
+      const response = await fetch("http://172.16.100.109:8282/");
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }

@@ -76,12 +76,12 @@ const Footer = () => {
         <div className="flex w-[84%] pt-10">
           <div className="w-[45%] flex-col">
             <h1 className="text-3xl">Service</h1>
-            <div className="flex pt-3 pl-5 gap-10">
+            <div className="flex gap-10 pt-3 pl-5">
               {chunkedServices.map((chunk, index) => (
                 <ul key={index} className="gap-10 list-disc text-1xl">
                   {chunk.map((service) => (
                     <li key={service.id} className="py-1">
-                      {service.service_name}
+                      {service.serviceName}
                     </li>
                   ))}
                 </ul>
