@@ -69,7 +69,7 @@ const ServiceAdd = ({ addData }) => {
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add New +
+        Add New 
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle

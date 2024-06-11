@@ -55,13 +55,14 @@ const AdminServiceSub = () => {
 
   return (
     <div>
-      <main className="flex align-middle  bg-gray-200  py-28">
+      <main className="flex align-middle bg-gray-200 py-28">
         <AdminNav />
         <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14">
-          <div className=" mb-10">
+          
+          <div className="mb-10 ">
             <AccordionAdd />
           </div>
-          <div className=" w-full h-full rounded-lg  px-2">
+          <div className="w-full h-full px-2 rounded-lg ">
             <TableContainer component={Paper}>
               <TableHead>
                 <TableRow>
@@ -77,7 +78,7 @@ const AdminServiceSub = () => {
                     <TableRow key={panel.id}>
                       <TableCell align="center">{panel.title}</TableCell>
                       <TableCell align="center">{panel.description}</TableCell>
-                      <TableCell>
+                      <TableCell> 
                         <Button variant="contained">EDIT</Button>
                       </TableCell>
                       <TableCell>

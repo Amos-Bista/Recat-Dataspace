@@ -38,7 +38,7 @@ const ServiceHero = ({ id }) => {
           className="absolute bg-black/50"
         ></div>
         <img
-          // src={service.serviceBgImage}
+          src={service.serviceBgImage}
           style={{ width: "100vw", height: "667px" }}
           className="w-max-screen"
         />

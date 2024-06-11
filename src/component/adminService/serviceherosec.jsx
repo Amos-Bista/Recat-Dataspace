@@ -30,7 +30,13 @@ const Serviceherosec = () => {
       console.error("Error fetching data:", error);
     }
   };
-
+  const imgStyles = {
+    width: "10vw",
+    height: "6vw",
+    position: "center",
+    transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
+  };  
+   //service page table
   return (
     <main className="">
       <div className="">
@@ -50,10 +56,18 @@ const Serviceherosec = () => {
                 rows.map((row, index) => (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row" align="center">
-                      {row.service_name}
+                      {row.serviceName}
                     </TableCell>
-                    <TableCell align="center">Description</TableCell>
-                    <TableCell align="center">Backgroundimage</TableCell>
+                    <TableCell align="center">
+                      {row.serviceDescription}
+                    </TableCell>
+                    <TableCell align="center">
+                      <img
+                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row.serviceBgImage}`}
+                        alt=""
+                        style={imgStyles}
+                      />
+                    </TableCell>
 
                     <TableCell align="center">
                       <Button variant="contained">Edit</Button>

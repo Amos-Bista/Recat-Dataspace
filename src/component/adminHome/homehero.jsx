@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,7 +12,7 @@ import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
 import { Box } from "@mui/material";
-import SdCardAlertIcon from '@mui/icons-material/SdCardAlert';
+import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
 const HomeHero = () => {
   const [rows, setRows] = useState([]);
@@ -21,10 +21,36 @@ const HomeHero = () => {
     setRows([...rows, data]);
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRows(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   const handleDelete = (index) => {
     const updatedRows = [...rows];
     updatedRows.splice(index, 1);
     setRows(updatedRows);
+  };
+  const imgStyles = {
+    width: "10vw",
+    height: "6vw",
+    position: "center",
+    transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
   return (
     <main>
@@ -37,7 +63,7 @@ const HomeHero = () => {
           <Add addData={addData} />
         </Box>
       </div>
-      <div >
+      <div>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -50,34 +76,40 @@ const HomeHero = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-            {rows.length > 0 ? (
-              rows.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell align="center">{row.Title}</TableCell>
-                  <TableCell align="center">{row.Description}</TableCell>
-                  <TableCell align="center">{row.Backgroundimage}</TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }}>
+              {rows.length > 0 ? (
+                rows.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell align="center">{rows[0].title}</TableCell>
+                    <TableCell align="center">{rows[0].description}</TableCell>
+                    <TableCell className="flex justify-center">
+                      <img
+                        src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${row.backgroundImage}`}
+                        alt={rows[0].title}
+                        style={imgStyles}
+                        className="mx-auto"
+                      />
+                    </TableCell>
+                    <TableCell align="center">
                       <Edit />
-                    </Button>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button sx={{ margin: 2 }}
-                    className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
-                    >
-                      <Delete onDelete={() => handleDelete(index)} />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        sx={{ margin: 2 }}
+                        className=" hover:!bg-red-700 !text-white !py-1 !px-2 !rounded"
+                      >
+                        <Delete onDelete={() => handleDelete(index)} />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
                   <TableCell align="center" colSpan={5}>
-                  <SdCardAlertIcon color="error"/>
-                  No items available. Please add new items.
+                    <SdCardAlertIcon color="error" />
+                    No items available. Please add new items.
                   </TableCell>
                 </TableRow>
-            )}
+              )}
             </TableBody>
           </Table>
         </TableContainer>
