@@ -10,7 +10,7 @@ const Contact = () => {
       <div className="flex flex-col justify-center mx-auto my-12 text-center">
         <Contactform />
         <Contactmap />
-      </div>{" "}
+      </div>
     </div>
   );
 };

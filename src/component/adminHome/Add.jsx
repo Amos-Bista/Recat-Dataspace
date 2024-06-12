@@ -17,7 +17,7 @@ const Add = ({ addData }) => {
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
   const [serviceBgImage, setServiceBgImage] = useState(null); // Updated to null initially
-
+  const [isloading, setisLoading] = useState();
   const [response, setResponse] = useState("");
 
   const functionOnPopUp = () => {
@@ -36,34 +36,47 @@ const Add = ({ addData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setisLoading(true);
     try {
       const formData = new FormData();
-      formData.append("serviceName", serviceName);
-      formData.append("serviceDescription", serviceDescription);
-      formData.append("serviceBgImage", serviceBgImage);
-
+      formData.append("title", serviceName);
+      formData.append("description", serviceDescription);
+      formData.append("backgroundImage", serviceBgImage);
+  
       const response = await fetch(
-        "http://172.16.100.109:8282/services/addServices",
+        `${process.env.REACT_APP_API_BASE_URL}/heroSection/createSection`,
         {
           method: "POST",
           body: formData,
         }
       );
-
       if (response.ok) {
+        const result = await response.json();
         setResponse("Contact registered");
         alert("Form submitted successfully!");
+        console.log("Response:", result); // Log the response from the server
+        addData(result); // Update the parent component with the new data
       } else {
-        throw new Error("Network response was not ok");
+        // Check if response status is 400 or 500
+        if (response.status >= 400 && response.status < 500) {
+          const errorData = await response.json();
+          console.error("Client Error:", errorData);
+          throw new Error("Client error occurred");
+        } else if (response.status >= 500) {
+          console.error("Server Error:", response.statusText);
+          throw new Error("Server error occurred");
+        }
       }
     } catch (error) {
       console.error("Error:", error);
       setResponse("Error posting data.");
       alert("Error submitting form. Please try again.");
+    } finally {
+      setisLoading(false); // Stop loading
+      setOpen(false);
     }
-    setOpen(false);
   };
+  
 
   const inputRef = useRef(null);
   const handleImageClick = () => {
@@ -136,7 +149,7 @@ const Add = ({ addData }) => {
               <input
                 type="file"
                 ref={inputRef}
-                style={{ display: "none" }}
+                style={{ display: true }}
                 onChange={handleImageChange}
               />
               <Button onClick={handleImageClick} variant="outlined">
