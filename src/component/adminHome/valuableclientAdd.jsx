@@ -25,9 +25,12 @@ const ValuableclientAdd = () => {
   const closePopUp = () => {
     setOpen(false);
   };
+  // const reloadPage = () => {
+  //   window.location.reload();
+  // }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     const formData = new FormData();
     formData.append("title", title);
@@ -45,9 +48,14 @@ const ValuableclientAdd = () => {
       if (response.ok) {
         setResponse("Contact registered"); // Set the response message
         alert("Form submitted successfully!"); // Alert for successful submission
+        // closePopUp(true);
+        // reloadPage(true);
       } else {
         throw new Error("Network response was not ok");
       }
+     
+
+     
     } catch (error) {
       console.error("Error:", error);
       setResponse("Error posting data.");
@@ -64,7 +72,7 @@ const ValuableclientAdd = () => {
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
         >
-          Footer Information
+          Client  Information
           <IconButton
             aria-label="close"
             onClick={closePopUp}

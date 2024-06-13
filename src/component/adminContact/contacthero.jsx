@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -20,11 +20,37 @@ const ContactHero = () => {
   const addData = (data) => {
     setRows([...rows, data]);
   };
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      console.log(data);
+      setRows(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handleDelete = (index) => {
     const updatedRows = [...rows];
     updatedRows.splice(index, 1);
     setRows(updatedRows);
+  };
+  const imgStyles = {
+    width: "10vw",
+    height: "6vw",
+    position: "center",
+    transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
   return (
     <main>
@@ -53,9 +79,17 @@ const ContactHero = () => {
               {rows.length > 0 ? (
                 rows.map((row, index) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{row.Title}</TableCell>
-                    <TableCell align="center">{row.Description}</TableCell>
-                    <TableCell align="center">{row.Backgroundimage}</TableCell>
+                    <TableCell align="center">{row.title}</TableCell>
+                    <TableCell align="center">{row.description}</TableCell>
+                    <TableCell align="center">
+                    <img
+                        src={`${process.env.REACT_APP_API_BASE_URL}/contacts/${row.backgroundImage}`}
+                          alt={rows[0].title}
+                        style={imgStyles}
+                        className="mx-auto"
+                      />
+                      {row.backgroundImage}
+                    </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
                         <ContactHeroEdit />

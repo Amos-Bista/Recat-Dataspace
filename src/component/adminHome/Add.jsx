@@ -16,7 +16,7 @@ const Add = ({ addData }) => {
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
-  const [serviceBgImage, setServiceBgImage] = useState(null); // Updated to null initially
+  const [serviceBgImage, setServiceBgImage] = useState("Null"); // Updated to null initially
   const [isloading, setisLoading] = useState();
   const [response, setResponse] = useState("");
 
@@ -27,22 +27,21 @@ const Add = ({ addData }) => {
   const closePopUp = () => {
     setOpen(false);
   };
-
-  const handleTitleChange = (e) => setServiceName(e.target.value);
-  const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
   const handleImageChange = (event) => {
-    setServiceBgImage(event.target.files[0]);
+    const imageFile = event.target.files[0];
+    if (imageFile) {
+      setServiceBgImage(imageFile);
+    }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setisLoading(true);
+
     try {
       const formData = new FormData();
       formData.append("title", serviceName);
       formData.append("description", serviceDescription);
-      formData.append("backgroundImage", serviceBgImage);
-  
+      formData.append("imageFile", serviceBgImage);
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/heroSection/createSection`,
         {
@@ -51,11 +50,9 @@ const Add = ({ addData }) => {
         }
       );
       if (response.ok) {
-        const result = await response.json();
         setResponse("Contact registered");
         alert("Form submitted successfully!");
-        console.log("Response:", result); // Log the response from the server
-        addData(result); // Update the parent component with the new data
+        addData(); // Update the parent component with the new data
       } else {
         // Check if response status is 400 or 500
         if (response.status >= 400 && response.status < 500) {
@@ -68,15 +65,14 @@ const Add = ({ addData }) => {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
-      setResponse("Error posting data.");
+      // console.error("Error:", error);
+      // setResponse("Error posting data.");
       alert("Error submitting form. Please try again.");
     } finally {
       setisLoading(false); // Stop loading
       setOpen(false);
     }
   };
-  
 
   const inputRef = useRef(null);
   const handleImageClick = () => {
@@ -118,7 +114,7 @@ const Add = ({ addData }) => {
                 label="Enter title"
                 variant="outlined"
                 fullWidth
-                onChange={handleTitleChange}
+                onChange={(e) => setServiceName(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -137,7 +133,7 @@ const Add = ({ addData }) => {
                 fullWidth
                 multiline
                 rows={4}
-                onChange={handleDescriptionChange}
+                onChange={(e) => setServiceDescription(e.target.value)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -148,8 +144,9 @@ const Add = ({ addData }) => {
             <Grid item xs={6}>
               <input
                 type="file"
+                id="imageInput"
                 ref={inputRef}
-                style={{ display: true }}
+                accept="image/*"
                 onChange={handleImageChange}
               />
               <Button onClick={handleImageClick} variant="outlined">

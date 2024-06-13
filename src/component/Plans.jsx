@@ -31,12 +31,12 @@ export default function Plans() {
 
   return (
     <div className="px-12">
-      <Slider {...settings}>
+      <Slider {...settings} className="">
         {plansData.map((plan, index) => (
           <Card
             key={index}
             sx={{ maxWidth: 355, marginBottom: 0 }}
-            className="flex mx-12 mt-12"
+            className="flex mx-12 mt-12 sm:w-12 "
           >
             <div className="h-24 rounded-t-md bg-[#0D5077] flex-col justify-center items-center ">
               <div className="items-center pt-2">
@@ -67,7 +67,7 @@ export default function Plans() {
                 </Typography>
               ))}
               {plan.details.map((detail, idx) => (
-                <h1  className="font-serif text-2xl font-slate-900 text-m">
+                <h1 className="font-serif text-2xl font-slate-900 text-m">
                   {detail.pricedescription}
                 </h1>
               ))}

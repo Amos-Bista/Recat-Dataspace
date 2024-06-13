@@ -79,8 +79,8 @@ const HomeHero = () => {
               {rows.length > 0 ? (
                 rows.map((row, index) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{rows[0].title}</TableCell>
-                    <TableCell align="center">{rows[0].description}</TableCell>
+                    <TableCell align="center">{rows[index].title}</TableCell>
+                    <TableCell align="center">{rows[index].description}</TableCell>
                     <TableCell className="flex justify-center">
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${row.backgroundImage}`}
