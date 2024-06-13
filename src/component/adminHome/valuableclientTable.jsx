@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import ValuableclientAdd from "./valuableclientAdd";
 import { Box } from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
+import VCD from "./valueclientDelete";
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
@@ -32,6 +33,24 @@ const ValuableclientTable = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const handleDelete = async (id, index) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/client/deleteClient?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete contact");
+      }
+      const updatedRows = [...rows];
+      updatedRows.splice(index, 1);
+      setRowData(updatedRows);
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
 
   return (
     <main className="">
@@ -40,7 +59,7 @@ const ValuableclientTable = () => {
           Valuable Client's List
         </h3>
         <Box>
-          <ValuableclientAdd />     
+          <ValuableclientAdd />
         </Box>
       </div>
       <div className="">
@@ -56,7 +75,7 @@ const ValuableclientTable = () => {
             </TableHead>
             <TableBody>
               {rows.length > 0 ? (
-                rows.map((row) => (
+                rows.map((row, index) => (
                   <TableRow
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -79,13 +98,17 @@ const ValuableclientTable = () => {
                         Edit
                       </Button>
                     </TableCell>
-                    <TableCell align="center">
+                    {/* <TableCell align="center">
                       <Button
+                        onclick
                         sx={{ margin: 2 }}
                         className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
                       >
                         Delete
                       </Button>
+                    </TableCell> */}
+                    <TableCell align="center">
+                      <VCD onDelete={() => handleDelete(row.id, index)} />
                     </TableCell>
                   </TableRow>
                 ))

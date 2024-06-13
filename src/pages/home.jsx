@@ -1,7 +1,7 @@
 import Herosection from "../component/home/herosection";
 import SearchDomain from "../component/home/searchdomain";
 import Plans from "../component/Plans";
-import ValueCustomer from "../component/home/ValueCustomer";
+import ValueCustomer from '../component/home/ValueCustomer'
 
 function Home() {
   return (
@@ -13,14 +13,14 @@ function Home() {
         <SearchDomain />
       </div>
       <section>
-        <h1 className="flex justify-center text-3xl  font-semibold ">
+        <h1 className="flex justify-center text-3xl font-semibold ">
           Our Popular Plans & Pricing
         </h1>
         <div className="mb-[8rem]">
           <Plans />
         </div>
         <div>
-          <h1 className="flex justify-center text-3xl  font-semibold mb-7">
+          <h1 className="flex justify-center text-3xl font-semibold mb-7">
             Our Valued Costumers
           </h1>
           <ValueCustomer />
