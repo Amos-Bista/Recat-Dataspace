@@ -41,10 +41,23 @@ const HomeHero = () => {
       console.error("Error fetching data:", error);
     }
   };
-  const handleDelete = (index) => {
-    const updatedRows = [...rows];
-    updatedRows.splice(index, 1);
-    setRows(updatedRows);
+  const handleDelete = async (id, index) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/heroSection/deleteSection?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete contact");
+      }
+      const updatedRows = [...rows];
+      updatedRows.splice(index, 1);
+      setRows(updatedRows);
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
   };
   const imgStyles = {
     width: "10vw",
@@ -78,9 +91,9 @@ const HomeHero = () => {
             <TableBody>
               {rows.length > 0 ? (
                 rows.map((row, index) => (
-                  <TableRow key={index}>
-                    <TableCell align="center">{rows[index].title}</TableCell>
-                    <TableCell align="center">{rows[index].description}</TableCell>
+                  <TableRow key={row.id}>
+                    <TableCell align="center">{rows[0].title}</TableCell>
+                    <TableCell align="center">{rows[0].description}</TableCell>
                     <TableCell className="flex justify-center">
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${row.backgroundImage}`}
@@ -97,7 +110,7 @@ const HomeHero = () => {
                         sx={{ margin: 2 }}
                         className=" hover:!bg-red-700 !text-white !py-1 !px-2 !rounded"
                       >
-                        <Delete onDelete={() => handleDelete(index)} />
+                        <Delete onDelete={() => handleDelete(row)} />
                       </Button>
                     </TableCell>
                   </TableRow>

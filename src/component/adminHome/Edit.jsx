@@ -68,7 +68,7 @@ const Edit = () => {
             >
               <TextField label="Enter title" variant="outlined" fullWidth />
             </Grid>
-            <Grid></Grid>
+           
 
             <Grid item xs={6}>
               <Typography

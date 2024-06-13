@@ -47,8 +47,8 @@ const ContactHero = () => {
     setRows(updatedRows);
   };
   const imgStyles = {
-    width: "10vw",
-    height: "6vw",
+    width: "20vw",
+    height: "12vw",
     position: "center",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
@@ -71,8 +71,8 @@ const ContactHero = () => {
                 <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Description</TableCell>
                 <TableCell align="center">Backgroundimage</TableCell>
-                <TableCell align="center">Edit</TableCell>
-                <TableCell align="center">Delete</TableCell>
+                {/* <TableCell align="center">Edit</TableCell>
+                <TableCell align="center">Delete</TableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -90,7 +90,7 @@ const ContactHero = () => {
                       />
                       {row.backgroundImage}
                     </TableCell>
-                    <TableCell align="center">
+                    {/* <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
                         <ContactHeroEdit />
                       </Button>
@@ -104,7 +104,7 @@ const ContactHero = () => {
                           onDelete={() => handleDelete(index)}
                         />
                       </Button>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 ))
               ) : (
