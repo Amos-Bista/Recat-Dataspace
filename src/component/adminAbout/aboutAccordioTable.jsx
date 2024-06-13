@@ -34,18 +34,15 @@ const AdminAccordionTable = () => {
       console.error("Error fetching service data:", error);
     }
   };
-
-  
-
   if (!serviceData) {
     return <div>Loading...</div>;
   }
+  
   // Construct the image URL
-  // const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
-  // console.log(imageUrl);
+  const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
+  console.log(imageUrl);
 
   
-
   return (
     <div>
       <main className="flex align-middle bg-gray-200 py-28">

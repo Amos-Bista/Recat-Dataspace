@@ -91,9 +91,9 @@ const ContactInfoAdd = ({ handleAddContact }) => {
 
   return (
     <>
-      <Button onClick={functionOnPopUp} color="primary" variant="contained">
+      {/* <Button onClick={functionOnPopUp} color="primary" variant="contained">
         Add New +
-      </Button>
+      </Button> */}
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}

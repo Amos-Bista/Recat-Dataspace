@@ -17,6 +17,7 @@ import ShowFooter from "./component/footer/showfooter.jsx";
 import ServicePage from "./pages/servicePage.jsx";
 import Services from "./pages/services.jsx";
 import AdminServiceSub from "./component/adminService/AdminServiceSub.jsx";
+import ContactInfoEdit from "./component/adminContact/contactinfoedit.jsx";
 
 const routesData = [
   {
@@ -122,7 +123,9 @@ function App() {
                         <Services />
                       ) : route.link === "/services/:id" ? (
                         <ServicePage />
-                      ) : null
+                      ) : route.link === "/contactEdit" ? (
+                        <ContactInfoEdit />
+                      ): null
                     }
                     exact={route.link === "/"}
                   />
