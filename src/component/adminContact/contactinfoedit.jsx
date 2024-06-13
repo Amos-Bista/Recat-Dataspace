@@ -11,13 +11,20 @@ import {
 import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import ContactHeroAdd from "./contactheroadd";
 
 const ContactInfoEdit = ({ contactDetails, handleEditContact }) => {
   const [open, setOpen] = useState(false);
   const [phoneNum, setPhoneNum] = useState(contactDetails.phoneNum || "");
   const [email, setEmail] = useState(contactDetails.email || "");
   const [address, setAddress] = useState(contactDetails.address || "");
-
+  const [backgroundImage, setBackgroundImage] = useState(
+    contactDetails.backgroundImage || ""
+  );
+  const [description, setDescription] = useState(
+    contactDetails.description || ""
+  );
+  const [title, setTitle] = useState(contactDetails.title || "");
   const [response, setResponse] = useState("");
 
   const functionOnPopUp = () => {
@@ -36,7 +43,14 @@ const ContactInfoEdit = ({ contactDetails, handleEditContact }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ phoneNum, email, address }),
+          body: JSON.stringify({
+            phoneNum,
+            email,
+            address,
+            backgroundImage,
+            title,
+            description,
+          }),
         }
       );
 
@@ -78,6 +92,59 @@ const ContactInfoEdit = ({ contactDetails, handleEditContact }) => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={4} padding={5}>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Title
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                value={title}
+                onClick={(e) => setTitle(e.target.value)}
+               
+                
+                fullWidth
+                
+                rows={1}
+
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                HeroSection Image
+              </Typography>
+            </Grid>
+
+            <Grid item xs={6}>
+              <TextField
+                label="Enter title"
+                variant="outlined"
+                fullWidth
+                value={backgroundImage}
+                onChange={(e) => setBackgroundImage(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginTop: "1rem" }}
+              >
+                Description
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Enter description"
+                variant="outlined"
+                value={description}
+                onclick={(e) => setDescription(e.target.value)}
+                fullWidth
+                multiline
+                rows={4}
+              />
+            </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
                 Phone Number:
