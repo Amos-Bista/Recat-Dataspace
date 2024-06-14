@@ -194,7 +194,9 @@ const ContactInfoAdd = ({ handleAddContact }) => {
                 value={email}
                 onChange={handleEmailChange}
                 error={emailError}
-                helperText={emailError ? 'Please enter a valid email address' : ''}
+                helperText={
+                  emailError ? "Please enter a valid email address" : ""
+                }
               />
             </Grid>
             <Grid item xs={6}>

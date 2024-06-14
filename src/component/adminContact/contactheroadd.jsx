@@ -65,10 +65,10 @@ const ContactHeroAdd = ({ addData }) => {
     setOpen(false);
   };
 
-  const inputRef = useRef(null);
-  const handleImageClick = () => {
-    inputRef.current.click();
-  };
+const inputRef = useRef(null);
+const handleImageClick = () => {
+  inputRef.current.click();
+};
 
   return (
     <>

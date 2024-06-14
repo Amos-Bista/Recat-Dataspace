@@ -1,18 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Button, TextField, Grid, Typography, Box } from "@mui/material";
 
 const LandingEdit = ({ contactDetails, handleEditContact }) => {
-  const [open, setOpen] = useState(false);
-  const [response, setResponse] = useState("");
-  const [phoneNumbers, setPhoneNumbers] = useState("");
+  const [open, setOpen] = useState("false");
+  const [phoneNumbers, setPhoneNumbers] = useState( "");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState(null); // Initialize with null for file input
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
-  console.log({ phoneNumbers });
-  console.log({ contactDetails });
+
+  // Ref for file input
+  const inputRef = useRef(null);
+
   
+  
+  // Fetch data from API on component mount
+  useEffect(() => {
+    if (contactDetails) {
+      setPhoneNumbers(contactDetails.phoneNum[0] || "");
+      setEmail(contactDetails.email[0] || "");
+      setAddress(contactDetails.address[0] || "");
+      setBackgroundImage(contactDetails.backgroundImage[0] || null);
+      setDescription(contactDetails.description[0] || "");
+      setTitle(contactDetails.title[0] || "");
+    } else {
+      fetchData(); // Fetch data if contactDetails are not available
+    }
+  }, [contactDetails]);
+
+  // Fetch data from API
   const fetchData = async () => {
     try {
       const response = await fetch(
@@ -27,79 +44,62 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
       setBackgroundImage(data[0]?.backgroundImage);
       setPhoneNumbers(data[0]?.phoneNum);
       setEmail(data[0]?.email);
-      setDescription(data[0]?.email);
+      setDescription(data[0]?.description);
       setAddress(data[0]?.address);
-
-      // setRows(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+    
   };
-  // Use useEffect to update the state when contactDetails changes
-  useEffect(() => {
-    if (contactDetails) {
-      setPhoneNumbers(contactDetails.phoneNumbers || "");
-      setEmail(contactDetails.email || "");
-      setAddress(contactDetails.address || "");
-      setBackgroundImage(contactDetails.backgroundImage || "");
-      setDescription(contactDetails.description || "");
-      setTitle(contactDetails.title || "");
-    }
-  }, [contactDetails]);
+  
 
-  const closePopUp = () => {
-    setOpen(false);
+  // Handle image change
+  const handleImageChange = (event) => {
+    setBackgroundImage(event.target.files[0]);
   };
 
+  // Handle click on hidden file input
+  const handleImageClick = () => {
+    inputRef.current.click();
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("phoneNum", phoneNumbers);
+    formData.append("email", email);
+    formData.append("address", address);
+    formData.append("backgroundImage", backgroundImage);
+    
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact/${contactDetails.id}`,
+      const success = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            phoneNumbers,
-            email,
-            address,  
-            backgroundImage,
-            title,
-            description,
-          }),
+          body: formData,
         }
       );
 
-      if (response.ok) {
-        setResponse("Contact updated");
+      if (success) {
         alert("Contact updated successfully!");
         handleEditContact();
       } else {
-        throw new Error("Network response was not ok");
+        alert("Error updating contact. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      setResponse("Error updating contact.");
       alert("Error updating contact. Please try again.");
     }
     setOpen(false);
+   
   };
-
-  // contactDetails();
-
-  // if (!contactDetails) {
-  //   return <div>Loading...</div>; // Or any other loading indicator
-  // }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <div className="mr-16 bg-white rounded-md">
-      <h3 className=" flex justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077]  mb-[40px]">
+      <h3 className="flex justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077] mb-[40px]">
         Contact Hero Section
       </h3>
 
@@ -114,19 +114,22 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
-            rows={1}
           />
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h6" gutterBottom>
-            HeroSection Image
+            Hero Section Image
           </Typography>
         </Grid>
         <Grid item xs={6}>
           <Box>
             {backgroundImage && (
               <img
-                src={backgroundImage}
+                src={
+                  typeof backgroundImage === "string"
+                    ? backgroundImage
+                    : URL.createObjectURL(backgroundImage)
+                }
                 alt="Background"
                 style={{
                   width: "100%",
@@ -135,14 +138,16 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
                 }}
               />
             )}
-            <TextField
-              label="Enter background image URL"
-              variant="outlined"
-              fullWidth
-              value={backgroundImage}
-              onChange={(e) => setBackgroundImage(e.target.value)}
-              style={{ marginTop: "1rem" }}
+
+            <input
+              type="file"
+              ref={inputRef}
+              style={{ display: "none" }}
+              onChange={handleImageChange}
             />
+            <Button onClick={handleImageClick} variant="outlined">
+              Choose File
+            </Button>
           </Box>
         </Grid>
         <Grid item xs={6}>
@@ -158,11 +163,11 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
             onChange={(e) => setDescription(e.target.value)}
             fullWidth
             multiline
-            rows={1}
+            rows={4}
           />
         </Grid>
-        <h3 className=" flex w-[100%]  border-indigo-600 justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077]  mb-[40px]">
-          Contact 
+        <h3 className="flex w-[100%] border-indigo-600 justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077] mb-[40px]">
+          Contact
         </h3>
         <Grid item xs={6}>
           <Typography variant="h6" gutterBottom>
@@ -218,7 +223,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
       >
         <Button
           variant="contained"
-          onClick={closePopUp}
+          onClick={() => setOpen(false)}
           style={{
             backgroundColor: "#FF0000",
             marginLeft: "auto",
