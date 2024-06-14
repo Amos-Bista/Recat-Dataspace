@@ -10,7 +10,31 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
   const [backgroundImage, setBackgroundImage] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  console.log({ phoneNumbers });
+  console.log({ contactDetails });
+  
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      console.log({ data });
+      setTitle(data[0]?.title);
+      setBackgroundImage(data[0]?.backgroundImage);
+      setPhoneNumbers(data[0]?.phoneNum);
+      setEmail(data[0]?.email);
+      setDescription(data[0]?.email);
+      setAddress(data[0]?.address);
 
+      // setRows(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   // Use useEffect to update the state when contactDetails changes
   useEffect(() => {
     if (contactDetails) {
@@ -40,7 +64,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
           body: JSON.stringify({
             phoneNumbers,
             email,
-            address,
+            address,  
             backgroundImage,
             title,
             description,
@@ -63,13 +87,23 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
     setOpen(false);
   };
 
-  //   if (!contactDetails) {
-  //     return <div>Loading...</div>; // Or any other loading indicator
-  //   }
+  // contactDetails();
+
+  // if (!contactDetails) {
+  //   return <div>Loading...</div>; // Or any other loading indicator
+  // }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
-    <div>
-      <Grid container spacing={4} padding={5}>
+    <div className="mr-16 bg-white rounded-md">
+      <h3 className=" flex justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077]  mb-[40px]">
+        Contact Hero Section
+      </h3>
+
+      <Grid container spacing={4} padding={5} className="pr-12">
         <Grid item xs={6}>
           <Typography variant="h6" gutterBottom>
             Title
@@ -124,9 +158,12 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
             onChange={(e) => setDescription(e.target.value)}
             fullWidth
             multiline
-            rows={4}
+            rows={1}
           />
         </Grid>
+        <h3 className=" flex w-[100%]  border-indigo-600 justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077]  mb-[40px]">
+          Contact 
+        </h3>
         <Grid item xs={6}>
           <Typography variant="h6" gutterBottom>
             Phone Numbers:
@@ -134,6 +171,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
         </Grid>
         <Grid item xs={6}>
           <TextField
+            name="phoneNumbers"
             label="Enter numbers (comma separated)"
             variant="outlined"
             fullWidth
@@ -199,7 +237,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
           }}
           variant="contained"
         >
-          PUBLISH
+          Publish
         </Button>
       </Box>
     </div>

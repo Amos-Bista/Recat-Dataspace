@@ -8,10 +8,10 @@ const AdminContact = () => {
     <>
       <main className="flex align-middle bg-gray-200 py-28">
         <AdminNav />
-        <div className="w-full px-2 py-6 mr-10 bg-gray-200 rounded-lg mt-[-40px]">
-          <ContactHero />
-          <ContactInfo />
-          < LandingEdit/>
+        <div className="w-full px-2 bg-gray-200 rounded-lg 10 ">
+          {/* <ContactHero />
+          <ContactInfo /> */}
+          <LandingEdit />
         </div>
       </main>
     </>
