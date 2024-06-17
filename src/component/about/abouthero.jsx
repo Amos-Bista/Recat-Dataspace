@@ -3,28 +3,43 @@ import React, { useState, useEffect } from "react";
 import AboutAccordion from "./aboutaccordion";
 
 const Abouthero = () => {
-  const [rows, setRows] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
+    const fetchSlides = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
+        ); // Replace with your API endpoint
+        if (!response.ok) {
+          throw new Error("Failed to fetch slides");
+        }
+        const data = await response.json();
+        setSlides(data);
+        console.log(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
       }
-      const data = await response.json();
-      setRows(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    };
+
+    fetchSlides();
+  }, []);
+  
+  useEffect(() => {
+    if (slides.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+      }, 1000); // Change slide every 5 seconds (adjust as needed)
+
+      return () => clearInterval(interval);
     }
-  };
+  }, [slides.length]);
+
 
   const imgStyles = {
     width: "100vw",
@@ -38,19 +53,23 @@ const Abouthero = () => {
         style={{ width: "100vw", height: "657px" }}
         className="absolute bg-black/50"
       ></div>
-      {rows.length > 0 ? (
-        rows.length > 0 && (
+      {slides.length > 0 ? (
+        slides.length > 0 && (
           <section>
             <img
-              src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rows[0].backgroundImage}`}
-              alt={rows[0].title}
+              src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${slides[currentSlide].backgroundImage}`}
+              alt={slides[currentSlide].title}
               style={imgStyles}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/defaultImage.png"; // Fallback image
+              }}
             />
             <div className="absolute top-[50%] left-[4%]">
-              <h1 className="text-white text-7xl">{rows[0].title}</h1>
+              <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
 
               <h2 className="text-xl text-white w-[60%]">
-                {rows[0].description}
+                {slides[currentSlide].description}
               </h2>
             </div>
           </section>

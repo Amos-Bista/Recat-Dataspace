@@ -45,13 +45,19 @@ const Milestone = ({ desc, limit }) => {
     }
   }, [limit, isVisible]);
 
+  // Function to update count and desc from MilestoneForm
+  const updateMilestoneData = (formData) => {
+    setCount(formData.count);
+    // You can update 'desc' here if needed based on formData
+  };
+
   return isVisible ? (
-    React.createElement("div", { className: "h-68 w-80 py-8 px-6 flex justify-center" },
-      React.createElement("div", { className: "flex justify-center flex-col" },
-        React.createElement("h1", { className: "text-6xl font-semibold mx-auto" }, count, "+"),
-        React.createElement("p", { className: "text-sm text-center font-semibold" }, desc)
-      )
-    )
+    <div className="flex justify-center px-6 py-8 h-68 w-80">
+      <div className="flex flex-col justify-center">
+        <h1 className="mx-auto text-6xl font-semibold">{count}+</h1>
+        <p className="text-sm font-semibold text-center">{desc}</p>
+      </div>
+    </div>
   ) : null;
 };
 

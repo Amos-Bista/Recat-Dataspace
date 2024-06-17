@@ -11,9 +11,8 @@ import {
 import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import ContactHeroAdd from "./contactheroadd";
 
-const ContactInfoEdit = ({ contactDetails, handleEditContact }) => {
+const ContactInfoEdit = ({ contactDetails = {}, handleEditContact }) => {
   const [open, setOpen] = useState(false);
   const [phoneNum, setPhoneNum] = useState(contactDetails.phoneNum || "");
   const [email, setEmail] = useState(contactDetails.email || "");

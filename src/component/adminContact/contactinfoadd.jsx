@@ -91,9 +91,9 @@ const ContactInfoAdd = ({ handleAddContact }) => {
 
   return (
     <>
-      <Button onClick={functionOnPopUp} color="primary" variant="contained">
+      {/* <Button onClick={functionOnPopUp} color="primary" variant="contained">
         Add New +
-      </Button>
+      </Button> */}
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
@@ -194,7 +194,9 @@ const ContactInfoAdd = ({ handleAddContact }) => {
                 value={email}
                 onChange={handleEmailChange}
                 error={emailError}
-                helperText={emailError ? 'Please enter a valid email address' : ''}
+                helperText={
+                  emailError ? "Please enter a valid email address" : ""
+                }
               />
             </Grid>
             <Grid item xs={6}>
