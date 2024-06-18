@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   Button,
   Dialog,
@@ -12,11 +13,12 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ServiceAdd = ({ addData }) => {
+const FeaturePlansAdd = () => {
   const [open, setOpen] = useState(false);
-  const [serviceName, setServiceName] = useState("");
-  const [serviceDescription, setServiceDescription] = useState("");
-  const [serviceBgImage, setServiceBgImage] = useState(null);
+  const [servicePlanTitle, setServicePlanTitle] = useState("");
+  const [servicePlanTiers, setServicePlanTiers] = useState("");
+  const [price, setPrice] = useState("");
+  const { id } = useParams();
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -26,32 +28,29 @@ const ServiceAdd = ({ addData }) => {
     setOpen(false);
   };
 
-  const handleTitleChange = (e) => setServiceName(e.target.value);
-  const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
-  const handleImageChange = (event) => {
-    setServiceBgImage(event.target.files[0]);
-    console.log("Selected file:", event.target.files[0]); // Log selected file
-  };
+  const handleTitleChange = (e) => setServicePlanTitle(e.target.value);
+  const handleTiersChange = (e) => setServicePlanTiers(e.target.value);
+  const handlePriceChange = (e) => setPrice(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const payload = {
+      servicePlanTitle,
+      servicePlanTiers,
+      price,
+      serviceId: id,
+    };
+
     try {
-      const formData = new FormData();
-      formData.append("serviceName", serviceName);
-      formData.append("serviceDescription", serviceDescription);
-      formData.append("serviceBgImage", serviceBgImage);
-
-      // Log FormData contents
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ": " + pair[1]);
-      }
-
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/services/addServices`,
+        `${process.env.REACT_APP_API_BASE_URL}/servicePlans/addServicePlans`,
         {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         }
       );
 
@@ -67,13 +66,12 @@ const ServiceAdd = ({ addData }) => {
     setOpen(false);
   };
 
-  const inputRef = useRef(null);
-  const handleImageClick = () => {
-    inputRef.current.click();
-  };
+  useEffect(() => {
+    // Any additional effect logic if required
+  }, [id]);
 
   return (
-    <>
+    <div>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
         Add New
       </Button>
@@ -99,12 +97,12 @@ const ServiceAdd = ({ addData }) => {
           <Grid container spacing={4} padding={5}>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
-                Title
+                Plan Title
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Enter title"
+                label="Enter Plan Title"
                 variant="outlined"
                 fullWidth
                 onChange={handleTitleChange}
@@ -116,34 +114,33 @@ const ServiceAdd = ({ addData }) => {
                 gutterBottom
                 style={{ marginTop: "1rem" }}
               >
-                Description
+                Plan Tiers
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Enter description"
+                label="Enter Plan Tiers"
                 variant="outlined"
                 fullWidth
-                multiline
-                rows={4}
-                onChange={handleDescriptionChange}
+                onChange={handleTiersChange}
               />
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="h6" gutterBottom>
-                Upload Image
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginTop: "1rem" }}
+              >
+                Price
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <input
-                type="file"
-                ref={inputRef}
-                style={{ display: "none" }}
-                onChange={handleImageChange}
+              <TextField
+                label="Enter Price"
+                variant="outlined"
+                fullWidth
+                onChange={handlePriceChange}
               />
-              <Button onClick={handleImageClick} variant="outlined">
-                Choose File
-              </Button>
             </Grid>
           </Grid>
         </DialogContent>
@@ -178,8 +175,8 @@ const ServiceAdd = ({ addData }) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 };
 
-export default ServiceAdd;
+export default FeaturePlansAdd;

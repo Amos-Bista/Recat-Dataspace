@@ -98,15 +98,7 @@ const ValuableclientTable = () => {
                         Edit
                       </Button>
                     </TableCell>
-                    {/* <TableCell align="center">
-                      <Button
-                        onclick
-                        sx={{ margin: 2 }}
-                        className="!bg-red-500 hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
-                      >
-                        Delete
-                      </Button>
-                    </TableCell> */}
+                   
                     <TableCell align="center">
                       <VCD onDelete={() => handleDelete(row.id, index)} />
                     </TableCell>

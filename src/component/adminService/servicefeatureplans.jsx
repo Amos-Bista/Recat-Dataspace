@@ -9,15 +9,29 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Servicefeatureplan from "../../assests/servicefeatureplan.json";
 import ServiceAdd from "./serviceAdd";
+import FeaturePlansAdd from "./featurePlansAdd";
 const Servicefeatureplans = () => {
   const [rowData, setRowData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from JSON file
-    const data = Object.values(Servicefeatureplan);
-    setRowData(data);
+    fetchData();
   }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/servicePlans/addServicePlans`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRowData(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   return (
     <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
@@ -25,7 +39,7 @@ const Servicefeatureplans = () => {
           Features Plans
         </h3>
         <div className="mb-[12px]">
-          <ServiceAdd />
+          <FeaturePlansAdd />
         </div>
       </div>
       <div>
@@ -33,9 +47,8 @@ const Servicefeatureplans = () => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Title</TableCell>
-                <TableCell align="center">Package Title</TableCell>
-                <TableCell align="center">Service Image</TableCell>
+                <TableCell align="center">Plan Title</TableCell>
+                <TableCell align="center">Plan Tiers</TableCell>
                 <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
@@ -45,10 +58,9 @@ const Servicefeatureplans = () => {
               {Array.isArray(rowData) &&
                 rowData.map((row, index) => (
                   <TableRow key={index}>
-                    <TableCell align="center">{row.Title}</TableCell>
-                    <TableCell align="center">{row.Packagetitle}</TableCell>
-                    <TableCell align="center">{row.Serviceimage}</TableCell>
-                    <TableCell align="center">{row.Price}</TableCell>
+                    <TableCell align="center">{row.servicePlanTitle}</TableCell>
+                    <TableCell align="center">{row.servicePlanTiers}</TableCell>
+                    \<TableCell align="center">{row.Price}</TableCell>
                     <TableCell align="center">
                       <Button variant="contained">Edit</Button>
                     </TableCell>
