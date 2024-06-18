@@ -57,6 +57,7 @@ const ContactInfoEdit = ({ contactDetails = {}, handleEditContact }) => {
         setResponse("Contact updated");
         alert("Contact updated successfully!");
         handleEditContact();
+        
       } else {
         throw new Error("Network response was not ok");
       }

@@ -18,6 +18,8 @@ import ServicePage from "./pages/servicePage.jsx";
 import Services from "./pages/services.jsx";
 import AdminServiceSub from "./component/adminService/AdminServiceSub.jsx";
 import ContactInfoEdit from "./component/adminContact/contactinfoedit.jsx";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const routesData = [
   {
@@ -125,7 +127,7 @@ function App() {
                         <ServicePage />
                       ) : route.link === "/contactEdit" ? (
                         <ContactInfoEdit />
-                      ): null
+                      ) : null
                     }
                     exact={route.link === "/"}
                   />
@@ -143,6 +145,7 @@ function App() {
         <ShowFooter>
           <Footer />
         </ShowFooter>
+        <ToastContainer />
       </Router>
     </main>
   );
