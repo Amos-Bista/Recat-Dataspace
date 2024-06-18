@@ -2,23 +2,21 @@ import React, { useState, useEffect } from "react";
 import ButtonHerosection from "../home/buttonHerosection";
 
 const ContactHero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [slides, setSlides] = useState([]);
+  const [heroData, setHeroData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchSlides = async () => {
+    const fetchHeroData = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts `
+          `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
         ); // Replace with your API endpoint
         if (!response.ok) {
-          throw new Error("Failed to fetch slides");
+          throw new Error("Failed to fetch hero data");
         }
         const data = await response.json();
-        setSlides(data);
-        console.log(data);
+        setHeroData(data[0]); // Assuming the API returns an array and we need the first item
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -26,18 +24,8 @@ const ContactHero = () => {
       }
     };
 
-    fetchSlides();
+    fetchHeroData();
   }, []);
-
-  useEffect(() => {
-    if (slides.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-      }, 5000); // Change slide every 5 seconds (adjust as needed)
-
-      return () => clearInterval(interval);
-    }
-  }, [slides.length]);
 
   const imgStyles = {
     width: "100vw",
@@ -53,6 +41,10 @@ const ContactHero = () => {
     return <div>Error: {error}</div>;
   }
 
+  if (!heroData) {
+    return <div className="absolute top-[50%] left-[4%] text-white text-7xl">No Data</div>;
+  }
+
   return (
     <main className="flex justify-between w-[max-content] relative">
       <div className="relative">
@@ -60,23 +52,19 @@ const ContactHero = () => {
           style={{ width: "100vw", height: "667px" }}
           className="absolute bg-black/50"
         ></div>
-        {slides.length > 0 && (
-          <img
-            src={`${process.env.REACT_APP_API_BASE_URL}/contacts/${slides[currentSlide].backgroundImage}`}
-            alt={slides[currentSlide].title}
-            style={imgStyles}
-            className="w-max-screen"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/defaultImage.png"; // Fallback image
-            }}
-          />
-        )}
-
+        <img
+          src={`${process.env.REACT_APP_API_BASE_URL}/contacts/${heroData.backgroundImage}`}
+          alt={heroData.title}
+          style={imgStyles}
+          className="w-max-screen"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/defaultImage.png"; // Fallback image
+          }}
+        />
         <div className="absolute top-[50%] left-[4%]">
-          <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
-          <h1 className="text-xl text-white">{slides[currentSlide].description}</h1>
-
+          <h1 className="text-white text-7xl">{heroData.title}</h1>
+          <h1 className="text-xl text-white">{heroData.description}</h1>
           <ButtonHerosection />
         </div>
       </div>

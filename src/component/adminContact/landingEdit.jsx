@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Button, TextField, Grid, Typography, Box } from "@mui/material";
+import { toast } from "react-toastify";
 
 const LandingEdit = ({ contactDetails, handleEditContact }) => {
   const [open, setOpen] = useState("false");
-  const [phoneNumbers, setPhoneNumbers] = useState( "");
+  const [id, setId] = useState("");
+  const [phoneNumbers, setPhoneNumbers] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [backgroundImage, setBackgroundImage] = useState(null); // Initialize with null for file input
@@ -13,20 +15,9 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
   // Ref for file input
   const inputRef = useRef(null);
 
-  
-  
   // Fetch data from API on component mount
   useEffect(() => {
-    if (contactDetails) {
-      setPhoneNumbers(contactDetails.phoneNum[0] || "");
-      setEmail(contactDetails.email[0] || "");
-      setAddress(contactDetails.address[0] || "");
-      setBackgroundImage(contactDetails.backgroundImage[0] || null);
-      setDescription(contactDetails.description[0] || "");
-      setTitle(contactDetails.title[0] || "");
-    } else {
-      fetchData(); // Fetch data if contactDetails are not available
-    }
+    fetchData(); // Fetch data if contactDetails are not available
   }, [contactDetails]);
 
   // Fetch data from API
@@ -40,6 +31,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
       }
       const data = await response.json();
       console.log({ data });
+      setId(data[0]?.id);
       setTitle(data[0]?.title);
       setBackgroundImage(data[0]?.backgroundImage);
       setPhoneNumbers(data[0]?.phoneNum);
@@ -49,9 +41,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-    
   };
-  
 
   // Handle image change
   const handleImageChange = (event) => {
@@ -73,28 +63,29 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
     formData.append("email", email);
     formData.append("address", address);
     formData.append("backgroundImage", backgroundImage);
-    
     try {
       const success = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact`,
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact/${id}`,
         {
           method: "PUT",
           body: formData,
         }
       );
 
+      console.log({ success });
       if (success) {
-        alert("Contact updated successfully!");
+        // alert("Contact updated successfully!");
         handleEditContact();
+        toast.success("Contact updated successfully");
       } else {
-        alert("Error updating contact. Please try again.");
+        // alert("Error updating contact. Please try again.");
+        toast.error("Contact updated successfully");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error updating contact. Please try again.");
+      // alert("Error updating contact. Please try again.");
     }
     setOpen(false);
-   
   };
 
   return (
