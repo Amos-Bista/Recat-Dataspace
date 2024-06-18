@@ -12,7 +12,7 @@ const Herosection = () => {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`
-        ); // Replace with your API endpoint
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch slides");
         }
@@ -60,23 +60,28 @@ const Herosection = () => {
           style={{ width: "100vw", height: "667px" }}
           className="absolute bg-black/50"
         ></div>
-        {slides.length > 0 && (
-          <img
-            src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${slides[currentSlide].backgroundImage}`}
-            alt={slides[currentSlide].title}
-            style={imgStyles}
-            className="w-max-screen"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/defaultImage.png"; // Fallback image
-            }}
-          />
+        {slides.length > 0 && slides[currentSlide].title ? (
+          <>
+            <img
+              src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${slides[currentSlide].backgroundImage}`}
+              alt={slides[currentSlide].title}
+              style={imgStyles}
+              className="w-max-screen"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/defaultImage.png"; // Fallback image
+              }}
+            />
+            <div className="absolute top-[100%] left-[4%]">
+              <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
+              <ButtonHerosection />
+            </div>
+          </>
+        ) : (
+          <div className="absolute top-[50%] left-[4%] text-white text-xl flex">
+            No Backgroung Image Avaliable from the admin
+          </div>
         )}
-
-        <div className="absolute top-[50%] left-[4%]">
-          <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
-          <ButtonHerosection />
-        </div>
       </div>
     </main>
   );
