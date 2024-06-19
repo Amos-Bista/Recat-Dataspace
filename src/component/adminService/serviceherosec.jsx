@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
@@ -21,7 +20,7 @@ const Serviceherosec = () => {
         `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        throw new Error("SucessFully Deleted");
       }
       const data = await response.json();
       setRowData(data);
@@ -35,8 +34,8 @@ const Serviceherosec = () => {
     height: "6vw",
     position: "center",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
-  };  
-   //service page table
+  };
+  //service page table
   return (
     <main className="">
       <div className="">
@@ -68,18 +67,17 @@ const Serviceherosec = () => {
                         style={imgStyles}
                       />
                     </TableCell>
+                    <TableCell align="center">
+                      {/* <Button variant="contained">
+                        <ServiceEdit />
+                      </Button> */}
 
-                    <TableCell align="center">
-                      <Button variant="contained">Edit</Button>
                     </TableCell>
-                    <TableCell align="center">
-                      <Button
-                        sx={{ margin: 2 }}
-                        className="!bg-red-500 hover:!bg-red-700 !text-white   !rounded"
-                      >
-                        Delete
+                    {/* <TableCell align="center">
+                      <Button sx={{ margin: 2 }}>
+                        <ServiceDelete  />
                       </Button>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 ))}
             </TableBody>

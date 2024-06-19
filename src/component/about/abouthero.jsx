@@ -1,6 +1,5 @@
-// export default Abouthero;
 import React, { useState, useEffect } from "react";
-import AboutAccordion from "./aboutaccordion";
+import { CircularProgress } from "@mui/material";
 
 const Abouthero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,56 +28,78 @@ const Abouthero = () => {
 
     fetchSlides();
   }, []);
-  
+
   useEffect(() => {
     if (slides.length > 0) {
       const interval = setInterval(() => {
         setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-      }, 1000); // Change slide every 5 seconds (adjust as needed)
+      }, 5000); // Change slide every 5 seconds (adjust as needed)
 
       return () => clearInterval(interval);
     }
   }, [slides.length]);
 
-
   const imgStyles = {
     width: "100vw",
     height: "657px",
-    position: "center",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
-  return (
-    <div className="flex justify-between w-[max-content] relative ">
-      <div
-        style={{ width: "100vw", height: "657px" }}
-        className="absolute bg-black/50"
-      ></div>
-      {slides.length > 0 ? (
-        slides.length > 0 && (
-          <section>
-            <img
-              src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${slides[currentSlide].backgroundImage}`}
-              alt={slides[currentSlide].title}
-              style={imgStyles}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "/defaultImage.png"; // Fallback image
-              }}
-            />
-            <div className="absolute top-[50%] left-[4%]">
-              <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
 
-              <h2 className="text-xl text-white w-[60%]">
-                {slides[currentSlide].description}
-              </h2>
-            </div>
-          </section>
-        )
+  if (error) {
+    return (
+      <div>
+        <div
+          style={{ width: "100vw", height: "657px" }}
+          className="bg-black/90"
+        ></div>
+        <div className="flex justify-center text-center ">
+          <div className="">
+            <h1 className="absolute text-white top-[50%] left-[46%]">
+              Database not connected!
+            </h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex justify-between w-[max-content] relative">
+      {loading ? (
+        <div>
+          <div
+            style={{ width: "100vw", height: "657px" }}
+            className="bg-black/20"
+          ></div>
+          <div className="flex justify-center text-center ">
+            <CircularProgress
+              className="absolute  top-[50%] left-[48%]"
+              color="inherit"
+            />
+          </div>
+        </div>
       ) : (
         <section>
-          <img style={imgStyles} />
+          <div
+            style={{ width: "100vw", height: "657px" }}
+            className="absolute bg-black/50"
+          ></div>
+          <img
+            src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${slides[currentSlide].backgroundImage}`}
+            alt={slides[currentSlide].title}
+            style={imgStyles}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/defaultImage.png"; // Fallback image
+            }}
+          />
           <div className="absolute top-[50%] left-[4%]">
-            <h1 className="text-white text-7xl">Opps ! Nothing to display</h1>
+            <h1 className="text-white text-7xl">
+              {slides[currentSlide].title}
+            </h1>
+            <h2 className="text-xl text-white w-[60%]">
+              {slides[currentSlide].description}
+            </h2>
           </div>
         </section>
       )}

@@ -9,7 +9,7 @@ function Home() {
       <div className="relative mb-52 ">
         <Herosection />
       </div>
-      <div className="absolute top-[75%]  w-full">
+      <div className="absolute top-[60%]  w-full">
         <SearchDomain />
       </div>
       <section>

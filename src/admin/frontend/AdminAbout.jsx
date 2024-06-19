@@ -30,9 +30,9 @@ const AdminAbout = () => {
       <div className="w-full bg-gray-200 rounded-lg mr-14">
         <AboutHero />
         <AdminAccordionTable />
-        <AboutCardTable />
-
-        <MilestoneForm onSubmit={handleFormSubmit} />
+        {/* <AboutCardTable /> */}
+{/* 
+        <MilestoneForm onSubmit={handleFormSubmit} /> */}
       </div>
     </main>
   );
