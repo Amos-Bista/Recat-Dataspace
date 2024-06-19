@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ButtonHerosection from "../home/buttonHerosection";
+import { CircularProgress } from "@mui/material";
 
 const ContactHero = () => {
   const [heroData, setHeroData] = useState(null);
@@ -34,15 +35,42 @@ const ContactHero = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{ width: "100vw", height: "667px" }}
+        className="flex  bg-black/50 w-[max-content] relative "
+      >
+        <div className="flex justify-center text-center ">
+          <CircularProgress
+            className="absolute  top-[50%] left-[48%]"
+            color="inherit"
+          />
+        </div>
+      </div>
+    );
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div
+        style={{ width: "100vw", height: "667px" }}
+        className="flex relative  bg-black/90  w-[max-content] "
+      >
+        <div className="">
+          <h1 className="absolute text-white top-[50%] left-[46%]">
+            Database not connected!
+          </h1>
+        </div>
+      </div>
+    );
   }
 
   if (!heroData) {
-    return <div className="absolute top-[50%] left-[4%] text-white text-7xl">No Data</div>;
+    return (
+      <div className="absolute top-[50%] left-[4%] text-white text-7xl">
+        No Data
+      </div>
+    );
   }
 
   return (
