@@ -72,8 +72,10 @@ const Herosection = () => {
                 e.target.src = "/defaultImage.png"; // Fallback image
               }}
             />
-            <div className="absolute top-[100%] left-[4%]">
-              <h1 className="text-white text-7xl">{slides[currentSlide].title}</h1>
+            <div className="absolute top-[50%] left-[4%]">
+              <h1 className="text-white text-7xl">
+                {slides[currentSlide].title}
+              </h1>
               <ButtonHerosection />
             </div>
           </>

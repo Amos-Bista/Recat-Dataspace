@@ -1,6 +1,6 @@
 // export default Abouthero;
 import React, { useState, useEffect } from "react";
-import AboutAccordion from "./aboutaccordion";
+
 
 const Abouthero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -76,7 +76,7 @@ const Abouthero = () => {
         )
       ) : (
         <section>
-          <img style={imgStyles} />
+          {/* <img style={imgStyles} /> */}
           <div className="absolute top-[50%] left-[4%]">
             <h1 className="text-white text-7xl">Opps ! Nothing to display</h1>
           </div>
