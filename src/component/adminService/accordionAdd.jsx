@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const AccordionAdd = () => {
+const AccordionAdd = ({ onAccordionAdded }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setdescription] = useState("");
@@ -53,6 +53,7 @@ const AccordionAdd = () => {
 
       if (response.ok) {
         alert("Form submitted successfully!");
+        onAccordionAdded(); // Notify parent component to refresh data
       } else {
         throw new Error("Network response was not ok");
       }
@@ -69,8 +70,13 @@ const AccordionAdd = () => {
 
   return (
     <div>
-      <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add New
+      <Button
+        onClick={functionOnPopUp}
+        color="primary"
+        variant="contained"
+        marginLeft="200px"
+      >
+        Add Accordions
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle
