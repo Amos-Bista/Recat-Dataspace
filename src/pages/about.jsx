@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Abouthero from "../component/about/abouthero";
 import Plans from "../component/Plans";
 import AboutAccordion from "../component/about/aboutaccordion";
-import MilestoneForm from "../component/adminAbout/milestoneform";
 import Milestone from "../component/about/milestone";
 const About = () => {
   const [milestoneData, setMilestoneData] = useState({
@@ -13,14 +12,19 @@ const About = () => {
     ],
   });
 
-  const handleFormSubmit = (formData) => {
-    const newMilestones = [
-      { desc: formData.desc1, count: parseInt(formData.count1, 10) },
-      { desc: formData.desc2, count: parseInt(formData.count2, 10) },
-      { desc: formData.desc3, count: parseInt(formData.count3, 10) },
-    ];
-    setMilestoneData({ milestones: newMilestones });
-  };
+  useEffect(() => {
+    // Retrieve milestone data from localStorage
+    const storedMilestoneData = localStorage.getItem("lastMilestoneData");
+    if (storedMilestoneData) {
+      const parsedData = JSON.parse(storedMilestoneData);
+      const newMilestones = [
+        { desc: parsedData.desc1, count: parseInt(parsedData.count1, 10) },
+        { desc: parsedData.desc2, count: parseInt(parsedData.count2, 10) },
+        { desc: parsedData.desc3, count: parseInt(parsedData.count3, 10) },
+      ];
+      setMilestoneData({ milestones: newMilestones });
+    }
+  }, []);
 
   return (
     <main>
