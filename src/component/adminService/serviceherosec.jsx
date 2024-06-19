@@ -6,10 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import ServiceDelete from "./serviceDelete";
-import ServiceEdit from "./serviceEdit";
-import { Box } from "@mui/material";
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
@@ -77,11 +73,11 @@ const Serviceherosec = () => {
                       </Button> */}
 
                     </TableCell>
-                    <TableCell align="center">
+                    {/* <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
                         <ServiceDelete  />
                       </Button>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 ))}
             </TableBody>

@@ -4,18 +4,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-
+import { CircularProgress } from "@mui/material";
 const ValueCustomer = () => {
   const [isLeftArrowHovered, setIsLeftArrowHovered] = useState(false);
   const [isRightArrowHovered, setIsRightArrowHovered] = useState(false);
   const [autoplay, setAutoplay] = useState(true);
   const sliderRef = useRef(null);
   const [customerData, setCustomerData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const settings = {
     dots: false,
     infinite: true,
-    speed: 6000,
+    speed: 1000,
     slidesToShow: 7,
     slidesToScroll: 1,
     autoplay: autoplay,
@@ -61,9 +63,40 @@ const ValueCustomer = () => {
       console.error("Error fetching data:", error);
     }
   };
+
+  if (loading) {
+    return (
+      <div
+        style={{ width: "100vw", height: "180px" }}
+        className="flex  bg-blue-100/40 w-[max-content] relative  pb-6"
+      >
+        {" "}
+        <CircularProgress
+          className="absolute  top-[50%] left-[48%]"
+          color="inherit"
+        />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        style={{ width: "100vw", height: "180px" }}
+        className="flex relative  bg-black/90  w-[max-content] "
+      >
+        <div className="">
+          <h1 className="absolute text-white top-[50%] left-[46%]">
+            Database not connected!
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative mx-16 mb-10">
-      <Slider ref={sliderRef} {...settings} >
+      <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
           <div key={customer.id} className="w-[9rem] h-[9rem] ">
             <img
