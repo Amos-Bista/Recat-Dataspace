@@ -7,6 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import ServiceEdit from "./serviceEdit";
+import { Box } from "@mui/material";
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
@@ -35,8 +37,8 @@ const Serviceherosec = () => {
     height: "6vw",
     position: "center",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
-  };  
-   //service page table
+  };
+  //service page table
   return (
     <main className="">
       <div className="">
@@ -70,7 +72,9 @@ const Serviceherosec = () => {
                     </TableCell>
 
                     <TableCell align="center">
-                      <Button variant="contained">Edit</Button>
+                      <Box variant="contained">
+                        <ServiceEdit />
+                      </Box>
                     </TableCell>
                     <TableCell align="center">
                       <Button

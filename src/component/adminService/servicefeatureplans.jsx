@@ -9,7 +9,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+
+import Box from "@mui/material/Box";
 import FeaturePlansAdd from "./featurePlansAdd";
+import FeaturePlansEdit from "./featurePlansEdit";
 
 const Servicefeatureplans = () => {
   const { id } = useParams();
@@ -33,6 +36,15 @@ const Servicefeatureplans = () => {
       console.error("Error fetching data:", error);
     }
   };
+
+  const updateRowData = async () => {
+    await fetchData();
+  }; //when edited data
+
+  const handleAddAccordion = async () => {
+    await fetchData();
+  };
+
   return (
     <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
@@ -40,7 +52,7 @@ const Servicefeatureplans = () => {
           Features Plans
         </h3>
         <div className="mb-[12px]">
-          <FeaturePlansAdd />
+          <FeaturePlansAdd addAccordion={handleAddAccordion} />
         </div>
       </div>
       <div>
@@ -63,7 +75,15 @@ const Servicefeatureplans = () => {
                     <TableCell align="center">{row.servicePlanTiers}</TableCell>
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
-                      <Button variant="contained">Edit</Button>
+                      <Box variant="contained">
+                        <FeaturePlansEdit
+                          title={row.servicePlanTitle}
+                          tiers={row.servicePlanTiers}
+                          price={row.price}
+                          id={row.id}
+                          updateRowData={updateRowData} // Pass the function to update data
+                        />
+                      </Box>
                     </TableCell>
                     <TableCell align="center">
                       <Button
