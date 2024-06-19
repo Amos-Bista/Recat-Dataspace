@@ -52,15 +52,20 @@ const AdminServiceSub = () => {
     height: "667px",
     transition: "opacity 0.5s ease-in-out",
   };
+  const handleAccordionAdded = () => {
+    fetchData(); // Refresh service data when accordion is added
+  };
 
   return (
     <div>
       <main className="flex align-middle bg-gray-200 py-28">
         <AdminNav />
-        <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14">
-          
-          <div className="mb-10 ">
-            <AccordionAdd />
+        <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14 ">
+          <div className="flex flex-row align-middle justify-between">
+            <h1 className="text-2xl font-[400] text-[#383698]">Accordions</h1>
+            <div className="mb-10   ">
+              <AccordionAdd onAccordionAdded={handleAccordionAdded} />
+            </div>
           </div>
           <div className="w-full h-full px-2 rounded-lg ">
             <TableContainer component={Paper}>
@@ -78,7 +83,7 @@ const AdminServiceSub = () => {
                     <TableRow key={panel.id}>
                       <TableCell align="center">{panel.title}</TableCell>
                       <TableCell align="center">{panel.description}</TableCell>
-                      <TableCell> 
+                      <TableCell>
                         <Button variant="contained">EDIT</Button>
                       </TableCell>
                       <TableCell>

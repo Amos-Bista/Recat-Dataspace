@@ -8,8 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ServiceDelete from "./serviceDelete";
-import { toast } from "react-toastify";
 import ServiceEdit from "./serviceEdit";
+import { Box } from "@mui/material";
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
@@ -71,11 +71,11 @@ const Serviceherosec = () => {
                         style={imgStyles}
                       />
                     </TableCell>
-
                     <TableCell align="center">
                       {/* <Button variant="contained">
                         <ServiceEdit />
                       </Button> */}
+
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
