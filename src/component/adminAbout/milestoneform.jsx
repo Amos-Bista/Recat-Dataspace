@@ -6,43 +6,48 @@ const MilestoneForm = ({ onSubmit }) => {
     desc1: "",
     desc2: "",
     desc3: "",
-    count1: 0,
+    count1: null,
     count2: 0,
     count3: 0,
   });
+
+  const [submittedData, setSubmittedData] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: name.startsWith("count") ? parseInt(value) : value,
     });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (onSubmit) {
-      onSubmit(formData); // Pass formData to parent component
-      // Optionally, you can reset the form after submission
+      onSubmit(formData); // Call the onSubmit function with formData
+      setSubmittedData(formData); // Update submittedData with formData
+
+      // Store formData in localStorage as lastMilestoneData
+      localStorage.setItem("lastMilestoneData", JSON.stringify(formData));
+
       setFormData({
         desc1: "",
         desc2: "",
         desc3: "",
-        count1: "",
-        count2: "",
-        count3: "",
+        count1: 0, // Reset count to 0
+        count2: 0,
+        count3: 0,
       });
-      console.log(formData);
     }
   };
 
   return (
-    <Box container spacing={4} padding={5}>
+    <Box padding={5}>
       <Typography variant="h4" gutterBottom>
         Milestone Form
       </Typography>
       <form onSubmit={handleFormSubmit}>
-        <Grid container spacing={4} padding={5}>
+        <Grid container spacing={4}>
           <Grid item xs={6}>
             <Typography variant="h6" gutterBottom>
               Description 1
