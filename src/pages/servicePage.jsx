@@ -62,6 +62,7 @@ const ServicePage = () => {
             <img
               src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`}
               style={imgStyles}
+              alt={serviceData.serviceName}
               className="w-max-screen"
             />
 
@@ -75,7 +76,7 @@ const ServicePage = () => {
         </section>
         <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
           <div className="pl-16  text-xl w-[55%]  ">
-            <h1 className="ml-3 text-4xl font-bold mb-12">
+            <h1 className="mb-12 ml-3 text-4xl font-bold">
               Why Choose DataSpace VPS?
             </h1>
             <h1>
@@ -108,10 +109,10 @@ const ServicePage = () => {
             </h1>
           </div>
           <div className="w-[430px] h-[520px]">
-            <img src="/Backup.png" className="h-[520px]  w-[430px]" />
+            <img src="/Backup.png" alt="img" className="h-[520px]  w-[430px]" />
           </div>
         </div>
-        <div className=" ">
+        <div className="">
           <DynamicPlanCard />
         </div>
       </main>
