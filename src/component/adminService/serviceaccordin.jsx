@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,17 +12,30 @@ import Button from "@mui/material/Button";
 import adminacordin from "../../assests/adminacordin.json";
 import AccordionAdd from "./accordionAdd";
 
-const Serviceaccordin = ({title , description}) => {
+const Serviceaccordin = () => {
   const [rowData, setRowData] = useState([]);
 
-  useEffect(() => {
-    // Fetch data from JSON file
-    const data = Object.values(adminacordin);
-    console.log(data);
+  const { id } = useParams();
 
-    // Set rowData state with all data from JSON
-    setRowData(data);
-  }, []);
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setRowData(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <main className="pt-6 ">
@@ -41,13 +56,11 @@ const Serviceaccordin = ({title , description}) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {Array.isArray(rowData) &&
-                rowData.map((row, index) => (
+              {Array.isArray(rowData.accordions) &&
+                rowData.accordions.map((row, index) => (
                   <TableRow key={index}>
-                    <TableCell component="th" scope="row" align="center">
-                      {row.Title}
-                    </TableCell>
-                    <TableCell align="center">{row.Description}</TableCell>
+                    <TableCell align="center">{row.title}</TableCell>
+                    <TableCell align="center">{row.description}</TableCell>
                     <TableCell align="center">
                       <Button variant="contained">Edit</Button>
                     </TableCell>
