@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const FeaturePlansAdd = () => {
+const FeaturePlansAdd = ({ addAccordion }) => {
   const [open, setOpen] = useState(false);
   const [servicePlanTitle, setServicePlanTitle] = useState("");
   const [servicePlanTiers, setServicePlanTiers] = useState("");
@@ -56,6 +56,7 @@ const FeaturePlansAdd = () => {
 
       if (response.ok) {
         alert("Form submitted successfully!");
+        addAccordion();
       } else {
         throw new Error("Network response was not ok");
       }

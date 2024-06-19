@@ -11,7 +11,7 @@ import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import AccordionAdd from "../adminService/accordionAdd";
 
 const AdminAccordionTable = () => {
-  const [serviceData, setServiceData] = useState("");
+  const [aboutData, setAboutData] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -26,7 +26,7 @@ const AdminAccordionTable = () => {
         throw new Error("Sucess");
       }
       const data = await response.json();
-      setServiceData(data);
+      setAboutData(data);
       console.log(data);
     } catch (error) {
       console.error("Error fetching service data:", error);
@@ -34,7 +34,7 @@ const AdminAccordionTable = () => {
     }
   };
 
-  if (!serviceData) {
+  if (!aboutData) {
     return <div>Loading...</div>;
   }
 
@@ -58,12 +58,10 @@ const AdminAccordionTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {serviceData.id ? ( // Check if serviceData has an id property
-                <TableRow key={serviceData.id}>
-                  <TableCell align="center">{serviceData.title}</TableCell>
-                  <TableCell align="center">
-                    {serviceData.description}
-                  </TableCell>
+              {aboutData[0].aboutUsAccordions.map((data) => (
+                <TableRow key={data.id}>
+                  <TableCell align="center">{data.title}</TableCell>
+                  <TableCell align="center">{data.description}</TableCell>
                   <TableCell>
                     <Button variant="contained">EDIT</Button>
                   </TableCell>
@@ -76,14 +74,13 @@ const AdminAccordionTable = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ) : (
-                <TableRow>
+              ))}
+              {/* <TableRow>
                   <TableCell colSpan={4} align="center">
                     <SdCardAlertIcon color="error" />
                     No items available. Please add new items.
                   </TableCell>
-                </TableRow>
-              )}
+                </TableRow> */}
             </TableBody>
           </Table>
         </TableContainer>

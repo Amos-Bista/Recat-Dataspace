@@ -67,11 +67,11 @@ const Serviceherosec = () => {
                         style={imgStyles}
                       />
                     </TableCell>
-
                     <TableCell align="center">
                       {/* <Button variant="contained">
                         <ServiceEdit />
                       </Button> */}
+
                     </TableCell>
                     {/* <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
