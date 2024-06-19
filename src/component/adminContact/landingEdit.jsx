@@ -3,7 +3,7 @@ import { Button, TextField, Grid, Typography, Box } from "@mui/material";
 import { toast } from "react-toastify";
 
 const LandingEdit = ({ contactDetails, handleEditContact }) => {
-  const [open, setOpen] = useState("false");
+  const [open, setOpen] = useState(false); // Use boolean false instead of string "false"
   const [id, setId] = useState("");
   const [phoneNumbers, setPhoneNumbers] = useState("");
   const [email, setEmail] = useState("");
@@ -11,6 +11,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
   const [backgroundImage, setBackgroundImage] = useState(null); // Initialize with null for file input
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  const [isBackgroundImageChanged, setIsBackgroundImageChanged] = useState(false); // Track if backgroundImage is updated
 
   // Ref for file input
   const inputRef = useRef(null);
@@ -46,6 +47,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
   // Handle image change
   const handleImageChange = (event) => {
     setBackgroundImage(event.target.files[0]);
+    setIsBackgroundImageChanged(true); // Set flag to true when image is updated
   };
 
   // Handle click on hidden file input
@@ -56,14 +58,21 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("phoneNum", phoneNumbers);
-    formData.append("email", email);
-    formData.append("address", address);
-    formData.append("backgroundImage", backgroundImage);
     try {
+      const formData = new FormData();
+      formData.append("title", title || "");
+      formData.append("description", description || "");
+      formData.append("phoneNum", phoneNumbers || "");
+      formData.append("email", email || "");
+      formData.append("address", address || "");
+
+      // Append backgroundImage only if it has been changed
+      if (isBackgroundImageChanged) {
+        formData.append("backgroundImage", backgroundImage);
+      } else {
+        formData.append("backgroundImage", null); // Sending null for unchanged backgroundImage
+      }
+
       const success = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact/${id}`,
         {
@@ -71,19 +80,15 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
           body: formData,
         }
       );
-
-      console.log({ success });
-      if (success) {
-        // alert("Contact updated successfully!");
-        handleEditContact();
+      if (success.ok) {
         toast.success("Contact updated successfully");
+        handleEditContact();
       } else {
-        // alert("Error updating contact. Please try again.");
-        toast.error("Contact updated successfully");
+        toast.error("Contact is not updated successfully");
       }
     } catch (error) {
       console.error("Error:", error);
-      // alert("Error updating contact. Please try again.");
+      toast.error("Error updating contact. Please try again.");
     }
     setOpen(false);
   };
@@ -102,6 +107,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
         </Grid>
         <Grid item xs={6}>
           <TextField
+            type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             fullWidth
@@ -124,7 +130,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
                 alt="Background"
                 style={{
                   width: "100%",
-                  maxHeight: "300px",
+                  maxHeight: "160px",
                   objectFit: "cover",
                 }}
               />
@@ -154,7 +160,7 @@ const LandingEdit = ({ contactDetails, handleEditContact }) => {
             onChange={(e) => setDescription(e.target.value)}
             fullWidth
             multiline
-            rows={4}
+            rows={1}
           />
         </Grid>
         <h3 className="flex w-[100%] border-indigo-600 justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077] mb-[40px]">
