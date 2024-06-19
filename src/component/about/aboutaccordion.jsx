@@ -20,10 +20,10 @@ const AboutAccordion = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc`
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        console.log("fetch Sucess");
       }
       const data = await response.json();
       setExpandedDatas(data);

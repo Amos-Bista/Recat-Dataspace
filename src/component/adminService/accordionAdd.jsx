@@ -41,7 +41,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/addDescription`,
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/`,
         {
           method: "POST",
           headers: {
