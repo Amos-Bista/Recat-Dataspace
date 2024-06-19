@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import ServiceDelete from "./serviceDelete";
 import ServiceEdit from "./serviceEdit";
 import { Box } from "@mui/material";
 
@@ -23,7 +24,7 @@ const Serviceherosec = () => {
         `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        throw new Error("SucessFully Deleted");
       }
       const data = await response.json();
       setRowData(data);
@@ -70,18 +71,15 @@ const Serviceherosec = () => {
                         style={imgStyles}
                       />
                     </TableCell>
-
                     <TableCell align="center">
-                      <Box variant="contained">
+                      {/* <Button variant="contained">
                         <ServiceEdit />
-                      </Box>
+                      </Button> */}
+
                     </TableCell>
                     <TableCell align="center">
-                      <Button
-                        sx={{ margin: 2 }}
-                        className="!bg-red-500 hover:!bg-red-700 !text-white   !rounded"
-                      >
-                        Delete
+                      <Button sx={{ margin: 2 }}>
+                        <ServiceDelete  />
                       </Button>
                     </TableCell>
                   </TableRow>
