@@ -33,6 +33,7 @@ const ValuableclientTable = () => {
       console.error("Error fetching data:", error);
     }
   };
+
   const handleDelete = async (id, index) => {
     try {
       const response = await fetch(
@@ -64,13 +65,13 @@ const ValuableclientTable = () => {
       </div>
       <div className="">
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="center">Customer Logo</TableCell>
-                <TableCell align="center">Edit</TableCell>
-                <TableCell align="center">Delete</TableCell>
+                <TableCell align="center" sx={{ width: "30%" }}>Name</TableCell>
+                <TableCell align="center" sx={{ width: "30%" }}>Customer Logo</TableCell>
+                <TableCell align="center" sx={{ width: "20%" }}>Edit</TableCell>
+                <TableCell align="center" sx={{ width: "20%" }}>Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -80,33 +81,46 @@ const ValuableclientTable = () => {
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      align="center"
+                      sx={{ 
+                        width: "30%", 
+                        maxWidth: "200px", 
+                        overflow: "hidden", 
+                        whiteSpace: "nowrap", 
+                        textOverflow: "ellipsis"
+                      }}
+                      title={row.title}
+                    >
                       {row.title}
                     </TableCell>
-                    <TableCell align="center" sx={{ paddingLeft: 24 }}>
+                    <TableCell align="center" sx={{ width: "30%" }}>
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/client/${row.logo}`}
                         alt=""
                         style={{
                           width: "80px",
                           height: "80px",
+                          position: "relative",
+                          left: "162px"
                         }}
                       />
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" sx={{ width: "20%" }}>
                       <Button sx={{ margin: 2 }} variant="contained">
                         Edit
                       </Button>
                     </TableCell>
-                   
-                    <TableCell align="center">
+                    <TableCell align="center" sx={{ width: "20%" }}>
                       <VCD onDelete={() => handleDelete(row.id, index)} />
                     </TableCell>
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell align="center" colSpan={5}>
+                  <TableCell align="center" colSpan={4}>
                     <SdCardAlertIcon color="error" />
                     No items available. Please add new items.
                   </TableCell>
