@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Button, TextField, Grid, Typography, Box } from "@mui/material";
 import { FormContext, FormProvider } from "../about/formcontext";
 import { toast } from "react-toastify";
@@ -8,48 +8,50 @@ const MilestoneForm = () => {
   const { addMilestone } = useContext(FormContext);
 
   // Initialize formState with values from localStorage if available
-  const initialFormState = JSON.parse(
-    localStorage.getItem("lastMilestoneData")
-  ) || {
-    count1: "",
-    count2: "",
-    count3: "",
+  const initialFormState = {
+    label1: localStorage.getItem("label1") || "Enter years of experience",
+    label1Value: localStorage.getItem("label1Value") || "",
+    label2: localStorage.getItem("label2") || "Enter satisfied clients number",
+    label2Value: localStorage.getItem("label2Value") || "",
+    label3: localStorage.getItem("label3") || "Enter valued partners number",
+    label3Value: localStorage.getItem("label3Value") || "",
   };
 
   const [formState, setFormState] = useState(initialFormState);
 
-  useEffect(() => {
-    // Save formState to localStorage whenever it changes
-    localStorage.setItem("lastMilestoneData", JSON.stringify(formState));
-  }, [formState]);
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, desc } = e.target;
     setFormState({
       ...formState,
-      [name]: name.startsWith("count") ? parseInt(value) : value,
+      [name]: value,
+      [name]: desc,
     });
+    localStorage.setItem(name, value); // Update localStorage immediately
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addMilestone({
-        desc: "Years of Experience",
-        count: formState.count1,
-      });
-      await addMilestone({
-        desc: "Satisfied Clients",
-        count: formState.count2,
-      });
-      await addMilestone({ desc: "Valued Partners", count: formState.count3 });
+      const milestoneData = {
+        label1: {
+          desc: formState.label1,
+          value: parseInt(formState.label1Value),
+        },
+        label2: {
+          desc: formState.label2,
+          value: parseInt(formState.label2Value),
+        },
+        label3: {
+          desc: formState.label3,
+          value: parseInt(formState.label3Value),
+        },
+      };
+
+      localStorage.setItem("lastMilestoneData", JSON.stringify(milestoneData));
 
       // Clear formState after successful submission
-      setFormState({
-        count1: "",
-        count2: "",
-        count3: "",
-      });
+      setFormState(initialFormState);
+
       // Show success toast
       toast.success("Form submitted successfully!", {
         autoClose: 2000,
@@ -72,63 +74,66 @@ const MilestoneForm = () => {
           </h3>
         </div>
         <Box
+          alignItems="center"
+          justifyContent="center"
           padding={5}
           className="flex justify-center mx-auto mt-12 bg-white rounded-md"
         >
           <form onSubmit={handleFormSubmit}>
-            <Grid container spacing={4}>
+            <Grid
+              className="w-[50%] flex justify-center mx-auto"
+              container
+              spacing={1}
+              alignItems="center"
+              justifyContent="center"
+            >
               <Grid item xs={6}>
                 <Typography variant="h6" gutterBottom>
-                  Years of experience
+                  {formState.label1}
                 </Typography>
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  name="count1"
-                  label="Enter years of experience"
+                  name="label1Value"
+                  label={formState.label1}
                   variant="outlined"
                   type="number"
-                  value={formState.count1}
+                  value={formState.label1Value}
                   onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h6" gutterBottom>
-                  Satisfied Clients
+                  {formState.label2}
                 </Typography>
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  name="count2"
-                  label="Enter satisfied clients number"
+                  name="label2Value"
+                  label={formState.label2}
                   variant="outlined"
                   type="number"
-                  value={formState.count2}
+                  value={formState.label2Value}
                   onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h6" gutterBottom>
-                  Valued Partners
+                  {formState.label3}
                 </Typography>
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  name="count3"
-                  label="Enter valued partners number"
+                  name="label3Value"
+                  label={formState.label3}
                   variant="outlined"
                   type="number"
-                  value={formState.count3}
+                  value={formState.label3Value}
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                >
+              <Grid item xs={6}>
+                <Button type="submit" variant="contained" color="primary">
                   Submit
                 </Button>
               </Grid>

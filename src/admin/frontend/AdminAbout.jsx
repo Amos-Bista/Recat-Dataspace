@@ -29,9 +29,9 @@ const AdminAbout = () => {
     <main className="flex w-full align-middle bg-gray-200 py-28">
       <AdminNav />
       <div className="w-full bg-gray-200 rounded-lg mr-14">
-        {/* <AboutHero />
+        <AboutHero />
         <AdminAccordionTable />
-        <AboutCardTable /> */}
+        <AboutCardTable />
 
         <FormProvider>
           <MilestoneForm onSubmit={handleFormSubmit} />
