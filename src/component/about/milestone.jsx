@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+// Milestone.jsx
+import React, { useState, useEffect, useContext } from "react";
+import { FormContext } from "./formcontext";
 
 const Milestone = ({ desc, limit }) => {
+  const { milestones } = useContext(FormContext);
   const [count, setCount] = useState(0);
-  const [intervalDuration, setIntervalDuration] = useState(20); // Initial interval duration
+  const [intervalDuration, setIntervalDuration] = useState(20);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -10,9 +13,8 @@ const Milestone = ({ desc, limit }) => {
       setIsVisible(window.scrollY > 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Milestone = ({ desc, limit }) => {
 
     const interval = setInterval(() => {
       if (count < limit) {
-        setCount((prevCount) => prevCount + 1); // Increase count
+        setCount((prevCount) => prevCount + 1);
       } else {
         clearInterval(interval);
       }
@@ -29,36 +31,29 @@ const Milestone = ({ desc, limit }) => {
     return () => clearInterval(interval);
   }, [count, limit, intervalDuration, isVisible]);
 
-  // Function to handle count up to 20
   useEffect(() => {
     if (isVisible && limit < 25) {
-      setIntervalDuration(80); // Reset interval duration
-      setCount(0); // Reset count
+      setIntervalDuration(80);
+      setCount(0);
     }
   }, [limit, isVisible]);
 
-  // Function to handle count up to 100
   useEffect(() => {
     if (isVisible && limit > 300) {
-      setIntervalDuration(2); // Further decrease interval duration for faster count up
-      setCount(0); // Reset count
+      setIntervalDuration(2);
+      setCount(0);
     }
   }, [limit, isVisible]);
 
-  // Function to update count and desc from MilestoneForm
-  const updateMilestoneData = (formData) => {
-    setCount(formData.count);
-    // You can update 'desc' here if needed based on formData
-  };
-
-  return isVisible ? (
-    <div className="flex justify-center px-6 py-8 h-68 w-80">
-      <div className="flex flex-col justify-center">
-        <h1 className="mx-auto text-6xl font-semibold">{count}+</h1>
-        <p className="text-sm font-semibold text-center">{desc}</p>
-      </div>
+  return (
+    <div className="flex justify-center gap-10">
+      {milestones.map((milestone, index) => (
+        <div key={index} className="flex flex-col items-center justify-center">
+          <h1 className="text-6xl font-semibold">{milestone.count1}</h1>
+          <p className="text-sm font-semibold text-center">{milestone.desc1}</p>
+        </div>
+      ))}
     </div>
-  ) : null;
+  );
 };
-
 export default Milestone;

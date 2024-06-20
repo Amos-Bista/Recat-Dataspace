@@ -1,31 +1,12 @@
-import React, { useState, useEffect } from "react";
+// About.jsx
+import React from "react";
 import Abouthero from "../component/about/abouthero";
 import Plans from "../component/Plans";
 import AboutAccordion from "../component/about/aboutaccordion";
-import Milestone from "../component/about/milestone";
+import Milestones from "../component/about/milestone";
+import { FormProvider } from "../component/about/formcontext";
+
 const About = () => {
-  const [milestoneData, setMilestoneData] = useState({
-    milestones: [
-      { desc: "", count: 0 },
-      { desc: "", count: 0 },
-      { desc: "", count: 0 },
-    ],
-  });
-
-  useEffect(() => {
-    // Retrieve milestone data from localStorage
-    const storedMilestoneData = localStorage.getItem("lastMilestoneData");
-    if (storedMilestoneData) {
-      const parsedData = JSON.parse(storedMilestoneData);
-      const newMilestones = [
-        { desc: parsedData.desc1, count: parseInt(parsedData.count1, 10) },
-        { desc: parsedData.desc2, count: parseInt(parsedData.count2, 10) },
-        { desc: parsedData.desc3, count: parseInt(parsedData.count3, 10) },
-      ];
-      setMilestoneData({ milestones: newMilestones });
-    }
-  }, []);
-
   return (
     <main>
       <div className="mb-[3rem]">
@@ -51,22 +32,12 @@ const About = () => {
       </div>
       <Plans />
 
-      <div className="flex justify-center py-6 pt-5 text-4xl font-bold">
-        Our Milestones
-      </div>
-
-      <div className="flex justify-center gap-10">
-        {milestoneData.milestones.map((milestone, index) => (
-          <Milestone
-            key={index}
-            desc={milestone.desc}
-            limit={milestone.count}
-          />
-        ))}
-      </div>
-
-      {/* Render MilestoneForm and pass handleFormSubmit as prop */}
-      
+      <FormProvider>
+        <div className="flex justify-center py-6 pt-5 text-4xl font-bold">
+          Our Milestones
+        </div>
+        <Milestones />
+      </FormProvider>
     </main>
   );
 };
