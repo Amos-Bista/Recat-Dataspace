@@ -5,6 +5,7 @@ import AboutHero from "../../component/adminAbout/aboutHeroSectiontable";
 import AdminAccordionTable from "../../component/adminAbout/aboutAccordioTable";
 import MilestoneForm from "../../component/adminAbout/milestoneform";
 import { useState } from "react";
+import { FormProvider } from "../../component/about/formcontext";
 
 const AdminAbout = () => {
   const [milestoneData, setMilestoneData] = useState({
@@ -28,11 +29,13 @@ const AdminAbout = () => {
     <main className="flex w-full align-middle bg-gray-200 py-28">
       <AdminNav />
       <div className="w-full bg-gray-200 rounded-lg mr-14">
-        <AboutHero />
+        {/* <AboutHero />
         <AdminAccordionTable />
-        {/* <AboutCardTable /> */}
-{/* 
-        <MilestoneForm onSubmit={handleFormSubmit} /> */}
+        <AboutCardTable /> */}
+
+        <FormProvider>
+          <MilestoneForm onSubmit={handleFormSubmit} />
+        </FormProvider>
       </div>
     </main>
   );

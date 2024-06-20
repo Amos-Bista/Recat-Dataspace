@@ -54,7 +54,7 @@ const Abouthero = () => {
         ></div>
         <div className="flex justify-center text-center ">
           <div className="">
-            <h1 className="absolute text-white top-[50%] left-[46%]">
+            <h1 className="absolute text-white top-[40%] left-[46%]">
               Database not connected!
             </h1>
           </div>
@@ -68,8 +68,8 @@ const Abouthero = () => {
       {loading ? (
         <div>
           <div
-            style={{ width: "100vw", height: "657px" }}
-            className="bg-black/20"
+            style={{ width: "100vw", height: "667px" }}
+            className="bg-black/50"
           ></div>
           <div className="flex justify-center text-center ">
             <CircularProgress

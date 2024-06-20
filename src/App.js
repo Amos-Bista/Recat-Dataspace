@@ -20,6 +20,7 @@ import AdminServiceSub from "./component/adminService/AdminServiceSub.jsx";
 import ContactInfoEdit from "./component/adminContact/contactinfoedit.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FormProvider } from "./component/about/formcontext.jsx";
 
 const routesData = [
   {
@@ -87,66 +88,68 @@ function App() {
   };
   return (
     <main className="w-screen overflow-x-hidden font-abc">
-      <Router>
-        <div>
-          <Routes>
-            {routesData.map((route, index) => {
-              if (route.dropdown) {
-                return (
-                  <Route
-                    key={index}
-                    path={route.link}
-                    element={<Service dropdown={route.dropdown} />}
-                  />
-                );
-              } else {
-                return (
-                  <Route
-                    key={index}
-                    path={route.link}
-                    element={
-                      route.link === "/" ? (
-                        <Home />
-                      ) : route.link === "/about" ? (
-                        <About />
-                      ) : route.link === "/contact" ? (
-                        <Contact />
-                      ) : route.link === "/adminabout" ? (
-                        <AdminAbout />
-                      ) : route.link === "/adminhome" ? (
-                        <AdminHome />
-                      ) : route.link === "/admincontact" ? (
-                        <AdminContact />
-                      ) : route.link === "/adminservice" ? (
-                        <AdminService />
-                      ) : route.link === "/adminservicepage/:id" ? (
-                        <AdminServiceSub />
-                      ) : route.link === "/services" ? (
-                        <Services />
-                      ) : route.link === "/services/:id" ? (
-                        <ServicePage />
-                      ) : route.link === "/contactEdit" ? (
-                        <ContactInfoEdit />
-                      ) : null
-                    }
-                    exact={route.link === "/"}
-                  />
-                );
-              }
-            })}
-          </Routes>
-        </div>
-
-        <div className="fixed top-0 w-[100%] ">
-          <div className={visible ? "fixed top-0 w-full z-50" : "hidden"}>
-            <NavBar />
+      <FormProvider>
+        <Router>
+          <div>
+            <Routes>
+              {routesData.map((route, index) => {
+                if (route.dropdown) {
+                  return (
+                    <Route
+                      key={index}
+                      path={route.link}
+                      element={<Service dropdown={route.dropdown} />}
+                    />
+                  );
+                } else {
+                  return (
+                    <Route
+                      key={index}
+                      path={route.link}
+                      element={
+                        route.link === "/" ? (
+                          <Home />
+                        ) : route.link === "/about" ? (
+                          <About />
+                        ) : route.link === "/contact" ? (
+                          <Contact />
+                        ) : route.link === "/adminabout" ? (
+                          <AdminAbout />
+                        ) : route.link === "/adminhome" ? (
+                          <AdminHome />
+                        ) : route.link === "/admincontact" ? (
+                          <AdminContact />
+                        ) : route.link === "/adminservice" ? (
+                          <AdminService />
+                        ) : route.link === "/adminservicepage/:id" ? (
+                          <AdminServiceSub />
+                        ) : route.link === "/services" ? (
+                          <Services />
+                        ) : route.link === "/services/:id" ? (
+                          <ServicePage />
+                        ) : route.link === "/contactEdit" ? (
+                          <ContactInfoEdit />
+                        ) : null
+                      }
+                      exact={route.link === "/"}
+                    />
+                  );
+                }
+              })}
+            </Routes>
           </div>
-        </div>
-        <ShowFooter>
-          <Footer />
-        </ShowFooter>
-        <ToastContainer />
-      </Router>
+
+          <div className="fixed top-0 w-[100%] ">
+            <div className={visible ? "fixed top-0 w-full z-50" : "hidden"}>
+              <NavBar />
+            </div>
+          </div>
+          <ShowFooter>
+            <Footer />
+          </ShowFooter>
+          <ToastContainer />
+        </Router>
+      </FormProvider>
     </main>
   );
 }
