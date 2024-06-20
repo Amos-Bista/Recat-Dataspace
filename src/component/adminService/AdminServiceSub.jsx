@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
@@ -69,24 +70,29 @@ const AdminServiceSub = () => {
           </div>
           <div className="w-full h-full px-2 rounded-lg ">
             <TableContainer component={Paper}>
+            <Table  aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell align="center">Title</TableCell>
-                  <TableCell align="center">Description</TableCell>
-                  <TableCell align="center">Edit</TableCell>
+                  <TableCell sx={{ minWidth: 400 }}  align="center">Description</TableCell>
+                  <TableCell  align="center">Edit</TableCell>
                   <TableCell align="center">Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
+            
                 {serviceData.accordions.length > 0 ? (
                   serviceData.accordions.map((panel) => (
                     <TableRow key={panel.id}>
                       <TableCell align="center">{panel.title}</TableCell>
                       <TableCell align="center">{panel.description}</TableCell>
-                      <TableCell>
-                        <Button variant="contained">EDIT</Button>
+                      <TableCell
+                      align="center">
+                        <Button 
+                        variant="contained">EDIT</Button>
                       </TableCell>
-                      <TableCell>
+                      <TableCell
+                      align="center">
                         <Button
                           className="!bg-red-500 !hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
                           variant="contained"
@@ -105,7 +111,9 @@ const AdminServiceSub = () => {
                   </TableRow>
                 )}
               </TableBody>
+              </Table>
             </TableContainer>
+            
             <Servicefeatureplans />
           </div>
         </div>
