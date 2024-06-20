@@ -36,7 +36,7 @@ const Milestone = ({ id, desc }) => {
           return prevCount;
         }
       });
-    }, intervalDuration);
+    }, intervalDuration);   
 
     return () => clearInterval(interval);
   }, [isVisible, count, intervalDuration]);

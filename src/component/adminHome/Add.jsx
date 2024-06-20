@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Add = ({ addData }) => {
+const Add = ({ addData, fetchData }) => {
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
@@ -40,7 +40,7 @@ const Add = ({ addData }) => {
       const formData = new FormData();
       formData.append("title", serviceName);
       formData.append("description", serviceDescription);
-      formData.append("imageFile", serviceBgImage);
+      formData.append("backgroundImage", serviceBgImage);
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/heroSection/createSection`,
@@ -50,19 +50,11 @@ const Add = ({ addData }) => {
         }
       );
       if (response.ok) {
+        // Check if response status is 400 or 500
         setResponse("Contact registered");
         alert("Form submitted successfully!");
-        addData(); // Update the parent component with the new data
-      } else {
-        // Check if response status is 400 or 500
-        if (response.status >= 400 && response.status < 500) {
-          const errorData = await response.json();
-          console.error("Client Error:", errorData);
-          throw new Error("Client error occurred");
-        } else if (response.status >= 500) {
-          console.error("Server Error:", response.statusText);
-          throw new Error("Server error occurred");
-        }
+        // addData(); // Update the parent component with the new data
+        fetchData();
       }
     } catch (error) {
       // console.error("Error:", error);
