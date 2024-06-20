@@ -73,7 +73,7 @@ const HomeHero = () => {
         </h3>
 
         <Box>
-          <Add addData={addData} />
+          <Add addData={addData} fetchData={fetchData} />
         </Box>
       </div>
       <div>
@@ -93,7 +93,9 @@ const HomeHero = () => {
                 rows.map((row, index) => (
                   <TableRow key={row.id}>
                     <TableCell align="center">{rows[index].title}</TableCell>
-                    <TableCell align="center">{rows[index].description}</TableCell>
+                    <TableCell align="center">
+                      {rows[index].description}
+                    </TableCell>
                     <TableCell className="flex justify-center">
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${row.backgroundImage}`}
