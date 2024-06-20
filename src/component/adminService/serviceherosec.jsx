@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
+import { Button } from "@mui/material";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import ServiceDelete from "./serviceDelete";
+import ServiceEdit from "./serviceEdit";
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
@@ -68,16 +71,16 @@ const Serviceherosec = () => {
                       />
                     </TableCell>
                     <TableCell align="center">
-                      {/* <Button variant="contained">
+                      <Button variant="contained">
+                        {/* <ServiceEdit /> */}
                         <ServiceEdit />
-                      </Button> */}
-
-                    </TableCell>
-                    {/* <TableCell align="center">
-                      <Button sx={{ margin: 2 }}>
-                        <ServiceDelete  />
                       </Button>
-                    </TableCell> */}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button sx={{ margin: 2 }}>
+                        <ServiceDelete />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>

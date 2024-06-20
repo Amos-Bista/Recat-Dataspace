@@ -13,6 +13,8 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import FeaturePlansAdd from "./featurePlansAdd";
 import FeaturePlansEdit from "./featurePlansEdit";
+import ServicePlanSpec from "./serviceplanSpec";
+import PlanSpecAdd from "./planSpecAdd";
 
 const Servicefeatureplans = () => {
   const { id } = useParams();
@@ -63,6 +65,8 @@ const Servicefeatureplans = () => {
                 <TableCell align="center">Plan Title</TableCell>
                 <TableCell align="center">Plan Tiers</TableCell>
                 <TableCell align="center">Price</TableCell>
+                <TableCell align="center">Specification</TableCell>
+                <TableCell align="center">Add Specification</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
@@ -74,6 +78,15 @@ const Servicefeatureplans = () => {
                     <TableCell align="center">{row.servicePlanTitle}</TableCell>
                     <TableCell align="center">{row.servicePlanTiers}</TableCell>
                     <TableCell align="center">{row.price}</TableCell>
+                    <TableCell align="center">
+                      <ServicePlanSpec />
+                    </TableCell>
+                    <TableCell align="center">
+                      <Box variant="contained">
+                        <PlanSpecAdd />
+                      </Box>
+                    </TableCell>
+
                     <TableCell align="center">
                       <Box variant="contained">
                         <FeaturePlansEdit

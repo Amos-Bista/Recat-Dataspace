@@ -74,9 +74,12 @@ const ServiceAdd = ({ addData }) => {
 
   return (
     <>
-      <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add New
-      </Button>
+      <div className=" flex flex-row justify-between mt-[10px] mb-9 ">
+        <h3 className=" text-2xl font-[400] text-[#0D5077] ">Service Page</h3>
+        <Button onClick={functionOnPopUp} color="primary" variant="contained">
+          Add New
+        </Button>
+      </div>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
