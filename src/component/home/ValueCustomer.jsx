@@ -64,20 +64,20 @@ const ValueCustomer = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div
-        style={{ width: "100vw", height: "180px" }}
-        className="flex  bg-blue-100/40 w-[max-content] relative  pb-6"
-      >
-        {" "}
-        <CircularProgress
-          className="absolute  top-[50%] left-[48%]"
-          color="inherit"
-        />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div
+  //       style={{ width: "100vw", height: "180px" }}
+  //       className="flex  bg-blue-100/40 w-[max-content] relative  pb-6"
+  //     >
+  //       {" "}
+  //       <CircularProgress
+  //         className="absolute  top-[50%] left-[48%]"
+  //         color="inherit"
+  //       />
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return (

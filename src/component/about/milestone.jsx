@@ -1,12 +1,11 @@
-// Milestone.jsx
-import React, { useState, useEffect, useContext } from "react";
-import { FormContext } from "./formcontext";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
-const Milestone = ({ desc, limit }) => {
-  const { milestones } = useContext(FormContext);
+const Milestone = ({ id, desc }) => {
   const [count, setCount] = useState(0);
-  const [intervalDuration, setIntervalDuration] = useState(20);
   const [isVisible, setIsVisible] = useState(false);
+  const [intervalDuration, setIntervalDuration] = useState(20);
+  const [name, setName] = useState(""); // Assuming name is passed as prop
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,42 +17,47 @@ const Milestone = ({ desc, limit }) => {
   }, []);
 
   useEffect(() => {
-    if (!isVisible) return;
+    const storedData = JSON.parse(localStorage.getItem("lastMilestoneData"));
+    if (storedData && storedData[id]) {
+      setCount(storedData[id].value); // Fetching specific milestone count value
+      console.log(`Retrieved count for ${id}:`, storedData[id].value); // Debug log
+    }
+  }, [id]);
+
+  useEffect(() => {
+    const limit = count; // You can adjust the limit as per your requirement
 
     const interval = setInterval(() => {
-      if (count < limit) {
-        setCount((prevCount) => prevCount + 1);
-      } else {
-        clearInterval(interval);
-      }
+      setCount((prevCount) => {
+        if (prevCount < limit) {
+          return prevCount + 1;
+        } else {
+          clearInterval(interval);
+          return prevCount;
+        }
+      });
     }, intervalDuration);
 
     return () => clearInterval(interval);
-  }, [count, limit, intervalDuration, isVisible]);
+  }, [isVisible, count, intervalDuration]);
 
   useEffect(() => {
-    if (isVisible && limit < 25) {
-      setIntervalDuration(80);
-      setCount(0);
+    // Example: Fetching name from localStorage
+    const storedName = localStorage.getItem("name");
+    if (storedName) {
+      setName(storedName);
     }
-  }, [limit, isVisible]);
-
-  useEffect(() => {
-    if (isVisible && limit > 300) {
-      setIntervalDuration(2);
-      setCount(0);
-    }
-  }, [limit, isVisible]);
+  }, []);
 
   return (
     <div className="flex justify-center gap-10">
-      {milestones.map((milestone, index) => (
-        <div key={index} className="flex flex-col items-center justify-center">
-          <h1 className="text-6xl font-semibold">{milestone.count1}</h1>
-          <p className="text-sm font-semibold text-center">{milestone.desc1}</p>
-        </div>
-      ))}
+      <div className="flex flex-col items-center justify-center">
+        {/* <h1 className="text-6xl font-semibold">{name}</h1> */}
+        <p className="text-4xl font-bold">{count}</p>
+        <p className="text-sm font-semibold text-center">{desc}</p>
+      </div>
     </div>
   );
 };
+
 export default Milestone;
