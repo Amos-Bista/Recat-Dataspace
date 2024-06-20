@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,13 +7,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-
 import Box from "@mui/material/Box";
 import FeaturePlansAdd from "./featurePlansAdd";
 import FeaturePlansEdit from "./featurePlansEdit";
-import ServicePlanSpec from "./serviceplanSpec";
 import PlanSpecAdd from "./planSpecAdd";
+import FeaturePlansDelete from "./featurePlansDelete";
 
 const Servicefeatureplans = () => {
   const { id } = useParams();
@@ -43,10 +40,24 @@ const Servicefeatureplans = () => {
     await fetchData();
   }; //when edited data
 
-  const handleAddAccordion = async () => {
-    await fetchData();
+  const handleDelete = async (rowId) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/servicePlans/deleteServicePlan?id=${rowId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete accordion");
+      }
+      alert("FeaturePlan deleted successfully!");
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting accordion:", error);
+      alert("Failed to delete accordion");
+    }
   };
-
   return (
     <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
@@ -54,7 +65,7 @@ const Servicefeatureplans = () => {
           Features Plans
         </h3>
         <div className="mb-[12px]">
-          <FeaturePlansAdd addAccordion={handleAddAccordion} />
+          <FeaturePlansAdd addfeaturePlan={updateRowData} />
         </div>
       </div>
       <div>
@@ -73,17 +84,19 @@ const Servicefeatureplans = () => {
             </TableHead>
             <TableBody>
               {Array.isArray(rowData.servicePlans) &&
-                rowData.servicePlans.map((row, index) => (
-                  <TableRow key={index}>
+                rowData.servicePlans.map((row) => (
+                  <TableRow key={row.id}>
                     <TableCell align="center">{row.servicePlanTitle}</TableCell>
                     <TableCell align="center">{row.servicePlanTiers}</TableCell>
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
-                      <ServicePlanSpec />
+                      {row.specifications.map((spec) => (
+                        <div key={spec.id}>{spec.feature}</div>
+                      ))}
                     </TableCell>
                     <TableCell align="center">
                       <Box variant="contained">
-                        <PlanSpecAdd />
+                        <PlanSpecAdd id={row.id} />
                       </Box>
                     </TableCell>
 
@@ -94,17 +107,14 @@ const Servicefeatureplans = () => {
                           tiers={row.servicePlanTiers}
                           price={row.price}
                           id={row.id}
-                          updateRowData={updateRowData} // Pass the function to update data
+                          updateRowData={updateRowData}
                         />
                       </Box>
                     </TableCell>
                     <TableCell align="center">
-                      <Button
-                        sx={{ margin: 2 }}
-                        className="!bg-red-500 hover:!bg-red-700 !text-white !rounded"
-                      >
-                        Delete
-                      </Button>
+                      <FeaturePlansDelete
+                        onDelete={() => handleDelete(row.id)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}

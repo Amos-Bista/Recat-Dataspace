@@ -12,11 +12,14 @@ import AdminNav from "../adminHome/adminNav";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import AccordionAdd from "./accordionAdd";
 import Servicefeatureplans from "./servicefeatureplans";
+import AccordionDelete from "./accordionDelete";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminServiceSub = () => {
   const { id } = useParams();
   const [serviceData, setServiceData] = useState(null);
-  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -37,25 +40,32 @@ const AdminServiceSub = () => {
     }
   };
 
-  const handleChange = (panel) => (isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleAccordionAdded = () => {
+    fetchData(); // Refresh service data when accordion is added
+  };
+
+  const handleDelete = async (panelId) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/deleteDescription?id=${panelId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete accordion");
+      }
+      toast.error("Accordion deleted successfully!");
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting accordion:", error);
+      alert("Failed to delete accordion");
+    }
   };
 
   if (!serviceData) {
     return <div>Loading...</div>;
   }
-  // Construct the image URL
-  // const imageUrl = `http://172.16.100.109:8282/services/${serviceData.serviceBgImage}`;
-  // console.log(imageUrl);
-
-  const imgStyles = {
-    width: "100vw",
-    height: "667px",
-    transition: "opacity 0.5s ease-in-out",
-  };
-  const handleAccordionAdded = () => {
-    fetchData(); // Refresh service data when accordion is added
-  };
 
   return (
     <div>
@@ -64,60 +74,58 @@ const AdminServiceSub = () => {
         <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14 ">
           <div className="flex flex-row align-middle justify-between">
             <h1 className="text-2xl font-[400] text-[#383698]">Accordions</h1>
-            <div className="mb-10   ">
+            <div className="mb-10">
               <AccordionAdd onAccordionAdded={handleAccordionAdded} />
             </div>
           </div>
           <div className="w-full h-full px-2 rounded-lg ">
             <TableContainer component={Paper}>
-            <Table  aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Title</TableCell>
-                  <TableCell sx={{ minWidth: 400 }}  align="center">Description</TableCell>
-                  <TableCell  align="center">Edit</TableCell>
-                  <TableCell align="center">Delete</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-            
-                {serviceData.accordions.length > 0 ? (
-                  serviceData.accordions.map((panel) => (
-                    <TableRow key={panel.id}>
-                      <TableCell align="center">{panel.title}</TableCell>
-                      <TableCell align="center">{panel.description}</TableCell>
-                      <TableCell
-                      align="center">
-                        <Button 
-                        variant="contained">EDIT</Button>
-                      </TableCell>
-                      <TableCell
-                      align="center">
-                        <Button
-                          className="!bg-red-500 !hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
-                          variant="contained"
-                        >
-                          DELETE
-                        </Button>
+              <Table aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">Title</TableCell>
+                    <TableCell sx={{ minWidth: 400 }} align="center">
+                      Description
+                    </TableCell>
+                    <TableCell align="center">Edit</TableCell>
+                    <TableCell align="center">Delete</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {serviceData.accordions.length > 0 ? (
+                    serviceData.accordions.map((panel) => (
+                      <TableRow key={panel.id}>
+                        <TableCell align="center">{panel.title}</TableCell>
+                        <TableCell align="center">
+                          {panel.description}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Button variant="contained">EDIT</Button>
+                        </TableCell>
+                        <TableCell align="center">
+                          <AccordionDelete
+                            onDelete={() => handleDelete(panel.id)}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={4} align="center">
+                        <SdCardAlertIcon color="error" />
+                        No items available. Please add new items.
                       </TableCell>
                     </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell>
-                      <SdCardAlertIcon color="error" />
-                      No items available. Please add new items.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
+                  )}
+                </TableBody>
               </Table>
             </TableContainer>
-            
+
             <Servicefeatureplans />
           </div>
         </div>
       </main>
+      <ToastContainer />
     </div>
   );
 };
