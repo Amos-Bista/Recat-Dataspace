@@ -1,22 +1,10 @@
-// About.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Abouthero from "../component/about/abouthero";
 import Plans from "../component/Plans";
 import AboutAccordion from "../component/about/aboutaccordion";
 import Milestone from "../component/about/milestone";
-import { FormProvider } from "../component/about/formcontext";
 
 const About = () => {
-  const storedData =
-    JSON.parse(localStorage.getItem("lastMilestoneData")) || {};
-
-  // Example data structure: { milestone1: {desc: "Description", value: 10}, milestone2: {desc: "Description", value: 20}, milestone3: {desc: "Description", value: 30} }
-  const milestones = Object.keys(storedData).map((key) => ({
-    id: key,
-    desc: storedData[key].desc,
-    count: storedData[key].value,
-  }));
-
   return (
     <main>
       <div className="mb-[3rem]">
@@ -45,16 +33,12 @@ const About = () => {
       <div className="flex justify-center py-6 pt-5 text-4xl font-bold">
         Our Milestones
       </div>
+
       <div className="flex justify-center gap-10">
-        {milestones.map((milestone) => (
-          <Milestone
-            key={milestone.id}
-            id={milestone.id}
-            desc={milestone.desc}
-            count={milestone.count}
-          />
-        ))}
+        <Milestone />
       </div>
+
+      {/* Render MilestoneForm and pass handleFormSubmit as prop */}
     </main>
   );
 };
