@@ -41,7 +41,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/aboutUs/`,
+        `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/addDescription`,
         {
           method: "POST",
           headers: {
@@ -53,7 +53,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
 
       if (response.ok) {
         alert("Form submitted successfully!");
-        onAccordionAdded(); // Notify parent component to refresh data
+        onAccordionAdded();
       } else {
         throw new Error("Network response was not ok");
       }
@@ -64,9 +64,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    // Any additional effect logic if required
-  }, [id]);
+  useEffect(() => {}, [id]);
 
   return (
     <div>

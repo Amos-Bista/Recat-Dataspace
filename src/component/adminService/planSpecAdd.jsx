@@ -13,12 +13,9 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const PlanSpecAdd = () => {
+const PlanSpecAdd = ({ id }) => {
   const [open, setOpen] = useState(false);
   const [feature, setFeature] = useState("");
-  const [servicePlanTiers, setServicePlanTiers] = useState("");
-  const [price, setPrice] = useState("");
-  const { id } = useParams();
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -34,8 +31,8 @@ const PlanSpecAdd = () => {
     e.preventDefault();
 
     const payload = {
-      feature: "24/7 services",
-      servicePlanId: 3,
+      feature: feature,
+      servicePlanId: id,
     };
 
     try {
@@ -61,10 +58,6 @@ const PlanSpecAdd = () => {
     }
     setOpen(false);
   };
-
-  useEffect(() => {
-    // Any additional effect logic if required
-  }, [id]);
 
   return (
     <div>
