@@ -104,24 +104,22 @@ const AboutAccordion = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
       );
-      if (!response.ok) {
-        console.log("fetch Sucess");
-      }
+
       const data = await response.json();
       setExpandedDatas(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div

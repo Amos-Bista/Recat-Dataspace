@@ -78,7 +78,7 @@ const Serviceherosec = () => {
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
-                        <ServiceDelete />
+                        <ServiceDelete id={row?.id} />
                       </Button>
                     </TableCell>
                   </TableRow>
