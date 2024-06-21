@@ -71,7 +71,7 @@ const AboutHeroAdd = ({ addData }) => {
   };
 
   return (
-    <>
+    <>  
       {/* <Button onClick={functionOnPopUp} color="primary" variant="contained">
         Add New +
       </Button> */}

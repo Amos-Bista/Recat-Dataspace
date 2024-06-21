@@ -10,6 +10,7 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
+import { toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
 
 const Add = ({ addData, fetchData }) => {
@@ -50,10 +51,13 @@ const Add = ({ addData, fetchData }) => {
         }
       );
       if (response.ok) {
-        // Check if response status is 400 or 500
-        setResponse("Contact registered");
-        alert("Form submitted successfully!");
-        // addData(); // Update the parent component with the new data
+        toast.success("Contact registered");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+        console.log(response);
+        closePopUp(true);
+        window.location.reload()
         fetchData();
       }
     } catch (error) {
@@ -141,9 +145,9 @@ const Add = ({ addData, fetchData }) => {
                 accept="image/*"
                 onChange={handleImageChange}
               />
-              <Button onClick={handleImageClick} variant="outlined">
+              {/* <Button onClick={handleImageClick} variant="outlined">
                 Choose File
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
         </DialogContent>

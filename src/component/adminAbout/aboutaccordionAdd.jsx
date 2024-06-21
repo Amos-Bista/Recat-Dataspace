@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import {
   Button,
@@ -12,12 +12,23 @@ import {
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast } from "react-toastify";
 
-const AccordionAdd = ({ onAccordionAdded }) => {
+// Simple integer ID generator
+
+const AboutAccordionAdd = ({ onAboutAccordionAdded }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
-  const [description, setdescription] = useState("");
+  const [description, setDescription] = useState("");
+  const [logo, setLogo] = useState(null); // State to hold selected file
+  // const [serviceId, setServiceId] = useState(null); // State to hold the fetched serviceId
   const { id } = useParams();
+
+  const inputRef = useRef(null);
+
+  const handleImageChange = (event) => {
+    setLogo(event.target.files[0]); // Update logo state with selected file
+  };
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -25,46 +36,72 @@ const AccordionAdd = ({ onAccordionAdded }) => {
 
   const closePopUp = () => {
     setOpen(false);
+    // Reset form fields when closing the dialog
+    setTitle("");
+    setDescription("");
+    setLogo(null);
   };
 
   const handleTitleChange = (e) => setTitle(e.target.value);
-  const handledescriptionChange = (e) => setdescription(e.target.value);
+  const handledescriptionChange = (e) => setDescription(e.target.value);
+
+  // console.log({serviceId})
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      title,
-      description,
-      serviceId: id,
-    };
+    // Validate form fields before submission
+    if (!validateForm()) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("aboutUsId", 1); // Include the unique integer ID
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("logo", logo);
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/addDescription`,
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc/addAccordion`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+          body: formData,
         }
       );
 
       if (response.ok) {
-        alert("Form submitted successfully!");
-        onAccordionAdded();
+        toast.success("Form submitted successfully!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+        console.log(response);
+        closePopUp(true);
+        window.location.reload();
+
+        if (onAboutAccordionAdded) {
+          onAboutAccordionAdded();
+        }
+        closePopUp(); // Close dialog on successful submission
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error submitting form. Please try again.");
+      toast.error("Error submitting form. Please try again.");
     }
-    setOpen(false);
   };
 
   useEffect(() => {}, [id]);
+
+  //   Simple form validation function (you can expand as needed)
+  const validateForm = () => {
+    if (!title || !description || !logo) {
+      toast.error("Please fill in all fields.");
+      return false;
+    }
+    return true;
+  };
 
   return (
     <div>
@@ -80,7 +117,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
         >
-          Service Accordion Add
+          About Accordion Add
           <IconButton
             aria-label="close"
             onClick={closePopUp}
@@ -98,14 +135,47 @@ const AccordionAdd = ({ onAccordionAdded }) => {
           <Grid container spacing={4} padding={5}>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
-                Plan Title
+                Accordion Logo
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Grid item xs={6}>
+                <input
+                  type="file"
+                  ref={inputRef}
+                  style={{ display: "none" }} // Hide the input visually
+                  onChange={handleImageChange}
+                />
+                <Button
+                  onClick={() => inputRef.current.click()}
+                  variant="outlined"
+                >
+                  Choose File
+                </Button>
+                {logo && (
+                  <img
+                    src={URL.createObjectURL(logo)}
+                    alt="Selected Logo"
+                    style={{
+                      width: "30%",
+                      height: "60px",
+                      marginTop: "10px",
+                    }}
+                  />
+                )}
+              </Grid>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Accordion Title
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Enter Plan Title"
+                label="Enter Accordion Title"
                 variant="outlined"
                 fullWidth
+                value={title}
                 onChange={handleTitleChange}
               />
             </Grid>
@@ -115,14 +185,15 @@ const AccordionAdd = ({ onAccordionAdded }) => {
                 gutterBottom
                 style={{ marginTop: "1rem" }}
               >
-                Plan Tiers
+                Accordion Description
               </Typography>
             </Grid>
             <Grid item xs={6}>
               <TextField
-                label="Enter Plan Tiers"
+                label="Enter Accordion Description"
                 variant="outlined"
                 fullWidth
+                value={description}
                 onChange={handledescriptionChange}
               />
             </Grid>
@@ -163,4 +234,4 @@ const AccordionAdd = ({ onAccordionAdded }) => {
   );
 };
 
-export default AccordionAdd;
+export default AboutAccordionAdd;
