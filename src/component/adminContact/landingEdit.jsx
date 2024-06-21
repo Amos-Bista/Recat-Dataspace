@@ -173,6 +173,7 @@ const LandingEdit = ({ contactDetails }) => {
             name="phoneNumbers"
             label="Enter numbers (comma separated)"
             variant="outlined"
+            type="number"
             fullWidth
             value={phoneNumbers}
             onChange={(e) => setPhoneNumbers(e.target.value)}
@@ -187,6 +188,7 @@ const LandingEdit = ({ contactDetails }) => {
           <TextField
             label="Enter mail"
             variant="outlined"
+            type="email"
             fullWidth
             value={email}
             onChange={(e) => setEmail(e.target.value)}

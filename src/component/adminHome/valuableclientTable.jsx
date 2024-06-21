@@ -11,6 +11,7 @@ import ValuableclientAdd from "./valuableclientAdd";
 import { Box } from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import VCD from "./valueclientDelete";
+import { toast } from "react-toastify";
 
 const ValuableclientTable = () => {
   const [rows, setRowData] = useState([]);
@@ -43,14 +44,16 @@ const ValuableclientTable = () => {
         }
       );
       if (!response.ok) {
-        throw new Error("Failed to delete contact");
+        const updatedRows = [...rows];
+        updatedRows.splice(index, 1);
+        setRowData(updatedRows);
+      } else {
+        toast("Delete Sucessful");
       }
-      const updatedRows = [...rows];
-      updatedRows.splice(index, 1);
-      setRowData(updatedRows);
     } catch (error) {
-      console.error("Error deleting contact:", error);
+      toast("Error deleting contact:", error);
     }
+    // handleDelete();
   };
 
   return (
@@ -68,10 +71,18 @@ const ValuableclientTable = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center" sx={{ width: "30%" }}>Name</TableCell>
-                <TableCell align="center" sx={{ width: "30%" }}>Customer Logo</TableCell>
-                <TableCell align="center" sx={{ width: "20%" }}>Edit</TableCell>
-                <TableCell align="center" sx={{ width: "20%" }}>Delete</TableCell>
+                <TableCell align="center" sx={{ width: "30%" }}>
+                  Name
+                </TableCell>
+                <TableCell align="center" sx={{ width: "30%" }}>
+                  Customer Logo
+                </TableCell>
+                {/* <TableCell align="center" sx={{ width: "20%" }}>
+                  Edit
+                </TableCell> */}
+                <TableCell align="center" sx={{ width: "20%" }}>
+                  Delete
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -85,12 +96,12 @@ const ValuableclientTable = () => {
                       component="th"
                       scope="row"
                       align="center"
-                      sx={{ 
-                        width: "30%", 
-                        maxWidth: "200px", 
-                        overflow: "hidden", 
-                        whiteSpace: "nowrap", 
-                        textOverflow: "ellipsis"
+                      sx={{
+                        width: "30%",
+                        maxWidth: "200px",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
                       }}
                       title={row.title}
                     >
@@ -104,14 +115,14 @@ const ValuableclientTable = () => {
                           width: "80px",
                           height: "80px",
                           position: "relative",
-                          left: "162px"
+                          left: "162px",
                         }}
                       />
                     </TableCell>
                     <TableCell align="center" sx={{ width: "20%" }}>
-                      <Button sx={{ margin: 2 }} variant="contained">
+                      {/* <Button sx={{ margin: 2 }} variant="contained">
                         Edit
-                      </Button>
+                      </Button> */}
                     </TableCell>
                     <TableCell align="center" sx={{ width: "20%" }}>
                       <VCD onDelete={() => handleDelete(row.id, index)} />

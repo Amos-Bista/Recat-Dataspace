@@ -37,9 +37,12 @@ const AboutAdd = () => {
       formData.append("description", description);
 
       const response = await fetch(
-        `  ${process.env.REACT_APP_API_BASE_URL}aboutUsDesc/addAccordion/aboutUsID${aboutUsID} `,
+        `  ${process.env.REACT_APP_API_BASE_URL}aboutUs/addAccordion `,
         {
           method: "POST",
+          header: {
+            "Content-Type": "application/json"  
+          },
           body: formData,
         }
       );

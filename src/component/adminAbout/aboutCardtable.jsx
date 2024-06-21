@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
-import AboutAdd from "../adminAbout/aboutadd";
-import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
-import { Box } from "@mui/material";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TableRow from "@mui/material/TableRow";
+// import Paper from "@mui/material/Paper";
+// import Button from "@mui/material/Button";
+// import AboutAdd from "../adminAbout/aboutadd";
+// import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
+// import { Box } from "@mui/material";
 
 const AboutCardTable = () => {
   const [rowDatas, setRowDatas] = useState([]);
@@ -20,8 +20,8 @@ const AboutCardTable = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        ' ${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc/addAccordion',
-      );  
+        "${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs"
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
@@ -37,16 +37,16 @@ const AboutCardTable = () => {
         <h3 className="my-8 text-2xl font-[400] text-[#0D5077]  text-[34px]">
           DataSpace About Us Cards
         </h3>
-        <Box>
+        {/* <Box>
           <AboutAdd />
-        </Box>
+        </Box> */}
       </div>
       <div className="">
-        <TableContainer component={Paper}>
+        {/* <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Logo</TableCell>
+                <TableCell align="center">Log00o</TableCell>
                 <TableCell align="center">Tittle</TableCell>
                 <TableCell align="center">Paragraph</TableCell>
                 <TableCell align="center">Edit</TableCell>
@@ -55,17 +55,15 @@ const AboutCardTable = () => {
             </TableHead>
             <TableBody>
               {rowDatas.length > 0 ? (
-                rowDatas.length > 0 &&
-                rowDatas[0].aboutUsAccordions &&
-                rowDatas[0].aboutUsAccordions.map((rowData) => (
+                rowDatas[0].aboutUsAccordions.map((rowDatas) => (
                   <TableRow
-                    key={rowData.id}
+                    key={rowDatas.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell
                       align="center"
                       sx={{
-                        backgroundImage: `url(${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rowData.logo})`,
+                        backgroundImage: `url(${process.env.REACT_APP_API_BASE_URL}/aboutUs/${rowDatas.logo})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         width: 50,
@@ -74,9 +72,9 @@ const AboutCardTable = () => {
                         marginLeft: "20px",
                       }}
                     ></TableCell>
-                    <TableCell align="center">{rowData.title}</TableCell>
+                    <TableCell align="center">{rowDatas.title}</TableCell>
                     <TableCell component="th" scope="row">
-                      {rowData.description}
+                      {rowDatas.description}
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }} variant="contained">
@@ -103,7 +101,7 @@ const AboutCardTable = () => {
               )}
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainer> */}
       </div>
     </main>
   );

@@ -7,7 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import AccordionAdd from "../adminService/accordionAdd";
 
 const AdminAccordionTable = () => {
@@ -58,10 +57,12 @@ const AdminAccordionTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {aboutData[0].aboutUsAccordions.map((data) => (
-                <TableRow key={data.id}>
-                  <TableCell align="center">{data.title}</TableCell>
-                  <TableCell align="center">{data.description}</TableCell>
+              {aboutData[0].aboutUsAccordions.map((aboutData) => (
+                <TableRow key={aboutData.id}>
+                  <TableCell align="center">{aboutData.title}</TableCell>
+                  {/* <TableCell align="center">Title</TableCell> */}
+                  {/* <TableCell align="center">Desc</TableCell> */}
+                  <TableCell align="center">{aboutData.description}</TableCell>
                   <TableCell>
                     <Button variant="contained">EDIT</Button>
                   </TableCell>
@@ -84,7 +85,6 @@ const AdminAccordionTable = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <Servicefeatureplans /> */}
       </div>
     </div>
   );
