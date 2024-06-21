@@ -8,18 +8,50 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast } from "react-toastify";
 
-const Edit = () => {
+const Edit = ({ onEdit }) => {
   const [open, setOpen] = useState(false);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null); // Initialize as null
+  const [rows, setRows] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
+
   const functionOnPopUp = () => {
     setOpen(true);
   };
+
   const closePopUp = () => {
     setOpen(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`
+      );
+
+      if (!response.ok) {
+        toast.success("herosection successfully fetched");
+      }
+      const data = await response.json();
+      console.log(data);
+      setTitle(data[0]?.title);
+      setDescription(data[0]?.description);
+      setBackgroundImage(data[0]?.backgroundImage);
+      setRows(data); // Store all data rows
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      toast.error("Error in network");
+    }
   };
 
   const handleImageChange = (event) => {
@@ -27,13 +59,54 @@ const Edit = () => {
   };
 
   const inputRef = useRef(null);
+
   const handleImageClick = () => {
     inputRef.current.click();
   };
 
+  const handleEdit = async (id, index) => {
+    const formData = new FormData();
+    formData.append("title", title || "");
+    formData.append("description", description || "");
+    formData.append("backgroundImage", backgroundImage || "");
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/heroSection/editSection?id=${id}`,
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
+      if (!response.ok) {
+        // toast.success("Success Updated")
+        // const updatedRows = [...rows];
+        // updatedRows.splice(index, 1);
+        // setRows(updatedRows);
+      } else {
+        toast.success("Edit Sucessful");
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 500);
+      }
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
+
+
+  const getImageSrc = () => {
+    if (image) {
+      return URL.createObjectURL(image);
+    }
+    if (backgroundImage) {
+      return `${process.env.REACT_APP_API_BASE_URL}/heroSection/${backgroundImage}`;
+    }
+    return "/editBackground.png"; // Default image
+  };
+
   return (
     <>
-      <button></button>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
         EDIT
       </Button>
@@ -60,16 +133,19 @@ const Edit = () => {
                 Title
               </Typography>
             </Grid>
-
             <Grid
               item
               xs={6}
               style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
             >
-              <TextField label="Enter title" variant="outlined" fullWidth />
+              <TextField
+                label="Enter title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                variant="outlined"
+                fullWidth
+              />
             </Grid>
-           
-
             <Grid item xs={6}>
               <Typography
                 variant="h6"
@@ -85,6 +161,8 @@ const Edit = () => {
               style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
             >
               <TextField
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 label="Enter description"
                 variant="outlined"
                 fullWidth
@@ -97,35 +175,23 @@ const Edit = () => {
                 Upload Image
               </Typography>
             </Grid>
-            <Grid onClick={handleImageClick} item xs={6}>
-              {image ? (
-                <img
-                  src={URL.createObjectURL(image)}
-                  style={{
-                    width: "500px",
-                    height: "250px",
-                    objectFit: "cover",
-                    overflow: "hidden",
-                  }}
-                />
-              ) : (
-                <img
-                  src="/editBackground.png"
-                  style={{
-                    width: "500px",
-                    height: "250px",
-                    objectFit: "cover",
-                    overflow: "hidden",
-                  }}
-                />
-              )}
+            <Grid item xs={6} onClick={handleImageClick}>
+              <img
+                src={getImageSrc()}
+                alt="Hero Section"
+                style={{
+                  width: "500px",
+                  height: "250px",
+                  objectFit: "cover",
+                  overflow: "hidden",
+                }}
+              />
               <input
                 type="file"
                 ref={inputRef}
-                className="hidden"
+                style={{ display: "none" }}
                 onChange={handleImageChange}
-              />{" "}
-              {/* Correct usage of useRef */}
+              />
             </Grid>
           </Grid>
         </DialogContent>
@@ -136,7 +202,7 @@ const Edit = () => {
             marginRight: "13px",
           }}
         >
-          <Button color="inherit" variant="contained">
+          <Button color="inherit" variant="contained" onClick={handleEdit}>
             UPDATE
           </Button>
           <Button

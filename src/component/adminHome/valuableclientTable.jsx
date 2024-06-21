@@ -48,7 +48,10 @@ const ValuableclientTable = () => {
         updatedRows.splice(index, 1);
         setRowData(updatedRows);
       } else {
-        toast("Delete Sucessful");
+        toast.success("Delete Sucessful");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       }
     } catch (error) {
       toast("Error deleting contact:", error);

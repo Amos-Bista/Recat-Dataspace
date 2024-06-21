@@ -29,7 +29,7 @@ const LandingEdit = ({ contactDetails }) => {
         `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+        toast.success("Success");
       }
       const data = await response.json();
       console.log({ data });

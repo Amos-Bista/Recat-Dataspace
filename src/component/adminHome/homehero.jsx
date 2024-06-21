@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-
+import { toast } from "react-toastify";
 import Delete from "../../component/adminHome/Delete";
 import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
@@ -16,6 +16,9 @@ import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
 const HomeHero = () => {
   const [rows, setRows] = useState([]);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState("");
 
   const addData = (data) => {
     setRows([...rows, data]);
@@ -50,15 +53,20 @@ const HomeHero = () => {
         }
       );
       if (!response.ok) {
-        throw new Error("Failed to delete contact");
+        const updatedRows = [...rows];
+        updatedRows.splice(index, 1);
+        setRows(updatedRows);
+      } else {
+        toast.success("Delete Sucessful");
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       }
-      const updatedRows = [...rows];
-      updatedRows.splice(index, 1);
-      setRows(updatedRows);
     } catch (error) {
       console.error("Error deleting contact:", error);
     }
   };
+
   const imgStyles = {
     width: "10vw",
     height: "6vw",
@@ -112,7 +120,7 @@ const HomeHero = () => {
                         sx={{ margin: 2 }}
                         className=" hover:!bg-red-700 !text-white !py-1 !px-2 !rounded"
                       >
-                        <Delete onDelete={() => handleDelete(row)} />
+                        <Delete onDelete={() => handleDelete(row.id, index)} />
                       </Button>
                     </TableCell>
                   </TableRow>
