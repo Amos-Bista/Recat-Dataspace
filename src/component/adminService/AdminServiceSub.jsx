@@ -72,7 +72,7 @@ const AdminServiceSub = () => {
       <main className="flex align-middle bg-gray-200 py-28">
         <AdminNav />
         <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14 ">
-          <div className="flex flex-row align-middle justify-between">
+          <div className="flex flex-row justify-between align-middle">
             <h1 className="text-2xl font-[400] text-[#383698]">Accordions</h1>
             <div className="mb-10">
               <AccordionAdd onAccordionAdded={handleAccordionAdded} />
@@ -87,7 +87,7 @@ const AdminServiceSub = () => {
                     <TableCell sx={{ minWidth: 400 }} align="center">
                       Description
                     </TableCell>
-                    <TableCell align="center">Edit</TableCell>
+                    {/* <TableCell align="center">Edit</TableCell> */}
                     <TableCell align="center">Delete</TableCell>
                   </TableRow>
                 </TableHead>
@@ -100,7 +100,7 @@ const AdminServiceSub = () => {
                           {panel.description}
                         </TableCell>
                         <TableCell align="center">
-                          <Button variant="contained">EDIT</Button>
+                          {/* <Button variant="contained">EDIT</Button> */}
                         </TableCell>
                         <TableCell align="center">
                           <AccordionDelete

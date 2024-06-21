@@ -11,6 +11,7 @@ import {
 import React, { useState, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast } from "react-toastify";
 
 const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
   const [open, setOpen] = useState(false);
@@ -45,14 +46,14 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
       );
 
       if (response.ok) {
-        alert("AboutUs updated successfully!");
+        toast.success("AboutUs updated successfully!");
         handleEditAbout();
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error updating AboutUs. Please try again.");
+      toast.error("Error updating AboutUs. Please try again.");
     }
     setOpen(false);
   };

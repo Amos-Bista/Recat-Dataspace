@@ -43,7 +43,7 @@ const Milestone = () => {
         <p className="text-sm font-semibold text-center">
           {milestoneData.desc3}
         </p>
-      </div>
+        </div>
     </div>
   );
 };

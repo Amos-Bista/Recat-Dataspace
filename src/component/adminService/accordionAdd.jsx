@@ -74,13 +74,13 @@ const AccordionAdd = ({ onAccordionAdded }) => {
         variant="contained"
         marginLeft="200px"
       >
-        Add Accordions
+        Add New
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
         >
-          Hero Section
+          About Accordion Add
           <IconButton
             aria-label="close"
             onClick={closePopUp}
