@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ServiceDelete = ({ id }) => {
+const ServiceDelete = ({ onDelete}) => {
   const [open, setOpen] = useState(false);
   const functionOnPopUp = () => {
     setOpen(true);
@@ -18,9 +18,9 @@ const ServiceDelete = ({ id }) => {
     setOpen(false);
   };
 
-  console.log({ id });
 
-  const onDelete = () => {};
+
+  // const onDelete = () => {};
 
   const handleDelete = () => {
     onDelete();

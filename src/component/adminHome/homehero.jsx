@@ -57,10 +57,10 @@ const HomeHero = () => {
         updatedRows.splice(index, 1);
         setRows(updatedRows);
       } else {
-        toast.success("Delete Sucessful");
+        toast.error("Delete Sucessful");
         setTimeout(() => {
           window.location.reload();
-        }, 500);
+        }, 3000);
       }
     } catch (error) {
       console.error("Error deleting contact:", error);
@@ -106,7 +106,7 @@ const HomeHero = () => {
                     </TableCell>
                     <TableCell className="flex justify-center">
                       <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${row.backgroundImage}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row[0].backgroundImage}`}
                         alt={rows[0].title}
                         style={imgStyles}
                         className="mx-auto"
@@ -120,13 +120,13 @@ const HomeHero = () => {
                         sx={{ margin: 2 }}
                         className=" hover:!bg-red-700 !text-white !py-1 !px-2 !rounded"
                       >
-                        <Delete onDelete={() => handleDelete(row.id, index)} />
+                        <Delete   onDelete={() => handleDelete(row.id, index)} />
                       </Button>
                     </TableCell>
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
+                <TableRow style={imgStyles}>
                   <TableCell align="center" colSpan={5}>
                     <SdCardAlertIcon color="error" />
                     No items available. Please add new items.

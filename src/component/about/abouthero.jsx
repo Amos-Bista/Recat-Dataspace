@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@mui/material";
+import Milestone from "./milestone";
 
 const Abouthero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,7 +52,9 @@ const Abouthero = () => {
         <div
           style={{ width: "100vw", height: "657px" }}
           className="bg-black/90"
-        ></div>
+        >
+          {" "}
+        </div>
         <div className="flex justify-center text-center ">
           <div className="">
             <h1 className="absolute text-white top-[40%] left-[46%]">
@@ -86,6 +89,7 @@ const Abouthero = () => {
           ></div>
           <img
             src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${slides[currentSlide].backgroundImage}`}
+            // src="public\bg2.jpeg"
             alt={slides[currentSlide].title}
             style={imgStyles}
             onError={(e) => {

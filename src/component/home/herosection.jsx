@@ -61,7 +61,6 @@ const Herosection = () => {
       </div>
     );
   }
-  
 
   if (error) {
     return (
@@ -105,8 +104,15 @@ const Herosection = () => {
             </div>
           </>
         ) : (
-          <div className="absolute top-[50%] left-[4%] text-white text-xl flex">
-            No Backgroung Image Avaliable from the admin
+          <div
+            style={{ width: "100vw", height: "667px" }}
+            className="flex relative  bg-black/90  w-[max-content] "
+          >
+            <div className="flex justify-center text-center">
+              <h1 className="absolute text-white top-[50%] left-[46%]">
+                NO IMAGE Avaliable!!<br></br> Database is Empty!
+              </h1>
+            </div>
           </div>
         )}
       </div>

@@ -12,6 +12,7 @@ import {
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast } from "react-toastify";
 
 const AccordionAdd = ({ onAccordionAdded }) => {
   const [open, setOpen] = useState(false);
@@ -52,7 +53,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
       );
 
       if (response.ok) {
-        alert("Form submitted successfully!");
+        toast.success("Form submitted successfully!");
         onAccordionAdded();
       } else {
         throw new Error("Network response was not ok");

@@ -85,7 +85,7 @@ const AdminAccordionTable = () => {
                       variant="contained"
                     >
                       DELETE
-                    </Button>
+                    </Button>3
                   </TableCell>
                 </TableRow>
               ))}

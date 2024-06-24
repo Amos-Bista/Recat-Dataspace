@@ -47,13 +47,13 @@ const ValuableclientAdd = () => {
       );
 
       if (response.ok) {
-        toast.success("Contact registered");
+        toast.success("Clients Added successfully");
         setTimeout(() => {
           window.location.reload();
-        }, 500);
+        }, 3000);
         console.log(response);
         closePopUp(true);
-        window.location.reload()
+        window.location.reload();
       } else {
         throw new Error("Network response was not ok");
       }

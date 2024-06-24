@@ -74,7 +74,7 @@ const AboutAccordionAdd = ({ onAboutAccordionAdded }) => {
         toast.success("Form submitted successfully!");
         setTimeout(() => {
           window.location.reload();
-        }, 500);
+        }, 3000);
         console.log(response);
         closePopUp(true);
         window.location.reload();

@@ -79,7 +79,7 @@ const Edit = ({ onEdit }) => {
         }
       );
       if (!response.ok) {
-        // toast.success("Success Updated")
+        toast.success("Success Updated")
         // const updatedRows = [...rows];
         // updatedRows.splice(index, 1);
         // setRows(updatedRows);

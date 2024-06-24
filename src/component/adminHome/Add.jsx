@@ -51,13 +51,13 @@ const Add = ({ addData, fetchData }) => {
         }
       );
       if (response.ok) {
-        toast.success("Contact registered");
+        toast.success("HeroSection uploaded");
         setTimeout(() => {
           window.location.reload();
-        }, 500);
+        }, 3000);
         console.log(response);
         closePopUp(true);
-        window.location.reload()
+        window.location.reload();
         fetchData();
       }
     } catch (error) {
@@ -71,9 +71,7 @@ const Add = ({ addData, fetchData }) => {
   };
 
   const inputRef = useRef(null);
-  const handleImageClick = () => {
-    inputRef.current.click();
-  };
+ 
 
   return (
     <>
