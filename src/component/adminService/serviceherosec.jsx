@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import ServiceDelete from "./serviceDelete";
 import ServiceEdit from "./serviceEdit";
-
+import { toast } from "react-toastify";
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
 
@@ -23,7 +23,7 @@ const Serviceherosec = () => {
         `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
       );
       if (!response.ok) {
-        throw new Error("SucessFully Deleted");
+        toast.success("SucessFully fetch");
       }
       const data = await response.json();
       setRowData(data);
@@ -39,6 +39,28 @@ const Serviceherosec = () => {
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
   //service page table
+  const handleDelete = async (id, index) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/deleteService?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        const updatedRows = [...rows];
+        updatedRows.splice(index, 1);
+        setRowData(updatedRows);
+      } else {
+        toast.error("Delete Sucessful");
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+    }
+  };
   return (
     <main className="">
       <div className="">
@@ -71,14 +93,13 @@ const Serviceherosec = () => {
                       />
                     </TableCell>
                     <TableCell align="center">
-                      <Button variant="contained">
-                        {/* <ServiceEdit /> */}
-                        <ServiceEdit />
-                      </Button>
+                      <ServiceEdit />
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
-                        <ServiceDelete id={row?.id} />
+                        <ServiceDelete
+                          onDelete={() => handleDelete(row.id, index)}
+                        />
                       </Button>
                     </TableCell>
                   </TableRow>

@@ -7,10 +7,9 @@ import Milestone from "../component/about/milestone";
 const About = () => {
   return (
     <main>
-      <div className="mb-[3rem]">
-        <Abouthero />
-      </div>
-      <div className="w-65% flex justify-between">
+      <Abouthero />
+
+      <div className="w-65% mt-12 flex justify-between">
         <div>
           <h1 className="pl-20 text-4xl font-bold">Why DataSpace?</h1>
           <ul className="pt-16 pl-20 text-3xl font-medium leading-relaxed list-decimal">
@@ -29,12 +28,10 @@ const About = () => {
         />
       </div>
       <Plans />
-
-      <div className="flex justify-center py-6 pt-5 text-4xl font-bold">
-        Our Milestones
-      </div>
-
-      <div className="flex justify-center gap-10">
+      <div className="flex-col justify-center gap-10 my-12 ">
+        <div className="flex justify-center py-6 pt-5 text-4xl font-bold">
+          Our Milestones
+        </div>
         <Milestone />
       </div>
 

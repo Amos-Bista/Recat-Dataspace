@@ -43,26 +43,23 @@ const ValuableclientTable = () => {
           method: "DELETE",
         }
       );
-      if (!response.ok) {
+      if (response.ok) {
         const updatedRows = [...rows];
         updatedRows.splice(index, 1);
         setRowData(updatedRows);
+        toast.success("Delete Successful");
       } else {
-        toast.success("Delete Sucessful");
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        toast.error("Failed to delete client");
       }
     } catch (error) {
-      toast("Error deleting contact:", error);
+      toast.error("Error deleting contact:", error);
     }
-    // handleDelete();
   };
 
   return (
-    <main className="">
+    <main className="w-[100%]">
       <div className="flex items-center justify-between">
-        <h3 className="my-8 text-2xl font-[400] text-[#0D5077] ">
+        <h3 className="my-8 text-2xl font-[400] text-[#0D5077]">
           Valuable Client's List
         </h3>
         <Box>
@@ -74,18 +71,16 @@ const ValuableclientTable = () => {
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
+                <TableCell align="center" sx={{ width: "10%" }}>
+                  S.No
+                </TableCell>
                 <TableCell align="center" sx={{ width: "30%" }}>
                   Name
                 </TableCell>
                 <TableCell align="center" sx={{ width: "30%" }}>
                   Customer Logo
                 </TableCell>
-                {/* <TableCell align="center" sx={{ width: "20%" }}>
-                  Edit
-                </TableCell> */}
-                <TableCell align="center" sx={{ width: "20%" }}>
-                  Delete
-                </TableCell>
+                <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -95,6 +90,9 @@ const ValuableclientTable = () => {
                     key={row.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
+                    <TableCell align="center" sx={{ width: "10%" }}>
+                      {index + 1}
+                    </TableCell>
                     <TableCell
                       component="th"
                       scope="row"
@@ -114,18 +112,13 @@ const ValuableclientTable = () => {
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/client/${row.logo}`}
                         alt=""
+                        className="flex justify-center mx-auto"
                         style={{
-                          width: "80px",
-                          height: "80px",
-                          position: "relative",
-                          left: "162px",
+                          width: "100px",
+                          height: "100px",
+                          objectFit: "cover",
                         }}
                       />
-                    </TableCell>
-                    <TableCell align="center" sx={{ width: "20%" }}>
-                      {/* <Button sx={{ margin: 2 }} variant="contained">
-                        Edit
-                      </Button> */}
                     </TableCell>
                     <TableCell align="center" sx={{ width: "20%" }}>
                       <VCD onDelete={() => handleDelete(row.id, index)} />

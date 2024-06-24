@@ -12,14 +12,13 @@ const Herosection = () => {
     const fetchSlides = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`
+          `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch slides");
         }
         const data = await response.json();
         setSlides(data);
-        console.log(data);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -61,7 +60,6 @@ const Herosection = () => {
       </div>
     );
   }
-  
 
   if (error) {
     return (
@@ -85,11 +83,11 @@ const Herosection = () => {
           style={{ width: "100vw", height: "667px" }}
           className="absolute bg-black/50"
         ></div>
-        {slides.length > 0 && slides[currentSlide].title ? (
+        {slides.length > 0 && slides[currentSlide].serviceName ? (
           <>
             <img
-              src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${slides[currentSlide].backgroundImage}`}
-              alt={slides[currentSlide].title}
+              src={`${process.env.REACT_APP_API_BASE_URL}/services/${slides[currentSlide].serviceBgImage}`}
+              alt={slides[currentSlide].serviceName}
               style={imgStyles}
               className="w-max-screen"
               onError={(e) => {
@@ -99,14 +97,24 @@ const Herosection = () => {
             />
             <div className="absolute top-[50%] left-[4%]">
               <h1 className="text-white text-7xl">
-                {slides[currentSlide].title}
+                {slides[currentSlide].serviceName}
               </h1>
-              <ButtonHerosection />
+              <h1 className="mt-2 text-xl text-white">
+                {slides[currentSlide].serviceDescription}
+              </h1>
+              <ButtonHerosection id={slides[currentSlide].id} />
             </div>
           </>
         ) : (
-          <div className="absolute top-[50%] left-[4%] text-white text-xl flex">
-            No Backgroung Image Avaliable from the admin
+          <div
+            style={{ width: "100vw", height: "667px" }}
+            className="flex relative  bg-black/90  w-[max-content] "
+          >
+            <div className="flex justify-center text-center">
+              <h1 className="absolute text-white top-[50%] left-[46%]">
+                NO IMAGE Avaliable!!<br></br> Database is Empty!
+              </h1>
+            </div>
           </div>
         )}
       </div>

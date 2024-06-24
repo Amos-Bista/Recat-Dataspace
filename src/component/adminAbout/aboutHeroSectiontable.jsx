@@ -6,13 +6,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import AboutHeroAdd from "./aboutHeroAdd";
 import AboutHeroEdit from "./aboutheroedit";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 
-const   AboutHero = () => {
+const AboutHero = () => {
   const [rows, setRows] = useState([]);
   const [error, setError] = useState(null);
 
@@ -69,10 +68,10 @@ const   AboutHero = () => {
                   <TableRow key={row.id}>
                     <TableCell align="center">{row.title}</TableCell>
                     <TableCell align="center">{row.description}</TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" >
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${row.backgroundImage}`}
-                        className="w-[10rem] h-[7rem] relative "
+                        className="w-[20rem] h-[12rem] flex mx-auto "
                       />
                     </TableCell>
                     <TableCell align="center">

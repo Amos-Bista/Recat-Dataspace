@@ -11,6 +11,7 @@ import {
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast } from "react-toastify";
 
 const ServiceAdd = ({ addData }) => {
   const [open, setOpen] = useState(false);
@@ -56,13 +57,16 @@ const ServiceAdd = ({ addData }) => {
       );
 
       if (response.ok) {
-        alert("Form submitted successfully!");
+        toast.success("Page Added Successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error submitting form. Please try again.");
+      toast.error("Error submitting form. Please try again.");
     }
     setOpen(false);
   };

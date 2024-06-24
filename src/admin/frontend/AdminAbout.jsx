@@ -31,7 +31,9 @@ const AdminAbout = () => {
         <AdminAccordionTable />
         {/* <AboutCardTable /> */}
 
-        <MilestoneForm onSubmit={handleFormSubmit} />
+        <div className=" shadow-lg w-[100%]">
+          <MilestoneForm onSubmit={handleFormSubmit} />
+        </div>
       </div>
     </main>
   );

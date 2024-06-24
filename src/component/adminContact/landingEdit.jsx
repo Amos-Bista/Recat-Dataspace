@@ -127,7 +127,7 @@ const LandingEdit = ({ contactDetails }) => {
                 alt="Background"
                 style={{
                   width: "100%",
-                  maxHeight: "160px",
+                  maxHeight: "340px",
                   objectFit: "cover",
                 }}
               />

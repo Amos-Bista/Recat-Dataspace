@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { CircularProgress } from "@mui/material";
+
 const ValueCustomer = () => {
   const [isLeftArrowHovered, setIsLeftArrowHovered] = useState(false);
   const [isRightArrowHovered, setIsRightArrowHovered] = useState(false);
@@ -21,7 +22,9 @@ const ValueCustomer = () => {
     slidesToShow: 7,
     slidesToScroll: 1,
     autoplay: autoplay,
-    autoplaySpeed: 0,
+    autoplaySpeed: 10,
+    cssEase: "linear",
+    pauseOnHover: true,
   };
 
   const handleLeftArrowClick = () => {
@@ -49,6 +52,8 @@ const ValueCustomer = () => {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/client/getClient`
@@ -58,32 +63,32 @@ const ValueCustomer = () => {
       }
       const data = await response.json();
       setCustomerData(data);
-      console.log(data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <div
-  //       style={{ width: "100vw", height: "180px" }}
-  //       className="flex  bg-blue-100/40 w-[max-content] relative  pb-6"
-  //     >
-  //       {" "}
-  //       <CircularProgress
-  //         className="absolute  top-[50%] left-[48%]"
-  //         color="inherit"
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div
+        style={{ width: "100vw", height: "180px" }}
+        className="flex bg-blue-100/40 w-[max-content] relative pb-6"
+      >
+        <CircularProgress
+          className="absolute top-[50%] left-[48%]"
+          color="inherit"
+        />
+      </div>
+    );
+  }
 
   if (error) {
     return (
       <div
         style={{ width: "100vw", height: "180px" }}
-        className="flex relative  bg-black/90  w-[max-content] "
+        className="flex relative bg-black/90 w-[max-content]"
       >
         <div className="">
           <h1 className="absolute text-white top-[50%] left-[46%]">
@@ -98,18 +103,18 @@ const ValueCustomer = () => {
     <div className="relative mx-16 mb-10">
       <Slider ref={sliderRef} {...settings}>
         {customerData.map((customer, index) => (
-          <div key={customer.id} className="w-[9rem] h-[9rem] ">
+          <div key={customer.id} className="w-[9rem] h-[9rem]">
             <img
               src={`${process.env.REACT_APP_API_BASE_URL}/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[9rem] h-[9rem]  rounded-md"
+              className="w-[9rem] h-[9rem] rounded-md"
             />
           </div>
         ))}
       </Slider>
       {/* Left arrow */}
       <Box
-        className="absolute top-0 left-0 z-10 mt-16 "
+        className="absolute top-0 left-0 z-10 mt-16"
         style={{ transform: "translate(-50%, 50%)" }}
         onMouseEnter={() => setIsLeftArrowHovered(true)}
         onMouseLeave={() => setIsLeftArrowHovered(false)}
