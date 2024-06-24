@@ -68,10 +68,10 @@ const AboutHero = () => {
                   <TableRow key={row.id}>
                     <TableCell align="center">{row.title}</TableCell>
                     <TableCell align="center">{row.description}</TableCell>
-                    <TableCell align="center">
+                    <TableCell align="center" >
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${row.backgroundImage}`}
-                        className="w-[10rem] h-[7rem] relative "
+                        className="w-[20rem] h-[12rem] flex mx-auto "
                       />
                     </TableCell>
                     <TableCell align="center">

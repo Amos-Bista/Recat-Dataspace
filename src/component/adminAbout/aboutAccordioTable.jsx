@@ -8,7 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AboutAccordionAdd from "./aboutaccordionAdd";
-import AboutAccordionEdit from "./aboutaccordionEdit.jsx";
+import AboutAccordionDelete from "./aboutaccordionDelete.jsx";
+import { toast } from "react-toastify";
+
 const AdminAccordionTable = () => {
   const [aboutData, setAboutData] = useState("");
 
@@ -32,6 +34,7 @@ const AdminAccordionTable = () => {
       // Optionally, you can handle errors or set a state to indicate error state
     }
   };
+
   const handleAboutAccordionAdded = () => {
     // fetchData(); // Refresh service data when accordion is added
   };
@@ -39,6 +42,25 @@ const AdminAccordionTable = () => {
   if (!aboutData) {
     return <div>Loading...</div>;
   }
+
+  const handleDelete = async (panelId) => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc/deleteAccordion?id=${panelId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete accordion");
+      }
+      toast.error("Accordion deleted successfully!");
+      fetchData();
+    } catch (error) {
+      console.error("Error deleting accordion:", error);
+      // alert("Failed to delete accordion");
+    }
+  };
 
   return (
     <div>
@@ -56,7 +78,6 @@ const AdminAccordionTable = () => {
                 <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Logo</TableCell>
                 <TableCell align="center">Description</TableCell>
-                <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -69,32 +90,20 @@ const AdminAccordionTable = () => {
                       <img
                         src={aboutData.logo}
                         alt="Logo"
-                        style={{ width: "100px", height: "auto" }} // Adjust dimensions as needed
+                        className="flex mx-auto"
+                        style={{ width: "30px", height: "auto" }} // Adjust dimensions as needed
                       />
                     )}
                   </TableCell>
-                  {/* <TableCell align="center">Title</TableCell> */}
-                  {/* <TableCell align="center">Desc</TableCell> */}
                   <TableCell align="center">{aboutData.description}</TableCell>
-                  <TableCell>
-                    <AboutAccordionEdit />
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      className="!bg-red-500 !hover:!bg-red-700 !text-white !py-2 !px-4 !rounded"
-                      variant="contained"
-                    >
-                      DELETE
-                    </Button>3
+                  <TableCell align="center">
+                    <AboutAccordionDelete
+                      onDelete={() => handleDelete(aboutData.id)}
+                      className="flex justify-center mx-auto"
+                    />
                   </TableCell>
                 </TableRow>
               ))}
-              {/* <TableRow>
-                  <TableCell colSpan={4} align="center">
-                    <SdCardAlertIcon color="error" />
-                    No items available. Please add new items.
-                  </TableCell>
-                </TableRow> */}
             </TableBody>
           </Table>
         </TableContainer>

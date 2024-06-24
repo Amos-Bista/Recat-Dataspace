@@ -106,7 +106,7 @@ const HomeHero = () => {
                     </TableCell>
                     <TableCell className="flex justify-center">
                       <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row[0].backgroundImage}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${rows[index].backgroundImage}`}
                         alt={rows[0].title}
                         style={imgStyles}
                         className="mx-auto"

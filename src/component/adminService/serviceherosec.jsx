@@ -93,10 +93,7 @@ const Serviceherosec = () => {
                       />
                     </TableCell>
                     <TableCell align="center">
-                      <Button variant="contained">
-                        {/* <ServiceEdit /> */}
-                        <ServiceEdit />
-                      </Button>
+                      <ServiceEdit />
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>

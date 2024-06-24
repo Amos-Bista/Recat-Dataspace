@@ -54,6 +54,29 @@ const Edit = ({ onEdit }) => {
     }
   };
 
+  // const handleEdit = async (id) => {
+  //   const formData = new FormData();
+  //   formData.append("title", title);
+  //   formData.append("description", description);
+  //   formData.append("backgroundImage", backgroundImage);
+
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_API_BASE_URL}/services/editServices?id=${id}`,
+  //       {
+  //         method: "PUT",
+  //         body: formData,
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to update service");
+  //     }
+  //     toast.success("Edit Successful");
+  //   } catch (error) {
+  //     console.error("Error updating service:", error);
+  //     toast.error("Error updating service");
+  //   }
+  // };
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
   };
@@ -79,7 +102,7 @@ const Edit = ({ onEdit }) => {
         }
       );
       if (!response.ok) {
-        toast.success("Success Updated")
+        toast.success("Success Updated");
         // const updatedRows = [...rows];
         // updatedRows.splice(index, 1);
         // setRows(updatedRows);
@@ -93,7 +116,6 @@ const Edit = ({ onEdit }) => {
       console.error("Error deleting contact:", error);
     }
   };
-
 
   const getImageSrc = () => {
     if (image) {
@@ -202,7 +224,7 @@ const Edit = ({ onEdit }) => {
             marginRight: "13px",
           }}
         >
-          <Button color="inherit" variant="contained" onClick={handleEdit}>
+          <Button color="inherit" variant="contained">
             UPDATE
           </Button>
           <Button

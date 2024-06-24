@@ -58,9 +58,9 @@ const MilestoneForm = () => {
       padding={5}
       className="flex justify-center mx-auto mt-12 bg-white rounded-md"
     >
-      <form onSubmit={handleFormSubmit}>
+      <form className="flex justify-center mx-auto" onSubmit={handleFormSubmit}>
         <Grid
-          className="w-[50%] flex justify-center mx-auto"
+          className="w-[50%]"
           container
           spacing={1}
           alignItems="center"
