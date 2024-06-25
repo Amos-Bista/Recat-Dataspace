@@ -17,9 +17,9 @@ const Add = ({ addData, fetchData }) => {
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
-  const [serviceBgImage, setServiceBgImage] = useState("Null"); // Updated to null initially
-  const [isloading, setisLoading] = useState();
-  const [response, setResponse] = useState("");
+  const [serviceBgImage, setServiceBgImage] = useState(null); // Updated initial state for image
+  const [imagePreview, setImagePreview] = useState(""); // State to hold image preview URL
+  const inputRef = useRef(null);
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -27,13 +27,24 @@ const Add = ({ addData, fetchData }) => {
 
   const closePopUp = () => {
     setOpen(false);
+    setServiceBgImage(null); // Reset selected image on close
+    setImagePreview(""); // Clear image preview
   };
+
   const handleImageChange = (event) => {
     const imageFile = event.target.files[0];
     if (imageFile) {
       setServiceBgImage(imageFile);
+
+      // Create a preview URL for image display
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(imageFile);
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,28 +61,22 @@ const Add = ({ addData, fetchData }) => {
           body: formData,
         }
       );
+
       if (response.ok) {
-        toast.success("HeroSection uploaded");
+        toast.success("Hero Section uploaded successfully!");
         setTimeout(() => {
-          window.location.reload();
+          window.location.reload(); // Refresh page after successful upload
         }, 3000);
-        console.log(response);
-        closePopUp(true);
-        window.location.reload();
-        fetchData();
+        closePopUp(); // Close dialog after successful submit
+        fetchData(); // Fetch updated data after submit
+      } else {
+        throw new Error("Failed to upload Hero Section");
       }
     } catch (error) {
-      // console.error("Error:", error);
-      // setResponse("Error posting data.");
+      console.error("Error:", error);
       alert("Error submitting form. Please try again.");
-    } finally {
-      setisLoading(false); // Stop loading
-      setOpen(false);
     }
   };
-
-  const inputRef = useRef(null);
- 
 
   return (
     <>
@@ -143,9 +148,13 @@ const Add = ({ addData, fetchData }) => {
                 accept="image/*"
                 onChange={handleImageChange}
               />
-              {/* <Button onClick={handleImageClick} variant="outlined">
-                Choose File
-              </Button> */}
+              {imagePreview && (
+                <img
+                  src={imagePreview}
+                  alt="Selected"
+                  style={{ maxWidth: "100%", marginTop: "10px" }}
+                />
+              )}
             </Grid>
           </Grid>
         </DialogContent>
@@ -164,7 +173,7 @@ const Add = ({ addData, fetchData }) => {
               marginRight: "auto",
             }}
           >
-            UNPUBLISH
+            Cancel
           </Button>
           <Button
             onClick={handleSubmit}
@@ -176,7 +185,7 @@ const Add = ({ addData, fetchData }) => {
             }}
             variant="contained"
           >
-            PUBLISH
+            Publish
           </Button>
         </DialogActions>
       </Dialog>

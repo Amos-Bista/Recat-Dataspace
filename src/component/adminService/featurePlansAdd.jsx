@@ -10,6 +10,9 @@ import {
   Grid,
   Typography,
   IconButton,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
@@ -19,6 +22,7 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
   const [servicePlanTitle, setServicePlanTitle] = useState("");
   const [servicePlanTiers, setServicePlanTiers] = useState("");
   const [price, setPrice] = useState("");
+  const [subscriptionPlan, setSubscriptionPlan] = useState(""); // State to store the selected billing period
   const { id } = useParams();
 
   const functionOnPopUp = () => {
@@ -32,14 +36,24 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
   const handleTitleChange = (e) => setServicePlanTitle(e.target.value);
   const handleTiersChange = (e) => setServicePlanTiers(e.target.value);
   const handlePriceChange = (e) => setPrice(e.target.value);
+  const handleSubscriptionPlanChange = (event) => {
+    setSubscriptionPlan(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate the form
+    if (!servicePlanTitle || !servicePlanTiers || !price || !subscriptionPlan) {
+      toast.error("All fields are required!");
+      return;
+    }
 
     const payload = {
       servicePlanTitle,
       servicePlanTiers,
       price,
+      subscriptionPlan, // Include the billing period in the payload
       serviceId: id,
     };
 
@@ -63,7 +77,7 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Error submitting form. Please try again.");
+      toast.error("Error submitting form. Please try again.");
     }
     setOpen(false);
   };
@@ -108,6 +122,9 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                 variant="outlined"
                 fullWidth
                 onChange={handleTitleChange}
+                value={servicePlanTitle}
+                error={!servicePlanTitle}
+                helperText={!servicePlanTitle && "Plan Title is required"}
               />
             </Grid>
             <Grid item xs={6}>
@@ -125,6 +142,9 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                 variant="outlined"
                 fullWidth
                 onChange={handleTiersChange}
+                value={servicePlanTiers}
+                error={!servicePlanTiers}
+                helperText={!servicePlanTiers && "Plan Tiers are required"}
               />
             </Grid>
             <Grid item xs={6}>
@@ -142,7 +162,38 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                 variant="outlined"
                 fullWidth
                 onChange={handlePriceChange}
+                value={price}
+                error={!price}
+                helperText={!price && "Price is required"}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Billing Period
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <RadioGroup
+                value={subscriptionPlan}
+                onChange={handleSubscriptionPlanChange}
+                error={!subscriptionPlan}
+              >
+                <FormControlLabel
+                  value="Monthly"
+                  control={<Radio />}
+                  label="Monthly"
+                />
+                <FormControlLabel
+                  value="Yearly"
+                  control={<Radio />}
+                  label="Yearly"
+                />
+              </RadioGroup>
+              {!subscriptionPlan && (
+                <Typography color="error" variant="body2">
+                  Billing period is required
+                </Typography>
+              )}
             </Grid>
           </Grid>
         </DialogContent>

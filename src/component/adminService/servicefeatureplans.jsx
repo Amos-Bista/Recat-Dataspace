@@ -8,14 +8,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import { toast } from "react-toastify";
 import FeaturePlansAdd from "./featurePlansAdd";
 import FeaturePlansEdit from "./featurePlansEdit";
 import PlanSpecAdd from "./planSpecAdd";
 import FeaturePlansDelete from "./featurePlansDelete";
+import FeaturePlanSpecButton from "./featurePlansViewSpecButton";
 
-const Servicefeatureplans = () => {
+const ServiceFeaturePlans = () => {
   const { id } = useParams();
-  const [rowData, setRowData] = useState([]);
+  const [rowData, setRowData] = useState({
+    servicePlans: [],
+  });
+  const [subscriptionPlan, setSubscriptionPlan] = useState(""); // State to store the billing period
 
   useEffect(() => {
     fetchData();
@@ -31,8 +36,10 @@ const Servicefeatureplans = () => {
       }
       const data = await response.json();
       setRowData(data);
+      setSubscriptionPlan(data.subscriptionPlan); // Set the subscriptionPlan fetched from API
     } catch (error) {
       console.error("Error fetching data:", error);
+      toast.error("Error fetching data. Please try again.");
     }
   };
 
@@ -51,13 +58,14 @@ const Servicefeatureplans = () => {
       if (!response.ok) {
         throw new Error("Failed to delete accordion");
       }
-      alert("FeaturePlan deleted successfully!");
+      toast.success("Feature Plan deleted successfully!");
       fetchData();
     } catch (error) {
       console.error("Error deleting accordion:", error);
-      alert("Failed to delete accordion");
+      toast.error("Failed to delete accordion. Please try again.");
     }
   };
+
   return (
     <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
@@ -75,9 +83,10 @@ const Servicefeatureplans = () => {
               <TableRow>
                 <TableCell align="center">Plan Title</TableCell>
                 <TableCell align="center">Plan Tiers</TableCell>
+                <TableCell align="center">Billing Period</TableCell>{" "}
+                {/* New column */}
                 <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Specification</TableCell>
-                <TableCell align="center">Add Specification</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
@@ -88,18 +97,14 @@ const Servicefeatureplans = () => {
                   <TableRow key={row.id}>
                     <TableCell align="center">{row.servicePlanTitle}</TableCell>
                     <TableCell align="center">{row.servicePlanTiers}</TableCell>
+                    <TableCell align="center">
+                      {row.subscriptionPlan}
+                    </TableCell>{" "}
+                    {/* Display subscriptionPlan */}
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
-                      {row.specifications.map((spec) => (
-                        <div key={spec.id}>{spec.feature}</div>
-                      ))}
+                      <FeaturePlanSpecButton id={row.id} />
                     </TableCell>
-                    <TableCell align="center">
-                      <Box variant="contained">
-                        <PlanSpecAdd id={row.id} />
-                      </Box>
-                    </TableCell>
-
                     <TableCell align="center">
                       <Box variant="contained">
                         <FeaturePlansEdit
@@ -126,4 +131,4 @@ const Servicefeatureplans = () => {
   );
 };
 
-export default Servicefeatureplans;
+export default ServiceFeaturePlans;

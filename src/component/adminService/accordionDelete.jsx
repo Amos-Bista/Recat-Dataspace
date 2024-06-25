@@ -20,6 +20,7 @@ const AccordionDelete = ({ onDelete, panelId }) => {
 
   const handleDelete = () => {
     onDelete(panelId);
+
     setOpen(false);
   };
   return (

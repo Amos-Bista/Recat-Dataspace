@@ -14,7 +14,7 @@ export default function Plans() {
   const settings = {
     padding: "0px",
     marginBottom: "0px",
-    dots: true,
+    dots: false,
     infinite: false,
     autoplay: true,
     autoplaySpeed: 0, // Adjust the autoplay speed as needed

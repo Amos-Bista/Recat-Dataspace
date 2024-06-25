@@ -12,7 +12,7 @@ const Herosection = () => {
     const fetchSlides = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
+          `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch slides");
@@ -83,11 +83,11 @@ const Herosection = () => {
           style={{ width: "100vw", height: "667px" }}
           className="absolute bg-black/50"
         ></div>
-        {slides.length > 0 && slides[currentSlide].serviceName ? (
+        {slides.length > 0 && slides[currentSlide].title ? (
           <>
             <img
-              src={`${process.env.REACT_APP_API_BASE_URL}/services/${slides[currentSlide].serviceBgImage}`}
-              alt={slides[currentSlide].serviceName}
+              src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${slides[currentSlide].backgroundImage}`}
+              alt={slides[currentSlide].title}
               style={imgStyles}
               className="w-max-screen"
               onError={(e) => {
@@ -97,10 +97,10 @@ const Herosection = () => {
             />
             <div className="absolute top-[50%] left-[4%]">
               <h1 className="text-white text-7xl">
-                {slides[currentSlide].serviceName}
+                {slides[currentSlide].title}
               </h1>
               <h1 className="mt-2 text-xl text-white">
-                {slides[currentSlide].serviceDescription}
+                {slides[currentSlide].description}
               </h1>
               <ButtonHerosection id={slides[currentSlide].id} />
             </div>
