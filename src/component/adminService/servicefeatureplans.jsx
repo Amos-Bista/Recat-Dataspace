@@ -103,7 +103,7 @@ const ServiceFeaturePlans = () => {
                     {/* Display subscriptionPlan */}
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
-                      <FeaturePlanSpecButton id={row.id} />
+                      <FeaturePlanSpecButton id={row.id}  rowData />
                     </TableCell>
                     <TableCell align="center">
                       <Box variant="contained">

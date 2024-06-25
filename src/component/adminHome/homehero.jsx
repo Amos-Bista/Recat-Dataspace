@@ -39,9 +39,9 @@ const HomeHero = () => {
       }
       const data = await response.json();
       setRows(data);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 1500);
       console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -61,6 +61,7 @@ const HomeHero = () => {
         setRows(updatedRows);
       } else {
         toast.error("Delete Sucessful");
+        fetchData();
         setTimeout(() => {
           window.location.reload();
         }, 3000);
@@ -119,12 +120,7 @@ const HomeHero = () => {
                       <Edit />
                     </TableCell>
                     <TableCell align="center">
-                      <Button
-                        sx={{ margin: 2 }}
-                        className=" hover:!bg-red-700 !text-white !py-1 !px-2 !rounded"
-                      >
-                        <Delete onDelete={() => handleDelete(row.id, index)} />
-                      </Button>
+                      <Delete onDelete={() => handleDelete(row.id, index)} />
                     </TableCell>
                   </TableRow>
                 ))

@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import PlanSpecAdd from "./planSpecAdd";
 
-const FeaturePlansViewSpecButton = ({ apiEndpoint, id, rowData }) => {
+const FeaturePlansViewSpecButton = ({ apiEndpoint, id }) => {
   const [open, setOpen] = useState(false);
-  const [rowdata, setRowData] = useState(null);
+  const [rowData, setRowData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -45,7 +45,7 @@ const FeaturePlansViewSpecButton = ({ apiEndpoint, id, rowData }) => {
       };
       fetchData();
     }
-  }, [open, apiEndpoint]);
+  }, [open, apiEndpoint, id]);
 
   return (
     <>
@@ -61,21 +61,22 @@ const FeaturePlansViewSpecButton = ({ apiEndpoint, id, rowData }) => {
         <DialogContent>
           {loading && <Typography>Loading...</Typography>}
           {error && <Typography color="error">Error: {error}</Typography>}
-          {rowData && (
+          {rowData && rowData.servicePlans && (
             <div>
-              {/* Replace with your data structure */}
-              {/* <Typography variant="h6">Feature: {rowData[id].feature}</Typography> */}
-              {/* <Typography variant="body1">
-                Service Plan ID: {rowData[id].servicePlansId}
-              </Typography> */}
-              {/* Add more fields as needed */}
+              {/* Adjust the following based on your actual data structure */}
+              <Typography variant="h6">
+                Feature: {rowData.servicePlans[id].feature}
+              </Typography>
+              <Typography variant="body1">
+                Service Plan ID: {rowData.servicePlans[id].servicePlanTitle}
+              </Typography>
             </div>
           )}
         </DialogContent>
         <DialogActions>
-          {/* <Box variant="contained">
+          <Box variant="contained">
             <PlanSpecAdd id={id} />
-          </Box>   */}
+          </Box>
         </DialogActions>
       </Dialog>
     </>

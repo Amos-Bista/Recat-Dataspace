@@ -29,7 +29,7 @@ const ServiceDelete = ({ onDelete}) => {
   return (
     <>
       <Button onClick={functionOnPopUp} color="error" variant="contained">
-        DELETE
+        DELETE The Page
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="xs">
         <DialogTitle>
