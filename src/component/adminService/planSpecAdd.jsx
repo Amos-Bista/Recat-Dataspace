@@ -13,30 +13,30 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
 
-const PlanSpecAdd = ({ id }) => {
+const PlanSpecAdd = ({ id,  }) => {
   const [open, setOpen] = useState(false);
   const [features, setFeatures] = useState([{ id: Date.now(), text: "" }]);
   const [serviceData, setServiceData] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, [id]);
+  // useEffect(() => {
+  //   fetchData();
+  // }, [id]);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch service data");
-        // fetchData();
-      }
-      const data = await response.json();
-      setServiceData(data);
-    } catch (error) {
-      console.error("Error fetching service data:", error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch service data");
+  //       // fetchData();
+  //     }
+  //     const data = await response.json();
+  //     setServiceData(data);
+  //   } catch (error) {
+  //     console.error("Error fetching service data:", error);
+  //   }
+  // };
   const handleOpen = () => {
     setOpen(true);
   };
@@ -63,7 +63,7 @@ const PlanSpecAdd = ({ id }) => {
   const handleSubmit = async () => {
     try {
       const formData = new FormData();
-      formData.append("servicePlanId", id);
+      formData.append("servicePlansId", id);
 
       features.forEach((feature) => {
         formData.append(`feature`, feature.text);
@@ -78,7 +78,7 @@ const PlanSpecAdd = ({ id }) => {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json", 
           },
           body: formData,
         }
