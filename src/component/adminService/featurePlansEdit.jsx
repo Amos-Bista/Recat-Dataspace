@@ -12,7 +12,7 @@ import {
 import React, { useState, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
-const FeaturePlansEdit = ({ title, tiers, price, id, updateRowData }) => {
+const   FeaturePlansEdit = ({ title, tiers, price, id, updateRowData }) => {
   const [open, setOpen] = useState(false);
   const [planTitle, setPlanTitle] = useState(title);
   const [planTiers, setPlanTiers] = useState(tiers);

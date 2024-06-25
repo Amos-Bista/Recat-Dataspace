@@ -32,6 +32,7 @@ const AdminServiceSub = () => {
       );
       if (!response.ok) {
         throw new Error("Failed to fetch service data");
+        // fetchData();
       }
       const data = await response.json();
       setServiceData(data);
@@ -72,6 +73,9 @@ const AdminServiceSub = () => {
       <main className="flex align-middle bg-gray-200 py-28">
         <AdminNav />
         <div className="w-full px-2 py-2 bg-gray-200 rounded-lg mr-14 ">
+          <h1 className="text-2xl mb-12 font-[400] text-[#4b87f7]">
+            {serviceData.serviceName}
+          </h1>
           <div className="flex flex-row justify-between align-middle">
             <h1 className="text-2xl font-[400] text-[#383698]">Accordions</h1>
             <div className="mb-10">

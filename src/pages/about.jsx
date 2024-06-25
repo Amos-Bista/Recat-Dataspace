@@ -9,8 +9,8 @@ const About = () => {
     <main>
       <Abouthero />
 
-      <div className="w-65% mt-12 flex justify-between">
-        <div>
+      <div className="flex justify-between mx-auto mt-12 w-[80%] ">
+        <div className="w-[100%]">
           <h1 className="pl-20 text-4xl font-bold">Why DataSpace?</h1>
           <ul className="pt-16 pl-20 text-3xl font-medium leading-relaxed list-decimal">
             <AboutAccordion />

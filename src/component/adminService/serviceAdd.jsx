@@ -18,6 +18,7 @@ const ServiceAdd = ({ addData }) => {
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
   const [serviceBgImage, setServiceBgImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null); // State to store the preview image URL
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -30,8 +31,10 @@ const ServiceAdd = ({ addData }) => {
   const handleTitleChange = (e) => setServiceName(e.target.value);
   const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
   const handleImageChange = (event) => {
-    setServiceBgImage(event.target.files[0]);
-    console.log("Selected file:", event.target.files[0]); // Log selected file
+    const file = event.target.files[0];
+    setServiceBgImage(file);
+    setPreviewImage(URL.createObjectURL(file)); // Create and set the preview image URL
+    console.log("Selected file:", file); // Log selected file
   };
 
   const handleSubmit = async (e) => {
@@ -60,13 +63,14 @@ const ServiceAdd = ({ addData }) => {
         toast.success("Page Added Successfully");
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 2000);
+        // addData();
       } else {
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Error submitting form. Please try again.");
+      // toast.error("Error submitting form. Please try again.");
     }
     setOpen(false);
   };
@@ -78,8 +82,8 @@ const ServiceAdd = ({ addData }) => {
 
   return (
     <>
-      <div className=" flex flex-row justify-between mt-[10px] mb-9 ">
-        <h3 className=" text-2xl font-[400] text-[#0D5077] ">Service Page</h3>
+      <div className="flex flex-row justify-between mt-[10px] mb-9">
+        <h3 className="text-2xl font-[400] text-[#0D5077]">Service Page</h3>
         <Button onClick={functionOnPopUp} color="primary" variant="contained">
           Add New
         </Button>
@@ -151,6 +155,13 @@ const ServiceAdd = ({ addData }) => {
               <Button onClick={handleImageClick} variant="outlined">
                 Choose File
               </Button>
+              {previewImage && (
+                <img
+                  src={previewImage}
+                  alt="Selected"
+                  style={{ marginTop: "1rem", width: "100%" }}
+                />
+              )}
             </Grid>
           </Grid>
         </DialogContent>

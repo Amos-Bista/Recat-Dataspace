@@ -39,6 +39,9 @@ const HomeHero = () => {
       }
       const data = await response.json();
       setRows(data);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
       console.log(data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -106,7 +109,7 @@ const HomeHero = () => {
                     </TableCell>
                     <TableCell className="flex justify-center">
                       <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${rows[index].backgroundImage}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${rows[index].backgroundImage}`}
                         alt={rows[0].title}
                         style={imgStyles}
                         className="mx-auto"
@@ -120,7 +123,7 @@ const HomeHero = () => {
                         sx={{ margin: 2 }}
                         className=" hover:!bg-red-700 !text-white !py-1 !px-2 !rounded"
                       >
-                        <Delete   onDelete={() => handleDelete(row.id, index)} />
+                        <Delete onDelete={() => handleDelete(row.id, index)} />
                       </Button>
                     </TableCell>
                   </TableRow>

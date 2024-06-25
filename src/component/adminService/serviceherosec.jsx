@@ -24,12 +24,13 @@ const Serviceherosec = () => {
       );
       if (!response.ok) {
         toast.success("SucessFully fetch");
+        fetchData();
       }
       const data = await response.json();
       setRowData(data);
       console.log(data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
   const imgStyles = {
@@ -50,12 +51,10 @@ const Serviceherosec = () => {
       if (!response.ok) {
         const updatedRows = [...rows];
         updatedRows.splice(index, 1);
-        setRowData(updatedRows);
+        // setRowData(updatedRows);
       } else {
         toast.error("Delete Sucessful");
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        fetchData();
       }
     } catch (error) {
       console.error("Error deleting contact:", error);
@@ -90,6 +89,7 @@ const Serviceherosec = () => {
                         src={`${process.env.REACT_APP_API_BASE_URL}/services/${row.serviceBgImage}`}
                         alt=""
                         style={imgStyles}
+                        className="flex mx-auto"
                       />
                     </TableCell>
                     <TableCell align="center">

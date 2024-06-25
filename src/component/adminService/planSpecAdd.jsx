@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import {
   Button,
   Dialog,
@@ -12,30 +11,68 @@ import {
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { toast } from "react-toastify";
 
 const PlanSpecAdd = ({ id }) => {
   const [open, setOpen] = useState(false);
-  const [feature, setFeature] = useState("");
+  const [features, setFeatures] = useState([{ id: Date.now(), text: "" }]);
+  const [serviceData, setServiceData] = useState("");
 
-  const functionOnPopUp = () => {
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch service data");
+        // fetchData();
+      }
+      const data = await response.json();
+      setServiceData(data);
+    } catch (error) {
+      console.error("Error fetching service data:", error);
+    }
+  };
+  const handleOpen = () => {
     setOpen(true);
   };
 
-  const closePopUp = () => {
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handlefeatureChange = (e) => setFeature(e.target.value);
+  const handleFeatureChange = (index, value) => {
+    const updatedFeatures = [...features];
+    updatedFeatures[index].text = value;
+    setFeatures(updatedFeatures);
+  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const addFeatureField = () => {
+    setFeatures([...features, { id: Date.now(), text: "" }]);
+  };
 
-    const payload = {
-      feature: feature,
-      servicePlanId: id,
-    };
+  const removeFeatureField = (index) => {
+    const updatedFeatures = features.filter((_, i) => i !== index);
+    setFeatures(updatedFeatures);
+  };
 
+  const handleSubmit = async () => {
     try {
+      const formData = new FormData();
+      formData.append("servicePlanId", id);
+
+      features.forEach((feature) => {
+        formData.append(`feature`, feature.text);
+      });
+      // const formDataArray = [];
+      // for (const [key, value] of formData.entries()) {
+      //   formDataArray.push({ key, value });
+      // }
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/specifications/addSpecification`,
         {
@@ -43,35 +80,37 @@ const PlanSpecAdd = ({ id }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(payload),
+          body: formData,
         }
       );
 
-      if (response.ok) {
-        alert("Form submitted successfully!");
-      } else {
+      if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+
+      // Optionally handle response data here if needed
+      // const data = await response.json();
+      // console.log("Response data:", data);
+
+      alert("Form submitted successfully!");
+      handleClose();
     } catch (error) {
-      console.error("Error:", error);
-      alert("Error submitting form. Please try again.");
+      console.error("Error submitting form:", error);
+      toast.error("Error submitting form. Please try again.");
     }
-    setOpen(false);
   };
 
   return (
     <div>
-      <Button onClick={functionOnPopUp} color="primary" variant="contained">
-        Add Spec
+      <Button onClick={handleOpen} color="primary" variant="contained">
+        Add Specs
       </Button>
-      <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
-        <DialogTitle
-          style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
-        >
-          Hero Section
+      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+        <DialogTitle key={serviceData.id}>
+          {serviceData.serviceName}
           <IconButton
             aria-label="close"
-            onClick={closePopUp}
+            onClick={handleClose}
             sx={{
               position: "absolute",
               right: 8,
@@ -82,51 +121,46 @@ const PlanSpecAdd = ({ id }) => {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
+
         <DialogContent>
-          <Grid container spacing={4} padding={5}>
-            <Grid item xs={6}>
-              <Typography variant="h6" gutterBottom>
-                Feature
-              </Typography>
+          {features.map((feature, index) => (
+            <Grid container spacing={3} key={feature.id}>
+              <Grid item xs={8}>
+                <TextField
+                  label={`Feature ${index + 1}`}
+                  variant="outlined"
+                  fullWidth
+                  type="text"
+                  value={feature.text}
+                  onChange={(e) => handleFeatureChange(index, e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => removeFeatureField(index)}
+                >
+                  Remove
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label="Enter Plan Title"
-                variant="outlined"
-                fullWidth
-                onChange={handlefeatureChange}
-              />
-            </Grid>
-          </Grid>
-        </DialogContent>
-        <DialogActions
-          style={{
-            display: "flex",
-            gap: "200px",
-          }}
-        >
+          ))}
           <Button
             variant="contained"
-            onClick={closePopUp}
-            style={{
-              backgroundColor: "#FF0000",
-              marginLeft: "53px",
-              marginRight: "auto",
-            }}
+            color="primary"
+            onClick={addFeatureField}
+            style={{ marginTop: 10 }}
           >
-            UNPUBLISH
+            Add Feature
           </Button>
-          <Button
-            onClick={handleSubmit}
-            style={{
-              backgroundColor: "#0c5177",
-              color: "#fff",
-              marginLeft: "auto",
-              marginRight: "56px",
-            }}
-            variant="contained"
-          >
-            PUBLISH
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary" variant="contained">
+            Publish
           </Button>
         </DialogActions>
       </Dialog>
