@@ -39,7 +39,7 @@ const Contactform = () => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          // justifyContent: "center",
           borderRadius: 6,
           alignItems: "start",
           overflow: "hidden",
@@ -53,7 +53,7 @@ const Contactform = () => {
       >
         <div className="h-36 w-36 absolute top-[63%] left-[63%] rounded-full bg-[#11396e71]"></div>
         <div className="h-80 w-80 absolute top-[70%] left-[70%] rounded-full bg-[#113A6E]"></div>
-        <Typography variant="h4" className="mt-4">
+        <Typography variant="h4" className="mt-8">
           Contact Information
         </Typography>
 
@@ -61,18 +61,18 @@ const Contactform = () => {
           Feel free to contact us in case of problem
         </h2>
         {rows.map((row, index) => (
-          <div key={index} className="flex flex-col mt-8 ">
+          <div key={index} className="flex flex-col mt-2 ">
             <div className="flex items-center gap-2">
               <img src="Vector.png" alt="" className="w-8 h-9" />
               <p>{row.phoneNum}</p>
             </div>
-            <div className="flex items-center gap-2 mt-4">
+            <div className="flex items-center gap-4 pl-1 mt-4">
               <img src="/inbox-icon.png" alt="" className="w-6 h-5" />
               <p>{row.email}</p>
             </div>
-            <div className="flex items-center gap-2 mt-4">
+            <div className="flex gap-2 mt-4 align-middle">
               <img src="/location-icon.png" alt="" className="w-8 h-8" />
-              <p>{row.address}</p>
+              <p className="text-left">{row.address}</p>
             </div>
           </div>
         ))}
@@ -136,7 +136,7 @@ const Contactform = () => {
             />
           </Box>
         </div>
-        <div className="absolute top-80 right-16">
+        <div className="absolute bottom-12 right-12">
           <Button
             variant="contained"
             sx={{ paddingX: 4, paddingY: 2, borderRadius: 4 }}

@@ -66,7 +66,7 @@ const ServicePage = () => {
               className="w-max-screen"
             />
 
-            <div className="absolute top-[50%] left-[4%]">
+            <div className="absolute top-[40%] left-[4%]">
               <h1 className="text-white text-7xl">{serviceData.serviceName}</h1>
               <h1 className="pl-2 py-8 text-xl text-white w-[80%]">
                 {serviceData.serviceDescription}

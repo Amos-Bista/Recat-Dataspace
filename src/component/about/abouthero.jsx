@@ -101,7 +101,7 @@ const Abouthero = () => {
             <h1 className="text-white text-7xl">
               {slides[currentSlide].title}
             </h1>
-            <h2 className="text-xl text-white w-[60%]">
+            <h2 className="text-xl text-white w-[80%] pt-12">
               {slides[currentSlide].description}
             </h2>
           </div>

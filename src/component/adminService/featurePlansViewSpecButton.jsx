@@ -31,13 +31,13 @@ const FeaturePlansViewSpecButton = ({ apiEndpoint, id }) => {
         setError(null);
         try {
           const response = await fetch(
-            `${process.env.REACT_APP_API_BASE_URL}/services/getServices/${id}`
+            `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
           );
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
           const data = await response.json();
-          setRowData(data);
+          setRowData(data, {id});
         } catch (error) {
           setError(error.message);
         }
@@ -61,16 +61,17 @@ const FeaturePlansViewSpecButton = ({ apiEndpoint, id }) => {
         <DialogContent>
           {loading && <Typography>Loading...</Typography>}
           {error && <Typography color="error">Error: {error}</Typography>}
-          {rowData && rowData.servicePlans && (
-            <div>
-              {/* Adjust the following based on your actual data structure */}
-              <Typography variant="h6">
-                Feature: {rowData.servicePlans[id].feature}
-              </Typography>
-              <Typography variant="body1">
-                Service Plan ID: {rowData.servicePlans[id].servicePlanTitle}
-              </Typography>
-            </div>
+          {rowData && rowData.specification ? (
+            rowData.specification.map((row, index) => (
+              <div key={index}>
+                <Typography variant="h6">
+                  Feature: {row[index].feature}
+                </Typography>
+                {/* Add other fields here as needed */}
+              </div>
+            ))
+          ) : (
+            <Typography>No specifications found</Typography>
           )}
         </DialogContent>
         <DialogActions>
