@@ -62,7 +62,7 @@ const Footer = () => {
 
   const imagestyles = {
     width: "254.77px",
-    height: "250.39px",
+    height: "240.39px",
   };
 
   const chunkedServices = [];
@@ -71,16 +71,17 @@ const Footer = () => {
   }
 
   return (
-    <div className="bg-[#0D5077]">
+    <div className="bg-[#0D5077] pb-4">
       <div className="flex justify-center w-[100%] text-white bg-[#0D5077] py-4 px-14">
-        <div className="flex w-[84%] pt-10">
-          <div className="w-[45%] flex-col">
+        <div className="flex w-[84%] pt-6">
+          {/* service */}
+          <div className="w-[35%] flex-col">
             <h1 className="text-3xl">Service</h1>
             <div className="flex gap-10 pt-3 pl-5">
               {chunkedServices.map((chunk, index) => (
                 <ul key={index} className="gap-10 list-disc text-1xl">
                   {chunk.map((service) => (
-                    <li key={service.id} className="py-1">
+                    <li key={service.id} className="px-2 py-1">
                       {service.serviceName}
                     </li>
                   ))}
@@ -88,27 +89,31 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="flex w-[55%]">
+          {/* about */}
+          <div className="flex w-[80%]">
             <div className="px-5 w-[70%] pr-5">
               <h1 className="text-3xl">About us</h1>
               {rows.map((row) => (
-                <p key={row.id} className="pt-3 leading-relaxed text-justify text-1xl">
+                <p
+                  key={row.id}
+                  className="pt-3 leading-relaxed text-justify text-1xl"
+                >
                   {row.description}
                 </p>
               ))}
             </div>
-            <div className="w-[40%] pl-10">
+            <div className="w-[20%] pl-20 ">
               <h1 className="text-3xl">Company</h1>
-              <ul className="pt-3 pl-3 list-disc text-1xl">
+              <ul className="pt-3 pl-6 list-disc text-1xl">
                 <li className="py-1">Home</li>
                 <li className="py-1">Service</li>
-                <li className="py-1">About us</li>
+                <li className="py-1 w-[100%]">About us</li>
                 <li className="py-1">Contact</li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="mt-6">
           <img
             src="/footerimage.png"
             alt="footerimage"
@@ -118,13 +123,13 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mx-16 flex justify-between border-t-2 border-b-2 border-[#E5E7EB] py-2 text-white">
+      <div className="mx-16 flex justify-between border-t-2 border-b-2 border-[#E5E7EB] py-4 text-white">
         <div className="">
           {contactData.map((contact) => (
-            <div key={contact.id} className="flex justify-between gap-40 mb-3">
-              <div>{contact.email}</div>
-              <div>{contact.address}</div>
-              <div>{contact.phoneNum}</div>
+            <div key={contact.id} className="flex justify-between mb-3">
+              <div className="mr-5">{contact.email}</div>
+              <div className="ml-80">{contact.address}</div>
+              <div className="ml-64">{contact.phoneNum}</div>
             </div>
           ))}
         </div>
@@ -164,7 +169,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="flex justify-end mr-16 text-white text-opacity-50">
+      <div className="flex justify-end pt-4 mr-16 text-white text-opacity-50">
         © 2021 All Rights Reserved
       </div>
     </div>

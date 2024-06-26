@@ -17,13 +17,14 @@ const   FeaturePlansEdit = ({ title, tiers, price, id, updateRowData }) => {
   const [planTitle, setPlanTitle] = useState(title);
   const [planTiers, setPlanTiers] = useState(tiers);
   const [planPrice, setPlanPrice] = useState(price);
+  
 
   useEffect(() => {
     setPlanTitle(title);
     setPlanTiers(tiers);
     setPlanPrice(price);
   }, [title, tiers, price]);
-
+ 
   const handleOpen = () => {
     setOpen(true);
   };

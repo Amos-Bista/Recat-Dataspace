@@ -12,12 +12,14 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
+import axios from "axios";
 
-const PlanSpecAdd = ({ id,  }) => {
+const PlanSpecAdd = ({ id }) => {
   const [open, setOpen] = useState(false);
-  const [features, setFeatures] = useState([{ id: Date.now(), text: "" }]);
+  const [features, setFeatures] = useState([""]);
   const [serviceData, setServiceData] = useState("");
 
+  console.log({ features });
   // useEffect(() => {
   //   fetchData();
   // }, [id]);
@@ -47,12 +49,12 @@ const PlanSpecAdd = ({ id,  }) => {
 
   const handleFeatureChange = (index, value) => {
     const updatedFeatures = [...features];
-    updatedFeatures[index].text = value;
+    updatedFeatures[index] = value;
     setFeatures(updatedFeatures);
   };
 
   const addFeatureField = () => {
-    setFeatures([...features, { id: Date.now(), text: "" }]);
+    setFeatures([...features, ""]);
   };
 
   const removeFeatureField = (index) => {
@@ -62,31 +64,33 @@ const PlanSpecAdd = ({ id,  }) => {
 
   const handleSubmit = async () => {
     try {
-      const formData = new FormData();
-      formData.append("servicePlansId", id);
+      // const formData = new FormData();
+      // formData.append("servicePlansId", id);
 
-      features.forEach((feature) => {
-        formData.append(`feature`, feature.text);
-      });
+      // features.forEach((feature) => {
+      //   formData.append(`feature`, feature.text);
+      // });
       // const formDataArray = [];
       // for (const [key, value] of formData.entries()) {
       //   formDataArray.push({ key, value });
       // }
 
-      const response = await fetch(
+      console.log({
+        features: features,
+        servicePlanId: id,
+      });
+
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+
+      const response = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/specifications/addSpecification`,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json", 
-          },
-          body: formData,
+          feature: features,
+          servicePlanId: 2,
         }
       );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
 
       // Optionally handle response data here if needed
       // const data = await response.json();

@@ -18,11 +18,11 @@ const ValueCustomer = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 1000,
-    slidesToShow: 7,
-    slidesToScroll: 1,
+    speed: 17000,
+    slidesToShow: 6,
+    slidesToScroll: 12,
     autoplay: autoplay,
-    autoplaySpeed: 10,
+    autoplaySpeed: 100,
     cssEase: "linear",
     pauseOnHover: true,
   };
@@ -119,16 +119,14 @@ const ValueCustomer = () => {
         onMouseEnter={() => setIsLeftArrowHovered(true)}
         onMouseLeave={() => setIsLeftArrowHovered(false)}
       >
-        <Button
-          className={`bg-gray-800 p-3 rounded-full ml-3 mt-12 text-white text-xl ${
-            isLeftArrowHovered ? "opacity-100" : "opacity-0"
-          }`}
+        {/* <Button
+          className={`bg-gray-800 p-3 rounded-full ml-3 mt-12 text-white text-xl `}
           onClick={handleLeftArrowClick}
           variant="contained"
           sx={{ minWidth: 30, minHeight: 30, fontSize: "0.8rem" }}
         >
           &#60;
-        </Button>
+        </Button> */}
       </Box>
       {/* Right arrow */}
       <Box
@@ -137,16 +135,14 @@ const ValueCustomer = () => {
         onMouseEnter={() => setIsRightArrowHovered(true)}
         onMouseLeave={() => setIsRightArrowHovered(false)}
       >
-        <Button
-          className={`bg-gray-800 p-3 rounded-full mr-14 mt-14 text-white text-xl ${
-            isRightArrowHovered ? "opacity-100" : "opacity-0"
-          }`}
+        {/* <Button
+          className={`bg-gray-800 p-3 rounded-full mr-14 mt-14 text-white text-xl`}
           onClick={handleRightArrowClick}
           variant="contained"
           sx={{ minWidth: 28, minHeight: 28, fontSize: "0.7rem" }}
         >
           &#62;
-        </Button>
+        </Button> */}
       </Box>
     </div>
   );

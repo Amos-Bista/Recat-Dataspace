@@ -126,12 +126,12 @@ const Milestone = () => {
   }, [milestoneData]);
 
   return (
-    <div className="flex justify-center gap-16 ">
-      <div className="flex flex-col items-center justify-center">
-        <h1 className="text-6xl font-bold">+{displayCounts.count1}</h1>
-        <div>
-          <p className="text-xl font-bold text-center">{milestoneData.desc1}</p>
-        </div>
+    <div className="flex pl-[600px] gap-12 bg-[#0D5077]/10 py-6 text-[#0D5077]">
+      <div>
+        <h1 className="flex justify-center text-6xl font-bold">
+          +{displayCounts.count3}
+        </h1>
+        <p className="text-xl font-bold text-center">{milestoneData.desc3}</p>
       </div>
 
       <div>
@@ -142,11 +142,11 @@ const Milestone = () => {
           <p className="text-xl font-bold text-center">{milestoneData.desc2}</p>
         </div>
       </div>
-      <div>
-        <h1 className="flex justify-center text-6xl font-bold">
-          +{displayCounts.count3}
-        </h1>
-        <p className="text-xl font-bold text-center">{milestoneData.desc3}</p>
+      <div className="flex flex-col items-center justify-center">
+        <h1 className="text-6xl font-bold">+{displayCounts.count1}</h1>
+        <div>
+          <p className="text-xl font-bold text-center">{milestoneData.desc1}</p>
+        </div>
       </div>
     </div>
   );

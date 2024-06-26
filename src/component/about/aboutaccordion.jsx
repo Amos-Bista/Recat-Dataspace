@@ -124,7 +124,7 @@ const AboutAccordion = () => {
   return (
     <div
       className="custom-accordion"
-      style={{ width: "100%", maxWidth: "700px" }}
+      style={{ width: "100%%", maxWidth: "700px" }}
     >
       <style>{`
                 .custom-accordion .MuiAccordion-root.Mui-expanded {
@@ -149,23 +149,28 @@ const AboutAccordion = () => {
             key={expandedData.id}
             expanded={expanded === expandedData.id}
             onChange={handleChange(expandedData.id)}
+            style={{ width: "900px" }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`${expandedData.id}bh-content`}
               id={`${expandedData.id}bh-header`}
+              className="flex align-middle "
             >
               <img
                 src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${expandedData.logo}`}
                 alt={expandedData.title}
                 style={{ marginRight: "10px", width: "30px", height: "30px" }}
               />
-              <Typography sx={{ width: "100%", flexShrink: 0 }}>
+              <Typography variant="h5" sx={{ width: "100%", flexShrink: 0 }}>
                 {expandedData.title}
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>{expandedData.description}</Typography>
+              <Typography variant="h5" className="pl-10">
+                {" "}
+                {expandedData.description}
+              </Typography>
             </AccordionDetails>
           </Accordion>
         ))
