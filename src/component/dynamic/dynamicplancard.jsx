@@ -12,13 +12,13 @@ import dynamicPlans from "../../assests/dynamic/dynamicPlans.json";
 const DynamicPlanCard = ({ id }) => {
   const [plansData, setPlansData] = useState([]);
   const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 0, // Adjust the autoplay speed as needed
-    speed: 5000,
-    slidesToShow: 3,
-    vertical: false, // Set to false for horizontal autoplay
+    // dots: true,
+    // infinite: true,
+    // autoplay: true,
+    // autoplaySpeed: 0, // Adjust the autoplay speed as needed
+    // speed: 5000,
+    slidesToShow: 5,
+    Vertical: false, // Set to false for horizontal autoplay
   };
 
   useEffect(() => {
@@ -34,9 +34,9 @@ const DynamicPlanCard = ({ id }) => {
 
   return (
     <div>
-      <div className="w-full h-full  mb-8 relative">
+      <div className="relative w-full h-full mb-8">
         <div className="w-[70px] h-[508px] bg-gradient-to-r from-[#ffffff] to-[#f8f8f8] z-50 absolute left-0 "></div>
-        <div className="z-40 w-full h-full relative ">
+        <div className="relative z-40 w-full h-full ">
           <Slider {...settings}>
             {plansData.map((plan, index) => (
               <Card
@@ -71,7 +71,7 @@ const DynamicPlanCard = ({ id }) => {
             ))}
           </Slider>
         </div>
-        <div className="w-[64px] h-[508px] bg-gradient-to-r from-[#ffffff] to-[#f8f8f8]  z-50 absolute  top-0 right-0 "></div>
+        {/* <div className="w-[64px] h-[508px] bg-gradient-to-r from-[#ffffff] to-[#f8f8f8]  z-50 absolute  top-0 right-0 "></div> */}
       </div>
     </div>
   );

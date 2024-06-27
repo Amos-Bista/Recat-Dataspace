@@ -167,7 +167,7 @@ const AboutAccordion = () => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="h5" className="pl-10">
+              <Typography variant="h6" className="pl-8">
                 {" "}
                 {expandedData.description}
               </Typography>

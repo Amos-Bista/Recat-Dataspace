@@ -44,26 +44,6 @@ const About = () => {
     <main>
       <Abouthero />
 
-      <div className="relative flex-col justify-center gap-10 pb-8">
-        <div className="flex justify-center py-4 pt-5 text-4xl font-bold text-[#0D5077]">
-          Our Milestones
-        </div>
-        <Milestone />
-        <div
-          ref={borderRef}
-          className="mt-2 border-animated"
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "0",
-            height: "8px",
-            backgroundColor: "#0D5077",
-          }}
-        ></div>
-      </div>
-
       <div className="flex  justify-between mx-auto mt-24 w-[90%] ">
         <div className="w-[100%]  flex-col gap-2">
           <h1 className="flex text-6xl font-bold text-center">
@@ -82,11 +62,29 @@ const About = () => {
           //   height: "280px",
           //   maxHeight: "280px",
           // }}
-          className="max-w-[600px] w-full h-96 sm:max-w-[200px] md:max-w-[400px] lg:max-w-[500px] "
+          className="max-w-[600px] w-[620px] h-96 sm:max-w-[200px] md:max-w-[400px] lg:max-w-[1500px] "
         />
       </div>
 
-      <Plans />
+      <div className="relative flex-col justify-center gap-10 mb-8 border-[#0D5077] border-b-2">
+        <div className="flex justify-center py-4 pt-5 text-4xl font-bold text-[#0D5077]">
+          Our Milestones
+        </div>
+        <Milestone />
+        <div
+          ref={borderRef}
+          className="mt-2 border-animated"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "0",
+            height: "8px",
+            backgroundColor: "#0D5077",
+          }}
+        ></div>
+      </div>
 
       {/* Inline CSS for animation */}
       <style>{`

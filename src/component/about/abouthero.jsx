@@ -42,7 +42,7 @@ const Abouthero = () => {
 
   const imgStyles = {
     width: "100vw",
-    height: "657px",
+    height: "757px",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
 
@@ -50,7 +50,7 @@ const Abouthero = () => {
     return (
       <div>
         <div
-          style={{ width: "100vw", height: "657px" }}
+          style={{ width: "100vw", height: "767px" }}
           className="bg-black/90"
         >
           {" "}
@@ -71,7 +71,7 @@ const Abouthero = () => {
       {loading ? (
         <div>
           <div
-            style={{ width: "100vw", height: "667px" }}
+            style={{ width: "100vw", height: "767px" }}
             className="bg-black/50"
           ></div>
           <div className="flex justify-center text-center ">
@@ -84,8 +84,8 @@ const Abouthero = () => {
       ) : (
         <section>
           <div
-            style={{ width: "100vw", height: "657px" }}
-            className="absolute bg-black/50"
+            style={{ width: "100vw", height: "767px" }}
+            className="absolute bg-black/40"
           ></div>
           <img
             src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${slides[currentSlide].backgroundImage}`}
@@ -97,11 +97,11 @@ const Abouthero = () => {
               e.target.src = "/defaultImage.png"; // Fallback image
             }}
           />
-          <div className="absolute top-[50%] left-[4%]">
+          <div className="absolute top-[40%] left-[4%]">
             <h1 className="text-white text-7xl">
               {slides[currentSlide].title}
             </h1>
-            <h2 className="text-xl text-white w-[80%] pt-12">
+            <h2 className="text-xl text-white w-[70%] pt-3">
               {slides[currentSlide].description}
             </h2>
           </div>

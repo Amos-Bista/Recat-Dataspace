@@ -1,34 +1,62 @@
 import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Card } from "@mui/material";
+function PlansCard({ plan }) {
+  const settingss = {
+    // dots: true,
+    // infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 4,
+    vertical: true, //
+  };
 
-function PlansCard() {
   return (
-    <div className="w-auto overflow-hidden font-sans text-center rounded-lg shadow-md bg-blue-100/30">
-      <div className="bg-[#0D5077] py-6  px-12">
-        <h2 className=" text-5xl  bg-[#0D5077] text-white font-serif flex mx-auto w-96">
-          Virtual Private Server
-        </h2>
-        <p className="pt-2 mx-auto text-white">BRONZE</p>
-      </div>
-      <div className="py-4 rounded-lg ">
-        <div className="flex justify-center gap-2 align-top">
-          <h3 className="pt-2 text-xl text-gray-800">Nrs. </h3>
-          <h3 className="font-serif text-gray-800 text-8xl">1000</h3>
+    <div key={plan.id} className="flex justify-center gap-2 mx-auto">
+      <Slider {...settingss} className="w-96">
+        <div className="overflow-hidden font-sans text-center rounded-md shadow-md w-96 bg-gray-200/30">
+          {/* Card */}
+
+          <div className="bg-[#0D5077] h-32 flex-col justify-center py-5 px-1">
+            <h2
+              className="text-4xl bg-[#0D5077] text-white flex mx-auto leading-none w-60"
+              style={{ fontFamily: "Vollkorn, serif" }}
+            >
+              {plan.servicePlanTitle}
+            </h2>
+            <p className="mx-auto text-lg text-white">
+              {plan.servicePlanTiers}
+            </p>
+          </div>
+          <div className="pt-8 pb-6 rounded-lg">
+            <div className="flex justify-center align-top">
+              <h3 className="pt-1 text-2xl font-bold text-gray-700">Nrs </h3>
+              <h3 className="font-sans font-serif text-6xl font-semibold text-gray-700">
+                {plan.price}
+              </h3>
+            </div>
+            <div>
+              <p className="mt-0 text-base text-gray-700">{plan.subscriptionPlan}</p>
+            </div>
+          </div>
+          <ul className="px-16 py-1 space-y-6 font-sans">
+            {plan.specifications &&
+              plan.specifications.map((spec) => (
+                <li
+                  key={spec.id}
+                  className="text-base text-gray-600 border-b-2 border-gray-300"
+                >
+                  {spec.feature}
+                </li>
+              ))}
+          </ul>
+          <button className="px-6 py-3 mt-6 font-bold text-white bg-[#0D5077] rounded-lg hover:bg-orange-700 mb-8">
+            BUY NOW
+          </button>
         </div>
-        <p className="text-gray-600 text-l">Monthly</p>
-      </div>
-      <ul className="px-12 space-y-2">
-        <li className="py-3 border-b-2 border-gray-900/10">1 CORE CPU</li>
-        <li className="py-3 border-b-2 text-l border-gray-900/10">
-          500 MB DISK SPACE
-        </li>
-        <li className="py-3 border-b-2 border-gray-900/10">1 GB RAM</li>
-        <li className="py-3 border-b-2 border-gray-900/10">
-          24/7 CUSTOMER SUPPORT
-        </li>
-      </ul>
-      <button className="px-10 py-5 mt-6 font-bold text-white bg-[#0D5077] rounded-md hover:bg-orange-700 mb-8">
-        BUY NOW
-      </button>
+      </Slider>
     </div>
   );
 }

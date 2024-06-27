@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import PlanSpecAdd from "./planSpecAdd";
 
-const FeaturePlansViewSpecButton = ({ apiEndpoint, id }) => {
+const FeaturePlansViewSpecButton = ({ id, data }) => {
   const [open, setOpen] = useState(false);
   const [rowData, setRowData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -24,28 +24,28 @@ const FeaturePlansViewSpecButton = ({ apiEndpoint, id }) => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    if (open) {
-      const fetchData = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-          const response = await fetch(
-            `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
-          );
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const data = await response.json();
-          setRowData(data, {id});
-        } catch (error) {
-          setError(error.message);
-        }
-        setLoading(false);
-      };
-      fetchData();
-    }
-  }, [open, apiEndpoint, id]);
+  // useEffect(() => {
+  //   if (open) {
+  //     const fetchData = async () => {
+  //       setLoading(true);
+  //       setError(null);
+  //       try {
+  //         const response = await fetch(
+  //           `${process.env.REACT_APP_API_BASE_URL}/services/getServices/${id}`
+  //         );
+  //         if (!response.ok) {
+  //           throw new Error("Network response was not ok");
+  //         }
+  //         const data = await response.json();
+  //         setRowData(data, { id });
+  //       } catch (error) {
+  //         setError(error.message);
+  //       }
+  //       setLoading(false);
+  //     };
+  //     fetchData();
+  //   }
+  // }, [open, id]);
 
   return (
     <>
@@ -61,12 +61,10 @@ const FeaturePlansViewSpecButton = ({ apiEndpoint, id }) => {
         <DialogContent>
           {loading && <Typography>Loading...</Typography>}
           {error && <Typography color="error">Error: {error}</Typography>}
-          {rowData && rowData.specification ? (
-            rowData.specification.map((row, index) => (
+          {data && data.specification ? (
+            data.specifications.map((row, index) => (
               <div key={index}>
-                <Typography variant="h6">
-                  Feature: {row[index].feature}
-                </Typography>
+                <Typography variant="h6">Feature: {row.feature}</Typography>
                 {/* Add other fields here as needed */}
               </div>
             ))
