@@ -63,9 +63,10 @@ const ServiceAdd = ({ addData }) => {
         toast.success("Page Added Successfully");
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1000);
         // addData();
       } else {
+        toast.error("Page Not Added Successfully");
         throw new Error("Network response was not ok");
       }
     } catch (error) {

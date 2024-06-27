@@ -126,7 +126,7 @@ const Milestone = () => {
   }, [milestoneData]);
 
   return (
-    <div className="flex pl-[600px] gap-12 bg-[#0D5077]/10 py-6 text-[#0D5077]">
+    <div className="flex pl-[600px] gap-12 bg-[#0D5077] py-6 text-white">
       <div>
         <h1 className="flex justify-center text-6xl font-bold">
           +{displayCounts.count3}

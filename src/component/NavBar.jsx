@@ -57,7 +57,7 @@ const NavBar = () => {
             className="absolute h-16 top-5"
           />
         </a>
-        <div className="flex   w-full h-full">
+        <div className="flex w-full h-full">
           <ul
             className={`flex gap-8 absolute top-12 right-2 font-light text-xl ${
               scrolled ? "text-black" : "text-white"

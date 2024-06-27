@@ -5,12 +5,12 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import DynamicPlanCard from "../component/dynamic/dynamicplancard";
-
+import PlansCard from "../component/home/plansCard";
 const ServicePage = () => {
   const { id } = useParams();
   const [serviceData, setServiceData] = useState(null);
   const [expanded, setExpanded] = useState(false);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     fetchData();
@@ -26,9 +26,10 @@ const ServicePage = () => {
       }
       const data = await response.json();
       setServiceData(data);
-      console.log(data);
+      setLoading(false); // Update loading state on successful fetch
     } catch (error) {
       console.error("Error fetching service data:", error);
+      setLoading(false); // Update loading state on fetch error
       // Handle error, display message to the user, etc.
     }
   };
@@ -37,27 +38,41 @@ const ServicePage = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
-  if (!serviceData) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <div>Loading...</div>; // Display loading indicator
   }
-  // Construct the image URL
-  const imageUrl = `${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`;
-  console.log(imageUrl);
 
   const imgStyles = {
     width: "100vw",
-    height: "667px",
+    height: "767px",
     transition: "opacity 0.5s ease-in-out",
   };
 
   return (
     <div>
+      <style>{`
+                .custom-accordion .MuiAccordion-root.Mui-expanded {
+                    margin: 0;
+                }
+                .custom-accordion .MuiAccordion-root {
+                    box-shadow: none;
+                    border-left: none;
+                    border-right: none;
+                    border-bottom: solid 10px gray;
+                }
+                .custom-accordion .MuiAccordionSummary-root {
+                    border-radius: 0;
+                }
+                .custom-accordion .MuiAccordionSummary-content {
+                    margin: 0;
+                }
+            `}</style>
       <main>
-        <section assName="flex justify-between w-[max-content] relative ">
-          <div lassName="relative ">
+        <section className="flex justify-between w-[max-content] relative">
+          <div className="relative">
             <div
-              style={{ width: "100vw", height: "667px" }}
-              className="absolute bg-black/50"
+              style={{ width: "100vw", height: "767px" }}
+              className="absolute bg-black/70"
             ></div>
             <img
               src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`}
@@ -66,24 +81,25 @@ const ServicePage = () => {
               className="w-max-screen"
             />
 
-            <div className="absolute top-[40%] left-[4%]">
+            <div className="absolute top-[35%] left-[4%]">
               <h1 className="text-white text-7xl">{serviceData.serviceName}</h1>
-              <h1 className="pl-2 py-8 text-xl text-white w-[80%]">
+              <h1 className="pt-3 text-xl text-white w-[70%]">
                 {serviceData.serviceDescription}
               </h1>
             </div>
           </div>
         </section>
+
         <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
-          <div className="pl-16  text-xl w-[55%]  ">
-            <h1 className="mb-12 ml-3 text-4xl font-bold">
+          <div className="pl-16 text-xl w-[55%]">
+            <h1 className="my-12 ml-3 text-4xl font-bold">
               Why Choose DataSpace VPS?
             </h1>
-            <h1>
-              {serviceData.accordions.map((panel) => (
-                <div className="">
+            <div>
+              {serviceData.accordions.map((panel, index) => (
+                <div key={panel.id}>
                   <Accordion
-                    key={panel.id}
+                    className="custom-accordion"
                     expanded={expanded === panel.id}
                     onChange={handleChange(panel.id)}
                   >
@@ -93,27 +109,35 @@ const ServicePage = () => {
                       id={`${panel.id}bh-header`}
                     >
                       <Typography
-                        sx={{ width: "33%", flexShrink: 0, fontSize: "1.2rem" }}
+                        className="w-full"
+                        sx={{
+                          flexShrink: 0,
+                          fontSize: "1.2rem",
+                          fontWeight: "bold", // Apply bold font weight
+                        }}
                       >
-                        {panel.title}
+                        {index + 1}. {panel.title}
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <Typography sx={{ fontSize: "1.1rem" }}>
+                      <Typography className="pl-5" sx={{ fontSize: "1.1rem" }}>
                         {panel.description}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
                 </div>
               ))}
-            </h1>
+            </div>
           </div>
           <div className="w-[430px] h-[520px]">
-            <img src="/Backup.png" alt="img" className="h-[520px]  w-[430px]" />
+            <img src="/Backup.png" alt="img" className="h-[520px] w-[430px]" />
           </div>
         </div>
-        <div className="">
-          <DynamicPlanCard />
+
+        <div className="mb-[8rem] flex justify-center">
+          {serviceData.servicePlans.map((plan, index) => (
+            <PlansCard key={plan.id} plan={plan} index={index} />
+          ))}
         </div>
       </main>
     </div>

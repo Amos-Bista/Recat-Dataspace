@@ -30,14 +30,14 @@ const ContactHero = () => {
 
   const imgStyles = {
     width: "100vw",
-    height: "667px",
+    height: "767px",
     transition: "opacity 0.5s ease-in-out",
   };
 
   if (loading) {
     return (
       <div
-        style={{ width: "100vw", height: "667px" }}
+        style={{ width: "100vw", height: "767px" }}
         className="flex  bg-black/50 w-[max-content] relative "
       >
         <div className="flex justify-center text-center ">
@@ -53,7 +53,7 @@ const ContactHero = () => {
   if (error) {
     return (
       <div
-        style={{ width: "100vw", height: "667px" }}
+        style={{ width: "100vw", height: "767px" }}
         className="flex relative  bg-black/90  w-[max-content] "
       >
         <div className="">
@@ -77,7 +77,7 @@ const ContactHero = () => {
     <main className="flex justify-between w-[max-content] relative">
       <div className="relative">
         <div
-          style={{ width: "100vw", height: "667px" }}
+          style={{ width: "100vw", height: "767px" }}
           className="absolute bg-black/50"
         ></div>
         <img
@@ -90,10 +90,10 @@ const ContactHero = () => {
             e.target.src = "/defaultImage.png"; // Fallback image
           }}
         />
-        <div className="absolute top-[50%] left-[4%]">
+        <div className="absolute top-[40%] left-[4%]">
           <h1 className="text-white text-7xl">{heroData.title}</h1>
-          <h1 className="text-xl text-white">{heroData.description}</h1>
-          <ButtonHerosection />
+          <h1 className="mt-3 text-xl text-white">{heroData.description}</h1>
+          <ButtonHerosection className="pl-1" />
         </div>
       </div>
     </main>

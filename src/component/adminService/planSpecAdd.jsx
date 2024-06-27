@@ -7,7 +7,6 @@ import {
   DialogTitle,
   TextField,
   Grid,
-  Typography,
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
@@ -17,28 +16,27 @@ import axios from "axios";
 const PlanSpecAdd = ({ id }) => {
   const [open, setOpen] = useState(false);
   const [features, setFeatures] = useState([""]);
-  const [serviceData, setServiceData] = useState("");
+  const [serviceData, setServiceData] = useState(null);
 
-  console.log({ features });
-  // useEffect(() => {
-  //   fetchData();
-  // }, [id]);
+  useEffect(() => {
+    fetchData();
+  }, [id]);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch service data");
-  //       // fetchData();
-  //     }
-  //     const data = await response.json();
-  //     setServiceData(data);
-  //   } catch (error) {
-  //     console.error("Error fetching service data:", error);
-  //   }
-  // };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch service data");
+      }
+      const data = await response.json();
+      setServiceData(data);
+    } catch (error) {
+      console.error("Error fetching service data:", error);
+    }
+  };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -64,39 +62,21 @@ const PlanSpecAdd = ({ id }) => {
 
   const handleSubmit = async () => {
     try {
-      // const formData = new FormData();
-      // formData.append("servicePlansId", id);
-
-      // features.forEach((feature) => {
-      //   formData.append(`feature`, feature.text);
-      // });
-      // const formDataArray = [];
-      // for (const [key, value] of formData.entries()) {
-      //   formDataArray.push({ key, value });
-      // }
-
-      console.log({
-        features: features,
-        servicePlanId: id,
-      });
-
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
-
       const response = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/specifications/addSpecification`,
         {
           feature: features,
-          servicePlanId: 2,
+          servicePlanId: id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
-      // Optionally handle response data here if needed
-      // const data = await response.json();
-      // console.log("Response data:", data);
-
-      alert("Form submitted successfully!");
+      console.log("Response data:", response.data);
+      toast.success("Form submitted successfully!");
       handleClose();
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -110,8 +90,8 @@ const PlanSpecAdd = ({ id }) => {
         Add Specs
       </Button>
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-        <DialogTitle key={serviceData.id}>
-          {serviceData.serviceName}
+        <DialogTitle>
+          {serviceData?.serviceName}
           <IconButton
             aria-label="close"
             onClick={handleClose}
@@ -128,14 +108,14 @@ const PlanSpecAdd = ({ id }) => {
 
         <DialogContent>
           {features.map((feature, index) => (
-            <Grid container spacing={3} key={feature.id}>
+            <Grid container spacing={3} key={index}>
               <Grid item xs={8}>
                 <TextField
                   label={`Feature ${index + 1}`}
                   variant="outlined"
                   fullWidth
                   type="text"
-                  value={feature.text}
+                  value={feature}
                   onChange={(e) => handleFeatureChange(index, e.target.value)}
                 />
               </Grid>

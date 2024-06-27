@@ -41,7 +41,7 @@ const Herosection = () => {
 
   const imgStyles = {
     width: "100vw",
-    height: "667px",
+    height: "767px",
     transition: "opacity 0.5s ease-in-out",
   };
 
@@ -64,7 +64,7 @@ const Herosection = () => {
   if (error) {
     return (
       <div
-        style={{ width: "100vw", height: "667px" }}
+        style={{ width: "100vw", height: "767px" }}
         className="flex relative  bg-black/90  w-[max-content] "
       >
         <div className="">
@@ -95,11 +95,11 @@ const Herosection = () => {
                 e.target.src = "/defaultImage.png"; // Fallback image
               }}
             />
-            <div className="absolute top-[50%] left-[4%]">
+            <div className="absolute top-[40%] left-[3%]">
               <h1 className="text-white text-7xl">
                 {slides[currentSlide].title}
               </h1>
-              <h1 className="mt-2 text-xl text-white">
+              <h1 className="mt-3 text-xl text-white w-[70%]">
                 {slides[currentSlide].description}
               </h1>
               <ButtonHerosection id={slides[currentSlide].id} />

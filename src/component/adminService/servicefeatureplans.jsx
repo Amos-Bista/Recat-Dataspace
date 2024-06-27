@@ -66,6 +66,8 @@ const ServiceFeaturePlans = () => {
     }
   };
 
+  
+
   return (
     <main className="pt-6 border-b-2">
       <div className="flex items-center justify-between">
@@ -103,7 +105,7 @@ const ServiceFeaturePlans = () => {
                     {/* Display subscriptionPlan */}
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
-                      <FeaturePlanSpecButton id={row.id}  rowData />
+                      <FeaturePlanSpecButton id={row.id}  data={rowData} />
                     </TableCell>
                     <TableCell align="center">
                       <Box variant="contained">
