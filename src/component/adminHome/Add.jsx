@@ -12,13 +12,15 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
+import HeroLearnMore from "./HeroSectionLearnMoreButton";
 
 const Add = ({ addData, fetchData }) => {
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
-  const [serviceBgImage, setServiceBgImage] = useState(null); // Updated initial state for image
-  const [imagePreview, setImagePreview] = useState(""); // State to hold image preview URL
+  const [serviceBgImage, setServiceBgImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+  const [selectedServicePath, setSelectedServicePath] = useState(""); // State to hold selected service path
   const inputRef = useRef(null);
 
   const functionOnPopUp = () => {
@@ -27,8 +29,9 @@ const Add = ({ addData, fetchData }) => {
 
   const closePopUp = () => {
     setOpen(false);
-    setServiceBgImage(null); // Reset selected image on close
-    setImagePreview(""); // Clear image preview
+    setServiceBgImage(null);
+    setImagePreview("");
+    setSelectedServicePath(""); // Clear selected service path on close
   };
 
   const handleImageChange = (event) => {
@@ -36,7 +39,6 @@ const Add = ({ addData, fetchData }) => {
     if (imageFile) {
       setServiceBgImage(imageFile);
 
-      // Create a preview URL for image display
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -53,6 +55,7 @@ const Add = ({ addData, fetchData }) => {
       formData.append("title", serviceName);
       formData.append("description", serviceDescription);
       formData.append("backgroundImage", serviceBgImage);
+      formData.append("servicePath", selectedServicePath); // Add selected service path to form data
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/heroSection/createSection`,
@@ -65,10 +68,10 @@ const Add = ({ addData, fetchData }) => {
       if (response.ok) {
         toast.success("Hero Section uploaded successfully!");
         setTimeout(() => {
-          window.location.reload(); // Refresh page after successful upload
+          window.location.reload();
         }, 3000);
-        closePopUp(); // Close dialog after successful submit
-        fetchData(); // Fetch updated data after submit
+        closePopUp();
+        fetchData();
       } else {
         throw new Error("Failed to upload Hero Section");
       }
@@ -76,6 +79,11 @@ const Add = ({ addData, fetchData }) => {
       console.error("Error:", error);
       alert("Error submitting form. Please try again.");
     }
+  };
+
+  const handleServicePathSelect = (path) => {
+    setSelectedServicePath(path);
+    console.log("Service path", { selectedServicePath } );
   };
 
   return (
@@ -134,6 +142,14 @@ const Add = ({ addData, fetchData }) => {
                 rows={4}
                 onChange={(e) => setServiceDescription(e.target.value)}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Upload Link
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <HeroLearnMore onServiceClick={handleServicePathSelect} />
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>

@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import ButtonHerosection from "../home/buttonHerosection";
 import { CircularProgress } from "@mui/material";
-
-const Herosection = () => {
+import { useNavigate } from "react-router-dom";
+const Herosection = (id) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleClick = (servicePath) => {
+    navigate(servicePath);
+  };
 
   useEffect(() => {
     const fetchSlides = async () => {
@@ -102,7 +107,21 @@ const Herosection = () => {
               <h1 className="mt-3 text-xl text-white w-[70%]">
                 {slides[currentSlide].description}
               </h1>
-              <ButtonHerosection id={slides[currentSlide].id} />
+
+              <div>
+                <div>
+                  <button
+                    className="px-4 py-1 mt-6 text-xl text-white border-2 border-white rounded-lg hover:bg-white/10 hover:scale-105"
+                    onClick={() =>
+                      handleClick(slides[currentSlide]?.servicePath)
+                    }
+                  >
+                    Learn more
+                  </button>
+                </div>
+                );
+              </div>
+              {/* <ButtonHerosection id={slides[currentSlide].id} /> */}
             </div>
           </>
         ) : (
