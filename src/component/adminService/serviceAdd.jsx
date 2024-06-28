@@ -16,9 +16,15 @@ import { toast } from "react-toastify";
 const ServiceAdd = ({ addData }) => {
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
+  const [serviceSubName, setServiceSubName] = useState("");
+  const [serviceSubImage, setServiceSubImage] = useState(null);
   const [serviceDescription, setServiceDescription] = useState("");
   const [serviceBgImage, setServiceBgImage] = useState(null);
-  const [previewImage, setPreviewImage] = useState(null); // State to store the preview image URL
+  const [previewImage, setPreviewImage] = useState(null);
+  const [previewSubImage, setPreviewSubImage] = useState(null);
+
+  const mainImageInputRef = useRef(null);
+  const subImageInputRef = useRef(null);
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -30,11 +36,24 @@ const ServiceAdd = ({ addData }) => {
 
   const handleTitleChange = (e) => setServiceName(e.target.value);
   const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
+  const handleSubNameChange = (e) => setServiceSubName(e.target.value);
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setServiceBgImage(file);
-    setPreviewImage(URL.createObjectURL(file)); // Create and set the preview image URL
-    console.log("Selected file:", file); // Log selected file
+    if (file) {
+      setServiceBgImage(file);
+      setPreviewImage(URL.createObjectURL(file));
+    }
+    console.log("Selected file:", file);
+  };
+
+  const handleSubImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setServiceSubImage(file);
+      setPreviewSubImage(URL.createObjectURL(file));
+    }
+    console.log("Selected Sub file:", file);
   };
 
   const handleSubmit = async (e) => {
@@ -45,6 +64,8 @@ const ServiceAdd = ({ addData }) => {
       formData.append("serviceName", serviceName);
       formData.append("serviceDescription", serviceDescription);
       formData.append("serviceBgImage", serviceBgImage);
+      formData.append("serviceSubName", serviceSubName);
+      formData.append("serviceSubImage", serviceSubImage);
 
       // Log FormData contents
       for (let pair of formData.entries()) {
@@ -64,21 +85,22 @@ const ServiceAdd = ({ addData }) => {
         setTimeout(() => {
           window.location.reload();
         }, 1000);
-        // addData();
       } else {
         toast.error("Page Not Added Successfully");
         throw new Error("Network response was not ok");
       }
     } catch (error) {
       console.error("Error:", error);
-      // toast.error("Error submitting form. Please try again.");
     }
     setOpen(false);
   };
 
-  const inputRef = useRef(null);
   const handleImageClick = () => {
-    inputRef.current.click();
+    mainImageInputRef.current.click();
+  };
+
+  const handleSubImageClick = () => {
+    subImageInputRef.current.click();
   };
 
   return (
@@ -149,7 +171,7 @@ const ServiceAdd = ({ addData }) => {
             <Grid item xs={6}>
               <input
                 type="file"
-                ref={inputRef}
+                ref={mainImageInputRef}
                 style={{ display: "none" }}
                 onChange={handleImageChange}
               />
@@ -164,14 +186,51 @@ const ServiceAdd = ({ addData }) => {
                 />
               )}
             </Grid>
+            <Grid item xs={6}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginTop: "1rem" }}
+              >
+                Sub-Title
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Enter sub-title"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={1}
+                onChange={handleSubNameChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Upload Sub Image
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <input
+                type="file"
+                ref={subImageInputRef}
+                style={{ display: "none" }}
+                onChange={handleSubImageChange}
+              />
+              <Button onClick={handleSubImageClick} variant="outlined">
+                Choose File
+              </Button>
+              {previewSubImage && (
+                <img
+                  src={previewSubImage}
+                  alt="Selected"
+                  style={{ marginTop: "1rem", width: "100%" }}
+                />
+              )}
+            </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions
-          style={{
-            display: "flex",
-            gap: "200px",
-          }}
-        >
+        <DialogActions style={{ display: "flex", gap: "200px" }}>
           <Button
             variant="contained"
             onClick={closePopUp}

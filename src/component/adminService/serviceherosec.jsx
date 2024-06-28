@@ -74,6 +74,8 @@ const Serviceherosec = () => {
                 <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Description</TableCell>
                 <TableCell align="center">Background Image</TableCell>
+                <TableCell align="center">Sub Title</TableCell>
+                <TableCell align="center">Sub Image</TableCell>
                 <TableCell align="center">Edit</TableCell>
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
@@ -92,6 +94,15 @@ const Serviceherosec = () => {
                     <TableCell align="center">
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/services/${row.serviceBgImage}`}
+                        alt=""
+                        style={imgStyles}
+                        className="flex mx-auto"
+                      />
+                    </TableCell>
+                    <TableCell align="center">{row.serviceSubName}</TableCell>
+                    <TableCell align="center">
+                      <img
+                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row.serviceSubImage}`}
                         alt=""
                         style={imgStyles}
                         className="flex mx-auto"

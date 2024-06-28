@@ -75,16 +75,16 @@ const ServicePage = () => {
               className="absolute bg-black/70"
             ></div>
             <img
-              src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData.serviceBgImage}`}
+              src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData?.serviceBgImage}`}
               style={imgStyles}
-              alt={serviceData.serviceName}
+              alt={serviceData?.serviceName}
               className="w-max-screen"
             />
 
             <div className="absolute top-[35%] left-[4%]">
-              <h1 className="text-white text-7xl">{serviceData.serviceName}</h1>
+              <h1 className="text-white text-7xl">{serviceData?.serviceName}</h1>
               <h1 className="pt-3 text-xl text-white w-[70%]">
-                {serviceData.serviceDescription}
+                {serviceData?.serviceDescription}
               </h1>
             </div>
           </div>
@@ -93,7 +93,7 @@ const ServicePage = () => {
         <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
           <div className="pl-16 text-xl w-[55%]">
             <h1 className="my-12 ml-3 text-4xl font-bold">
-              Why Choose DataSpace VPS?
+            {serviceData?.serviceSubName}
             </h1>
             <div>
               {serviceData.accordions.map((panel, index) => (
@@ -121,7 +121,7 @@ const ServicePage = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                       <Typography className="pl-5" sx={{ fontSize: "1.1rem" }}>
-                        {panel.description}
+                        {panel?.description}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
@@ -130,7 +130,12 @@ const ServicePage = () => {
             </div>
           </div>
           <div className="w-[430px] h-[520px]">
-            <img src="/Backup.png" alt="img" className="h-[520px] w-[430px]" />
+          <img
+              src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData?.serviceSubImage}`}
+              style={imgStyles}
+              alt={serviceData.serviceName}
+              className="w-max-screen"
+            />
           </div>
         </div>
 
