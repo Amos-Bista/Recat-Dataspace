@@ -66,12 +66,12 @@ const About = () => {
         />
       </div>
 
-      <div className="relative flex-col justify-center gap-10 mb-8 border-[#0D5077] border-b-2">
+      <div className="relative flex-col justify-center gap-10 mb-8 border-[#0D5077] ">
         <div className="flex justify-center py-4 pt-5 text-4xl font-bold text-[#0D5077]">
           Our Milestones
         </div>
         <Milestone />
-        <div
+        {/* <div
           ref={borderRef}
           className="mt-2 border-animated"
           style={{
@@ -83,7 +83,7 @@ const About = () => {
             height: "8px",
             backgroundColor: "#0D5077",
           }}
-        ></div>
+        ></div> */}
       </div>
 
       {/* Inline CSS for animation */}

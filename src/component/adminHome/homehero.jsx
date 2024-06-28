@@ -13,8 +13,9 @@ import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
 import { Box } from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
-
+import LearnMoreButton from "../../component/adminHome/learnMoreButton";
 const HomeHero = () => {
+  const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -77,6 +78,9 @@ const HomeHero = () => {
     position: "center",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
+  const functionOnPopUp = () => {
+    setOpen(true);
+  };
   return (
     <main>
       <div className="flex items-center justify-between">
@@ -95,8 +99,9 @@ const HomeHero = () => {
               <TableRow>
                 <TableCell align="center">Title</TableCell>
                 <TableCell align="center">Description</TableCell>
+                <TableCell align="center">Learn More</TableCell>
                 <TableCell align="center">Backgroundimage</TableCell>
-                <TableCell align="center">Edit</TableCell>
+                {/* <TableCell align="center">Edit</TableCell> */}
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -108,6 +113,10 @@ const HomeHero = () => {
                     <TableCell align="center">
                       {rows[index].description}
                     </TableCell>
+                    <TableCell align="center">
+                    {rows[index].servicePath} 
+                      {/* <LearnMoreButton onClick={() => functionOnPopUp} heroSectionId={row.id} /> */}
+                    </TableCell>
                     <TableCell className="flex justify-center">
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/heroSection/${rows[index].backgroundImage}`}
@@ -116,9 +125,9 @@ const HomeHero = () => {
                         className="mx-auto"
                       />
                     </TableCell>
-                    <TableCell align="center">
-                      <Edit />
-                    </TableCell>
+                      {/* <TableCell align="center">
+                        <Edit />
+                      </TableCell> */}
                     <TableCell align="center">
                       <Delete onDelete={() => handleDelete(row.id, index)} />
                     </TableCell>

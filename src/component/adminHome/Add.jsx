@@ -1,6 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
+  Menu,
   Button,
+  MenuItem,
   Dialog,
   DialogActions,
   DialogContent,
@@ -12,14 +14,34 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
-const Add = ({ addData, fetchData }) => {
+const Add = ({ fetchData }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
-  const [serviceBgImage, setServiceBgImage] = useState(null); // Updated initial state for image
-  const [imagePreview, setImagePreview] = useState(""); // State to hold image preview URL
+  const [serviceBgImage, setServiceBgImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState("");
+  const [selectedServicePath, setSelectedServicePath] = useState("");
+  const [selectedServiceName, setSelectedServiceName] = useState("Select Link");
   const inputRef = useRef(null);
+  const [rows, setRowData] = useState([]);
+
+  useEffect(() => {
+    fetchDataa();
+  }, []);
+
+  const fetchDataa = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
+      );
+      setRowData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -27,8 +49,10 @@ const Add = ({ addData, fetchData }) => {
 
   const closePopUp = () => {
     setOpen(false);
-    setServiceBgImage(null); // Reset selected image on close
-    setImagePreview(""); // Clear image preview
+    setServiceBgImage(null);
+    setImagePreview("");
+    setSelectedServicePath("");
+    setSelectedServiceName("Select Link");
   };
 
   const handleImageChange = (event) => {
@@ -36,7 +60,6 @@ const Add = ({ addData, fetchData }) => {
     if (imageFile) {
       setServiceBgImage(imageFile);
 
-      // Create a preview URL for image display
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
@@ -53,6 +76,7 @@ const Add = ({ addData, fetchData }) => {
       formData.append("title", serviceName);
       formData.append("description", serviceDescription);
       formData.append("backgroundImage", serviceBgImage);
+      formData.append("servicePath", selectedServicePath);
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/heroSection/createSection`,
@@ -64,18 +88,29 @@ const Add = ({ addData, fetchData }) => {
 
       if (response.ok) {
         toast.success("Hero Section uploaded successfully!");
-        setTimeout(() => {
-          window.location.reload(); // Refresh page after successful upload
-        }, 3000);
-        closePopUp(); // Close dialog after successful submit
-        fetchData(); // Fetch updated data after submit
+        closePopUp();
+        fetchData();
       } else {
         throw new Error("Failed to upload Hero Section");
       }
     } catch (error) {
+      toast.error("Error submitting form. Please try again.");
       console.error("Error:", error);
-      alert("Error submitting form. Please try again.");
     }
+  };
+
+  const handleServicePathSelect = (service) => {
+    setSelectedServicePath(service.path);
+    setSelectedServiceName(service.serviceName);
+    setAnchorEl(null); // Close the menu after selecting
+  };
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -117,11 +152,7 @@ const Add = ({ addData, fetchData }) => {
               />
             </Grid>
             <Grid item xs={6}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                style={{ marginTop: "1rem" }}
-              >
+              <Typography variant="h6" gutterBottom style={{ marginTop: "1rem" }}>
                 Description
               </Typography>
             </Grid>
@@ -134,6 +165,36 @@ const Add = ({ addData, fetchData }) => {
                 rows={4}
                 onChange={(e) => setServiceDescription(e.target.value)}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Upload Link
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <div>
+                <Button
+                  style={{ backgroundColor: "green", color: "#fff" }}
+                  variant="contained"
+                  onClick={handleMenuOpen}
+                >
+                  {selectedServiceName}
+                </Button>
+                <Menu
+                  anchorEl={anchorEl}
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                >
+                  {rows.map((service) => (
+                    <MenuItem
+                      key={service.id}
+                      onClick={() => handleServicePathSelect(service)}
+                    >
+                      {service.serviceName}
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </div>
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>
@@ -159,30 +220,18 @@ const Add = ({ addData, fetchData }) => {
           </Grid>
         </DialogContent>
         <DialogActions
-          style={{
-            display: "flex",
-            gap: "200px",
-          }}
+          style={{ display: "flex", gap: "200px" }}
         >
           <Button
             variant="contained"
             onClick={closePopUp}
-            style={{
-              backgroundColor: "#FF0000",
-              marginLeft: "53px",
-              marginRight: "auto",
-            }}
+            style={{ backgroundColor: "#FF0000", marginLeft: "53px", marginRight: "auto" }}
           >
             Cancel
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{
-              backgroundColor: "#0c5177",
-              color: "#fff",
-              marginLeft: "auto",
-              marginRight: "56px",
-            }}
+            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft: "auto", marginRight: "56px" }}
             variant="contained"
           >
             Publish

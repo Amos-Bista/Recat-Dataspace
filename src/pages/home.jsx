@@ -52,7 +52,7 @@ function Home() {
         <h1 className="flex justify-center my-8 mb-20 text-3xl font-semibold">
           Our Popular Plans & Pricing
         </h1>
-        {/* <Plans /> */}
+        <Plans />
         <div className="flex justify-center mb-20">
           {serviceData?.servicePlans?.map((plan, index) => (
             <PlansCard key={plan.id} plan={plan} index={index} />
