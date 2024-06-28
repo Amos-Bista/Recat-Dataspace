@@ -1,7 +1,9 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 const HeroLearnMore = ({ onServiceClick }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [rows, setRowData] = useState([]);
 
   useEffect(() => {
@@ -10,47 +12,55 @@ const HeroLearnMore = ({ onServiceClick }) => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
+      const response = await axios.get(
         `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
       );
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = await response.json();
-      setRowData(data);
+      setRowData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const handleServiceClick = (service) => {
-    if (onServiceClick) {
-      onServiceClick(`/services/${service.id}`);
-    }
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenuItemClick = (service) => {
+    onServiceClick(service.servicePath);
+   
+    // handleMenuClose();
   };
 
   return (
     <div>
-      <div
-        className="relative inline-block dropdown"
-        onMouseEnter={() => setIsDropdownOpen(true)}
-        onMouseLeave={() => setIsDropdownOpen(false)}
+      <Button
+        style={{
+          backgroundColor: "green",
+          color: "#fff",
+        }}
+        variant="contained"
+        onClick={handleMenuOpen}
       >
-        <button className="relative block text-m hover:underline underline-offset-1 active:text-blue-900">
-          Service
-        </button>
-
+        Select Link
+      </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
         {rows.map((service) => (
-          <div key={service.id}>
-            <button
-              onClick={() => handleServiceClick(service)}
-              className="block px-4 py-2 text-base font-semibold text-black hover:bg-[#11396e]/10"
-            >
-              {service.serviceName}
-            </button>
-          </div>
+          <MenuItem
+            key={service.id}
+            onClick={() => handleMenuItemClick(service)}
+          >
+            {service.serviceName}
+          </MenuItem>
         ))}
-      </div>
+      </Menu>
     </div>
   );
 };

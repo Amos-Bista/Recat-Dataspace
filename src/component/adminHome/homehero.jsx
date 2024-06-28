@@ -101,7 +101,7 @@ const HomeHero = () => {
                 <TableCell align="center">Description</TableCell>
                 <TableCell align="center">Learn More</TableCell>
                 <TableCell align="center">Backgroundimage</TableCell>
-                <TableCell align="center">Edit</TableCell>
+                {/* <TableCell align="center">Edit</TableCell> */}
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -125,9 +125,9 @@ const HomeHero = () => {
                         className="mx-auto"
                       />
                     </TableCell>
-                    <TableCell align="center">
-                      <Edit />
-                    </TableCell>
+                      {/* <TableCell align="center">
+                        <Edit />
+                      </TableCell> */}
                     <TableCell align="center">
                       <Delete onDelete={() => handleDelete(row.id, index)} />
                     </TableCell>

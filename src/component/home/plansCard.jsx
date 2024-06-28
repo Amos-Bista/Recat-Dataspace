@@ -14,9 +14,9 @@ function PlansCard({ plan }) {
   };
 
   return (
-    <div key={plan.id} className="flex justify-center gap-2 mx-auto">
-      <Slider {...settingss} className="w-96">
-        <div className="overflow-hidden font-sans text-center rounded-md shadow-md w-96 bg-gray-200/30">
+    <div key={plan.id} className="flex justify-center mx-4 gap-">
+      <Slider {...settingss} className="rounded-md w-80">
+        <div className="overflow-hidden font-sans text-center rounded-md shadow-md w-96 bg-gray-200/40">
           {/* Card */}
 
           <div className="bg-[#0D5077] h-32 flex-col justify-center py-5 px-1">
@@ -38,7 +38,9 @@ function PlansCard({ plan }) {
               </h3>
             </div>
             <div>
-              <p className="mt-0 text-base text-gray-700">{plan.subscriptionPlan}</p>
+              <p className="mt-0 text-base text-gray-700">
+                {plan.subscriptionPlan}
+              </p>
             </div>
           </div>
           <ul className="px-16 py-1 space-y-6 font-sans">
