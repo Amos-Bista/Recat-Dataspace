@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import Milestone from "./milestone";
+import parse from 'html-react-parser';
 
 const Abouthero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -97,12 +98,12 @@ const Abouthero = () => {
               e.target.src = "/defaultImage.png"; // Fallback image
             }}
           />
-          <div className="absolute top-[40%] left-[4%]">
+          <div className="absolute top-[40%] left-[4%] w-[90%] bg-white/10">
             <h1 className="text-white text-7xl">
               {slides[currentSlide].title}
             </h1>
-            <h2 className="text-xl text-white w-[70%] pt-3">
-              {slides[currentSlide].description}
+            <h2 className="text-xl text-white w-[100%] pt-3">
+              {parse(slides[currentSlide].description)}
             </h2>
           </div>
         </section>

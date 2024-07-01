@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ButtonHerosection from "../home/buttonHerosection";
 import { CircularProgress } from "@mui/material";
+import parse from "html-react-parser";
 
 const ContactHero = () => {
   const [heroData, setHeroData] = useState(null);
@@ -90,9 +91,11 @@ const ContactHero = () => {
             e.target.src = "/defaultImage.png"; // Fallback image
           }}
         />
-        <div className="absolute top-[40%] left-[4%]">
+        <div className="absolute top-[40%] left-[4%] w-[90%]">
           <h1 className="text-white text-7xl">{heroData.title}</h1>
-          <h1 className="mt-3 text-xl text-white">{heroData.description}</h1>
+          <h1 className="mt-3 text-xl text-white">
+            {parse(heroData.description)}
+          </h1>
           <ButtonHerosection className="pl-1" />
         </div>
       </div>

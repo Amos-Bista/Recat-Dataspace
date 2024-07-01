@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import parse from 'html-react-parser';
 
 const Footer = () => {
   const [rows, setRows] = useState([]);
@@ -98,7 +99,7 @@ const Footer = () => {
                   key={row.id}
                   className="pt-3 leading-relaxed text-justify text-1xl"
                 >
-                  {row.description}
+                  {parse(row.description)}
                 </p>
               ))}
             </div>

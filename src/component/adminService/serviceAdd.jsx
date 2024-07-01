@@ -42,7 +42,7 @@ const ServiceAdd = ({ addData }) => {
     const file = event.target.files[0];
     if (file) {
       setServiceBgImage(file);
-      setPreviewImage(URL.createObjectURL(file));
+      // setPreviewImage(URL.createObjectURL(file));
     }
     console.log("Selected file:", file);
   };
@@ -51,9 +51,9 @@ const ServiceAdd = ({ addData }) => {
     const file = event.target.files[0];
     if (file) {
       setServiceSubImage(file);
-      setPreviewSubImage(URL.createObjectURL(file));
+      // setPreviewSubImage(URL.createObjectURL(file));
     }
-    console.log("Selected Sub file:", file);
+    // console.log("Selected Sub file:", file);
   };
 
   const handleSubmit = async (e) => {

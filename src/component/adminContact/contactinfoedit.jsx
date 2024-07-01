@@ -11,6 +11,7 @@ import {
 import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import ContactTextFieldEditor from '../../component/adminContact/contactTextEditor'
 
 const ContactInfoEdit = ({ contactDetails = {}, handleEditContact }) => {
   const [open, setOpen] = useState(false);
@@ -143,6 +144,11 @@ const ContactInfoEdit = ({ contactDetails = {}, handleEditContact }) => {
                 fullWidth
                 multiline
                 rows={4}
+              />
+               <ContactTextFieldEditor
+                placeholder={description}
+                value={description}
+                onChange={(newContent) => setDescription(newContent)}
               />
             </Grid>
             <Grid item xs={6}>

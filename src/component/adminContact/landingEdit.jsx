@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Button, TextField, Grid, Typography, Box } from "@mui/material";
 import { toast } from "react-toastify";
+import ContactTextFieldEditor from "../../component/adminContact/contactTextEditor";
 
 const LandingEdit = ({ contactDetails }) => {
   const [open, setOpen] = useState(false); // Use boolean false instead of string "false"
@@ -150,7 +151,7 @@ const LandingEdit = ({ contactDetails }) => {
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <TextField
+          {/* <TextField
             label="Enter description"
             variant="outlined"
             value={description}
@@ -158,6 +159,11 @@ const LandingEdit = ({ contactDetails }) => {
             fullWidth
             multiline
             rows={1}
+          /> */}
+          <ContactTextFieldEditor
+            placeholder={description}
+            value={description}
+            onChange={(newContent) => setDescription(newContent)}
           />
         </Grid>
         <h3 className="flex w-[100%] border-indigo-600 justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077] mb-[40px]">

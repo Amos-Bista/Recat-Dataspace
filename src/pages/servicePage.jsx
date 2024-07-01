@@ -50,14 +50,14 @@ const ServicePage = () => {
 
   return (
     <div>
-      <style>{`
+      {/* <style>{`
                 .custom-accordion .MuiAccordion-root.Mui-expanded {
                     margin: 0;
                 }
                 .custom-accordion .MuiAccordion-root {
-                    box-shadow: none;
-                    border-left: none;
-                    border-right: none;
+                    box-shadow: solid 10px gray;
+                    border-left: solid 10px gray;
+                    border-right: solid 10px gray;
                     border-bottom: solid 10px gray;
                 }
                 .custom-accordion .MuiAccordionSummary-root {
@@ -66,7 +66,7 @@ const ServicePage = () => {
                 .custom-accordion .MuiAccordionSummary-content {
                     margin: 0;
                 }
-            `}</style>
+            `}</style> */}
       <main>
         <section className="flex justify-between w-[max-content] relative">
           <div className="relative">
@@ -82,7 +82,9 @@ const ServicePage = () => {
             />
 
             <div className="absolute top-[35%] left-[4%]">
-              <h1 className="text-white text-7xl">{serviceData?.serviceName}</h1>
+              <h1 className="text-white text-7xl">
+                {serviceData?.serviceName}
+              </h1>
               <h1 className="pt-3 text-xl text-white w-[70%]">
                 {serviceData?.serviceDescription}
               </h1>
@@ -93,13 +95,13 @@ const ServicePage = () => {
         <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
           <div className="pl-16 text-xl w-[55%]">
             <h1 className="my-12 ml-3 text-4xl font-bold">
-            {serviceData?.serviceSubName}
+              {serviceData?.serviceSubName}
             </h1>
             <div>
               {serviceData.accordions.map((panel, index) => (
                 <div key={panel.id}>
                   <Accordion
-                    className="custom-accordion"
+                    className="bg-gray-900 border-b-2 border-black "
                     expanded={expanded === panel.id}
                     onChange={handleChange(panel.id)}
                   >
@@ -130,7 +132,7 @@ const ServicePage = () => {
             </div>
           </div>
           <div className="w-[430px] h-[520px]">
-          <img
+            <img
               src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData?.serviceSubImage}`}
               style={imgStyles}
               alt={serviceData.serviceName}

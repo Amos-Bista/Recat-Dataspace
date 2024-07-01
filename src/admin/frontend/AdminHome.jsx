@@ -3,6 +3,7 @@ import AdminNav from "../../component/adminHome/adminNav";
 import HomeHero from "../../component/adminHome/homehero";
 import Navigation from "../../component/adminHome/navigation";
 import ValuableclientTable from "../../component/adminHome/valuableclientTable";
+import TextFieldEditor from "../../component/inputTextEditor/textFieldEditor";
 
 const AdminHome = () => {
   return (
@@ -11,6 +12,7 @@ const AdminHome = () => {
       <div className="w-full px-2 py-6 bg-gray-200 rounded-lg mr-14">
         {/* <Navigation /> */}
         <HomeHero />
+        <TextFieldEditor/>
         
         <ValuableclientTable />
       </div>

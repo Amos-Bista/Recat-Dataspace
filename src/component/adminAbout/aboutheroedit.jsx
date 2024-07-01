@@ -4,14 +4,15 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   Grid,
+  TextField,
   Typography,
 } from "@mui/material";
 import React, { useState, useRef } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
+import TextFieldEditor from "../inputTextEditor/textFieldEditor"; // Adjust the import path if necessary
 
 const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
   const [open, setOpen] = useState(false);
@@ -125,19 +126,15 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
                 Description
               </Typography>
             </Grid>
-            <Grid
+            <Grid 
               item
               xs={6}
               style={{ boxShadow: "12px 12px 16px rgba(0, 0, 0, 0.1)" }}
             >
-              <TextField
-                label="Enter description"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4}
+              <TextFieldEditor
+                placeholder={description}
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(newContent) => setDescription(newContent)}
               />
             </Grid>
             <Grid item xs={6}>
