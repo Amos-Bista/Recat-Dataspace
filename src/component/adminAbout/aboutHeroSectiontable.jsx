@@ -10,6 +10,7 @@ import { Box } from "@mui/material";
 import AboutHeroAdd from "./aboutHeroAdd";
 import AboutHeroEdit from "./aboutheroedit";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
+import parse from 'html-react-parser';
 
 const AboutHero = () => {
   const [rows, setRows] = useState([]);
@@ -67,7 +68,7 @@ const AboutHero = () => {
                 rows.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell align="center">{row.title}</TableCell>
-                    <TableCell align="center">{row.description}</TableCell>
+                    <TableCell align="center">{parse(row.description)}</TableCell>
                     <TableCell align="center" >
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${row.backgroundImage}`}

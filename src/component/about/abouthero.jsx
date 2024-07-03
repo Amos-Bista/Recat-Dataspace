@@ -98,7 +98,7 @@ const Abouthero = () => {
               e.target.src = "/defaultImage.png"; // Fallback image
             }}
           />
-          <div className="absolute top-[40%] left-[4%] w-[90%] bg-white/10">
+          <div className="absolute top-[40%] left-[4%] w-[90%]  ">
             <h1 className="text-white text-7xl">
               {slides[currentSlide].title}
             </h1>

@@ -13,11 +13,12 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
+import TextFieldEditor from "../inputTextEditor/textFieldEditor";
 
 const AccordionAdd = ({ onAccordionAdded }) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
-  const [description, setdescription] = useState("");
+  const [description, setDescription] = useState("");
   const { id } = useParams();
 
   const functionOnPopUp = () => {
@@ -29,7 +30,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
   };
 
   const handleTitleChange = (e) => setTitle(e.target.value);
-  const handledescriptionChange = (e) => setdescription(e.target.value);
+  const handledescriptionChange = (e) => setDescription(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -120,11 +121,17 @@ const AccordionAdd = ({ onAccordionAdded }) => {
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              {/* <TextField
                 label="Enter Plan Tiers"
                 variant="outlined"
                 fullWidth
                 onChange={handledescriptionChange}
+              /> */}
+               <TextFieldEditor
+                label="Enter Accordion Description"
+                placeholder={description}
+                value={description}
+                onChange={(newContent) =>  setDescription(newContent)}
               />
             </Grid>
           </Grid>

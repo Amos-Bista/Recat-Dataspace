@@ -6,6 +6,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PlansCard from "../component/home/plansCard";
+import parse from 'html-react-parser';
 const ServicePage = () => {
   const { id } = useParams();
   const [serviceData, setServiceData] = useState(null);
@@ -81,12 +82,12 @@ const ServicePage = () => {
               className="w-max-screen"
             />
 
-            <div className="absolute top-[35%] left-[4%]">
+            <div className="absolute top-[35%] left-[4%] bg-white/10 w-[90%]">
               <h1 className="text-white text-7xl">
-                {serviceData?.serviceName}
+                {(serviceData?.serviceName)}
               </h1>
-              <h1 className="pt-3 text-xl text-white w-[70%]">
-                {serviceData?.serviceDescription}
+              <h1 className="pt-3 text-xl text-white ">
+                {parse(serviceData?.serviceDescription)}
               </h1>
             </div>
           </div>
@@ -95,13 +96,13 @@ const ServicePage = () => {
         <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
           <div className="pl-16 text-xl w-[55%]">
             <h1 className="my-12 ml-3 text-4xl font-bold">
-              {serviceData?.serviceSubName}
+              {parse(serviceData?.serviceSubName)}
             </h1>
             <div>
               {serviceData.accordions.map((panel, index) => (
                 <div key={panel.id}>
                   <Accordion
-                    className="bg-gray-900 border-b-2 border-black "
+                    className="bg-gray-900 border-black border-b-1 "
                     expanded={expanded === panel.id}
                     onChange={handleChange(panel.id)}
                   >
@@ -123,7 +124,7 @@ const ServicePage = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                       <Typography className="pl-5" sx={{ fontSize: "1.1rem" }}>
-                        {panel?.description}
+                        {parse(panel?.description)}
                       </Typography>
                     </AccordionDetails>
                   </Accordion>

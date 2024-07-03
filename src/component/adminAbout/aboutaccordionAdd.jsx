@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
+import TextFieldEditor from "../inputTextEditor/textFieldEditor";
 
 // Simple integer ID generator
 
@@ -43,7 +44,6 @@ const AboutAccordionAdd = ({ onAboutAccordionAdded }) => {
   };
 
   const handleTitleChange = (e) => setTitle(e.target.value);
-  const handledescriptionChange = (e) => setDescription(e.target.value);
 
   // console.log({serviceId})
 
@@ -189,12 +189,19 @@ const AboutAccordionAdd = ({ onAboutAccordionAdded }) => {
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              {/* <TextField
                 label="Enter Accordion Description"
                 variant="outlined"
                 fullWidth
                 value={description}
                 onChange={handledescriptionChange}
+              /> */}
+
+              <TextFieldEditor
+                label="Enter Accordion Description"
+                placeholder={description}
+                // value={content}
+                onChange={(newContent) =>  setDescription(newContent)}
               />
             </Grid>
           </Grid>

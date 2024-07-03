@@ -15,6 +15,7 @@ import {
 import { toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import TextFieldEditor from "../inputTextEditor/textFieldEditor"; // Adjust the import path if necessary
 
 const Add = ({ fetchData }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -86,7 +87,8 @@ const Add = ({ fetchData }) => {
         }
       );
 
-      if (response.ok) {
+      if (response.ok) {  
+        // console.log(response)
         toast.success("Hero Section uploaded successfully!");
         closePopUp();
         fetchData();
@@ -118,7 +120,7 @@ const Add = ({ fetchData }) => {
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
         Add New +
       </Button>
-      <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
+      <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="lg">
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
         >
@@ -152,18 +154,28 @@ const Add = ({ fetchData }) => {
               />
             </Grid>
             <Grid item xs={6}>
-              <Typography variant="h6" gutterBottom style={{ marginTop: "1rem" }}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginTop: "1rem" }}
+              >
                 Description
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              {/* <TextField
                 label="Enter description"
                 variant="outlined"
                 fullWidth
                 multiline
                 rows={4}
                 onChange={(e) => setServiceDescription(e.target.value)}
+              /> */}
+              <TextFieldEditor
+                label="Enter description"
+                placeholder="description"
+                // value={serviceDescription}
+                onChange={(newContent) => setServiceDescription(newContent)}
               />
             </Grid>
             <Grid item xs={6}>
@@ -219,19 +231,26 @@ const Add = ({ fetchData }) => {
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions
-          style={{ display: "flex", gap: "200px" }}
-        >
+        <DialogActions style={{ display: "flex", gap: "200px" }}>
           <Button
             variant="contained"
             onClick={closePopUp}
-            style={{ backgroundColor: "#FF0000", marginLeft: "53px", marginRight: "auto" }}
+            style={{
+              backgroundColor: "#FF0000",
+              marginLeft: "53px",
+              marginRight: "auto",
+            }}
           >
             Cancel
           </Button>
           <Button
             onClick={handleSubmit}
-            style={{ backgroundColor: "#0c5177", color: "#fff", marginLeft: "auto", marginRight: "56px" }}
+            style={{
+              backgroundColor: "#0c5177",
+              color: "#fff",
+              marginLeft: "auto",
+              marginRight: "56px",
+            }}
             variant="contained"
           >
             Publish

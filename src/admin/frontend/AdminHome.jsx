@@ -12,7 +12,7 @@ const AdminHome = () => {
       <div className="w-full px-2 py-6 bg-gray-200 rounded-lg mr-14">
         {/* <Navigation /> */}
         <HomeHero />
-        <TextFieldEditor/>
+        {/* <TextFieldEditor/> */}
         
         <ValuableclientTable />
       </div>

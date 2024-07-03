@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ButtonHerosection from "../home/buttonHerosection";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import parse from "html-react-parser";
 const Herosection = (id) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState([]);
@@ -85,7 +85,7 @@ const Herosection = (id) => {
     <main className="flex justify-between w-[max-content] relative">
       <div className="relative">
         <div
-          style={{ width: "100vw", height: "667px" }}
+          style={{ width: "100vw", height: "767px" }}
           className="absolute bg-black/50"
         ></div>
         {slides.length > 0 && slides[currentSlide].title ? (
@@ -100,12 +100,12 @@ const Herosection = (id) => {
                 e.target.src = "/defaultImage.png"; // Fallback image
               }}
             />
-            <div className="absolute top-[40%] left-[3%]">
+            <div className="absolute top-[40%] left-[3%] w-[90%]">
               <h1 className="text-white text-7xl">
                 {slides[currentSlide].title}
               </h1>
-              <h1 className="mt-3 text-xl text-white w-[70%]">
-                {slides[currentSlide].description}
+              <h1 className="mt-3 text-xl text-white w-[100%]">
+                {parse(slides[currentSlide].description)}
               </h1>
 
               <div>
@@ -119,7 +119,7 @@ const Herosection = (id) => {
                     Learn more
                   </button>
                 </div>
-                );
+                
               </div>
               {/* <ButtonHerosection id={slides[currentSlide].id} /> */}
             </div>
