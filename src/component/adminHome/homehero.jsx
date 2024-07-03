@@ -6,20 +6,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
+import parse from "html-react-parser";
 import { toast } from "react-toastify";
 import Delete from "../../component/adminHome/Delete";
-import Edit from "../../component/adminHome/Edit";
 import Add from "../../component/adminHome/Add";
 import { Box } from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
-import LearnMoreButton from "../../component/adminHome/learnMoreButton";
 const HomeHero = () => {
-  const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState("");
 
   const addData = (data) => {
     setRows([...rows, data]);
@@ -36,6 +30,7 @@ const HomeHero = () => {
       );
 
       if (!response.ok) {
+        toast(response);
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
@@ -78,9 +73,9 @@ const HomeHero = () => {
     position: "center",
     transition: "opacity 0.5s ease-in-out", // Smooth transition for opacity
   };
-  const functionOnPopUp = () => {
-    setOpen(true);
-  };
+  // const functionOnPopUp = () => {
+  //   setOpen(true);
+  // };
   return (
     <main>
       <div className="flex items-center justify-between">
@@ -111,10 +106,10 @@ const HomeHero = () => {
                   <TableRow key={row.id}>
                     <TableCell align="center">{rows[index].title}</TableCell>
                     <TableCell align="center">
-                      {rows[index].description}
+                      {parse(rows[index].description)}
                     </TableCell>
                     <TableCell align="center">
-                    {rows[index].servicePath} 
+                      {rows[index].servicePath}
                       {/* <LearnMoreButton onClick={() => functionOnPopUp} heroSectionId={row.id} /> */}
                     </TableCell>
                     <TableCell className="flex justify-center">
@@ -125,7 +120,7 @@ const HomeHero = () => {
                         className="mx-auto"
                       />
                     </TableCell>
-                      {/* <TableCell align="center">
+                    {/* <TableCell align="center">
                         <Edit />
                       </TableCell> */}
                     <TableCell align="center">

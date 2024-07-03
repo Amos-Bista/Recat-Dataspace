@@ -95,6 +95,8 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import parse from 'html-react-parser';
+
 
 const AboutAccordion = () => {
   const [expanded, setExpanded] = useState(false);
@@ -169,7 +171,7 @@ const AboutAccordion = () => {
             <AccordionDetails>
               <Typography variant="h6" className="pl-8">
                 {" "}
-                {expandedData.description}
+                {parse(expandedData.description)}
               </Typography>
             </AccordionDetails>
           </Accordion>

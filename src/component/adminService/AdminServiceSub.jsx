@@ -7,12 +7,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import AdminNav from "../adminHome/adminNav";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
 import AccordionAdd from "./accordionAdd";
 import Servicefeatureplans from "./servicefeatureplans";
 import AccordionDelete from "./accordionDelete";
+import parse from 'html-react-parser';
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -101,7 +102,7 @@ const AdminServiceSub = () => {
                       <TableRow key={panel.id}>
                         <TableCell align="center">{panel.title}</TableCell>
                         <TableCell align="center">
-                          {panel.description}
+                          {parse(panel.description)}
                         </TableCell>
                         <TableCell align="center">
                           {/* <Button variant="contained">EDIT</Button> */}

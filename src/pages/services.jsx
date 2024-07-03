@@ -38,7 +38,7 @@ const Services = () => {
     return result;
   };
 
-  const serviceChunks = chunkArray(rows, 5);
+  const serviceChunks = chunkArray(rows, 6 );
 
   return (
     <div>
@@ -47,15 +47,13 @@ const Services = () => {
         onMouseEnter={() => setIsDropdownOpen(true)}
         onMouseLeave={() => setIsDropdownOpen(false)}
       >
-        <button
-          className="relative block text-m hover:underline underline-offset-1 active:text-blue-900"
-        >
+        <button className="relative block text-m hover:underline underline-offset-1 active:text-blue-900">
           Service
         </button>
         <div
           className={`dropdown-content absolute ${
             isDropdownOpen ? "block" : "hidden"
-          } bg-gray-100/20 shadow-lg rounded-md z-10 right-[10px] w-64`}
+          } bg-white/90 border-[#11396e] shadow-lg rounded-md z-10 right-0 w-[400px]`}
         >
           {isLoading ? (
             <div className="px-4 py-2 text-base font-semibold text-white">
@@ -73,7 +71,8 @@ const Services = () => {
                     <Link
                       key={service.id}
                       to={`/services/${service.id}`}
-                      className="block px-4 py-2 text-base font-semibold text-white hover:bg-[#11396e]"
+                      className="block px-4 py-2 text-xl font-semibold text-[#11396e] hover:bg-[#11396e]/20"
+                      style={{ fontFamily: "Vollkorn, serif" }}
                     >
                       {service.serviceName}
                     </Link>

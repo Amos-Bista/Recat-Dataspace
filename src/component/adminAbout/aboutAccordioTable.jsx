@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import AboutAccordionAdd from "./aboutaccordionAdd";
 import AboutAccordionDelete from "./aboutaccordionDelete.jsx";
 import { toast } from "react-toastify";
+import parse from 'html-react-parser';
 
 const AdminAccordionTable = () => {
   const [aboutData, setAboutData] = useState("");
@@ -95,7 +96,7 @@ const AdminAccordionTable = () => {
                       />
                     )}
                   </TableCell>
-                  <TableCell align="center">{aboutData.description}</TableCell>
+                  <TableCell align="center">{parse(aboutData.description)}</TableCell>
                   <TableCell align="center">
                     <AboutAccordionDelete
                       onDelete={() => handleDelete(aboutData.id)}

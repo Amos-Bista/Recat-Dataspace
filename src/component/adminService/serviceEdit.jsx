@@ -13,9 +13,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
-import { idID } from "@mui/material/locale";
 
-const ServiceEdit = ({ id, servicePlan }) => {
+const ServiceEdit = ({ id, servicePlan, data }) => {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
@@ -25,7 +24,8 @@ const ServiceEdit = ({ id, servicePlan }) => {
   const [loading, setLoading] = useState(false);
   const [fetchError, setFetchError] = useState(null);
   const [editError, setEditError] = useState(null);
-
+  const [serviceSubName, setServiceSubName] = useState("");
+  const [serviceSubImage, setServiceSubImage] = useState(null);
   const inputRef = useRef(null);
 
   const functionOnPopUp = () => {
@@ -38,6 +38,8 @@ const ServiceEdit = ({ id, servicePlan }) => {
     setTitle("");
     setDescription("");
     setBackgroundImage("");
+    setServiceSubImage("");
+    setServiceSubImage(null);
     setImage(null);
     setEditError(null);
   };
@@ -45,14 +47,20 @@ const ServiceEdit = ({ id, servicePlan }) => {
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
   };
+  const handleImageSubChange = (event) => {
+    setServiceSubImage(event.target.files[0]);
+  };
 
   const handleImageClick = () => {
+    inputRef.current.click();
+  };
+  const handleImageSubClick = () => {
     inputRef.current.click();
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -69,6 +77,8 @@ const ServiceEdit = ({ id, servicePlan }) => {
         setTitle(data[0].serviceName);
         setDescription(data[0].serviceDescription);
         setBackgroundImage(data[0].serviceBgImage);
+        setServiceSubImage(data[0].serviceSubImage);
+        setServiceSubName(data[0].serviceSubName);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -201,6 +211,56 @@ const ServiceEdit = ({ id, servicePlan }) => {
                   ref={inputRef}
                   className="hidden"
                   onChange={handleImageChange}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="h6" gutterBottom>
+                  Sub Title
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  label="Enter description"
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  value={serviceSubName}
+                  onChange={(e) => setServiceSubName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="h6" gutterBottom>
+                  SubImage
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <div
+                  className="flex justify-center mx-auto"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
+                  }}
+                  onClick={handleImageSubClick}
+                >
+                  <img
+                    src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceSubImage}`}
+                    style={{
+                      width: "420px",
+                      height: "150px",
+                      objectFit: "cover",
+                      borderRadius: "1px",
+                    }}
+                    alt="Service Sub Background"
+                  />
+                </div>
+                <input
+                  type="file"
+                  ref={inputRef}
+                  className="hidden"
+                  onChange={handleImageSubChange}
                 />
               </Grid>
             </Grid>

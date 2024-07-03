@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
+import TextFieldEditor from "../inputTextEditor/textFieldEditor";
 
 const ServiceAdd = ({ addData }) => {
   const [open, setOpen] = useState(false);
@@ -35,7 +36,7 @@ const ServiceAdd = ({ addData }) => {
   };
 
   const handleTitleChange = (e) => setServiceName(e.target.value);
-  const handleDescriptionChange = (e) => setServiceDescription(e.target.value);
+  const handleDescriptionChange = (value) => setServiceDescription(value);
   const handleSubNameChange = (e) => setServiceSubName(e.target.value);
 
   const handleImageChange = (event) => {
@@ -44,7 +45,6 @@ const ServiceAdd = ({ addData }) => {
       setServiceBgImage(file);
       setPreviewImage(URL.createObjectURL(file));
     }
-    console.log("Selected file:", file);
   };
 
   const handleSubImageChange = (event) => {
@@ -53,7 +53,6 @@ const ServiceAdd = ({ addData }) => {
       setServiceSubImage(file);
       setPreviewSubImage(URL.createObjectURL(file));
     }
-    console.log("Selected Sub file:", file);
   };
 
   const handleSubmit = async (e) => {
@@ -67,7 +66,6 @@ const ServiceAdd = ({ addData }) => {
       formData.append("serviceSubName", serviceSubName);
       formData.append("serviceSubImage", serviceSubImage);
 
-      // Log FormData contents
       for (let pair of formData.entries()) {
         console.log(pair[0] + ": " + pair[1]);
       }
@@ -154,12 +152,8 @@ const ServiceAdd = ({ addData }) => {
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField
-                label="Enter description"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4}
+              <TextFieldEditor
+                value={serviceDescription}
                 onChange={handleDescriptionChange}
               />
             </Grid>
@@ -200,10 +194,14 @@ const ServiceAdd = ({ addData }) => {
                 label="Enter sub-title"
                 variant="outlined"
                 fullWidth
-                multiline
-                rows={1}
                 onChange={handleSubNameChange}
               />
+              {/* <TextFieldEditor
+                placeHolder={serviceSubName}
+                value={setServiceSubName}
+                label="Enter sub-title"
+                onChange={(newContent) => handleSubNameChange(newContent)}
+              /> */}
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>

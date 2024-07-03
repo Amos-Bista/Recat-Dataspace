@@ -10,6 +10,7 @@ import Paper from "@mui/material/Paper";
 import ServiceDelete from "./serviceDelete";
 import ServiceEdit from "./serviceEdit";
 import { toast } from "react-toastify";
+import parse from 'html-react-parser';
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
@@ -89,7 +90,7 @@ const Serviceherosec = () => {
                       {row.serviceName}
                     </TableCell>
                     <TableCell align="center">
-                      {row.serviceDescription}
+                      {parse(row.serviceDescription)}
                     </TableCell>
                     <TableCell align="center">
                       <img
@@ -109,7 +110,7 @@ const Serviceherosec = () => {
                       />
                     </TableCell>
                     <TableCell align="center">
-                      <ServiceEdit id={row.id} />
+                      <ServiceEdit id={row.id} data={row} />
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>
