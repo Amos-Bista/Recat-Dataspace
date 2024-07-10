@@ -44,19 +44,21 @@ function PlansCard({ plan }) {
             </div>
           </div>
           <ul className="px-16 py-1 space-y-6 font-sans">
-            {plan.specifications &&
-              plan.specifications.map((spec) => (
-                <li
-                  key={spec.id}
-                  className="text-base text-gray-600 border-b-2 border-gray-300"
-                >
-                  {spec.feature}
-                </li>
-              ))}
+              {plan.specifications &&
+                plan.specifications.map((spec) => (
+                  <li
+                    key={spec.id}
+                    className="text-base text-gray-600 border-b-2 border-gray-300"
+                  >
+                    {spec.feature}
+                  </li>
+                ))}
           </ul>
-          <button className="px-6 py-3 mt-6 font-bold text-white bg-[#0D5077] rounded-lg hover:bg-orange-700 mb-8">
-            BUY NOW
-          </button>
+          <a href={plan.link} target="_blank" rel="noopener noreferrer">
+            <button className="px-6 py-3 mt-6 font-bold text-white bg-[#0D5077] rounded-lg hover:bg-orange-700 mb-8">
+              BUY NOW
+            </button>
+          </a>
         </div>
       </Slider>
     </div>

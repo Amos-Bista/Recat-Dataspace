@@ -87,6 +87,7 @@ const ServiceFeaturePlans = () => {
                 <TableCell align="center">Plan Tiers</TableCell>
                 <TableCell align="center">Billing Period</TableCell>{" "}
                 {/* New column */}
+                <TableCell align="center">Link</TableCell>
                 <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Specification</TableCell>
                 <TableCell align="center">Edit</TableCell>
@@ -103,6 +104,8 @@ const ServiceFeaturePlans = () => {
                       {row.subscriptionPlan}
                     </TableCell>{" "}
                     {/* Display subscriptionPlan */}
+                    <TableCell align="center">{row.link}</TableCell>
+                    
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
                       <FeaturePlanSpecButton id={row.id}  data={rowData} />

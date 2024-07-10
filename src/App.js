@@ -131,7 +131,7 @@ function App() {
                           <ContactInfoEdit />
                         ) : null
                       }
-                      exact={route.link === "/"}
+                      // exact={route.link === "/"}
                     />
                   );
                 }
