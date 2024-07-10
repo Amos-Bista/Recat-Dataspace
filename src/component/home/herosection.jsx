@@ -53,7 +53,7 @@ const Herosection = (id) => {
   if (loading) {
     return (
       <div
-        style={{ width: "100vw", height: "667px" }}
+        style={{ width: "100vw", height: "767px" }}
         className="flex  bg-black/50 w-[max-content] relative "
       >
         <div className="flex justify-center text-center ">

@@ -20,10 +20,18 @@ import { toast } from "react-toastify";
 const FeaturePlansAdd = ({ addfeaturePlan }) => {
   const [open, setOpen] = useState(false);
   const [servicePlanTitle, setServicePlanTitle] = useState("");
+  const [link, setLink] = useState("");
   const [servicePlanTiers, setServicePlanTiers] = useState("");
   const [price, setPrice] = useState("");
   const [subscriptionPlan, setSubscriptionPlan] = useState(""); // State to store the selected billing period
   const { id } = useParams();
+  const [errors, setErrors] = useState({
+    servicePlanTitle: "",
+    servicePlanTiers: "",
+    price: "",
+    subscriptionPlan: "",
+    link: "",
+  });
 
   const functionOnPopUp = () => {
     setOpen(true);
@@ -33,19 +41,46 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
     setOpen(false);
   };
 
-  const handleTitleChange = (e) => setServicePlanTitle(e.target.value);
-  const handleTiersChange = (e) => setServicePlanTiers(e.target.value);
-  const handlePriceChange = (e) => setPrice(e.target.value);
+  const handleTitleChange = (event) => {
+    const value = event.target.value;
+    // Validate to accept only letters and spaces
+    const validatedValue = value.replace(/[^a-zA-Z\s]/g, "");
+    setServicePlanTitle(validatedValue);
+    validateField("servicePlanTitle", validatedValue);
+  };
+
+  const handleLinkChange = (event) => {
+    const value = event.target.value;
+    setLink(value);
+    validateField("link", value);
+  };
+
+  const handleTiersChange = (event) => {
+    const value = event.target.value.replace(/[^a-zA-Z\s]/g, "");;
+    setServicePlanTiers(value);
+    validateField("servicePlanTiers", value);
+  };
+
+  const handlePriceChange = (event) => {
+    const value = event.target.value.replace(/[^1-9\s]/g, "");;
+    setPrice(value);
+    validateField("price", value);
+  };
+
   const handleSubscriptionPlanChange = (event) => {
-    setSubscriptionPlan(event.target.value);
+    const value = event.target.value;
+    setSubscriptionPlan(value);
+    validateField("subscriptionPlan", value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validate the form
-    if (!servicePlanTitle || !servicePlanTiers || !price || !subscriptionPlan) {
-      toast.error("All fields are required!");
+    const formValid = Object.keys(errors).every((key) => errors[key] === "");
+
+    if (!formValid) {
+      toast.error("Please fill out all required fields correctly!");
       return;
     }
 
@@ -53,7 +88,8 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
       servicePlanTitle,
       servicePlanTiers,
       price,
-      subscriptionPlan, // Include the billing period in the payload
+      link,
+      subscriptionPlan,
       serviceId: id,
     };
 
@@ -82,6 +118,42 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
     setOpen(false);
   };
 
+  const validateField = (name, value) => {
+    let error;
+    switch (name) {
+      case "servicePlanTitle":
+        error = value ? "" : "Plan Title is required";
+        break;
+      case "servicePlanTiers":
+        error = value ? "" : "Plan Tiers are required";
+        break;
+      case "price":
+        error = value ? "" : "Price is required";
+        break;
+      case "subscriptionPlan":
+        error = value ? "" : "Billing period is required";
+        break;
+      case "link":
+        error = validateURL(value) ? "" : "Please enter a valid URL";
+        break;
+      default:
+        break;
+    }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: error,
+    }));
+    return error;
+  };
+
+  const validateURL = (url) => {
+    // Regular expression to validate URL
+    const pattern = new RegExp(
+      /^(ftp|http|https):\/\/[^ "]+$/
+    );
+    return pattern.test(url);
+  };
+
   useEffect(() => {
     // Any additional effect logic if required
   }, [id]);
@@ -95,7 +167,7 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
         <DialogTitle
           style={{ color: "#0c5177", textAlign: "center", fontSize: "30px" }}
         >
-          Hero Section
+          Feature Plans
           <IconButton
             aria-label="close"
             onClick={closePopUp}
@@ -121,10 +193,11 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                 label="Enter Plan Title"
                 variant="outlined"
                 fullWidth
+                type="text"
                 onChange={handleTitleChange}
                 value={servicePlanTitle}
-                error={!servicePlanTitle}
-                helperText={!servicePlanTitle && "Plan Title is required"}
+                error={!!errors.servicePlanTitle}
+                helperText={errors.servicePlanTitle}
               />
             </Grid>
             <Grid item xs={6}>
@@ -143,8 +216,8 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                 fullWidth
                 onChange={handleTiersChange}
                 value={servicePlanTiers}
-                error={!servicePlanTiers}
-                helperText={!servicePlanTiers && "Plan Tiers are required"}
+                error={!!errors.servicePlanTiers}
+                helperText={errors.servicePlanTiers}
               />
             </Grid>
             <Grid item xs={6}>
@@ -163,8 +236,8 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                 fullWidth
                 onChange={handlePriceChange}
                 value={price}
-                error={!price}
-                helperText={!price && "Price is required"}
+                error={!!errors.price}
+                helperText={errors.price}
               />
             </Grid>
             <Grid item xs={6}>
@@ -176,7 +249,7 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
               <RadioGroup
                 value={subscriptionPlan}
                 onChange={handleSubscriptionPlanChange}
-                error={!subscriptionPlan}
+                error={!!errors.subscriptionPlan}
               >
                 <FormControlLabel
                   value="Monthly"
@@ -189,11 +262,31 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
                   label="Yearly"
                 />
               </RadioGroup>
-              {!subscriptionPlan && (
+              {errors.subscriptionPlan && (
                 <Typography color="error" variant="body2">
-                  Billing period is required
+                  {errors.subscriptionPlan}
                 </Typography>
               )}
+            </Grid>
+            <Grid item xs={6}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{ marginTop: "1rem" }}
+              >
+                Link
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label="Copy and paste link"
+                variant="outlined"
+                fullWidth
+                onChange={handleLinkChange}
+                value={link}
+                error={!!errors.link}
+                helperText={errors.link}
+              />
             </Grid>
           </Grid>
         </DialogContent>

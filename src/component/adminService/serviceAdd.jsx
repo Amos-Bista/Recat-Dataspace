@@ -17,7 +17,7 @@ import TextFieldEditor from "../inputTextEditor/textFieldEditor";
 const ServiceAdd = ({ addData }) => {
   const [open, setOpen] = useState(false);
   const [serviceName, setServiceName] = useState("");
-  const [serviceSubName, setServiceSubName] = useState("");
+  const [serviceSubName, setServiceSubName] = useState(null);
   const [serviceSubImage, setServiceSubImage] = useState(null);
   const [serviceDescription, setServiceDescription] = useState("");
   const [serviceBgImage, setServiceBgImage] = useState(null);
@@ -64,11 +64,11 @@ const ServiceAdd = ({ addData }) => {
       formData.append("serviceDescription", serviceDescription);
       formData.append("serviceBgImage", serviceBgImage);
       formData.append("serviceSubName", serviceSubName);
-      formData.append("serviceSubImage", serviceSubImage);
+      formData.append("serviceSubImage", serviceSubImage); 
 
-      for (let pair of formData.entries()) {
-        console.log(pair[0] + ": " + pair[1]);
-      }
+      // for (let pair of formData.entries()) {
+      //   console.log(pair[0] + ": " + pair[1]);
+      // }
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/services/addServices`,
@@ -196,12 +196,12 @@ const ServiceAdd = ({ addData }) => {
                 fullWidth
                 onChange={handleSubNameChange}
               />
-              {/* <TextFieldEditor
-                placeHolder={serviceSubName}
-                value={setServiceSubName}
-                label="Enter sub-title"
-                onChange={(newContent) => handleSubNameChange(newContent)}
-              /> */}
+                {/* <TextFieldEditor
+                  placeHolder={serviceSubName}
+                  // value={serviceSubName}   
+                  label="Enter sub-title"
+                  onChange={(newContent) => setServiceSubName(newContent)}
+                /> */}
             </Grid>
             <Grid item xs={6}>
               <Typography variant="h6" gutterBottom>

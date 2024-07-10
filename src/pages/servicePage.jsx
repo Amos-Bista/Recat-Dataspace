@@ -145,6 +145,7 @@ const ServicePage = () => {
         <div className="mb-[8rem] flex justify-center ">
           {serviceData.servicePlans.map((plan, index) => (
             <PlansCard key={plan.id} plan={plan} index={index} />
+            
           ))}
         </div>
       </main>
