@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { login } from "../store/action/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/action/authActions";
 import { useNavigate } from "react-router-dom";
 import AdminHome from "./frontend/AdminHome";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("admin@gmail.com");
   const [error, setError] = useState(false);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("admin");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
+  const token = useSelector((state) => state);
 
+  console.log("check token", token.auth.token);
+  console.log("is authenticate ", token.auth.isAuthenticated);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,26 +32,25 @@ const LoginForm = () => {
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
-
       const data = await response.json();
-      const { token } = data; // Assuming your API returns a token in the response
+      const { token } = data;
+      console.log({ data });
 
       // Save token to localStorage
       localStorage.setItem("token", token);
 
       // Dispatch the login action
-      dispatch(login(email, password) );
+      dispatch(login(email, password, token, navigate));
+
+      // navigate("/adminhome");
 
       // Reset form and loading state
-      setEmail("");
-      setPassword("");
-      setLoading(false);
+      // setEmail("");
+      // setPassword("");
+      // setLoading(false);
 
       // Navigate to /adminHome
-      return <useNavigate to={<AdminHome />} />;
+      // return <useNavigate to={<AdminHome />} />;
     } catch (error) {
       console.error("Error logging in:", error.message);
       setLoading(false);

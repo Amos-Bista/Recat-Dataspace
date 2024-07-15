@@ -6,12 +6,12 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const AdminHome = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  // Redirect to login if not authenticated
-  if (!isAuthenticated) {
-    return <Navigate to="/admin" />;
-  }
+  // // Redirect to login if not authenticated
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/admin" />;
+  // }
 
   return (
     <main className="flex bg-gray-200 py-28">

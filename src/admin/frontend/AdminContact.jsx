@@ -11,10 +11,10 @@ const AdminContact = () => {
         <div className="w-full px-2 bg-gray-200 rounded-lg 10 ">
           {/* <ContactHero />
           <ContactInfo /> */}
-          <LandingEdit />
+          {/* <LandingEdit /> */}
         </div>
       </main>
-    </>
+  </>
   );
 };
 

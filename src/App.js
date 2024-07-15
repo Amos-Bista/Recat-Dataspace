@@ -3,7 +3,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -62,7 +67,8 @@ const routesData = [
   {
     title: "",
     link: "/services/:id",
-  }, {
+  },
+  {
     title: "LoginForm",
     link: "/admin",
   },
@@ -100,6 +106,8 @@ function App() {
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
+  console.log({ isAuthenticated });
+
   return (
     <main className="w-screen overflow-x-hidden font-abc">
       <FormProvider>
@@ -128,15 +136,35 @@ function App() {
                         ) : route.link === "/contact" ? (
                           <Contact />
                         ) : route.link === "/adminabout" ? (
-                          isAuthenticated ? <AdminAbout /> : <Navigate to="/admin" />
+                          isAuthenticated ? (
+                            <AdminAbout />
+                          ) : (
+                            <Navigate to="/admin" />
+                          )
                         ) : route.link === "/adminhome" ? (
-                          isAuthenticated ? <AdminHome /> : <Navigate to="/admin" />
+                          isAuthenticated ? (
+                            <AdminHome />
+                          ) : (
+                            <Navigate to="/admin" />
+                          )
                         ) : route.link === "/admincontact" ? (
-                          isAuthenticated ? <AdminContact /> : <Navigate to="/admin" />
+                          isAuthenticated ? (
+                            <AdminContact />
+                          ) : (
+                            <Navigate to="/admin" />
+                          )
                         ) : route.link === "/adminservice" ? (
-                          isAuthenticated ? <AdminService /> : <Navigate to="/admin" />
+                          isAuthenticated ? (
+                            <AdminService />
+                          ) : (
+                            <Navigate to="/admin" />
+                          )
                         ) : route.link === "/adminservicepage/:id" ? (
-                          isAuthenticated ? <AdminServiceSub /> : <Navigate to="/admin" />
+                          isAuthenticated ? (
+                            <AdminServiceSub />
+                          ) : (
+                            <Navigate to="/admin" />
+                          )
                         ) : route.link === "/services" ? (
                           <Services />
                         ) : route.link === "/services/:id" ? (
@@ -144,7 +172,11 @@ function App() {
                         ) : route.link === "/admin" ? (
                           <LoginForm />
                         ) : route.link === "/adminAdd" ? (
-                          isAuthenticated ? <AdminAdd /> : <Navigate to="/admin" />
+                          isAuthenticated ? (
+                            <AdminAdd />
+                          ) : (
+                            <Navigate to="/admin" />
+                          )
                         ) : null
                       }
                     />
@@ -302,15 +334,15 @@ export default App;
 //                         ) : route.link === "/contact" ? (
 //                           <Contact />
 //                         ) : route.link === "/adminabout" ? (
-//                         <AdminAbout /> 
+//                         <AdminAbout />
 //                         ) : route.link === "/adminhome" ? (
-//                           <AdminHome /> 
+//                           <AdminHome />
 //                         ) : route.link === "/admincontact" ? (
 //                         <AdminContact />
 //                         ) : route.link === "/adminservice" ? (
-//                          <AdminService /> 
+//                          <AdminService />
 //                         ) : route.link === "/adminservicepage/:id" ? (
-//                          <AdminServiceSub /> 
+//                          <AdminServiceSub />
 //                         ) : route.link === "/services" ? (
 //                           <Services />
 //                         ) : route.link === "/services/:id" ? (
@@ -318,7 +350,7 @@ export default App;
 //                         ) : route.link === "/admin" ? (
 //                           <LoginForm />
 //                         ) : route.link === "/adminAdd" ? (
-//                      <AdminAdd /> 
+//                      <AdminAdd />
 //                         ) : null
 //                       }
 //                     />
@@ -344,4 +376,3 @@ export default App;
 // }
 
 // export default App;
-
