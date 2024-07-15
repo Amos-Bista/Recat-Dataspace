@@ -64,7 +64,7 @@ const ServiceAdd = ({ addData }) => {
       formData.append("serviceDescription", serviceDescription);
       formData.append("serviceBgImage", serviceBgImage);
       formData.append("serviceSubName", serviceSubName);
-      formData.append("serviceSubImage", serviceSubImage); 
+      formData.append("serviceSubImage", serviceSubImage);
 
       // for (let pair of formData.entries()) {
       //   console.log(pair[0] + ": " + pair[1]);
@@ -77,14 +77,18 @@ const ServiceAdd = ({ addData }) => {
           body: formData,
         }
       );
-
+      // const responseData = await response.json();
+      // console.log('Response Data:', responseData);
       if (response.ok) {
         toast.success("Page Added Successfully");
         setTimeout(() => {
           window.location.reload();
         }, 1000);
       } else {
-        toast.error("Page Not Added Successfully");
+        toast.error("An error occurred");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
         throw new Error("Network response was not ok");
       }
     } catch (error) {
@@ -196,7 +200,7 @@ const ServiceAdd = ({ addData }) => {
                 fullWidth
                 onChange={handleSubNameChange}
               />
-                {/* <TextFieldEditor
+              {/* <TextFieldEditor
                   placeHolder={serviceSubName}
                   // value={serviceSubName}   
                   label="Enter sub-title"

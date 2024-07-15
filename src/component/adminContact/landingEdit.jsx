@@ -83,6 +83,7 @@ const LandingEdit = ({ contactDetails }) => {
       );
       if (success.ok) {
         toast.success("Contact updated successfully");
+        fetchData()
       }
     } catch (error) {
       console.error("Error:", error);

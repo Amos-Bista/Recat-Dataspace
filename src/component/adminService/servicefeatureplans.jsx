@@ -90,7 +90,7 @@ const ServiceFeaturePlans = () => {
                 <TableCell align="center">Link</TableCell>
                 <TableCell align="center">Price</TableCell>
                 <TableCell align="center">Specification</TableCell>
-                <TableCell align="center">Edit</TableCell>
+                {/* <TableCell align="center">Edit</TableCell> */}
                 <TableCell align="center">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -110,7 +110,7 @@ const ServiceFeaturePlans = () => {
                     <TableCell align="center">
                       <FeaturePlanSpecButton id={row.id}  data={rowData} />
                     </TableCell>
-                    <TableCell align="center">
+                    {/* <TableCell align="center">
                       <Box variant="contained">
                         <FeaturePlansEdit
                           title={row.servicePlanTitle}
@@ -120,7 +120,7 @@ const ServiceFeaturePlans = () => {
                           updateRowData={updateRowData}
                         />
                       </Box>
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell align="center">
                       <FeaturePlansDelete
                         onDelete={() => handleDelete(row.id)}

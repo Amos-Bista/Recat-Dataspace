@@ -5,18 +5,21 @@ import "slick-carousel/slick/slick-theme.css";
 import { Card } from "@mui/material";
 function PlansCard({ plan }) {
   const settingss = {
-    // dots: true,
-    // infinite: false,
-    speed: 500,
+    padding: "0px",
+    marginBottom: "0px",
+    dots: false,
+    infinite: false,
+    autoplay: true,
+    autoplaySpeed: 0, // Adjust the autoplay speed as needed
+    speed: 5000,
     slidesToShow: 1,
-    slidesToScroll: 4,
-    vertical: true, //
+    Vertical: true, // Set to false for horizontal autoplay
   };
 
   return (
-    <div key={plan.id} className="flex justify-center mx-4 gap-">
-      <Slider {...settingss} className="rounded-md w-80">
-        <div className="overflow-hidden font-sans text-center rounded-md shadow-md w-96 bg-gray-200/40">
+    <div className="flex justify-center mx-4 ">
+      {/* <Slider {...settingss} className="rounded-md w-80"> */}
+        <div key={plan.id}  className="overflow-hidden font-sans text-center rounded-md shadow-md w-96 bg-gray-200/40">
           {/* Card */}
 
           <div className="bg-[#0D5077] h-32 flex-col justify-center py-5 px-1">
@@ -60,7 +63,7 @@ function PlansCard({ plan }) {
             </button>
           </a>
         </div>
-      </Slider>
+      {/* </Slider> */}
     </div>
   );
 }
