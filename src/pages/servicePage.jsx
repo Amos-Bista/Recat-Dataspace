@@ -6,7 +6,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PlansCard from "../component/home/plansCard";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
+import Slider from "react-slick";
 const ServicePage = () => {
   const { id } = useParams();
   const [serviceData, setServiceData] = useState(null);
@@ -48,6 +49,46 @@ const ServicePage = () => {
     height: "767px",
     transition: "opacity 0.5s ease-in-out",
   };
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   autoplay: true,
+  //   autoplaySpeed: 2000,
+  //   Vertical: false
+  //   // responsive: [
+  //   //   {
+  //   //     breakpoint: 1024,
+  //   //     settings: {
+  //   //       slidesToShow: 2,
+  //   //       slidesToScroll: 1,
+  //   //       infinite: true,
+  //   //       dots: true,
+  //   //     },
+  //   //   },
+  //   //   {
+  //   //     breakpoint: 600,
+  //   //     settings: {
+  //   //       slidesToShow: 1,
+  //   //       slidesToScroll: 1,
+  //   //       initialSlide: 1,
+  //   //     },
+  //   //   },
+  //   // ],
+  // };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    vertical: false,
+  };
 
   return (
     <div>
@@ -84,7 +125,7 @@ const ServicePage = () => {
 
             <div className="absolute top-[35%] left-[4%] bg-white/10 w-[90%]">
               <h1 className="text-white text-7xl">
-                {(serviceData?.serviceName)}
+                {serviceData?.serviceName}
               </h1>
               <h1 className="pt-3 text-xl text-white ">
                 {parse(serviceData?.serviceDescription)}
@@ -142,12 +183,13 @@ const ServicePage = () => {
           </div>
         </div>
 
-        <div className="mb-[8rem] flex justify-center ">
+        {/* <Slider {...settings}> */}
+        <div className="mt-96 flex justify-center bg-black/10 w-[100%] ">
           {serviceData.servicePlans.map((plan, index) => (
             <PlansCard key={plan.id} plan={plan} index={index} />
-            
           ))}
         </div>
+        {/* </Slider> */}
       </main>
     </div>
   );

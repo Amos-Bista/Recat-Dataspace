@@ -14,7 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const ServiceEdit = ({ id, servicePlan, data }) => {
+const ServiceEdit = ({ id, data }) => {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
@@ -27,7 +27,6 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
   const [serviceSubName, setServiceSubName] = useState("");
   const [serviceSubImage, setServiceSubImage] = useState(null);
   const inputRef = useRef(null);
-
   const functionOnPopUp = () => {
     setOpen(true);
   };
@@ -38,7 +37,6 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
     setTitle("");
     setDescription("");
     setBackgroundImage("");
-    setServiceSubImage("");
     setServiceSubImage(null);
     setImage(null);
     setEditError(null);
@@ -47,6 +45,7 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
   };
+
   const handleImageSubChange = (event) => {
     setServiceSubImage(event.target.files[0]);
   };
@@ -54,15 +53,18 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
   const handleImageClick = () => {
     inputRef.current.click();
   };
+
   const handleImageSubClick = () => {
     inputRef.current.click();
   };
 
   useEffect(() => {
-    fetchData();
+    if (id) {
+      fetchData(id);
+    }
   }, [id]);
 
-  const fetchData = async () => {
+  const fetchData = async (id) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -72,22 +74,54 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
-      setRows(data.id);
-      if (data.length > 0) {
-        setTitle(data[0].serviceName);
-        setDescription(data[0].serviceDescription);
-        setBackgroundImage(data[0].serviceBgImage);
-        setServiceSubImage(data[0].serviceSubImage);
-        setServiceSubName(data[0].serviceSubName);
+      setRows(data);
+      const service = data.find((item) => item.id === id);
+      if (service) {
+        setTitle(service.serviceName);
+        setDescription(service.serviceDescription);
+        setBackgroundImage(service.serviceBgImage);
+        setServiceSubImage(service.serviceSubImage);
+        setServiceSubName(service.serviceSubName);
+        console.log("Service Name:", service.serviceName);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setFetchError("Failed to fetch data. Please try again.");
       toast.error("Failed to fetch data");
     } finally {
       setLoading(false);
     }
   };
+
+  // const handleEdit = async () => {
+  //   setLoading(true);
+  //   setEditError(null);
+  //   const formData = new FormData();
+  //   formData.append("serviceName", title);
+  //   formData.append("serviceDescription", description);
+  //   formData.append("serviceBgImage", image);
+  //   formData.append("serviceSubName", serviceSubName);
+  //   formData.append("serviceSubImage", serviceSubImage);
+
+  //   try {
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_API_BASE_URL}/services/update/${id}`,
+  //       {
+  //         method: "PUT",
+  //         body: formData,
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       throw new Error("Failed to update service");
+  //     }
+  //     toast.success("Edit Successful");
+  //     closePopUp();
+  //   } catch (error) {
+  //     console.error("Error updating service:", error);
+  //     toast.error("Error updating service");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleEdit = async () => {
     setLoading(true);
@@ -96,10 +130,12 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
     formData.append("serviceName", title);
     formData.append("serviceDescription", description);
     formData.append("serviceBgImage", image);
-
+    formData.append("serviceSubName", serviceSubName);
+    formData.append("serviceSubImage", serviceSubImage);
+  
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/services/update/${servicePlan.id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/services/update/${id}`,
         {
           method: "PUT",
           body: formData,
@@ -109,18 +145,18 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
         throw new Error("Failed to update service");
       }
       toast.success("Edit Successful");
-      // Refresh data after successful edit
-      // fetchData();
+  
+      // Fetch updated data after successful update
+      await fetchData(id); // Assuming fetchData fetches the updated data
+  
       closePopUp();
     } catch (error) {
-      // console.error("Error updating service:", error);
-      // setEditError("Error updating service. Please try again.");
+      console.error("Error updating service:", error);
       toast.error("Error updating service");
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
@@ -220,11 +256,9 @@ const ServiceEdit = ({ id, servicePlan, data }) => {
               </Grid>
               <Grid item xs={6}>
                 <TextField
-                  label="Enter description"
+                  label="Enter subtitle"
                   variant="outlined"
                   fullWidth
-                  multiline
-                  rows={4}
                   value={serviceSubName}
                   onChange={(e) => setServiceSubName(e.target.value)}
                 />

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import CircleIcon from "@mui/icons-material/Circle";
+import GroupAddIcon from "@mui/icons-material/GroupAdd"; // Import GroupAddIcon for Add Admin
 
 const AdminNav = () => {
   const [rows, setRowData] = useState([]);
@@ -35,6 +36,30 @@ const AdminNav = () => {
           Dashboard
         </h1>
         <ul className="mx-auto font-medium text-lg text-[#0D5077]">
+          <NavLink
+            to="/adminAdd"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "active text-white bg-[#0D5077]/90"
+                : ""
+            }
+          >
+            {({ isActive }) => (
+              <li
+                className={`px-4 flex items-center ${
+                  isActive ? "bg-[#0D5077]/90 text-white" : ""
+                }`}
+              >
+                <GroupAddIcon
+                  style={{ fontSize: "2.5rem" }}
+                  className="ml-[-0.4rem] h-5 pr-4 text-current"
+                />
+                Add Admin
+              </li>
+            )}
+          </NavLink>
           <NavLink
             to="/adminhome"
             className={({ isActive, isPending }) =>
@@ -133,6 +158,9 @@ const AdminNav = () => {
               </li>
             )}
           </NavLink>
+
+          {/* Add Admin NavLink */}
+
           {rows.map((service) => (
             <div key={service.id}>
               <NavLink
