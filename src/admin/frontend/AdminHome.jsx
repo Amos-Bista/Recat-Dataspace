@@ -2,8 +2,6 @@ import React from "react";
 import AdminNav from "../../component/adminHome/adminNav";
 import HomeHero from "../../component/adminHome/homehero";
 import ValuableclientTable from "../../component/adminHome/valuableclientTable";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 
 const AdminHome = () => {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

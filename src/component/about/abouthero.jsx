@@ -20,7 +20,7 @@ const Abouthero = () => {
         }
         const data = await response.json();
         setSlides(data);
-        console.log(data);
+        console.log('nabin', data);
         setLoading(false);
       } catch (error) {
         setError(error.message);

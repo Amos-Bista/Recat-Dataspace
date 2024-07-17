@@ -84,16 +84,16 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="md">
         <DialogTitle>
           Hero Section
-          <IconButton
-            aria-label="close"
-            onClick={closePopUp}
-            sx={{
-              position: "absolute",
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
+            <IconButton
+              aria-label="close"
+              onClick={closePopUp}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
             <CloseIcon />
           </IconButton>
         </DialogTitle>
