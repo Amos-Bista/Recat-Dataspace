@@ -5,7 +5,8 @@ import { NavLink } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import CircleIcon from "@mui/icons-material/Circle";
-import GroupAddIcon from "@mui/icons-material/GroupAdd"; // Import GroupAddIcon for Add Admin
+import GroupAddIcon from "@mui/icons-material/GroupAdd"; // Import GroupAddIcon for Add Ad
+import AdminLogout from "../adminAdd/adminLogout";
 
 const AdminNav = () => {
   const [rows, setRowData] = useState([]);
@@ -32,9 +33,12 @@ const AdminNav = () => {
   return (
     <main className="flex justify-center py-4 rounded-lg mx-14 flex-inline bg-[white] h-fit ">
       <nav className="w-64">
-        <h1 className="px-4 py-2 text-xl font-medium text-[#0D5077]">
-          Dashboard
-        </h1>
+        <div className="flex py-4 gap-9">
+          <h1 className="px-4  text-xl font-medium text-[#0D5077]">
+            Dashboard
+          </h1>
+          <AdminLogout />
+        </div>
         <ul className="mx-auto font-medium text-lg text-[#0D5077]">
           <NavLink
             to="/adminAdd"

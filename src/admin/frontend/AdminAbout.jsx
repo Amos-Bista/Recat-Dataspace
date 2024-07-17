@@ -13,6 +13,7 @@ const AdminAbout = () => {
       { desc: "", count: 0 },
     ],
   });
+  console.log(milestoneData)
 
   const handleFormSubmit = (formData) => {
     // Update milestoneData with formData

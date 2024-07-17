@@ -27,7 +27,11 @@ const LandingEdit = ({ contactDetails }) => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`, 
+        {
+           Bearer: 'token'
+          
+        }
       );
       if (!response.ok) {
         toast.success("Success");
