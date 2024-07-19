@@ -27,16 +27,16 @@ const LandingEdit = ({ contactDetails }) => {
   // Fetch data from API
   const fetchData = async () => {
     try {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`,
         {
           method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-            "Content-Type": "application/json",
-          },
+          // headers: {
+          //   Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          //   // "Content-Type": "application/json",
+          // },
         }
       );
       if (!response.ok) {
