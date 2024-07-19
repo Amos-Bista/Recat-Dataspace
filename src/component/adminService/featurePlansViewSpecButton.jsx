@@ -16,8 +16,11 @@ const FeaturePlansViewSpecButton = ({ id, data, update }) => {
   const [error, setError] = useState(null);
 
   const handleOpen = () => {
+
     setOpen(true);
     update(true);
+    setLoading();
+    setError();
   };
 
   const handleClose = () => {

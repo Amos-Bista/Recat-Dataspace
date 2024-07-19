@@ -209,7 +209,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
@@ -304,7 +303,7 @@ function App() {
     setPrevScrollPos(currentScrollPos);
   };
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
     <main className="w-screen overflow-x-hidden font-abc">

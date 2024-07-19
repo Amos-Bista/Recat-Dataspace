@@ -5,6 +5,7 @@ import ContactTextFieldEditor from "../../component/adminContact/contactTextEdit
 
 const LandingEdit = ({ contactDetails }) => {
   const [open, setOpen] = useState(false); // Use boolean false instead of string "false"
+  console.log(open)
   const [id, setId] = useState("");
   const [phoneNumbers, setPhoneNumbers] = useState("");
   const [email, setEmail] = useState("");

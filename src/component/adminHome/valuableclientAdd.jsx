@@ -19,6 +19,7 @@ const ValuableclientAdd = () => {
   const [logo, setLogo] = useState(null);
   const [response, setResponse] = useState("");
 
+  console.log(response)
   const functionOnPopUp = () => {
     setOpen(true);
   };

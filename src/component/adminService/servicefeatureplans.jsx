@@ -7,11 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 import { toast } from "react-toastify";
 import FeaturePlansAdd from "./featurePlansAdd";
-import FeaturePlansEdit from "./featurePlansEdit";
-import PlanSpecAdd from "./planSpecAdd";
 import FeaturePlansDelete from "./featurePlansDelete";
 import FeaturePlanSpecButton from "./featurePlansViewSpecButton";
 
@@ -21,7 +18,7 @@ const ServiceFeaturePlans = () => {
     servicePlans: [],
   });
   const [subscriptionPlan, setSubscriptionPlan] = useState(""); // State to store the billing period
-
+ console.log(subscriptionPlan)
   useEffect(() => {
     fetchData();
   }, [id]);

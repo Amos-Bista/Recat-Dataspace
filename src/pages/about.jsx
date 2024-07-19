@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Abouthero from "../component/about/abouthero";
-import Plans from "../component/Plans";
 import AboutAccordion from "../component/about/aboutaccordion";
 import Milestone from "../component/about/milestone";
 

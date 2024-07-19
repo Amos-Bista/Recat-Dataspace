@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import ValuableclientAdd from "./valuableclientAdd";
 import { Box } from "@mui/material";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";

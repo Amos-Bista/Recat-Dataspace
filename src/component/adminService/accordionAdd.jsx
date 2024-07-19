@@ -30,7 +30,6 @@ const AccordionAdd = ({ onAccordionAdded }) => {
   };
 
   const handleTitleChange = (e) => setTitle(e.target.value);
-  const handledescriptionChange = (e) => setDescription(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +41,7 @@ const AccordionAdd = ({ onAccordionAdded }) => {
     };
 
     try {
-      const token = localStorage.getItem("token");
+            const token = localStorage.getItem("token");
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/addDescription`,

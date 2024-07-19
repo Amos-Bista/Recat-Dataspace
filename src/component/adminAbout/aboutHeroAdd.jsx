@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-const AboutHeroAdd = ({ addData }) => {
+const AboutHeroAdd = () => {
   const [open, setOpen] = useState(false);
   const [aboutName, setAboutName] = useState("");
   const [aboutDescription, setAboutDescription] = useState("");
@@ -20,9 +20,10 @@ const AboutHeroAdd = ({ addData }) => {
 
   const [response, setResponse] = useState("");
 
-  const functionOnPopUp = () => {
-    setOpen(true);
-  };
+  // const functionOnPopUp = () => {
+  //   setOpen(true);
+  // };
+  console.log(response);
 
   const closePopUp = () => {
     setOpen(false);
@@ -71,7 +72,7 @@ const AboutHeroAdd = ({ addData }) => {
   };
 
   return (
-    <>  
+    <>
       {/* <Button onClick={functionOnPopUp} color="primary" variant="contained">
         Add New +
       </Button> */}

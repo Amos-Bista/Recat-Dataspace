@@ -14,7 +14,6 @@ import Servicefeatureplans from "./servicefeatureplans";
 import AccordionDelete from "./accordionDelete";
 import parse from 'html-react-parser';
 
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,19 +22,21 @@ const AdminServiceSub = () => {
   const [serviceData, setServiceData] = useState(null);
 
   useEffect(() => {
+    console.log("useEffect called with id:", id); // Debugging log
     fetchData();
-  }, [id]);
+  }, []);
 
   const fetchData = async () => {
     try {
+      console.log("Fetching data..."); // Debugging log
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch service data");
-        // fetchData();
       }
       const data = await response.json();
+      console.log("Fetched data:", data); // Debugging log
       setServiceData(data);
     } catch (error) {
       console.error("Error fetching service data:", error);
@@ -56,7 +57,6 @@ const AdminServiceSub = () => {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-            // "Content-Type": "application/json",
           },
         }
       );
@@ -98,7 +98,6 @@ const AdminServiceSub = () => {
                     <TableCell sx={{ minWidth: 400 }} align="center">
                       Description
                     </TableCell>
-                    {/* <TableCell align="center">Edit</TableCell> */}
                     <TableCell align="center">Delete</TableCell>
                   </TableRow>
                 </TableHead>
@@ -109,9 +108,6 @@ const AdminServiceSub = () => {
                         <TableCell align="center">{panel.title}</TableCell>
                         <TableCell align="center">
                           {parse(panel.description)}
-                        </TableCell>
-                        <TableCell align="center">
-                          {/* <Button variant="contained">EDIT</Button> */}
                         </TableCell>
                         <TableCell align="center">
                           <AccordionDelete

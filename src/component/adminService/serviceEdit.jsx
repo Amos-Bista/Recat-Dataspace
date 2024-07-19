@@ -32,6 +32,8 @@ const ServiceEdit = ({ id }) => {
   const functionOnPopUp = () => {
     setOpen(true);
   };
+  console.log(rows)
+  console.log(setFetchError)
 
   const closePopUp = () => {
     setOpen(false);
