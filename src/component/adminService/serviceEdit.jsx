@@ -14,9 +14,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const ServiceEdit = ({ id, data }) => {
+const ServiceEdit = ({ id }) => {
   const [open, setOpen] = useState(false);
-  const [image, setImage] = useState(null);
+  const [backgroundimagePreview, setBackgroundImagePreview] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [backgroundImage, setBackgroundImage] = useState("");
@@ -26,7 +26,9 @@ const ServiceEdit = ({ id, data }) => {
   const [editError, setEditError] = useState(null);
   const [serviceSubName, setServiceSubName] = useState("");
   const [serviceSubImage, setServiceSubImage] = useState(null);
+  const [serviceSubImagePreview, setServiceSubImagePreview] = useState("");
   const inputRef = useRef(null);
+  const subImageRef = useRef(null);
   const functionOnPopUp = () => {
     setOpen(true);
   };
@@ -36,18 +38,27 @@ const ServiceEdit = ({ id, data }) => {
     // Reset form values on close
     setTitle("");
     setDescription("");
-    setBackgroundImage("");
     setServiceSubImage(null);
-    setImage(null);
+    setServiceSubImagePreview("");
+    setBackgroundImage(null);
+    setBackgroundImagePreview("");
     setEditError(null);
   };
 
   const handleImageChange = (event) => {
-    setImage(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) {
+      setBackgroundImage(file);
+      setBackgroundImagePreview(URL.createObjectURL(file));
+    }
   };
 
   const handleImageSubChange = (event) => {
-    setServiceSubImage(event.target.files[0]);
+    const file = event.target.files[0];
+    if (file) { 
+      setServiceSubImage(file);
+      setServiceSubImagePreview(URL.createObjectURL(file));
+    }
   };
 
   const handleImageClick = () => {
@@ -55,7 +66,7 @@ const ServiceEdit = ({ id, data }) => {
   };
 
   const handleImageSubClick = () => {
-    inputRef.current.click();
+    subImageRef.current.click();
   };
 
   useEffect(() => {
@@ -76,6 +87,8 @@ const ServiceEdit = ({ id, data }) => {
       const data = await response.json();
       setRows(data);
       const service = data.find((item) => item.id === id);
+      console.log("id", id);
+
       if (service) {
         setTitle(service.serviceName);
         setDescription(service.serviceDescription);
@@ -92,58 +105,61 @@ const ServiceEdit = ({ id, data }) => {
     }
   };
 
-  // const handleEdit = async () => {
-  //   setLoading(true);
-  //   setEditError(null);
-  //   const formData = new FormData();
-  //   formData.append("serviceName", title);
-  //   formData.append("serviceDescription", description);
-  //   formData.append("serviceBgImage", image);
-  //   formData.append("serviceSubName", serviceSubName);
-  //   formData.append("serviceSubImage", serviceSubImage);
-
-  //   try {
-  //     const response = await fetch(
-  //       `${process.env.REACT_APP_API_BASE_URL}/services/update/${id}`,
-  //       {
-  //         method: "PUT",
-  //         body: formData,
-  //       }
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error("Failed to update service");
-  //     }
-  //     toast.success("Edit Successful");
-  //     closePopUp();
-  //   } catch (error) {
-  //     console.error("Error updating service:", error);
-  //     toast.error("Error updating service");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleEdit = async () => {
     setLoading(true);
     setEditError(null);
+  
     const formData = new FormData();
-    formData.append("serviceName", title);
-    formData.append("serviceDescription", description);
-    formData.append("serviceBgImage", image);
-    formData.append("serviceSubName", serviceSubName);
-    formData.append("serviceSubImage", serviceSubImage);
+  
+    // Append non-file fields
+    if (title) formData.append("serviceName", title);
+    if (description) formData.append("serviceDescription", description);
+    if (serviceSubName) formData.append("serviceSubName", serviceSubName);
+  
+    // Append images
+    if (backgroundImage) {
+      formData.append("serviceBgImage", backgroundImage);
+    } else {
+      // Append the current background image if no new image is selected
+      if (backgroundimagePreview) {
+        formData.append("serviceBgImage", backgroundimagePreview);
+      } else {
+        // If there's no background image at all
+        formData.append("serviceBgImage", "");
+      }
+    }
+  
+    if (serviceSubImage) {
+      formData.append("serviceSubImage", serviceSubImage);
+    } else {
+      // Append the current service sub image if no new image is selected
+      if (serviceSubImagePreview) {
+        formData.append("serviceSubImage", serviceSubImagePreview);
+      } else {
+        // If there's no service sub image at all
+        formData.append("serviceSubImage", "");
+      }
+    }
   
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/services/update/${id}`,
         {
           method: "PUT",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
+  
       if (!response.ok) {
         throw new Error("Failed to update service");
       }
+  
       toast.success("Edit Successful");
   
       // Fetch updated data after successful update
@@ -157,6 +173,8 @@ const ServiceEdit = ({ id, data }) => {
       setLoading(false);
     }
   };
+  
+
   return (
     <>
       <Button onClick={functionOnPopUp} color="primary" variant="contained">
@@ -232,7 +250,10 @@ const ServiceEdit = ({ id, data }) => {
                   onClick={handleImageClick}
                 >
                   <img
-                    src={`${process.env.REACT_APP_API_BASE_URL}/services/${backgroundImage}`}
+                    src={
+                      backgroundimagePreview ||
+                      `${process.env.REACT_APP_API_BASE_URL}/services/${backgroundImage}`
+                    }
                     style={{
                       width: "420px",
                       height: "150px",
@@ -245,7 +266,7 @@ const ServiceEdit = ({ id, data }) => {
                 <input
                   type="file"
                   ref={inputRef}
-                  className="hidden"
+                  style={{ display: "none" }}
                   onChange={handleImageChange}
                 />
               </Grid>
@@ -280,7 +301,10 @@ const ServiceEdit = ({ id, data }) => {
                   onClick={handleImageSubClick}
                 >
                   <img
-                    src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceSubImage}`}
+                    src={
+                      serviceSubImagePreview ||
+                      `${process.env.REACT_APP_API_BASE_URL}/services/${serviceSubImage}`
+                    }
                     style={{
                       width: "420px",
                       height: "150px",
@@ -292,8 +316,8 @@ const ServiceEdit = ({ id, data }) => {
                 </div>
                 <input
                   type="file"
-                  ref={inputRef}
-                  className="hidden"
+                  ref={subImageRef}
+                  style={{ display: "none" }}
                   onChange={handleImageSubChange}
                 />
               </Grid>

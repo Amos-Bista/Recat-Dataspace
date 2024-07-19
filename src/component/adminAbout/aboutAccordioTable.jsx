@@ -10,10 +10,11 @@ import Button from "@mui/material/Button";
 import AboutAccordionAdd from "./aboutaccordionAdd";
 import AboutAccordionDelete from "./aboutaccordionDelete.jsx";
 import { toast } from "react-toastify";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const AdminAccordionTable = () => {
-  const [aboutData, setAboutData] = useState("");
+  const [aboutData, setAboutData] = useState([]);
+  const [imageUrls, setImageUrls] = useState({});
 
   useEffect(() => {
     fetchData();
@@ -25,31 +26,46 @@ const AdminAccordionTable = () => {
         `${process.env.REACT_APP_API_BASE_URL}/aboutUs/getAboutUs`
       );
       if (!response.ok) {
-        throw new Error("Sucess");
+        throw new Error("Success");
       }
       const data = await response.json();
       setAboutData(data);
-      console.log(data);
+
+      // Fetch images if required
+      const token = localStorage.getItem("token");
+      const urls = {};
+      for (const item of data[0]?.aboutUsAccordions || []) {
+        if (item.logo) {
+          const imageResponse = await fetch(item.logo, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (imageResponse.ok) {
+            const blob = await imageResponse.blob();
+            urls[item.id] = URL.createObjectURL(blob);
+          }
+        }
+      }
+      setImageUrls(urls);
     } catch (error) {
       console.error("Error fetching service data:", error);
       // Optionally, you can handle errors or set a state to indicate error state
     }
   };
 
-  const handleAboutAccordionAdded = () => {
-    // fetchData(); // Refresh service data when accordion is added
-  };
-
-  if (!aboutData) {
-    return <div>Loading...</div>;
-  }
-
   const handleDelete = async (panelId) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc/deleteAccordion?id=${panelId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {
@@ -69,7 +85,7 @@ const AdminAccordionTable = () => {
         <h1 className="my-8 text-2xl font-[400] text-[#0D5077] mb-[40px]">
           About Accordion
         </h1>
-        <AboutAccordionAdd onAboutAccordionAdded={handleAboutAccordionAdded} />
+        <AboutAccordionAdd onAboutAccordionAdded={fetchData} />
       </div>
       <div className="w-full h-full rounded-lg">
         <TableContainer component={Paper}>
@@ -83,23 +99,26 @@ const AdminAccordionTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {aboutData[0].aboutUsAccordions.map((aboutData) => (
-                <TableRow key={aboutData.id}>
-                  <TableCell align="center">{aboutData.title}</TableCell>
+              {aboutData[0]?.aboutUsAccordions.map((about) => (
+                <TableRow key={about.id}>
+                  <TableCell align="center">{about.title}</TableCell>
                   <TableCell align="center">
-                    {aboutData.logo && (
+                    {about.logo && (
                       <img
-                        src={aboutData.logo}
+                        // src={imageUrls[about.id] || about.logo}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${about.logo}`}
                         alt="Logo"
                         className="flex mx-auto"
                         style={{ width: "30px", height: "auto" }} // Adjust dimensions as needed
                       />
                     )}
                   </TableCell>
-                  <TableCell align="center">{parse(aboutData.description)}</TableCell>
+                  <TableCell align="center">
+                    {parse(about.description)}
+                  </TableCell>
                   <TableCell align="center">
                     <AboutAccordionDelete
-                      onDelete={() => handleDelete(aboutData.id)}
+                      onDelete={() => handleDelete(about.id)}
                       className="flex justify-center mx-auto"
                     />
                   </TableCell>

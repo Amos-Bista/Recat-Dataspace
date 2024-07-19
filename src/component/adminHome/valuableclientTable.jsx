@@ -37,10 +37,16 @@ const ValuableclientTable = () => {
 
   const handleDelete = async (id, index) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/client/deleteClient?id=${id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
         }
       );
       if (response.ok) {

@@ -24,14 +24,23 @@ const PlanSpecAdd = ({ id }) => {
 
   const fetchData = async () => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
+        }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch service data");
       }
       const data = await response.json();
       setServiceData(data);
+      fetchData();
     } catch (error) {
       console.error("Error fetching service data:", error);
     }
@@ -62,6 +71,8 @@ const PlanSpecAdd = ({ id }) => {
 
   const handleSubmit = async () => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/specifications/addSpecification`,
         {
@@ -70,7 +81,8 @@ const PlanSpecAdd = ({ id }) => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
           },
         }
       );
