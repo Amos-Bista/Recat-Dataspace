@@ -82,7 +82,7 @@ const ContactHero = () => {
           className="absolute bg-black/50"
         ></div>
         <img
-          src={`${process.env.REACT_APP_API_BASE_URL}/contacts/${heroData.backgroundImage}`}
+          src={heroData.backgroundImage}
           alt={heroData.title}
           style={imgStyles}
           className="w-max-screen"
