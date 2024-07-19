@@ -14,7 +14,6 @@ import {
 } from "@mui/material";
 import { toast } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
-import axios from "axios";
 import TextFieldEditor from "../inputTextEditor/textFieldEditor"; // Adjust the import path if necessary
 
 const Add = ({ fetchData }) => {
@@ -35,10 +34,25 @@ const Add = ({ fetchData }) => {
 
   const fetchDataa = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}/services/getServices`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
+        }
       );
-      setRowData(response.data);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setRowData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -73,6 +87,8 @@ const Add = ({ fetchData }) => {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem("token");
+
       const formData = new FormData();
       formData.append("title", serviceName);
       formData.append("description", serviceDescription);
@@ -84,14 +100,17 @@ const Add = ({ fetchData }) => {
         {
           method: "POST",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
 
-      if (response.ok) {  
-        // console.log(response)
-        toast.success("Hero Section uploaded successfully!");
-        closePopUp();
+      if (response.ok) {
         fetchData();
+        closePopUp();
+        toast.success("Hero Section uploaded successfully!");
       } else {
         throw new Error("Failed to upload Hero Section");
       }
@@ -163,18 +182,9 @@ const Add = ({ fetchData }) => {
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              {/* <TextField
-                label="Enter description"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4}
-                onChange={(e) => setServiceDescription(e.target.value)}
-              /> */}
               <TextFieldEditor
                 label="Enter description"
                 placeholder="description"
-                // value={serviceDescription}
                 onChange={(newContent) => setServiceDescription(newContent)}
               />
             </Grid>

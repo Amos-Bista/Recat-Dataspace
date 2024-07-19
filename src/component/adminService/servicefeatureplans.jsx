@@ -28,8 +28,16 @@ const ServiceFeaturePlans = () => {
 
   const fetchData = async () => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`
+        `${process.env.REACT_APP_API_BASE_URL}/services/getService/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
+        }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -49,10 +57,16 @@ const ServiceFeaturePlans = () => {
 
   const handleDelete = async (rowId) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/servicePlans/deleteServicePlan?id=${rowId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {
@@ -65,8 +79,6 @@ const ServiceFeaturePlans = () => {
       toast.error("Failed to delete accordion. Please try again.");
     }
   };
-
-  
 
   return (
     <main className="pt-6 border-b-2">
@@ -105,10 +117,9 @@ const ServiceFeaturePlans = () => {
                     </TableCell>{" "}
                     {/* Display subscriptionPlan */}
                     <TableCell align="center">{row.link}</TableCell>
-                    
                     <TableCell align="center">{row.price}</TableCell>
                     <TableCell align="center">
-                      <FeaturePlanSpecButton id={row.id}  data={rowData} />
+                      <FeaturePlanSpecButton id={row.id} data={rowData} update={updateRowData} />
                     </TableCell>
                     {/* <TableCell align="center">
                       <Box variant="contained">

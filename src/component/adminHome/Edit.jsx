@@ -34,9 +34,18 @@ const Edit = ({ onEdit }) => {
   }, []);
 
   const fetchData = async () => {
+    const token = localStorage.getItem("token");
+
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`
+        `${process.env.REACT_APP_API_BASE_URL}/heroSection/allSections`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       if (!response.ok) {
@@ -94,11 +103,17 @@ const Edit = ({ onEdit }) => {
     formData.append("backgroundImage", backgroundImage || "");
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/heroSection/editSection?id=${id}`,
         {
           method: "PUT",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {

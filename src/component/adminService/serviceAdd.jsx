@@ -59,6 +59,7 @@ const ServiceAdd = ({ addData }) => {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem("token");
       const formData = new FormData();
       formData.append("serviceName", serviceName);
       formData.append("serviceDescription", serviceDescription);
@@ -75,20 +76,23 @@ const ServiceAdd = ({ addData }) => {
         {
           method: "POST",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
         }
       );
       // const responseData = await response.json();
       // console.log('Response Data:', responseData);
       if (response.ok) {
         toast.success("Page Added Successfully");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
       } else {
         toast.error("An error occurred");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
         throw new Error("Network response was not ok");
       }
     } catch (error) {
@@ -107,7 +111,7 @@ const ServiceAdd = ({ addData }) => {
 
   return (
     <>
-      <div className="flex flex-row justify-between mt-[10px] mb-9">
+      <div className=" justify-between mt-[10px] mb-9">
         <h3 className="text-2xl font-[400] text-[#0D5077]">Service Page</h3>
         <Button onClick={functionOnPopUp} color="primary" variant="contained">
           Add New
@@ -157,7 +161,7 @@ const ServiceAdd = ({ addData }) => {
             </Grid>
             <Grid item xs={6}>
               <TextFieldEditor
-                value={serviceDescription}
+                // value={serviceDescription}
                 onChange={handleDescriptionChange}
               />
             </Grid>

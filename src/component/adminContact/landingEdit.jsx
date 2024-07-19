@@ -26,11 +26,16 @@ const LandingEdit = ({ contactDetails }) => {
   // Fetch data from API
   const fetchData = async () => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`, 
+        `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`,
         {
-           Bearer: 'token'
-          
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {
@@ -87,7 +92,7 @@ const LandingEdit = ({ contactDetails }) => {
       );
       if (success.ok) {
         toast.success("Contact updated successfully");
-        fetchData()
+        fetchData();
       }
     } catch (error) {
       console.error("Error:", error);

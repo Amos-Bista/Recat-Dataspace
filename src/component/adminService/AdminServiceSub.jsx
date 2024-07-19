@@ -48,10 +48,16 @@ const AdminServiceSub = () => {
 
   const handleDelete = async (panelId) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/serviceDesc/deleteDescription?id=${panelId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {

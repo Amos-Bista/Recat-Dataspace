@@ -10,13 +10,14 @@ import {
 } from "@mui/material";
 import PlanSpecAdd from "./planSpecAdd";
 
-const FeaturePlansViewSpecButton = ({ id, data }) => {
+const FeaturePlansViewSpecButton = ({ id, data, update }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const handleOpen = () => {
     setOpen(true);
+    update(true);
   };
 
   const handleClose = () => {
@@ -24,7 +25,7 @@ const FeaturePlansViewSpecButton = ({ id, data }) => {
   };
 
   const servicePlan = data.servicePlans.find((plan) => plan.id === id);
-
+  console.log('plan',servicePlan)
   return (
     <>
       <Button
@@ -41,7 +42,7 @@ const FeaturePlansViewSpecButton = ({ id, data }) => {
           {error && <Typography color="error">Error: {error}</Typography>}
           {servicePlan ? (
             <div>
-              <Typography variant="h6">
+              <Typography variant="h6"> 
                 Plan Name: {servicePlan.servicePlanTitle}
               </Typography>
               {servicePlan.specifications.length > 0 ? (

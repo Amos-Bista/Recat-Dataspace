@@ -62,11 +62,17 @@ const AboutAccordionAdd = ({ onAboutAccordionAdded }) => {
     formData.append("logo", logo);
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/aboutUsDesc/addAccordion`,
         {
           method: "POST",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
 

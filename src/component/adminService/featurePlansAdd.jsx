@@ -56,13 +56,13 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
   };
 
   const handleTiersChange = (event) => {
-    const value = event.target.value.replace(/[^a-zA-Z\s]/g, "");;
+    const value = event.target.value.replace(/[^a-zA-Z\s]/g, "");
     setServicePlanTiers(value);
     validateField("servicePlanTiers", value);
   };
 
   const handlePriceChange = (event) => {
-    const value = event.target.value.replace(/[^1-9\s]/g, "");;
+    const value = event.target.value.replace(/[^1-9\s]/g, "");
     setPrice(value);
     validateField("price", value);
   };
@@ -94,11 +94,15 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
     };
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/servicePlans/addServicePlans`,
         {
           method: "POST",
+
           headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
@@ -148,9 +152,7 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
 
   const validateURL = (url) => {
     // Regular expression to validate URL
-    const pattern = new RegExp(
-      /^(ftp|http|https):\/\/[^ "]+$/
-    );
+    const pattern = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/);
     return pattern.test(url);
   };
 

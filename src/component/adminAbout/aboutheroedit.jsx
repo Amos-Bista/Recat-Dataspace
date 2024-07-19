@@ -38,11 +38,17 @@ const AboutHeroEdit = ({ aboutDetails, handleEditAbout }) => {
     }
 
     try {
+      const token = localStorage.getItem("token");
+
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/aboutUs/update/${aboutDetails.id}`,
         {
           method: "PUT",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
 
