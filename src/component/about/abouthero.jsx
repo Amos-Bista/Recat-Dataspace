@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CircularProgress } from "@mui/material";
-import Milestone from "./milestone";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const Abouthero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -20,7 +19,7 @@ const Abouthero = () => {
         }
         const data = await response.json();
         setSlides(data);
-        console.log('nabin', data);
+        console.log("nabin", data);
         setLoading(false);
       } catch (error) {
         setError(error.message);

@@ -10,12 +10,12 @@ import { Box } from "@mui/material";
 import AboutHeroAdd from "./aboutHeroAdd";
 import AboutHeroEdit from "./aboutheroedit";
 import SdCardAlertIcon from "@mui/icons-material/SdCardAlert";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const AboutHero = () => {
   const [rows, setRows] = useState([]);
   const [error, setError] = useState(null);
-
+  console.log(error);
   useEffect(() => {
     fetchData();
   }, []);
@@ -68,11 +68,17 @@ const AboutHero = () => {
                 rows.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell align="center">{row.title}</TableCell>
-                    <TableCell align="center">{parse(row.description)}</TableCell>
-                    <TableCell align="center" >
+                    <TableCell align="center">
+                      {parse(row.description)}
+                    </TableCell>
+                    <TableCell align="center">
                       <img
                         src={`${process.env.REACT_APP_API_BASE_URL}/aboutUs/${row.backgroundImage}`}
-                        className="w-[20rem] h-[12rem] flex mx-auto "
+                        className="w-[20rem] h-[12rem] flex mx-auto"
+                        alt="Background"
+                        onError={(e) =>
+                          console.error("Image failed to load", e)
+                        }
                       />
                     </TableCell>
                     <TableCell align="center">

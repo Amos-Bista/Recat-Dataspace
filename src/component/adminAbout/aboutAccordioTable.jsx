@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Button from "@mui/material/Button";
 import AboutAccordionAdd from "./aboutaccordionAdd";
 import AboutAccordionDelete from "./aboutaccordionDelete.jsx";
 import { toast } from "react-toastify";
@@ -16,6 +15,7 @@ const AdminAccordionTable = () => {
   const [aboutData, setAboutData] = useState([]);
   const [imageUrls, setImageUrls] = useState({});
 
+  console.log(imageUrls);
   useEffect(() => {
     fetchData();
   }, []);

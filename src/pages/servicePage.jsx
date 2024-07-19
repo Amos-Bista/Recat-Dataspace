@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PlansCard from "../component/home/plansCard";
 import parse from "html-react-parser";
-import Slider from "react-slick";
 const ServicePage = () => {
   const { id } = useParams();
   const [serviceData, setServiceData] = useState(null);
@@ -79,16 +78,16 @@ const ServicePage = () => {
   //   // ],
   // };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    vertical: false,
-  };
+  // const settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   autoplay: true,
+  //   autoplaySpeed: 3000,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   vertical: false,
+  // };
 
   return (
     <div>

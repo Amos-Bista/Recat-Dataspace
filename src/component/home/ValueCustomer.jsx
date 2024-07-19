@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { CircularProgress } from "@mui/material";
 
@@ -15,7 +14,11 @@ const ValueCustomer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  console.log(isLeftArrowHovered)
+  console.log(isRightArrowHovered)
+  console.log(setAutoplay)
   const settings = {
+    
     dots: false,
     infinite: true,
     speed: 17000,
@@ -27,25 +30,25 @@ const ValueCustomer = () => {
     pauseOnHover: true,
   };
 
-  const handleLeftArrowClick = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
-      setAutoplay(false);
-      setTimeout(() => {
-        setAutoplay(true);
-      }, 5000);
-    }
-  };
+  // const handleLeftArrowClick = () => {
+  //   if (sliderRef.current) {
+  //     sliderRef.current.slickPrev();
+  //     setAutoplay(false);
+  //     setTimeout(() => {
+  //       setAutoplay(true);
+  //     }, 5000);
+  //   }
+  // };
 
-  const handleRightArrowClick = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
-      setAutoplay(false);
-      setTimeout(() => {
-        setAutoplay(true);
-      }, 2000);
-    }
-  };
+  // const handleRightArrowClick = () => {
+  //   if (sliderRef.current) {
+  //     sliderRef.current.slickNext();
+  //     setAutoplay(false);
+  //     setTimeout(() => {
+  //       setAutoplay(true);
+  //     }, 2000);
+  //   }
+  // };
 
   useEffect(() => {
     fetchData();

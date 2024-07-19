@@ -1,20 +1,20 @@
 import React from "react";
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Card } from "@mui/material";
+// import { Card } from "@mui/material";
 function PlansCard({ plan }) {
-  const settingss = {
-    padding: "0px",
-    marginBottom: "0px",
-    dots: false,
-    infinite: false,
-    autoplay: true,
-    autoplaySpeed: 0, // Adjust the autoplay speed as needed
-    speed: 5000,
-    slidesToShow: 1,
-    Vertical: true, // Set to false for horizontal autoplay
-  };
+  // const settingss = {
+  //   padding: "0px",
+  //   marginBottom: "0px",
+  //   dots: false,
+  //   infinite: false,
+  //   autoplay: true,
+  //   autoplaySpeed: 0, // Adjust the autoplay speed as needed
+  //   speed: 5000,
+  //   slidesToShow: 1,
+  //   Vertical: true, // Set to false for horizontal autoplay
+  // };
 
   return (
     <div className="flex justify-center mx-4 ">

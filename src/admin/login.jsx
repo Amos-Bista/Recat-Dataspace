@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/action/authActions";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
