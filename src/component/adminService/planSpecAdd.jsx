@@ -20,6 +20,7 @@ const PlanSpecAdd = ({ id }) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   const fetchData = async () => {

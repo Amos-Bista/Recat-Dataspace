@@ -10,13 +10,14 @@ import Paper from "@mui/material/Paper";
 import ServiceDelete from "./serviceDelete";
 import ServiceEdit from "./serviceEdit";
 import { toast } from "react-toastify";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const Serviceherosec = () => {
   const [rows, setRowData] = useState([]);
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   const fetchData = async () => {
@@ -38,10 +39,15 @@ const Serviceherosec = () => {
 
   const handleDelete = async (id, index) => {
     try {
+      const token = localStorage.getItem("token");
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/services/deleteService?id=${id}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {
@@ -111,7 +117,6 @@ const Serviceherosec = () => {
                     </TableCell>
                     <TableCell align="center">
                       <ServiceEdit id={row.id} data={row} />
-                  
                     </TableCell>
                     <TableCell align="center">
                       <Button sx={{ margin: 2 }}>

@@ -119,28 +119,12 @@ const ServiceEdit = ({ id }) => {
     if (serviceSubName) formData.append("serviceSubName", serviceSubName);
   
     // Append images
-    if (backgroundImage) {
+    if (backgroundImage instanceof File) {
       formData.append("serviceBgImage", backgroundImage);
-    } else {
-      // Append the current background image if no new image is selected
-      if (backgroundimagePreview) {
-        formData.append("serviceBgImage", backgroundimagePreview);
-      } else {
-        // If there's no background image at all
-        formData.append("serviceBgImage", "");
-      }
     }
-  
-    if (serviceSubImage) {
+
+    if (serviceSubImage instanceof File) {
       formData.append("serviceSubImage", serviceSubImage);
-    } else {
-      // Append the current service sub image if no new image is selected
-      if (serviceSubImagePreview) {
-        formData.append("serviceSubImage", serviceSubImagePreview);
-      } else {
-        // If there's no service sub image at all
-        formData.append("serviceSubImage", "");
-      }
     }
   
     try {
