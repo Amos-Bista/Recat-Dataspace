@@ -5,7 +5,7 @@ import ContactTextFieldEditor from "../../component/adminContact/contactTextEdit
 
 const LandingEdit = ({ contactDetails }) => {
   const [open, setOpen] = useState(false); // Use boolean false instead of string "false"
-  console.log(open)
+  console.log(open);
   const [id, setId] = useState("");
   const [phoneNumbers, setPhoneNumbers] = useState("");
   const [email, setEmail] = useState("");
@@ -27,16 +27,16 @@ const LandingEdit = ({ contactDetails }) => {
   // Fetch data from API
   const fetchData = async () => {
     try {
-      // const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
       const response = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`,
         {
           method: "GET",
-          // headers: {
-          //   Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-          //   // "Content-Type": "application/json",
-          // },
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+          },
         }
       );
       if (!response.ok) {
@@ -71,11 +71,11 @@ const LandingEdit = ({ contactDetails }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("title", title || "");
-    formData.append("description", description || "");
-    formData.append("phoneNum", phoneNumbers || "");
-    formData.append("email", email || "");
-    formData.append("address", address || "");
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("phoneNum", phoneNumbers);
+    formData.append("email", email);
+    formData.append("address", address);
 
     // Append backgroundImage only if it has been changed
     if (isBackgroundImageChanged) {
@@ -84,11 +84,17 @@ const LandingEdit = ({ contactDetails }) => {
     }
 
     try {
+      const token = localStorage.getItem("token");
+
       const success = await fetch(
         `${process.env.REACT_APP_API_BASE_URL}/contacts/updateContact/${id}`,
         {
           method: "PUT",
           body: formData,
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            // "Content-Type": "application/json",
+          },
         }
       );
       if (success.ok) {
@@ -133,7 +139,7 @@ const LandingEdit = ({ contactDetails }) => {
               <img
                 src={
                   typeof backgroundImage === "string"
-                    ? backgroundImage
+                    ? `${process.env.REACT_APP_API_BASE_URL}/contacts/${backgroundImage}`
                     : URL.createObjectURL(backgroundImage)
                 }
                 alt="Background"

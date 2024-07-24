@@ -15,10 +15,10 @@ export default function Plans() {
     padding: "0px",
     marginBottom: "0px",
     dots: false,
-    infinite: false,
+    infinite: true,
     autoplay: true,
-    autoplaySpeed: 0, // Adjust the autoplay speed as needed
-    speed: 5000,
+    autoplaySpeed: 100, // Adjust the autoplay speed as needed
+    speed: 2000,
     slidesToShow: 3,
     Vertical: false, // Set to false for horizontal autoplay
   };

@@ -20,11 +20,11 @@ import "react-toastify/dist/ReactToastify.css";
 const AdminServiceSub = () => {
   const { id } = useParams();
   const [serviceData, setServiceData] = useState(null);
-
+  
   useEffect(() => {
-    console.log("useEffect called with id:", id); // Debugging log
     fetchData();
-  }, []);
+ // eslint-disable-next-line
+  }, [id]);
 
   const fetchData = async () => {
     try {

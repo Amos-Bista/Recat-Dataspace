@@ -15,6 +15,7 @@ const ServicePage = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [id]);
 
   const fetchData = async () => {

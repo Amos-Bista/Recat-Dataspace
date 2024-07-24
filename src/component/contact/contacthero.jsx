@@ -11,8 +11,18 @@ const ContactHero = () => {
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
+        const token = localStorage.getItem("token");
+
         const response = await fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`
+          `${process.env.REACT_APP_API_BASE_URL}/contacts/allContacts`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+              "Content-Type": "application/json",
+            },
+          }
+          
         ); // Replace with your API endpoint
         if (!response.ok) {
           throw new Error("Failed to fetch hero data");
@@ -82,7 +92,8 @@ const ContactHero = () => {
           className="absolute bg-black/50"
         ></div>
         <img
-          src={heroData.backgroundImage}
+          // src={heroData.backgroundImage}
+          src={  `${process.env.REACT_APP_API_BASE_URL}/contacts/${heroData.backgroundImage}`}
           alt={heroData.title}
           style={imgStyles}
           className="w-max-screen"

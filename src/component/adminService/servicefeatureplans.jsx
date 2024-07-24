@@ -21,6 +21,7 @@ const ServiceFeaturePlans = () => {
  console.log(subscriptionPlan)
   useEffect(() => {
     fetchData();
+ // eslint-disable-next-line
   }, [id]);
 
   const fetchData = async () => {
