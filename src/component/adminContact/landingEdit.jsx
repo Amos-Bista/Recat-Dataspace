@@ -98,8 +98,11 @@ const LandingEdit = ({ contactDetails }) => {
         }
       );
       if (success.ok) {
+        // fetchData();
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
         toast.success("Contact updated successfully");
-        fetchData();
       }
     } catch (error) {
       console.error("Error:", error);

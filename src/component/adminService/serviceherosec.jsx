@@ -93,23 +93,23 @@ const Serviceherosec = () => {
                   <TableRow key={index}>
                     <TableCell align="center">{index + 1}</TableCell>
                     <TableCell component="th" scope="row" align="center">
-                      {row.serviceName}
+                      {row?.serviceName}
                     </TableCell>
                     <TableCell align="center">
-                      {parse(row.serviceDescription)}
+                      {parse(row?.serviceDescription)}
                     </TableCell>
                     <TableCell align="center">
                       <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row.serviceBgImage}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row?.serviceBgImage}`}
                         alt=""
                         style={imgStyles}
                         className="flex mx-auto"
                       />
                     </TableCell>
-                    <TableCell align="center">{row.serviceSubName}</TableCell>
+                    <TableCell align="center">{row?.serviceSubName}</TableCell>
                     <TableCell align="center">
                       <img
-                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row.serviceSubImage}`}
+                        src={`${process.env.REACT_APP_API_BASE_URL}/services/${row?.serviceSubImage}`}
                         alt=""
                         style={imgStyles}
                         className="flex mx-auto"
