@@ -123,7 +123,7 @@ const ServicePage = () => {
               className="w-max-screen"
             />
 
-            <div className="absolute top-[35%] left-[4%] bg-white/10 w-[90%]">
+            <div className="absolute top-[35%] left-[4%]  w-[90%]">
               <h1 className="text-white text-7xl">
                 {serviceData?.serviceName}
               </h1>
@@ -134,7 +134,7 @@ const ServicePage = () => {
           </div>
         </section>
 
-        <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-40">
+        <div className="flex flex-row justify-between pr-[4rem] w-full h-full mt-[3rem] mb-24">
           <div className="pl-16 text-xl w-[55%]">
             <h1 className="my-12 ml-3 text-4xl font-bold">
               {parse(serviceData?.serviceSubName)}
@@ -173,18 +173,20 @@ const ServicePage = () => {
               ))}
             </div>
           </div>
-          <div className="w-[430px] h-[520px]">
+          <div className="">
             <img
               src={`${process.env.REACT_APP_API_BASE_URL}/services/${serviceData?.serviceSubImage}`}
-              style={imgStyles}
               alt={serviceData.serviceName}
-              className="w-max-screen"
+              className="w-max-screen w-[28rem] "
             />
           </div>
         </div>
 
         {/* <Slider {...settings}> */}
-        <div className="mt-96 flex justify-center bg-black/10 w-[100%] ">
+        <h1 className="flex justify-center mb-20 text-3xl font-semibold">
+          Feature Plans and Pricing{" "}
+        </h1>
+        <div className="mt-6 flex justify-center w-[100%] ">
           {serviceData.servicePlans.map((plan, index) => (
             <PlansCard key={plan.id} plan={plan} index={index} />
           ))}

@@ -61,7 +61,7 @@ const About = () => {
           //   height: "280px",
           //   maxHeight: "280px",
           // }}
-          className="max-w-[600px] w-[620px] h-96 sm:max-w-[200px] md:max-w-[400px] lg:max-w-[1500px] "
+          className="max-w-[600px] w-[420px] h-96 sm:max-w-[200px] md:max-w-[400px] lg:max-w-[1500px] "
         />
       </div>
 

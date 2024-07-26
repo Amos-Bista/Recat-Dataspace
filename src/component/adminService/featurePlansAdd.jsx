@@ -62,7 +62,7 @@ const FeaturePlansAdd = ({ addfeaturePlan }) => {
   };
 
   const handlePriceChange = (event) => {
-    const value = event.target.value.replace(/[^1-9\s]/g, "");
+    const value = event.target.value.replace(/[^0-9\s]/g, "");
     setPrice(value);
     validateField("price", value);
   };

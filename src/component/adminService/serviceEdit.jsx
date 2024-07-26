@@ -32,8 +32,8 @@ const ServiceEdit = ({ id }) => {
   const functionOnPopUp = () => {
     setOpen(true);
   };
-  console.log(rows)
-  console.log(setFetchError)
+  console.log(rows);
+  console.log(setFetchError);
 
   const closePopUp = () => {
     setOpen(false);
@@ -57,7 +57,7 @@ const ServiceEdit = ({ id }) => {
 
   const handleImageSubChange = (event) => {
     const file = event.target.files[0];
-    if (file) { 
+    if (file) {
       setServiceSubImage(file);
       setServiceSubImagePreview(URL.createObjectURL(file));
     }
@@ -110,14 +110,14 @@ const ServiceEdit = ({ id }) => {
   const handleEdit = async () => {
     setLoading(true);
     setEditError(null);
-  
+
     const formData = new FormData();
-  
+
     // Append non-file fields
     if (title) formData.append("serviceName", title);
     if (description) formData.append("serviceDescription", description);
     if (serviceSubName) formData.append("serviceSubName", serviceSubName);
-  
+
     // Append images
     if (backgroundImage instanceof File) {
       formData.append("serviceBgImage", backgroundImage);
@@ -126,7 +126,7 @@ const ServiceEdit = ({ id }) => {
     if (serviceSubImage instanceof File) {
       formData.append("serviceSubImage", serviceSubImage);
     }
-  
+
     try {
       const token = localStorage.getItem("token");
 
@@ -141,16 +141,18 @@ const ServiceEdit = ({ id }) => {
           },
         }
       );
-  
+
       if (!response.ok) {
         throw new Error("Failed to update service");
       }
-  
       toast.success("Edit Successful");
-  
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+
       // Fetch updated data after successful update
       await fetchData(id); // Assuming fetchData fetches the updated data
-  
+
       closePopUp();
     } catch (error) {
       console.error("Error updating service:", error);
@@ -159,7 +161,6 @@ const ServiceEdit = ({ id }) => {
       setLoading(false);
     }
   };
-  
 
   return (
     <>

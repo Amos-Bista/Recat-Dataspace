@@ -85,9 +85,9 @@ const ServiceAdd = ({ addData }) => {
       // console.log('Response Data:', responseData);
       if (response.ok) {
         toast.success("Page Added Successfully");
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         toast.error("An error occurred");
         // setTimeout(() => {
