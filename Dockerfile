@@ -25,6 +25,6 @@ FROM nginx:alpine
 COPY --from=build /app .
 
 # Expose port 80
-EXPOSE 5001:5001
+EXPOSE 80
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
