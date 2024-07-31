@@ -19,10 +19,10 @@ function PlansCard({ plan }) {
   return (
     <div className="flex justify-center mx-4 ">
       {/* <Slider {...settingss} className="rounded-md w-80"> */}
-        <div key={plan.id}  className="overflow-hidden font-sans text-center rounded-md shadow-md w-96 bg-gray-200/40">
+        <div key={plan.id}  className="overflow-hidden font-sans text-center rounded-md shadow-md w-86 bg-gray-200/40 ">
           {/* Card */}
 
-          <div className="bg-[#0D5077] h-32 flex-col justify-center py-5 px-1">
+          <div className="bg-[#0D5077] h-32 flex-col justify-center py-5 px-6">
             <h2
               className="text-4xl bg-[#0D5077] text-white flex mx-auto leading-none w-60"
               style={{ fontFamily: "Vollkorn, serif" }}

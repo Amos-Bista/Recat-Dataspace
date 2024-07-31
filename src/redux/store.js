@@ -1,10 +1,10 @@
 // src/store.js
 import { createStore, combineReducers, applyMiddleware } from "redux";
-// import thunk from 'redux-thunk';
 import authReducer from "./reducer/authReducer";
 import { thunk } from "redux-thunk";
 // import authReducer from './reducers/authReducer';
-
+// import thunk from 'redux-thunk';
+ 
 const rootReducer = combineReducers({
   auth: authReducer,
 });

@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-const ServiceDelete = ({ onDelete}) => {
+const ServiceDelete = ({ onDelete }) => {
   const [open, setOpen] = useState(false);
   const functionOnPopUp = () => {
     setOpen(true);
@@ -17,8 +17,6 @@ const ServiceDelete = ({ onDelete}) => {
   const closePopUp = () => {
     setOpen(false);
   };
-
-
 
   // const onDelete = () => {};
 
@@ -29,7 +27,7 @@ const ServiceDelete = ({ onDelete}) => {
   return (
     <>
       <Button onClick={functionOnPopUp} color="error" variant="contained">
-        DELETE The Page
+        DELETE
       </Button>
       <Dialog open={open} onClose={closePopUp} fullWidth maxWidth="xs">
         <DialogTitle>
@@ -47,10 +45,16 @@ const ServiceDelete = ({ onDelete}) => {
           </IconButton>
         </DialogTitle>
         <DialogContent
-          style={{ fontWeight: "500", fontSize: "20px", marginLeft: "60px" }}
+          style={{
+            color: "black",
+            fontWeight: "900",
+            fontSize: "20px",
+            marginLeft: "60px",
+            display: "flex",
+            textAlign: "center",
+          }}
         >
-          {" "}
-          Do you want to delete this field?
+          This Action will delete the page. <br /> Are you sure?
         </DialogContent>
         <DialogActions
           style={{
@@ -71,7 +75,7 @@ const ServiceDelete = ({ onDelete}) => {
             onClick={closePopUp}
             color="inherit"
             variant="contained"
-            style={{ borderRadius: "12px" }}
+            style={{ borderRadius: "12px", border: "1px solid black" }}
           >
             CANCEL
           </Button>
