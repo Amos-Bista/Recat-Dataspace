@@ -17,16 +17,16 @@ COPY . .
 RUN npm run build
 
 # Start the development server
-CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
+# CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
 
 # Use an official nginx image as a parent image
 FROM nginx:alpine
 
-RUN npm install
-
+RUN rm -rf /usr/share/nginx/html*
 
 # Copy the build output to the nginx html directory
-COPY --from=build /app .
+# COPY --from=build /app .
+COPY --from=build /app/build /usr/share/nginx/html4
 
 # Expose port 80
 EXPOSE 80
