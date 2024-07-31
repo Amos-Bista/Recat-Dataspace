@@ -15,6 +15,7 @@ COPY . .
 
 # Build the React app for production
 RUN npm run build
+
 # Start the development server
 CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
 
