@@ -21,6 +21,9 @@ CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
 # Use an official nginx image as a parent image
 FROM nginx:alpine
 
+RUN npm install
+
+
 # Copy the build output to the nginx html directory
 COPY --from=build /app .
 
