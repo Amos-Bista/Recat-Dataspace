@@ -96,6 +96,7 @@ function App() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+    // eslint-disable-next-line 
   }, []);
 
   const handleScroll = () => {

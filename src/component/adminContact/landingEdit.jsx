@@ -112,7 +112,7 @@ const LandingEdit = ({ contactDetails }) => {
   };
 
   return (
-    <div className="mr-16 bg-white rounded-md">
+    <div className="pb-12 mr-16 bg-white rounded-md">
       <h3 className="flex justify-center text-center pt-12 text-2xl font-[400] text-[#0D5077] mb-[40px]">
         Contact Hero Section
       </h3>

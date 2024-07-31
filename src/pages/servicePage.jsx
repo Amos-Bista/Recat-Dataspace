@@ -186,7 +186,7 @@ const ServicePage = () => {
         <h1 className="flex justify-center mb-20 text-3xl font-semibold">
           Feature Plans and Pricing{" "}
         </h1>
-        <div className="mt-6 flex justify-center w-[100%] ">
+        <div className="mb-12 flex justify-center w-[100%] ">
           {serviceData.servicePlans.map((plan, index) => (
             <PlansCard key={plan.id} plan={plan} index={index} />
           ))}
