@@ -1,34 +1,32 @@
-# Use an official node runtime as a parent image
-FROM node:alpine3.16 AS build
+# Stage 1: Build the React app
+FROM node:14-alpine as build
 
-# Set the working directory in the container
-WORKDIR /app
+# Set the working directory
+WORKDIR /MY_REACT
 
-# Copy the package.json and package-lock.json to the working directory
+# Copy the package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies with verbose logging
+# Install dependencies
 RUN npm install --verbose
 
-# Copy the rest of the application code to the working directory
+# Copy the rest of the application code
 COPY . .
 
-# Build the React app for production
+# Build the React app
 RUN npm run build
 
-# Start the development server
-# CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
-
-# Use an official nginx image as a parent image
+# Stage 2: Serve the React app using Nginx
 FROM nginx:alpine
 
-RUN rm -rf /usr/share/nginx/html*
+# Remove the default Nginx static files
+RUN rm -rf /usr/share/nginx/html/*
 
-# Copy the build output to the nginx html directory
-# COPY --from=build /app .
-COPY --from=build /app/build /usr/share/nginx/html4
+# Copy the build output from the first stage
+COPY --from=build /MY_REACT/build /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
-# Start nginx
+
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
