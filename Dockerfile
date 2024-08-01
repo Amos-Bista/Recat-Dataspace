@@ -16,6 +16,8 @@ COPY . .
 # Build the React app
 RUN npm run build
 
+CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
+
 # Stage 2: Serve the React app using Nginx
 FROM nginx:alpine
 
@@ -24,6 +26,7 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the build output from the first stage
 COPY --from=build /MY_REACT/build /usr/share/nginx/html
+
 
 # Expose port 80
 EXPOSE 80
