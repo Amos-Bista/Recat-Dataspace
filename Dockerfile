@@ -13,10 +13,10 @@ RUN npm install --verbose
 # Copy the rest of the application code
 COPY . .
 
-# Build the React app
+# Build the React app 
 RUN npm run build
 
-CMD [ "npm", "run", "start", "--host", "0.0.0.0"]
+CMD [ "npm", "run", "start", "--host", "103.142.100.22"]
 
 # Stage 2: Serve the React app using Nginx
 FROM nginx:alpine
