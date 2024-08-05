@@ -10,16 +10,16 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Home from "./pages/home";
-import About from "./pages/about";
-import Contact from "./pages/contact";
-import Service from "./pages/service/colocation";
-import NavBar from "./component/NavBar";
+import Home from "./pages/home.jsx";
+import About from "./pages/about.jsx";
+import Contact from "./pages/contact.jsx";
+import Service from "./pages/service/colocation.jsx";
+import NavBar from "./component/NavBar.jsx";
 import Footer from "./component/footer.jsx";
-import AdminAbout from "./admin/frontend/AdminAbout";
-import AdminContact from "./admin/frontend/AdminContact";
-import AdminService from "./admin/frontend/AdminService";
-import AdminHome from "./admin/frontend/AdminHome";
+import AdminAbout from "./admin/frontend/AdminAbout.jsx";
+import AdminContact from "./admin/frontend/AdminContact.jsx";
+import AdminService from "./admin/frontend/AdminService.jsx";
+import AdminHome from "./admin/frontend/AdminHome.jsx";
 import ShowFooter from "./component/footer/showfooter.jsx";
 import ServicePage from "./pages/servicePage.jsx";
 import Services from "./pages/services.jsx";
