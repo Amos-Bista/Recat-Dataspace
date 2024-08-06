@@ -100,8 +100,8 @@ const Herosection = (id) => {
                 e.target.src = "/defaultImage.png"; // Fallback image
               }}
             />
-            <div className="absolute top-[40%] left-[3%] w-[90%]">
-              <h1 className="text-white text-7xl">
+            <div className="absolute top-[40%] left-[3rem] w-[90%]">
+              <h1 className="text-3xl text-white xl:7xl lg:text-7xl md:text-5xl">
                 {slides[currentSlide].title}
               </h1>
               <h1 className="mt-3 text-xl text-white w-[100%]">
@@ -119,7 +119,6 @@ const Herosection = (id) => {
                     Learn more
                   </button>
                 </div>
-                
               </div>
               {/* <ButtonHerosection id={slides[currentSlide].id} /> */}
             </div>

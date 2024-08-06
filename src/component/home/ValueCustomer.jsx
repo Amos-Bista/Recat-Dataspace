@@ -14,20 +14,30 @@ const ValueCustomer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  console.log(isLeftArrowHovered)
-  console.log(isRightArrowHovered)
-  console.log(setAutoplay)
+  console.log(isLeftArrowHovered);
+  console.log(isRightArrowHovered);
+  console.log(setAutoplay);
   const settings = {
-    
     dots: false,
     infinite: true,
     speed: 17000,
     slidesToShow: 6,
     slidesToScroll: 12,
     autoplay: autoplay,
-    autoplaySpeed: 100,
+    autoplaySpeed: 0,
     cssEase: "linear",
     pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          speed: 1200,
+          dots: true,
+        },
+      }
+    ],
   };
 
   // const handleLeftArrowClick = () => {
@@ -110,7 +120,7 @@ const ValueCustomer = () => {
             <img
               src={`${process.env.REACT_APP_API_BASE_URL}/client/${customer.logo}`}
               alt={`Customer ${index + 1}`}
-              className="w-[9rem] h-[9rem] rounded-md"
+              className="lg:w-[9rem] lg:h-[9rem] md:w-[7rem] md:h-[7rem]rounded-md"
             />
           </div>
         ))}

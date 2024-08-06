@@ -21,6 +21,25 @@ export default function Plans() {
     speed: 2000,
     slidesToShow: 3,
     Vertical: false, // Set to false for horizontal autoplay
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true
+        }
+      }
+    ]
   };
 
   useEffect(() => {
@@ -36,7 +55,7 @@ export default function Plans() {
           <Card
             key={index}
             sx={{ maxWidth: 355, marginBottom: 0 }}
-            className="flex mx-12 mt-12 sm:w-12 "
+            className="flex mx-12 mt-12 sm:w-12 sm:mx-12"
           >
             <div className="h-24 rounded-t-md bg-[#0D5077] flex-col justify-center items-center ">
               <div className="items-center pt-2">
